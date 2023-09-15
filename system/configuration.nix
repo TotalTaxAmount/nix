@@ -161,13 +161,6 @@ in
     # other
   ];
 
-  # Hyprland
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    enableNvidiaPatches = true;
-  };
-
   programs.zsh = {
      enable = true; 
   };
@@ -182,7 +175,7 @@ in
 
   # Boot loader
   boot = {
-    kernelParams = [ "video=eDP-1:1920x1080@165"];
+    kernelParams = [ "video=eDP-1:1920x1080@165"]; # TODO: There is def a better way to do this...
     loader = {
        systemd-boot.enable = false;
        efi = {

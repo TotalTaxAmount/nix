@@ -98,4 +98,10 @@ If you want to install this config it would go something like this:
 5. ./build.sh home
 ```
 
-**Note**: After doing this you should be able to update your system with `update home/system` from anywhere..
+**Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
+
+## TODO
+- [ ] Fix all static paths
+- [ ] Better file layout
+- [ ] Add a global config thing to change colors from one place
+- [ ] Understand flakes
