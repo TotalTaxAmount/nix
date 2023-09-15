@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 set +x
 
-
+USER=$(whoami)
 nix_build() {
     case $2 in
         "offline")
@@ -25,9 +25,9 @@ rebuild_system() {
 
 case $1 in
     "home")
-        rebuild_home $2;;
+        (cd /home/$USER/.config/nix && rebuild_home $2);;
     "system")
-        rebuild_system $2;;
+        (cd /home/$USER/.config/nix &&rebuild_system $2);;
     *)
     echo "Options are home or system"
 esac

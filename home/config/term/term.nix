@@ -1,6 +1,6 @@
 {pkgs, config, lib, ...}:
 let
-   user="totaltaxamount";
+   user="totaltaxamount"; # TODO: also fix this
    tmux-powerline = pkgs.tmuxPlugins.mkTmuxPlugin {
       pluginName = "tmux-powerline";
       version = "v2.1.0";
@@ -136,8 +136,8 @@ in
    programs.zsh = {
       enable = true;
       shellAliases = {
-         updateSystem = "sudo nixos-rebuild switch";
-         update = "home-manager switch";
+         updateSystem = "/home/${user}/.config/nix/build.sh system";
+         update = "/home/${user}/.config/nix/build.sh home";
          cat = "bat";
 
          #Shells
