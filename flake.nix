@@ -12,12 +12,12 @@
         spicetify-nix.url = github:the-argus/spicetify-nix;
     };
 
-    outputs = {self, nix, spicetify-nix, ...}@inputs :
+    outputs = {self, nix, ...}@inputs :
     let 
         system = "x86_64-linux"; 
         user = "totaltaxamount";
     in {
-        homeConfigurations = import ./outputs/home.nix {inherit inputs system user spicetify-nix;};
+        homeConfigurations = import ./outputs/home.nix {inherit inputs system user;};
         nixosConfigurations = import ./outputs/nixos.nix {inherit inputs system user;};
     };
 }

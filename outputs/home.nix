@@ -11,9 +11,7 @@ let
     ];
   };
 
-
   imports = [
-    ../home/home.nix
   ];
 
   mkHome = {}: (
