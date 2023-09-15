@@ -12,7 +12,8 @@ in
 
   imports =
   [
-        ./config/nvim/nvim.nix
+        ./config/nvim.nix
+        ./config/hyprland.nix
         ./config/term/term.nix
   ];
 
@@ -133,6 +134,12 @@ in
   #  /etc/profiles/per-user/totaltaxamount/etc/profile.d/hm-session-vars.sh
   #
   # if you don't want to manage your shell through Home Manager.
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+    enableNvidiaPatches = true;
+  };
 
   services.dunst = {
 	  enable = true;
