@@ -15,6 +15,10 @@ Layout of this repo:
 .
 ├── build.sh
 ├── dots
+│   ├── hypr
+│   │   ├── hyprland.conf
+│   │   └── scripts
+│   │       └── background.sh
 │   └── nvim
 │       ├── configs
 │       │   ├── nvim-tree.lua
@@ -55,10 +59,10 @@ Layout of this repo:
 ├── home
 │   ├── config
 │   │   ├── grimblast
+│   │   ├── hyprland.nix
 │   │   ├── icons
 │   │   │   └── candy-icons.nix
-│   │   ├── nvim
-│   │   │   └── nvim.nix
+│   │   ├── nvim.nix
 │   │   ├── shells
 │   │   │   └── shell.sh
 │   │   └── term
@@ -72,7 +76,6 @@ Layout of this repo:
 │   ├── home.nix
 │   └── nixos.nix
 ├── README.md
-├── result -> /nix/store/1vr5h28f77fhl1yp7hjx7cy2hyai6jvs-home-manager-generation
 └── system
     ├── configuration.nix
     └── machines
