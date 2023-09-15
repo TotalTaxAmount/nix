@@ -2,6 +2,8 @@
 
 This is my nixos config, its changing all the time and is probaly not stable.
 
+**WARNING**: Dont try and use this right now. Everything has not been ported and doesnt work right.
+
 **DE** - Hyprland\
 **Terminal** - Alacritty (with tmux)\
 **Theme** - Kinda Nordic\
