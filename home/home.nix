@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, spicetify-nix, ... }:
 
 let
     user="totaltaxamount";
-    sysmontask= pkgs.callPackage ./custom-pkgs/sysmontask.nix {};
-    candy-icons = pkgs.callPackage ./config/icons/candy-icons.nix {};
+    spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
+    # sysmontask= pkgs.callPackage ./custom-pkgs/sysmontask.nix {};
+    # candy-icons = pkgs.callPackage ./config/icons/candy-icons.nix {};
     grimblast = pkgs.writeShellScriptBin "grimblast" ''${builtins.readFile ./config/grimblast}'';
 in
 {
@@ -56,7 +57,7 @@ in
     # '')
 
     # Apps
-    spotify
+    
     (discord.override {
       withVencord = true;
     })
@@ -134,7 +135,20 @@ in
   #  /etc/profiles/per-user/totaltaxamount/etc/profile.d/hm-session-vars.sh
   #
   # if you don't want to manage your shell through Home Manager.
+  programs.spicetify = {
+    enable = true;
+    theme = spicePkgs.themes.Nord;
+    colorScheme = "nord";
 
+    enabledExtensions = with spicePkgs.extensions; [
+      fullAppDisplay
+      shuffle
+      hidePodcasts
+      songStats
+      powerBar
+    ];
+  };
+ 
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;

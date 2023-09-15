@@ -11,6 +11,7 @@ let
     ];
   };
 
+
   imports = [
     ../home/home.nix
   ];
@@ -21,6 +22,7 @@ let
 
       extraSpecialArgs = {
         inherit pkgs;
+        inherit inputs;
       };
 
       modules = [

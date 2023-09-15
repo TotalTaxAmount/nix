@@ -1,6 +1,6 @@
 {pkgs, config, lib, ...}:
 let
-   user="totaltaxamount"; # TODO: also fix this
+   user="totaltaxamount";  # TODO: also fix this
    tmux-powerline = pkgs.tmuxPlugins.mkTmuxPlugin {
       pluginName = "tmux-powerline";
       version = "v2.1.0";
