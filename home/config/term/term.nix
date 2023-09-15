@@ -136,8 +136,7 @@ in
    programs.zsh = {
       enable = true;
       shellAliases = {
-         updateSystem = "/home/${user}/.config/nix/build.sh system";
-         update = "/home/${user}/.config/nix/build.sh home";
+         update = "/home/${user}/.config/nix/build.sh";
          cat = "bat";
 
          #Shells

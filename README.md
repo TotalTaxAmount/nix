@@ -81,3 +81,15 @@ Layout of this repo:
 - `home/` is for home manager configurations, all the parser shit in the `home/config/nivm` is for treesitter and not really importent.
 - `system/` is the nix system configs, includes the `configuration.nix` and hardware configs for diffrent devices.
 - `outputs/` nix modules for generating the config from the `system/` and `home/` directorys.
+
+## Install
+If you want to install this config it would go something like this:
+```
+1. cd ~/.config
+2. git clone https://github.com/TotalTaxAmount/nix.git && cd nix
+3. Replace all the "totaltaxamount" strings with your username (there are a few but I will fix sometime)
+4. ./build.sh system
+5. ./build.sh home
+```
+
+**Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
