@@ -14,8 +14,12 @@ nix_build() {
 
 rebuild_home() {
     nix_build ".#homeConfigurations.totaltax.activation-script" $1
-    HOME_MANAGER_BACKUP=bak result/activate
-    result/activate
+    if [ $? -eq 0 ]; then
+        HOME_MANAGER_BACKUP=bak result/activate
+        result/activate
+    else
+        echo "Error building home config"
+    fi
 }
 
 rebuild_system() {

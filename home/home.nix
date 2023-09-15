@@ -180,7 +180,7 @@ in
         close_all = "ctrl+shift+space";
       };
       urgency_low = {
-        background = "#2E3440";
+        background = config.theme.colors.base00;
         foreground = "#88C0D0";
         timeout = 8;
       };

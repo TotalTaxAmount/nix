@@ -5,10 +5,11 @@
         home-manager = {
             url = github:nix-community/home-manager;
             inputs.nixpkgs.follows = "nixpkgs";
+
         };
     };
 
-    outputs = inputs :
+    outputs = {self, nix, ...}@inputs :
     let 
         system = "x86_64-linux"; 
         user = "totaltaxamount";

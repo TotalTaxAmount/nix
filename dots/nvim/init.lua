@@ -1,5 +1,5 @@
 -- Add modules to package cause nixos
-local config_dir = os.getenv("CONFIG_DIRECTORY") .. "/home-manager/config/nvim"
+local config_dir = os.getenv("CONFIG_DIRECTORY") .. "/nix/dots/nvim"
 package.path = package.path .. ";" .. config_dir .."/?.lua"
 
 local utils = require("utils.utils");
@@ -37,7 +37,7 @@ require'nvim-treesitter.configs'.setup {
 
     auto_install = true,
 
-    parser_install_dir = "~/.config/home-manager/config/nvim/parsers",
+    parser_install_dir = config_dir + "/parsers",
 
     highlight = {
         enable = true,
