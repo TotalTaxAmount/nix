@@ -1,7 +1,7 @@
 {inputs, system, user, ...}:
 
 let 
-  inherit (inputs.nixpkgs.lib) nixSystem;
+  inherit (inputs.nixpkgs.lib) nixosSystem;
 
   pkgs = import inputs.nixpkgs {
     inherit system;
@@ -10,12 +10,10 @@ let
     };
   };
 
-  lib = import inputs.nixpkgs.lib;
-
 in {
-  laptop = nixSystem {
-    inherit pkgs system lib;
-    specailArgs = {inherit inputs;};
+  laptop = nixosSystem {
+    inherit pkgs system;
+    specialArgs = {inherit inputs;};
     modules = [
       ../system/configuration.nix
       ../system/machines/laptop.nix

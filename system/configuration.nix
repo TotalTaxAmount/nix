@@ -3,10 +3,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, user... }:
+{ config, pkgs, lib, user, ... }:
 
 let
-  lol="a";
+  user="totaltaxamount"; #TODO: Fix this later
 in
 {
   imports =

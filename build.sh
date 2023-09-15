@@ -13,7 +13,7 @@ nix_build() {
 }
 
 rebuild_home() {
-    nix_build ".#homeConfig.totaltax.activation-script" $1
+    nix_build ".#homeConfigurations.totaltax.activation-script" $1
     HOME_MANAGER_BACKUP=bak result/activate
     result/activate
 }

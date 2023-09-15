@@ -13,7 +13,7 @@
         system = "x86_64-linux"; 
         user = "totaltaxamount";
     in {
-        homeConfig = import ./outputs/home.nix {inherit inputs system user;};
-        nixos = import ./outputs/nixos.nix {inherit inputs system user;};
+        homeConfigurations = import ./outputs/home.nix {inherit inputs system user;};
+        nixosConfigurations = import ./outputs/nixos.nix {inherit inputs system user;};
     };
 }
