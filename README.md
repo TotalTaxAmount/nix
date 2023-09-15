@@ -14,6 +14,42 @@ Layout of this repo:
 ```
 .
 ├── build.sh
+├── dots
+│   └── nvim
+│       ├── configs
+│       │   ├── nvim-tree.lua
+│       │   ├── vim-airline.lua
+│       │   └── vim-buffet.lua
+│       ├── init.lua
+│       ├── parsers
+│       │   ├── parser
+│       │   │   ├── bash.so
+│       │   │   ├── ini.so
+│       │   │   ├── json.so
+│       │   │   ├── lua.so
+│       │   │   ├── markdown.so
+│       │   │   ├── nix.so
+│       │   │   ├── python.so
+│       │   │   ├── scss.so
+│       │   │   ├── vimdoc.so
+│       │   │   ├── vim.so
+│       │   │   ├── yaml.so
+│       │   │   └── yuck.so
+│       │   └── parser-info
+│       │       ├── bash.revision
+│       │       ├── ini.revision
+│       │       ├── json.revision
+│       │       ├── lua.revision
+│       │       ├── markdown.revision
+│       │       ├── nix.revision
+│       │       ├── python.revision
+│       │       ├── scss.revision
+│       │       ├── vimdoc.revision
+│       │       ├── vim.revision
+│       │       ├── yaml.revision
+│       │       └── yuck.revision
+│       └── utils
+│           └── utils.lua
 ├── flake.lock
 ├── flake.nix
 ├── home
@@ -22,41 +58,7 @@ Layout of this repo:
 │   │   ├── icons
 │   │   │   └── candy-icons.nix
 │   │   ├── nvim
-│   │   │   ├── configs
-│   │   │   │   ├── nvim-tree.lua
-│   │   │   │   ├── vim-airline.lua
-│   │   │   │   └── vim-buffet.lua
-│   │   │   ├── init.lua
-│   │   │   ├── nvim.nix
-│   │   │   ├── parsers
-│   │   │   │   ├── parser
-│   │   │   │   │   ├── bash.so
-│   │   │   │   │   ├── ini.so
-│   │   │   │   │   ├── json.so
-│   │   │   │   │   ├── lua.so
-│   │   │   │   │   ├── markdown.so
-│   │   │   │   │   ├── nix.so
-│   │   │   │   │   ├── python.so
-│   │   │   │   │   ├── scss.so
-│   │   │   │   │   ├── vimdoc.so
-│   │   │   │   │   ├── vim.so
-│   │   │   │   │   ├── yaml.so
-│   │   │   │   │   └── yuck.so
-│   │   │   │   └── parser-info
-│   │   │   │       ├── bash.revision
-│   │   │   │       ├── ini.revision
-│   │   │   │       ├── json.revision
-│   │   │   │       ├── lua.revision
-│   │   │   │       ├── markdown.revision
-│   │   │   │       ├── nix.revision
-│   │   │   │       ├── python.revision
-│   │   │   │       ├── scss.revision
-│   │   │   │       ├── vimdoc.revision
-│   │   │   │       ├── vim.revision
-│   │   │   │       ├── yaml.revision
-│   │   │   │       └── yuck.revision
-│   │   │   └── utils
-│   │   │       └── utils.lua
+│   │   │   └── nvim.nix
 │   │   ├── shells
 │   │   │   └── shell.sh
 │   │   └── term
@@ -70,6 +72,7 @@ Layout of this repo:
 │   ├── home.nix
 │   └── nixos.nix
 ├── README.md
+├── result -> /nix/store/1vr5h28f77fhl1yp7hjx7cy2hyai6jvs-home-manager-generation
 └── system
     ├── configuration.nix
     └── machines
@@ -92,4 +95,4 @@ If you want to install this config it would go something like this:
 5. ./build.sh home
 ```
 
-**Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
+**Note**: After doing this you should be able to update your system with `update home/system` from anywhere..

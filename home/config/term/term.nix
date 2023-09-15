@@ -89,7 +89,7 @@ in
       shell.program = "${pkgs.zsh}/bin/zsh";
       shell.args = ["-l" "-c" "tmux || tmux attach"];
       cursor.style = "Underline";
-
+      # TODO: Replace all these colors also
       colors.primary.background = "#1B1E24";
       colors.primary.foreground = "#E1E6F0";
       colors.primary.dim_foreground = "#B0B6C1";

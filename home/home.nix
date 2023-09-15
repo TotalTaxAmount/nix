@@ -180,7 +180,7 @@ in
         close_all = "ctrl+shift+space";
       };
       urgency_low = {
-        background = config.theme.colors.base00;
+        background = "#2E3440"; # TODO: Replace all colors with theme settings
         foreground = "#88C0D0";
         timeout = 8;
       };
