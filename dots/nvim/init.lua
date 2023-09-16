@@ -1,5 +1,5 @@
 -- Add modules to package cause nixos
-local config_dir = os.getenv("CONFIG_DIRECTORY") .. "/nix/dots/nvim"
+local config_dir = os.getenv("HOME") .. "/nix/dots/nvim"
 package.path = package.path .. ";" .. config_dir .."/?.lua"
 
 local utils = require("utils.utils");

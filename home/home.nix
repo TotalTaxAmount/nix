@@ -16,6 +16,9 @@ in
         ./modules/nvim.nix
         ./modules/hyprland.nix
         ./modules/term/term.nix
+
+        # Flakes
+        inputs.spicetify-nix.homeManagerModule
   ];
 
   home.username = "totaltaxamount";
