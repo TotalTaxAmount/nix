@@ -1,5 +1,4 @@
 #! /usr/bin/env bash
-set +x
 
 USER=$(whoami)
 nix_build() {
