@@ -61,21 +61,21 @@ Layout of this repo:
 ├── flake.lock
 ├── flake.nix
 ├── home
-│   ├── config
-│   │   ├── grimblast
-│   │   ├── hyprland.nix
-│   │   ├── icons
-│   │   │   └── candy-icons.nix
-│   │   ├── nvim.nix
-│   │   ├── shells
-│   │   │   └── shell.sh
-│   │   └── term
-│   │       ├── config
-│   │       └── term.nix
 │   ├── custom-pkgs
 │   │   └── sysmontask.nix
 │   ├── home.nix
-│   └── home.nix.back
+│   ├── home.nix.back
+│   └── modules
+│       ├── grimblast
+│       ├── hyprland.nix
+│       ├── icons
+│       │   └── candy-icons.nix
+│       ├── nvim.nix
+│       ├── shells
+│       │   └── shell.sh
+│       └── term
+│           ├── config
+│           └── term.nix
 ├── outputs
 │   ├── home.nix
 │   └── nixos.nix
@@ -104,8 +104,9 @@ If you want to install this config it would go something like this:
 
 **Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
 
-## TODO
+## To Do
 - [ ] Fix all static paths
 - [ ] Better file layout
 - [ ] Add a global config thing to change colors from one place
 - [ ] Understand flakes
+
