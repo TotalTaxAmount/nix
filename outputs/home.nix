@@ -12,6 +12,7 @@ let
   };
 
   imports = [
+    ../home/home.nix
   ];
 
   mkHome = {}: (
@@ -19,8 +20,7 @@ let
       inherit pkgs;
 
       extraSpecialArgs = {
-        inherit pkgs;
-        inherit inputs;
+        inherit pkgs inputs;
       };
 
       modules = [
