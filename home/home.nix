@@ -5,7 +5,7 @@ let
     spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
     # sysmontask= pkgs.callPackage ./custom-pkgs/sysmontask.nix {};
     # candy-icons = pkgs.callPackage ./config/icons/candy-icons.nix {};
-    grimblast = pkgs.writeShellScriptBin "grimblast" ''${builtins.readFile ./config/grimblast}'';
+    grimblast = pkgs.writeShellScriptBin "grimblast" ''${builtins.readFile ./modules/grimblast}'';
 in
 {
   # Home Manager needs a bit of information about you and the paths it should

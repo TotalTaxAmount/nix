@@ -88,7 +88,7 @@ Layout of this repo:
 ### WTF is all this shit
 - `build.sh` is a shell script to mange some build commands its very simple.
 - `flake.nix` the flake for this config??! idk how to explain.
-- `home/` is for home manager configurations, all the parser shit in the `home/config/nivm` is for treesitter and not really importent.
+- `home/` is for home manager configurations, all the parser shit in the `home/modules/nivm` is for treesitter and not really importent.
 - `system/` is the nix system configs, includes the `configuration.nix` and hardware configs for diffrent devices.
 - `outputs/` nix modules for generating the config from the `system/` and `home/` directorys.
 
