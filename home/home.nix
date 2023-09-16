@@ -1,8 +1,8 @@
-{ config, pkgs, spicetify-nix, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
     user="totaltaxamount";
-    spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
+    spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
     # sysmontask= pkgs.callPackage ./custom-pkgs/sysmontask.nix {};
     # candy-icons = pkgs.callPackage ./config/icons/candy-icons.nix {};
     grimblast = pkgs.writeShellScriptBin "grimblast" ''${builtins.readFile ./config/grimblast}'';
@@ -13,9 +13,9 @@ in
 
   imports =
   [
-        ./config/nvim.nix
-        ./config/hyprland.nix
-        ./config/term/term.nix
+        ./modules/nvim.nix
+        ./modules/hyprland.nix
+        ./modules/term/term.nix
   ];
 
   home.username = "totaltaxamount";

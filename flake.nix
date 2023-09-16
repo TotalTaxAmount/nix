@@ -12,7 +12,7 @@
         spicetify-nix.url = github:the-argus/spicetify-nix;
     };
 
-    outputs = {nix, ...}@inputs :
+    outputs = {self, nixpkgs, home-manager, ...}@inputs :
     let 
         system = "x86_64-linux"; 
         user = "totaltaxamount";

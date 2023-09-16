@@ -29,9 +29,9 @@ rebuild_system() {
 
 case $1 in
     "home")
-        (cd /home/$USER/.config/nix && rebuild_home $2);;
+        (cd /home/$USER/nix && rebuild_home $2);;
     "system")
-        (cd /home/$USER/.config/nix &&rebuild_system $2);;
+        (cd /home/$USER/nix && rebuild_system $2);;
     *)
     echo "Options are home or system"
 esac

@@ -95,7 +95,7 @@ Layout of this repo:
 ## Install
 If you want to install this config it would go something like this:
 ```
-1. cd ~/.config
+1. cd ~
 2. git clone https://github.com/TotalTaxAmount/nix.git && cd nix
 3. Replace all the "totaltaxamount" strings with your username (there are a few but I will fix sometime)
 4. ./build.sh system
