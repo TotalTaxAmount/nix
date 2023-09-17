@@ -3,10 +3,15 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, user, ... }:
+{ config, inputs, lib, user, ... }:
 
 let
   user="totaltaxamount"; #TODO: Fix this later
+  pkgs = import inputs.nixpkgs {
+    overlays = [
+      (import ../overlays)
+    ];
+  };
 in
 {
   imports =
