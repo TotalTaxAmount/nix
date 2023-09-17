@@ -89,7 +89,7 @@ in
       shell.program = "${pkgs.zsh}/bin/zsh";
       shell.args = ["-l" "-c" "tmux || tmux attach"];
       cursor.style = "Underline";
-      # TODO: Replace all these colors also
+      # TODO: Replace all these colors also...
       colors.primary.background = "#1B1E24";
       colors.primary.foreground = "#E1E6F0";
       colors.primary.dim_foreground = "#B0B6C1";
@@ -138,9 +138,6 @@ in
       shellAliases = {
          update = "/home/${user}/nix/build.sh";
          cat = "bat";
-
-         #Shells
-         shell = "~/.config/home-manager/config/shells/shell.sh";
       };
       enableCompletion = true;
       # history = {
@@ -163,7 +160,6 @@ in
 	initExtraFirst = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme\nsource /home/${user}/.p10k.zsh";
 	initExtra = ''
    POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-
 	'';
 
    oh-my-zsh = {

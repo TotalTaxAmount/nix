@@ -6,20 +6,49 @@ let
     # sysmontask= pkgs.callPackage ./custom-pkgs/sysmontask.nix {};
     # candy-icons = pkgs.callPackage ./config/icons/candy-icons.nix {};
     grimblast = pkgs.writeShellScriptBin "grimblast" ''${builtins.readFile ./modules/grimblast}'';
+    nordTheme = {
+      slug = "nord";
+      name = "Nord";
+      author = "articicestudios (https://github.com/arcticicestudio)";
+      colors = {
+        # Polar Night
+        base00 = "#2E3440";
+        base01 = "#3B4252";
+        base02 = "#434C5E";
+        base03 = "#4C566A";
+        # Snow Storm
+        base04 = "#D8DEE9";
+        base05 = "#E5E9F0";
+        base06 = "#ECEFF4";
+        # Frost
+        base07 = "#8FBCBB";
+        base08 = "#88C0D0";
+        base09 = "#81A1C1";
+        base0A = "#5E81AC";
+        #Aurora
+        base0B = "#BF616A";
+        base0C = "#D08770";
+        base0D = "#EBCB8B";
+        base0E = "#A3BE8C";
+        base0F = "#B48EAD";
+      };
+    };
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
 
-  imports =
-  [
+  imports = [
         ./modules/nvim.nix
         ./modules/hyprland.nix
         ./modules/term/term.nix
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
+        inputs.nix-colors.homeManagerModule
   ];
+
+  colorScheme = nordTheme;
 
   home.username = "totaltaxamount";
   home.homeDirectory = "/home/totaltaxamount";
@@ -204,19 +233,19 @@ in
         close_all = "ctrl+shift+space";
       };
       urgency_low = {
-        background = "#2E3440"; # TODO: Replace all colors with theme settings
-        foreground = "#88C0D0";
+        background = "#${config.colorScheme.colors.base00}";
+        foreground = "#${config.colorScheme.colors.base08}";
         timeout = 8;
       };
       urgency_normal = {
-        background = "#2E3440";
-        foreground = "#88C0D0";
+        background = "#${config.colorScheme.colors.base00}";
+        foreground = "#${config.colorScheme.colors.base08}";
         timeout = 8;
       };
       urgency_critical = {
-        background = "#d64e4e";
-        foreground = "#f0e0e0";
-        frame_color = "#d64e4e";
+        background = "#${config.colorScheme.colors.base00}";
+        foreground = "#${config.colorScheme.colors.base0B}";
+        frame_color = "#${config.colorScheme.colors.base0B}";
         timeout = 0;
       };
     };
