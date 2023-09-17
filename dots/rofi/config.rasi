@@ -1,3 +1,5 @@
+/* TODO: Use this file somehow*/
+
 configuration {
 /*	modes: "drun,run,ssh";*/
 	font: "Overpass Nerd Font Propo 15";

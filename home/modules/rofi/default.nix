@@ -10,7 +10,13 @@ in
 {
   programs.rofi = {
     enable = true;
-    #extraConfig = ../../../dots/rofi/config.rasi;
-    theme = builtins.readFile rofiTheme.out;
+    extraConfig = {
+      font = "Overpass Nerd Font Propo 15";
+      fixed-num-lines = true;
+      show-icons = true;
+      terminal = "alacritty";
+
+    };
+    theme = "${rofiTheme.out}";
   };
 }

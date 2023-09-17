@@ -1,4 +1,3 @@
-//@import "~/.config/theme/nord.scss"
 * {
     background: #@base03@;
     active-background: #fff;
