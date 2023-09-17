@@ -107,6 +107,7 @@ If you want to install this config it would go something like this:
 ## To Do
 - [ ] Fix all static paths
 - [ ] Better file layout
-- [ ] Add a global config thing to change colors from one place
+- [x] Add a global config thing to change colors from one place
+- [ ] Add eww configs
 - [ ] Understand flakes
 
