@@ -9,11 +9,12 @@ let
     config.permittedInsecurePackages = [
       "qtwebkit-5.212.0-alpha4"
     ];
+    overlays = [
+      (import ../overlays)
+    ];
   };
 
-  imports = [
-    ../home/home.nix
-  ];
+ 
 
   mkHome = {}: (
     home-manager.lib.homeManagerConfiguration {
@@ -24,9 +25,7 @@ let
       };
 
       modules = [
-        {
-          inherit imports;
-        }
+        ../home/home.nix
       ];
 
     }

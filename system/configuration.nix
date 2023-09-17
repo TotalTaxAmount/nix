@@ -3,16 +3,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, inputs, lib, user, ... }:
+{ config, inputs, lib, user, pkgs, ... }:
 
 let
   user="totaltaxamount"; #TODO: Fix this later
-  pkgs = import inputs.nixpkgs {
-    inherit system;
-    overlays = [
-      (import ../overlays)
-    ];
-  };
 in
 {
   imports =
@@ -54,7 +48,7 @@ in
   ];
 
   system.autoUpgrade = {
-      enable = true;
+      enable = false; # Might have broken stuff
       channel = "https://nixos.org/channels/unstable";
   };
   
@@ -82,7 +76,7 @@ in
     videoDrivers = ["nvidia"];
     displayManager.gdm = {
 	enable = true;
-	wayland = true;
+        wayland = true;
     };
   };
 
@@ -111,7 +105,7 @@ in
     nvidia = {
        modesetting.enable = true; 
        powerManagement.enable = true;
-       open = true;
+       open = false;
        nvidiaSettings = true;
        package = config.boot.kernelPackages.nvidiaPackages.stable;
        prime = {
@@ -149,10 +143,6 @@ in
   # $ nix search wget
  environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    # dev
-
-    # customistation
-    swww
     # eww-wayland
 
     # audio
@@ -210,7 +200,13 @@ in
   # Overlays
 
   system.stateVersion = "23.05"; # Did you read the comment?
-
+  # Stupid gdm
+  #system.activationScripts.etcX11sessions = ''
+  #  echo "Setting up X11 sessions..."
+  #  mkdir -p /etc/X11
+  #  [[ ! -L /etc/X11/sessions ]] || rm /etc/X11/sessions
+  #  ln -sf ${config.services.xserver.displayManager.session.desktops} /etc/X11/sessions
+  #'';
  # home-manager.users.${user} = { pkgs, ...}: {
  #   home.stateVersion = "23.05";
  #   home.packages = with pkgs; [ htop ];

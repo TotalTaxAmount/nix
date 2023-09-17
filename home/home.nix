@@ -90,10 +90,7 @@ in
     # '')
 
     # Apps
-    
-    (discord.override {
-      withVencord = true;
-    })
+    discord
     gimp
     vscode-fhs
     brave
@@ -117,6 +114,7 @@ in
 
     #Customization
     nerdfonts
+    swww
 
     # Langs and compilers
     python3

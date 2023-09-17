@@ -4,4 +4,4 @@ let
     (import ./base)
   ];
 in
-prev.lib.compileManyExtensions overlays prev
+prev.lib.composeManyExtensions overlays final prev

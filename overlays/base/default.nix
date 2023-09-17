@@ -1,6 +1,10 @@
 final: prev:
 {
-  discord = prev.discord.overrideAttrs (old: {
+  discord = prev.discord.override {
     withVencord = true;
-  });
+  };
+
+  eww = prev.eww.override  {
+    withWayland = true;
+  };
 }
