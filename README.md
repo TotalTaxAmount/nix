@@ -19,45 +19,68 @@ Layout of this repo:
 .
 ├── build.sh
 ├── dots
+│   ├── eww
+│   │   ├── eww.scss
+│   │   ├── eww.yuck
+│   │   ├── nixos-icon.svg
+│   │   └── scripts
+│   │       ├── battery
+│   │       ├── currentapp
+│   │       ├── music
+│   │       ├── pop
+│   │       ├── sys_info
+│   │       └── workspaces
 │   ├── hypr
 │   │   ├── hyprland.conf
 │   │   └── scripts
 │   │       └── background.sh
-│   └── nvim
-│       ├── configs
-│       │   ├── nvim-tree.lua
-│       │   ├── vim-airline.lua
-│       │   └── vim-buffet.lua
-│       ├── init.lua
-│       ├── parsers
-│       │   ├── parser
-│       │   │   ├── bash.so
-│       │   │   ├── ini.so
-│       │   │   ├── json.so
-│       │   │   ├── lua.so
-│       │   │   ├── markdown.so
-│       │   │   ├── nix.so
-│       │   │   ├── python.so
-│       │   │   ├── scss.so
-│       │   │   ├── vimdoc.so
-│       │   │   ├── vim.so
-│       │   │   ├── yaml.so
-│       │   │   └── yuck.so
-│       │   └── parser-info
-│       │       ├── bash.revision
-│       │       ├── ini.revision
-│       │       ├── json.revision
-│       │       ├── lua.revision
-│       │       ├── markdown.revision
-│       │       ├── nix.revision
-│       │       ├── python.revision
-│       │       ├── scss.revision
-│       │       ├── vimdoc.revision
-│       │       ├── vim.revision
-│       │       ├── yaml.revision
-│       │       └── yuck.revision
-│       └── utils
-│           └── utils.lua
+│   ├── nvim
+│   │   ├── configs
+│   │   │   ├── nvim-tree.lua
+│   │   │   ├── vim-airline.lua
+│   │   │   └── vim-buffet.lua
+│   │   ├── init.lua
+│   │   ├── parsers
+│   │   │   ├── parser
+│   │   │   │   ├── bash.so
+│   │   │   │   ├── ini.so
+│   │   │   │   ├── json.so
+│   │   │   │   ├── lua.so
+│   │   │   │   ├── markdown.so
+│   │   │   │   ├── nix.so
+│   │   │   │   ├── python.so
+│   │   │   │   ├── scss.so
+│   │   │   │   ├── vimdoc.so
+│   │   │   │   ├── vim.so
+│   │   │   │   ├── yaml.so
+│   │   │   │   └── yuck.so
+│   │   │   └── parser-info
+│   │   │       ├── bash.revision
+│   │   │       ├── ini.revision
+│   │   │       ├── json.revision
+│   │   │       ├── lua.revision
+│   │   │       ├── markdown.revision
+│   │   │       ├── nix.revision
+│   │   │       ├── python.revision
+│   │   │       ├── scss.revision
+│   │   │       ├── vimdoc.revision
+│   │   │       ├── vim.revision
+│   │   │       ├── yaml.revision
+│   │   │       └── yuck.revision
+│   │   └── utils
+│   │       └── utils.lua
+│   ├── rofi
+│   │   ├── config.rasi
+│   │   └── theme.rasi
+│   └── swww
+│       └── wallpapers
+│           ├── 1.jpg
+│           ├── 2.jpg
+│           ├── 3.jpg
+│           ├── 4.jpg
+│           ├── 5.jpg
+│           ├── 6.jpg
+│           └── 7.jpg
 ├── flake.lock
 ├── flake.nix
 ├── home
@@ -66,16 +89,17 @@ Layout of this repo:
 │   ├── home.nix
 │   ├── home.nix.back
 │   └── modules
-│       ├── grimblast
-│       ├── hyprland.nix
+│       ├── hypr
+│       │   └── default.nix
 │       ├── icons
 │       │   └── candy-icons.nix
-│       ├── nvim.nix
-│       ├── shells
-│       │   └── shell.sh
+│       ├── nvim
+│       │   └── default.nix
+│       ├── rofi
+│       │   └── default.nix
 │       └── term
 │           ├── config
-│           └── term.nix
+│           └── default.nix
 ├── outputs
 │   ├── home.nix
 │   └── nixos.nix
@@ -106,8 +130,7 @@ If you want to install this config it would go something like this:
 
 ## To Do
 - [ ] Fix all static paths
-- [ ] Better file layout
+- [ ] Better file layout (almost)
 - [x] Add a global config thing to change colors from one place
 - [ ] Add eww configs
 - [ ] Understand flakes
-
