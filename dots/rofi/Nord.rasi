@@ -1,0 +1,125 @@
+//@import "~/.config/theme/nord.scss"
+* {
+    background: #2E3440;
+    active-background: #fff;
+    selected-background: transparent;
+
+    text-color: #88C0D0;
+    active-text-color: #fff;
+    urgent-text-color: #fff;
+    selected-text-color: #fff;
+
+
+    sep-color: @background;
+}
+
+window {
+    background-color: @background;
+    border: 1;
+    padding: 3;
+    border-radius: 10px;
+}
+
+mainbox {
+    border: 0;
+    padding: 6;
+    background-color: @background;
+}
+
+element {
+    border:  0;
+    padding: 1px ;
+}
+
+element-icon {
+    background-color: transparent;
+    margin: 10px;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+element.normal.normal {
+    background-color: @background;
+    text-color:       @text-color;
+
+}
+element.normal.urgent {
+    text-color:       @urgent-text-color;
+}
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @text-color;
+}
+element.selected.normal {
+    background-color: @selected-background;
+    text-color:       @text-color;
+    border-color: @text-color;
+    border: 2;
+    padding: 3;
+    border-radius: 10px;
+}
+element.selected.urgent {
+    text-color:       @urgent-text-color;
+    background-color: @background;
+}
+element.selected.active {
+    background-color: @active-background;
+    text-color:       @active-text-color;
+    border-color: @text-color;
+    border: 2;
+    padding: 3;
+    border-radius: 10px;
+}
+element.alternate.normal {
+    background-color: @background;
+    text-color:       @text-color;
+}
+element.alternate.urgent {
+    background-color: @background;
+    text-color:       @urgent-text-color;
+}
+element.alternate.active {
+    background-color: @background;
+    text-color:       @text-color;
+}
+
+message {
+    border: 2px 0px 0px;
+    border-color: @sep-color;
+}
+
+textbox {
+    border-radius: 10px;
+}
+
+listview {
+    background-color: @background;
+}
+
+case-indicator {
+    spacing:    0;
+    text-color: @text-color;
+    background-color: @background;
+}
+entry {
+    spacing:    0;
+    text-color: @text-color;
+    background-color: @background;
+}
+prompt {
+    spacing:    0;
+    text-color: @text-color;
+    background-color: @background;
+}
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+    background-color: @background;
+}
+textbox-prompt-colon {
+    background-color: @background;
+    expand:     false;
+    str:        " : ";
+    text-color: @text-color;
+}

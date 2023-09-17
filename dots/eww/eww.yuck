@@ -1,0 +1,200 @@
+
+
+(defpoll clock_time :interval "1s" "date '+%r %b %d, %Y'")
+(defpoll calendar_day :interval "2h" "date '+%d'")
+(defpoll calendar_year :interval "2h" "date '+%Y'")
+(defpoll volume_percent :interval "3s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+
+;; System
+(defpoll cpu :interval "1s" "scripts/sys_info --cpu")
+(defpoll mem :interval "1s" "scripts/sys_info --mem")
+(defpoll brightness :interval "1s" "scripts/sys_info --bright")
+(defpoll disks :interval "1s" "scripts/sys_info --disk")
+
+;;WiFi
+(defpoll color_wlan :interval "1m" "~/.config/eww/bar/scripts/wifi --COL")
+(defpoll ssid :interval "1m" "~/.config/eww/bar/scripts/wifi --ESSID")
+(defpoll icon_wlan :interval "1m" "~/.config/eww/bar/scripts/wifi --ICON")
+
+
+
+;; Window
+(defwindow main 
+  :stacking "fg" 
+  :monitor 0
+  :exclusive false
+  :anchor "top center"
+  :windowtype "dock"
+  :geometry (geometry 
+    :width "100%" 
+    :height "40px")
+  (bar)
+)
+
+
+(defwidget bar []
+  (centerbox
+    :class "bar"
+    :orientation "h"
+    (left)
+    (center)
+    (right)
+  )
+)
+
+
+(defwidget left []
+  (box :class "left_modules" 
+      :space-evenly false
+      :orientation "h"
+      :halign "start"
+    (system)
+    (sep)
+    (workspaces)
+  )
+)
+
+(defwidget center []
+  (box :class "center_modules"
+      :space-evenly false
+      :orientation "h"
+      :halign "center"
+    (appname)
+  )
+)
+
+(defwidget right []
+  (box :class "right_modules"
+    :space-evenly false
+    :spacing 10
+    :orientation "h"
+    :halign "end"
+    (clock)
+    (sep)
+    (battery)
+  )
+)
+
+(defwidget sep []
+  (box
+    :valign "center"
+    (label
+      :class "separ"
+      :valign "center"
+      :text "|"
+    )
+  )
+)
+
+(deflisten workspace "~/.config/eww/scripts/workspaces")
+(defwidget workspaces []
+  (literal :content workspace)
+)
+
+(deflisten appname_ "~/.config/eww/scripts/currentapp")
+(defwidget appname []
+  (literal :content appname_)
+)
+
+(defwidget clock []
+  (eventbox :class "clock_container" 
+       :onclick "./scripts/pop calendar"
+    (label 
+      :class "clock"
+      :tooltip {clock_time}
+      :limit-width 22
+      :text {clock_time}
+      :wrap false
+    )
+  )
+)
+
+(defwidget system []
+  (eventbox 
+    :onclick "./scripts/pop system"
+    (image
+      :class "system_icon"
+      :path "./nixos-icon.svg"
+      :image-width 50
+      :image-height 50
+    )
+  )
+)
+
+(defwidget battery []
+  (box :class "battery_container"
+    (circular-progress
+      :value {EWW_BATTERY["BAT0"].capacity}
+      :class "battery"
+      :thickness 5
+      (label :text "🔋"
+        :class "battery_icon"
+        :tooltip "${EWW_BATTERY["BAT0"].capacity}% - ${EWW_BATTERY["BAT0"].status}"
+        :limit-width 2
+        :wrap false
+      )
+    )
+  )
+)
+
+(defwindow system
+  :stacking "fg"
+  :focusable "false"
+  :screen 1
+  :monitor 0
+  :geometry (geometry
+    :x "10px"
+    :y "70px"
+    :anchor "top left"
+    :width "350px"
+    :height "550px"
+  )
+  (box
+    :class "system_container"
+    :orientation "v"
+    (disks)
+  )
+)
+
+(defwidget disks []
+  (box :class "disks_container"
+    (circular-progress
+      :value {disks}
+      :class "disks"
+      (label :text "D"
+        :class "disks_icon"
+        :tooltip "${disks}% Disk usage"
+        :limit-width 2
+        :wrap false
+      )
+    )
+  )
+)
+
+(defwindow calendar
+  :stacking "fg"
+  :focusable "false"
+  :screen 1
+  :monitor 0
+  :geometry (geometry
+              :x "10"
+              :y "70px"
+              :anchor "top right"
+              :width "270px"
+              :height "60px") 
+  (box
+    :class "calendar_container"
+    :orientation "v"
+    (calendar
+      :class "calendar"
+      :day {calendar_day}
+      :year {calendar_year}
+    )  
+  )
+)
+
+
+
+
+

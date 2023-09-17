@@ -5,7 +5,7 @@ export SWWW_TRANSITION_STEP=2
 INTERVAL=60
 swww init
 while true; do
-	find "/home/$USER/.config/swww/wallpapers/" \
+	find "/home/$USER/nix/dots/swww/wallpapers" \
 		| while read -r img; do
 			echo "$((RANDOM % 1000)):$img"
 		done \

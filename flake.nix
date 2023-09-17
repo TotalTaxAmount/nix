@@ -8,9 +8,15 @@
             inputs.nixpkgs.follows = "nixpkgs";
 
         };
-        nix-colors.url = github:misterio77/nix-colors;
+
+        hyprland-contrib = {
+            url = "github:hyprwm/contrib";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
         spicetify-nix.url = github:the-argus/spicetify-nix;
+
+        nix-colors.url = github:misterio77/nix-colors;
     };
 
     outputs = {self, nixpkgs, home-manager, ...}@inputs :

@@ -5,7 +5,6 @@ let
     spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
     # sysmontask= pkgs.callPackage ./custom-pkgs/sysmontask.nix {};
     # candy-icons = pkgs.callPackage ./config/icons/candy-icons.nix {};
-    grimblast = pkgs.writeShellScriptBin "grimblast" ''${builtins.readFile ./modules/grimblast}'';
     nordTheme = {
       slug = "nord";
       name = "Nord";
@@ -39,9 +38,9 @@ in
   # manage.
 
   imports = [
-        ./modules/nvim.nix
-        ./modules/hyprland.nix
-        ./modules/term/term.nix
+        ./modules/nvim/default.nix
+        ./modules/hypr/default.nix
+        ./modules/term/default.nix
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
@@ -133,13 +132,7 @@ in
     gamemode
     nvtop
     xfce.thunar
-
-    # Screenshot
-    grim
-    slurp
-    wl-clipboard
-    libnotify
-    grimblast
+    inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
