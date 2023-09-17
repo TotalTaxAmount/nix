@@ -10,7 +10,7 @@ in
 {
   programs.rofi = {
     enable = true;
-    extraConfig = builtins.readFile ../../../dots/rofi/config.rasi;
-    theme = rofiTheme.out;
+    #extraConfig = ../../../dots/rofi/config.rasi;
+    theme = builtins.readFile rofiTheme.out;
   };
 }

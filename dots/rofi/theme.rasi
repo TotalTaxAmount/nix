@@ -1,10 +1,10 @@
 //@import "~/.config/theme/nord.scss"
 * {
-    background: @base03@;
+    background: #@base03@;
     active-background: #fff;
     selected-background: transparent;
 
-    text-color: @base08@;
+    text-color: #@base08@;
     active-text-color: #fff;
     urgent-text-color: #fff;
     selected-text-color: #fff;
