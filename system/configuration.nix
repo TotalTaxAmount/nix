@@ -147,7 +147,7 @@ in
 
     # customistation
     swww
-    eww-wayland
+    # eww-wayland
 
     # audio
     alsa-utils

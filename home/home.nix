@@ -42,6 +42,7 @@ in
         ./modules/hypr/default.nix
         ./modules/term/default.nix
         ./modules/rofi/default.nix
+        ./modules/eww/default.nix
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
