@@ -8,6 +8,7 @@
 let
   user="totaltaxamount"; #TODO: Fix this later
   pkgs = import inputs.nixpkgs {
+    inherit system;
     overlays = [
       (import ../overlays)
     ];
