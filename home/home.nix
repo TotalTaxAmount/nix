@@ -41,6 +41,7 @@ in
         ./modules/nvim/default.nix
         ./modules/hypr/default.nix
         ./modules/term/default.nix
+        ./modules/rofi/default.nix
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
@@ -132,7 +133,12 @@ in
     gamemode
     nvtop
     xfce.thunar
+
+    # Screenshot
     inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+    slurp
+    wl-clipboard
+    libnotify
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

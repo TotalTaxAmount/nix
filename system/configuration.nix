@@ -146,7 +146,6 @@ in
     # dev
 
     # customistation
-    rofi-wayland
     swww
     eww-wayland
 
