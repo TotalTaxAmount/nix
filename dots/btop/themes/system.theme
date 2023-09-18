@@ -38,41 +38,41 @@ theme[proc_box]="@base03@"
 theme[div_line]="@base03@"
 
 # Temperature graph colors
-theme[temp_start]="@base0D@1"
+theme[temp_start]="@base0D@"
 theme[temp_mid]="@base0C@"
 theme[temp_end]="@base06@"
 
 # CPU graph colors
-theme[cpu_start]="@base0D@1"
+theme[cpu_start]="@base0D@"
 theme[cpu_mid]="@base0C@"
 theme[cpu_end]="@base06@"
 
 # Mem/Disk free meter
-theme[free_start]="@base0D@1"
+theme[free_start]="@base0D@"
 theme[free_mid]="@base0C@"
 theme[free_end]="@base06@"
 
 # Mem/Disk cached meter
-theme[cached_start]="@base0D@1"
+theme[cached_start]="@base0D@"
 theme[cached_mid]="@base0C@"
 theme[cached_end]="@base06@"
 
 # Mem/Disk available meter
-theme[available_start]="@base0D@1"
+theme[available_start]="@base0D@"
 theme[available_mid]="@base0C@"
 theme[available_end]="@base06@"
 
 # Mem/Disk used meter
-theme[used_start]="@base0D@1"
+theme[used_start]="@base0D@"
 theme[used_mid]="@base0C@"
 theme[used_end]="@base06@"
 
 # Download graph colors
-theme[download_start]="@base0D@1"
+theme[download_start]="@base0D@"
 theme[download_mid]="@base0C@"
 theme[download_end]="@base06@"
 
 # Upload graph colors
-theme[upload_start]="@base0D@1"
+theme[upload_start]="@base0D@"
 theme[upload_mid]="@base0C@"
 theme[upload_end]="@base06@"

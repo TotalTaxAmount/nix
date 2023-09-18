@@ -204,13 +204,13 @@ in
         gap_size = 5;
         horizontal_padding = 3;
         frame_width = 2;
-        frame_color = "#34b4eb";
+        frame_color = "#${config.colorScheme.colors.base05}";
         separator_color = "frame";
         sort = true;
         idle_threshold = 120;
         line_height = 0;
         markup = "full";
-        format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\n%b";
+        format = "<span foreground='#f3f4f5'><b>%s %p</b></span>\\n%b";
         alignment = "left";
         show_age_threshold = 60;
         word_wrap = true;
@@ -235,12 +235,12 @@ in
       };
       urgency_low = {
         background = "#${config.colorScheme.colors.base00}";
-        foreground = "#${config.colorScheme.colors.base08}";
+        foreground = "#${config.colorScheme.colors.base05}";
         timeout = 8;
       };
       urgency_normal = {
         background = "#${config.colorScheme.colors.base00}";
-        foreground = "#${config.colorScheme.colors.base08}";
+        foreground = "#${config.colorScheme.colors.base05}";
         timeout = 8;
       };
       urgency_critical = {
