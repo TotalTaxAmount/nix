@@ -11,7 +11,7 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./machines/laptop.nix
+      ./hosts/laptop.nix
       #<home-manager/nixos>
     ];
 
