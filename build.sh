@@ -26,8 +26,13 @@ rebuild_system() {
 }
 
 install_fresh() {
-    sudo nixos-rebuild switch --experimental-features 'nix-command flakes' --flake .#laptop
-    rebuit_home
+    read -p "Are you sure? " -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]];then
+        sudo nixos-rebuild switch --experimental-features 'nix-command flakes' --flake .#laptop
+        rebuild_home
+    fi
+    
 }
 
 
@@ -39,5 +44,5 @@ case $1 in
     "fresh")
         (cd /home/$USER/nix && install_fresh);;
     *)
-    echo "Options are home, system, fresh"
+    echo "Options are home, system and fresh"
 esac
