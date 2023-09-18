@@ -98,7 +98,7 @@ Layout of this repo:
 │       │   └── default.nix
 │       ├── rofi
 │       │   └── default.nix
-│       └── term
+│       └── alacritty
 │           ├── config
 │           └── default.nix
 ├── outputs
