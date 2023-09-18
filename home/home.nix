@@ -52,7 +52,7 @@ in
 
   # System theme
   # Use custom themes defined above or inputs.nix-colors.colorSchemes.THEME themes list at https://github.com/tinted-theming/base16-schemes
-  colorScheme = inputs.nix-colors.colorSchemes.google-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.tokyodark;
 
   home.username = "totaltaxamount";
   home.homeDirectory = "/home/totaltaxamount";
