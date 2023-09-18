@@ -71,7 +71,7 @@ Layout of this repo:
 │   │       └── utils.lua
 │   ├── rofi
 │   │   ├── config.rasi
-│   │   └── theme.rasi
+│   │   └── systemTheme.rasi
 │   └── swww
 │       └── wallpapers
 │           ├── 1.jpg
@@ -87,8 +87,9 @@ Layout of this repo:
 │   ├── custom-pkgs
 │   │   └── sysmontask.nix
 │   ├── home.nix
-│   ├── home.nix.back
 │   └── modules
+│       ├── eww
+│       │   └── default.nix
 │       ├── hypr
 │       │   └── default.nix
 │       ├── icons
@@ -103,6 +104,11 @@ Layout of this repo:
 ├── outputs
 │   ├── home.nix
 │   └── nixos.nix
+├── overlays
+│   ├── apply
+│   │   ├── default.nix
+│   │   └── patches
+│   └── default.nix
 ├── README.md
 └── system
     ├── configuration.nix
@@ -133,4 +139,4 @@ If you want to install this config it would go something like this:
 - [x] Add a global config thing to change colors from one place
 - [x] Add eww configs
 - [x] Understand flakes
-- [ ] Finish fully using color theme
+- [ ] Finish fully using color theme.
