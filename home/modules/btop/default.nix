@@ -18,6 +18,7 @@ in
     enable = true;
     settings = {
       color_theme = "system";
+      show_gpu_info = true;
     };
   };
 
