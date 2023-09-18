@@ -51,6 +51,13 @@ in
       enable = false; # Might have broken stuff
       channel = "https://nixos.org/channels/unstable";
   };
+
+  # Had to enable this for gdm to start... home configs still apply.
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+    enableNvidiaPatches = true;
+  };
   
   fonts = {
     packages = with pkgs; [

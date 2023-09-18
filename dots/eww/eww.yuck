@@ -7,15 +7,15 @@
 (defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 
 ;; System
-(defpoll cpu :interval "1s" "scripts/sys_info --cpu")
-(defpoll mem :interval "1s" "scripts/sys_info --mem")
-(defpoll brightness :interval "1s" "scripts/sys_info --bright")
-(defpoll disks :interval "1s" "scripts/sys_info --disk")
+(defpoll cpu :interval "1s" "@scriptdir@/sys_info --cpu")
+(defpoll mem :interval "1s" "@scriptdir@/sys_info --mem")
+(defpoll brightness :interval "1s" "@scriptdir@/sys_info --bright")
+(defpoll disks :interval "1s" "@scriptdir@/sys_info --disk")
 
 ;;WiFi
-(defpoll color_wlan :interval "1m" "~/.config/eww/bar/scripts/wifi --COL")
-(defpoll ssid :interval "1m" "~/.config/eww/bar/scripts/wifi --ESSID")
-(defpoll icon_wlan :interval "1m" "~/.config/eww/bar/scripts/wifi --ICON")
+(defpoll color_wlan :interval "1m" "@scriptdir@/wifi --COL")
+(defpoll ssid :interval "1m" "@scriptdir@/wifi --ESSID")
+(defpoll icon_wlan :interval "1m" "@scriptdir@/wifi --ICON")
 
 
 
@@ -87,19 +87,19 @@
   )
 )
 
-(deflisten workspace "~/.config/eww/scripts/workspaces")
+(deflisten workspace "@scriptdir@/workspaces")
 (defwidget workspaces []
   (literal :content workspace)
 )
 
-(deflisten appname_ "~/.config/eww/scripts/currentapp")
+(deflisten appname_ "@scriptdir@/currentapp")
 (defwidget appname []
   (literal :content appname_)
 )
 
 (defwidget clock []
   (eventbox :class "clock_container" 
-       :onclick "./scripts/pop calendar"
+       :onclick "@scriptdir@/pop calendar"
     (label 
       :class "clock"
       :tooltip {clock_time}
@@ -112,7 +112,7 @@
 
 (defwidget system []
   (eventbox 
-    :onclick "./scripts/pop system"
+    :onclick "@scriptdir@/pop system"
     (image
       :class "system_icon"
       :path "./nixos-icon.svg"

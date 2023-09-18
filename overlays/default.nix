@@ -1,7 +1,7 @@
 final: prev:
 let 
   overlays = [
-    (import ./base)
+    (import ./apply)
   ];
 in
 prev.lib.composeManyExtensions overlays final prev
