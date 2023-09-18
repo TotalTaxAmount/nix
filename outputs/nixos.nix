@@ -19,7 +19,7 @@ in {
     specialArgs = {inherit inputs;};
     modules = [
       ../system/configuration.nix
-      ../system/machines/laptop.nix
+      ../system/hosts/laptop.nix
     ];
   };
 }

@@ -112,7 +112,7 @@ Layout of this repo:
 ├── README.md
 └── system
     ├── configuration.nix
-    └── machines
+    └── hosts
         └── laptop.nix
 ```
 ### WTF is all this shit
