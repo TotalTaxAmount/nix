@@ -92,7 +92,7 @@ in
       colors.primary.background = "#${config.colorScheme.colors.base00}";
       colors.primary.foreground = "#${config.colorScheme.colors.base05}";
       colors.cursor.text = "#${config.colorScheme.colors.base00}";
-      colors.cursor.cursor = "#${config.colorScheme.colors..base05}";
+      colors.cursor.cursor = "#${config.colorScheme.colors.base05}";
       colors.vi_mode_cursor.text = "#${config.colorScheme.colors.base00}";
       colors.vi_mode_cursor.cursor = "#${config.colorScheme.colors.base05}";
       colors.selection.text = "CellForeground";
