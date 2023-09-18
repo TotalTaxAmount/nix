@@ -40,7 +40,7 @@ in
   imports = [
         ./modules/nvim/default.nix
         ./modules/hypr/default.nix
-        ./modules/term/default.nix
+        ./modules/alacritty/default.nix
         ./modules/rofi/default.nix
         ./modules/eww/default.nix
 
@@ -49,6 +49,8 @@ in
         inputs.nix-colors.homeManagerModule
   ];
 
+  # System theme
+  # Use custom themes defined above or inputs.nix-colors.colorSchemes.THEME themes list at https://github.com/tinted-theming/base16-schemes
   colorScheme = myNordTheme;
 
   home.username = "totaltaxamount";
