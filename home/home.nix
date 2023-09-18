@@ -1,37 +1,10 @@
 { config, pkgs, inputs, ... }:
 
 let
-    user="totaltaxamount";
-    spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
-    # sysmontask= pkgs.callPackage ./custom-pkgs/sysmontask.nix {};
-    # candy-icons = pkgs.callPackage ./config/icons/candy-icons.nix {};
-    myNordTheme = {
-      slug = "nord";
-      name = "Nord";
-      author = "articicestudios (https://github.com/arcticicestudio)";
-      colors = {
-        # Polar Night
-        base00 = "#2E3440";
-        base01 = "#3B4252";
-        base02 = "#434C5E";
-        base03 = "#4C566A";
-        # Snow Storm
-        base04 = "#D8DEE9";
-        base08 = "#E5E9F0"; # Was 05
-        base06 = "#ECEFF4";
-        # Frost
-        base07 = "#8FBCBB";
-        base05 = "#88C0D0"; # Was 08
-        base09 = "#81A1C1";
-        base0A = "#5E81AC";
-        #Aurora
-        base0B = "#BF616A";
-        base0C = "#D08770"; 
-        base0D = "#EBCB8B";
-        base0E = "#A3BE8C";
-        base0F = "#B48EAD";
-      };
-    };
+  user="totaltaxamount";
+  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  # sysmontask= pkgs.callPackage ./custom-pkgs/sysmontask.nix {};
+  # candy-icons = pkgs.callPackage ./config/icons/candy-icons.nix {};
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -52,7 +25,7 @@ in
 
   # System theme
   # Use custom themes defined above or inputs.nix-colors.colorSchemes.THEME themes list at https://github.com/tinted-theming/base16-schemes
-  colorScheme = inputs.nix-colors.colorSchemes.google-dark;
+  colorScheme = inputs.nix-colors.colorSchemes.material-darker;
 
   home.username = "totaltaxamount";
   home.homeDirectory = "/home/totaltaxamount";
