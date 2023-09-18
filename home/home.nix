@@ -195,7 +195,7 @@ in
         monitor = 0;
         follow = "mouse";
         width = "320";
-        offset = "15x9";
+        offset = "10x4";
         indicate_hidden = true;
         shrink = false;
         transparency = 0;
