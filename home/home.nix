@@ -43,6 +43,7 @@ in
         ./modules/alacritty
         ./modules/rofi
         ./modules/eww
+        ./modules/btop
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule

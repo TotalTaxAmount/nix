@@ -95,26 +95,30 @@ tooltip label {
         
 }
 
+@function darken-color($color, $amount) {
+	@return darken($color, $amount);
+}
+
 /* Occupied */
 .w01, .w02, .w03, .w04, .w05, .w06, .w07, .w08, .w09 {
 	padding: 0px 3px 0px 3px;
 	color: @base04@;
-        border: 2px solid transparent;
-        border-radius: 20px;
+    border: 2px solid transparent;
+    border-radius: 20px;
 }
 
 /* Focused */
 .w011, .w022, .w033, .w044, .w055, .w066, .w077, .w088, .w099 {
 	padding: 0px 3px 0px 3px;
-	color: @base04@;
-	border: 2px solid @base04@;
+	color: @base0D@;
+	border: 2px solid @base0D@;
 	border-radius: 20px;
 }
 
 /* Unoccupied */
 .w0  {
 	padding: 0px 3px 0px 3px;
-	color: @base03@;
+	color: darken-color(@base03@, 15%);
     border: 2px solid transparent;
     border-radius: 20px;
 }
