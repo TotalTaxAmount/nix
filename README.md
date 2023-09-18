@@ -4,7 +4,7 @@ This is my nixos config, its changing all the time and is probaly not stable.
 
 **DE** - Hyprland\
 **Terminal** - Alacritty (with tmux)\
-**Theme** - Changes alot\
+**Theme** - Changes\
 **Bar** - Eww\
 **Browser** - Brave\
 **Login manager** - GDM\
