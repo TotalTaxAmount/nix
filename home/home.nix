@@ -17,7 +17,7 @@ let
         base03 = "#4C566A";
         # Snow Storm
         base04 = "#D8DEE9";
-        base05 = "#E5E9F0";
+        base0C = "#E5E9F0"; # Was 05
         base06 = "#ECEFF4";
         # Frost
         base07 = "#8FBCBB";
@@ -26,7 +26,7 @@ let
         base0A = "#5E81AC";
         #Aurora
         base0B = "#BF616A";
-        base0C = "#D08770";
+        base05 = "#D08770"; # Was 0C
         base0D = "#EBCB8B";
         base0E = "#A3BE8C";
         base0F = "#B48EAD";
