@@ -3,8 +3,8 @@
 let
   hyprConfig = pkgs.substituteAll {
     src = ../../../dots/hypr/hyprland.conf;
-    base0C = "${config.colorScheme.colors.base0C}";
     base03 = "${config.colorScheme.colors.base03}";
+    base05 = "${config.colorScheme.colors.base05}";
   };
 in
 {

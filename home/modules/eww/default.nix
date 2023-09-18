@@ -12,7 +12,7 @@ let
     ];
     base00 = "#${config.colorScheme.colors.base00}";
     base03 = "#${config.colorScheme.colors.base03}";
-    base0C = "#${config.colorScheme.colors.base0C}";
+    base05 = "#${config.colorScheme.colors.base05}";
     scriptdir = "${scriptDir}";
   };
 in
