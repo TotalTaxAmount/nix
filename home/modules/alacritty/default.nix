@@ -111,7 +111,7 @@ in
       colors.normal.white = "#${config.colorScheme.colors.base05}";
 
       colors.bright.black = "#${config.colorScheme.colors.base03}";
-      colors.bright.red = "#${config.colorScheme.colors.base00}";
+      colors.bright.red = "#${config.colorScheme.colors.base09}";
       colors.bright.green = "#${config.colorScheme.colors.base01}";
       colors.bright.yellow = "#${config.colorScheme.colors.base02}";
       colors.bright.blue = "#${config.colorScheme.colors.base04}";

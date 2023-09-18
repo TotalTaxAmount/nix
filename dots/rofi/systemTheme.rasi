@@ -6,7 +6,7 @@
     text-color: @base05@;
     active-text-color: #fff;
     urgent-text-color: #fff;
-    selected-text-color: #fff;
+    selected-text-color: @base0D@;
 
 
     sep-color: @background;
@@ -14,7 +14,8 @@
 
 window {
     background-color: @background;
-    border: 1;
+    border: 2;
+    border-color: @text-color;
     padding: 3;
     border-radius: 10px;
 }
@@ -53,8 +54,8 @@ element.normal.active {
 }
 element.selected.normal {
     background-color: @selected-background;
-    text-color:       @text-color;
-    border-color: @text-color;
+    text-color:       @selected-text-color;
+    border-color:     @selected-text-color;
     border: 2;
     padding: 3;
     border-radius: 10px;

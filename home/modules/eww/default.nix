@@ -10,9 +10,9 @@ let
       "eww.yuck"
       "nixos-icon.svg"
     ];
-    base00 = "#${config.colorScheme.colors.base00}";
+    base01 = "#${config.colorScheme.colors.base01}";
     base03 = "#${config.colorScheme.colors.base03}";
-    base05 = "#${config.colorScheme.colors.base05}";
+    base04 = "#${config.colorScheme.colors.base04}";
     scriptdir = "${scriptDir}";
   };
 in

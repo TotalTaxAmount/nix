@@ -38,11 +38,11 @@ in
   # manage.
 
   imports = [
-        ./modules/nvim/default.nix
-        ./modules/hypr/default.nix
-        ./modules/alacritty/default.nix
-        ./modules/rofi/default.nix
-        ./modules/eww/default.nix
+        ./modules/nvim
+        ./modules/hypr
+        ./modules/alacritty
+        ./modules/rofi
+        ./modules/eww
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
@@ -51,7 +51,7 @@ in
 
   # System theme
   # Use custom themes defined above or inputs.nix-colors.colorSchemes.THEME themes list at https://github.com/tinted-theming/base16-schemes
-  colorScheme = myNordTheme;
+  colorScheme = inputs.nix-colors.colorSchemes.google-dark;
 
   home.username = "totaltaxamount";
   home.homeDirectory = "/home/totaltaxamount";
