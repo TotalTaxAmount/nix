@@ -5,7 +5,7 @@ let
     spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
     # sysmontask= pkgs.callPackage ./custom-pkgs/sysmontask.nix {};
     # candy-icons = pkgs.callPackage ./config/icons/candy-icons.nix {};
-    MyNordTheme = {
+    myNordTheme = {
       slug = "nord";
       name = "Nord";
       author = "articicestudios (https://github.com/arcticicestudio)";
@@ -17,16 +17,16 @@ let
         base03 = "#4C566A";
         # Snow Storm
         base04 = "#D8DEE9";
-        base0C = "#E5E9F0"; # Was 05
+        base08 = "#E5E9F0"; # Was 05
         base06 = "#ECEFF4";
         # Frost
         base07 = "#8FBCBB";
-        base08 = "#88C0D0";
+        base05 = "#88C0D0"; # Was 08
         base09 = "#81A1C1";
         base0A = "#5E81AC";
         #Aurora
         base0B = "#BF616A";
-        base05 = "#D08770"; # Was 0C
+        base0C = "#D08770"; 
         base0D = "#EBCB8B";
         base0E = "#A3BE8C";
         base0F = "#B48EAD";
@@ -49,7 +49,7 @@ in
         inputs.nix-colors.homeManagerModule
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.nord;
+  colorScheme = myNordTheme;
 
   home.username = "totaltaxamount";
   home.homeDirectory = "/home/totaltaxamount";
