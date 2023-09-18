@@ -49,7 +49,7 @@ in
         inputs.nix-colors.homeManagerModule
   ];
 
-  colorScheme = nordTheme;
+  colorScheme = inputs.nix-colors.colorSchemes.nord;
 
   home.username = "totaltaxamount";
   home.homeDirectory = "/home/totaltaxamount";

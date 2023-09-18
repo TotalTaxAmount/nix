@@ -3,7 +3,7 @@
     active-background: #fff;
     selected-background: transparent;
 
-    text-color: @base08@;
+    text-color: @base0C@;
     active-text-color: #fff;
     urgent-text-color: #fff;
     selected-text-color: #fff;
