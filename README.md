@@ -7,7 +7,7 @@ This is my nixos config, its changing all the time and is probaly not stable.
 **Theme** - Changes alot\
 **Bar** - Eww\
 **Browser** - Brave\
-**Login manager** - GDM
+**Login manager** - GDM\
 **More shit** - ???
 
 ![image](https://github.com/TotalTaxAmount/nix/assets/64336456/0ce3764e-be0e-475a-8135-241fa65dd665)
