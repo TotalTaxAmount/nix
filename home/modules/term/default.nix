@@ -1,4 +1,4 @@
-{pkgs, config, lib, ...}:
+{pkgs, config, lib, user, ...}:
 let
    user="totaltaxamount";  # TODO: also fix this
    tmux-powerline = pkgs.tmuxPlugins.mkTmuxPlugin {
@@ -34,7 +34,7 @@ in
       extraConfig = ''
       set-hook -g after-new-session "source-file ~/.config/tmux/tmux.conf"
 
-      set -g @tmux_power_theme '#88C0D0'
+      set -g @tmux_power_theme '#${config.colorScheme.colors.base08}'
       set -g history-limit 100000
 
       set -g @tmux_power_show_upload_speed true

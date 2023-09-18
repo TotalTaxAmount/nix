@@ -167,8 +167,8 @@ in
   # if you don't want to manage your shell through Home Manager.
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.Nord;
-    colorScheme = "nord";
+    theme = spicePkgs.themes.Ziro;
+    colorScheme = "ziro";
 
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay

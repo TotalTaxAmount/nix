@@ -122,15 +122,15 @@ If you want to install this config it would go something like this:
 1. cd ~
 2. git clone https://github.com/TotalTaxAmount/nix.git && cd nix
 3. Replace all the "totaltaxamount" strings with your username (there are a few but I will fix sometime)
-4. ./build.sh system
-5. ./build.sh home
+4. ./build.sh fresh
 ```
 
 **Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
 
 ## To Do
 - [ ] Fix all static paths
-- [ ] Better file layout (almost)
+- [ ] Better file layout (almost++)
 - [x] Add a global config thing to change colors from one place
-- [ ] Add eww configs
-- [ ] Understand flakes
+- [x] Add eww configs
+- [x] Understand flakes
+- [ ] Finish fully using color theme

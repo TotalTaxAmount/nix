@@ -25,12 +25,19 @@ rebuild_system() {
     sudo nixos-rebuild switch --flake .#laptop
 }
 
+install_fresh() {
+    sudo nixos-rebuild switch --experimental-features 'nix-command flakes' --flake .#laptop
+    rebuit_home
+}
+
 
 case $1 in
     "home")
         (cd /home/$USER/nix && rebuild_home $2);;
     "system")
         (cd /home/$USER/nix && rebuild_system $2);;
+    "fresh")
+        (cd /home/$USER/nix && install_fresh);;
     *)
-    echo "Options are home or system"
+    echo "Options are home, system, fresh"
 esac
