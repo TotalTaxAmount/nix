@@ -2,14 +2,13 @@
 
 This is my nixos config, its changing all the time and is probaly not stable.
 
-**WARNING**: Dont try and use this right now. Everything has not been ported and doesnt work right.
-
 **DE** - Hyprland\
 **Terminal** - Alacritty (with tmux)\
-**Theme** - Kinda Nordic\
+**Theme** - Changes alot\
 **Bar** - Eww\
 **Browser** - Brave\
-**Login manager** - GDM
+**Login manager** - GDM\
+**More shit** - ???
 
 ![image](https://github.com/TotalTaxAmount/nix/assets/64336456/0ce3764e-be0e-475a-8135-241fa65dd665)
 
