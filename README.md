@@ -120,6 +120,7 @@ Layout of this repo:
 - `home/` is for home manager configurations, all the parser shit in the `home/modules/nivm` is for treesitter and not really importent.
 - `system/` is the nix system configs, includes the `configuration.nix` and hardware configs for diffrent devices.
 - `outputs/` nix modules for generating the config from the `system/` and `home/` directorys.
+- `overlays/` directory for overlays to apply patches or outher stuff (ex. discord with vecord)
 
 ## Install
 If you want to install this config it would go something like this:
