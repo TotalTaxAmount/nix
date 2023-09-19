@@ -95,8 +95,8 @@ in
 
   
   # Boot loader
-  kernelParams = [ "video=eDP-1:1920x1080@165"]; # TODO: There is def a better way to do this...
-  kernelModules = [ "kvm-amd" "kvm-intel" ]; # Needed for vm
+  boot.kernelParams = [ "video=eDP-1:1920x1080@165"]; # TODO: There is def a better way to do this...
+  boot.kernelModules = [ "kvm-amd" "kvm-intel" ]; # Needed for vm
 
   services.logind.extraConfig = ''
     	HandlePowerKey=ignore
