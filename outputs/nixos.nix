@@ -18,8 +18,19 @@ in {
     inherit pkgs system;
     specialArgs = {inherit inputs;};
     modules = [
-      ../system/configuration.nix
-      ../system/hosts/laptop.nix
+      ../system
+      ../system/hosts/laptop/hardware.nix
+      ../system/hosts/laptop/configuration.nix
+    ];
+  };
+
+  desktop = nixosSystem {
+    inherit pkgs system;
+    specialArgs = {inherit inputs;};
+    modules = [
+      ../system
+      ../system/hosts/desktop/hardware.nix
+      ../system/hosts/desktop/configuration.nix
     ];
   };
 }
