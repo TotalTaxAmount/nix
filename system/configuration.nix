@@ -101,6 +101,10 @@ in
     pulse.enable = true;
     jack.enable = true;
     wireplumber.enable = true;
+
+    lowLatency = {
+      enable = true;
+    };
   };
 
   hardware = {
@@ -203,37 +207,11 @@ in
 	HandlePowerKey=ignore
   '';
 
-
-  # Overlays
-
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    persistent = true;
+    options = "--delete-older-than 7d";
+  };
   system.stateVersion = "23.05"; # Did you read the comment?
-  # Stupid gdm
-  #system.activationScripts.etcX11sessions = ''
-  #  echo "Setting up X11 sessions..."
-  #  mkdir -p /etc/X11
-  #  [[ ! -L /etc/X11/sessions ]] || rm /etc/X11/sessions
-  #  ln -sf ${config.services.xserver.displayManager.session.desktops} /etc/X11/sessions
-  #'';
- # home-manager.users.${user} = { pkgs, ...}: {
- #   home.stateVersion = "23.05";
- #   home.packages = with pkgs; [ htop ];
- # 
- #   services.dunst = {
- # 	enable = true;
- #   };
- #
- #   programs.zsh.enable = true;
- #   programs.zsh.oh-my-zsh = {
- #	enable = true;
- #       plugins = ["git" "sudo"];
- #   };
- #
- #   programs.neovim = {
- #	enable = true;
- #	defaultEditor = true;
- #       plugins = with pkgs.vimPlugins; [ vim-nix ];
- #
- #  };
- # };
-
 }
