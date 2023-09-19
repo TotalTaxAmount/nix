@@ -144,7 +144,7 @@ in
     isNormalUser = true;
     description = "Coen Shields";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [];
   };
 
@@ -173,6 +173,7 @@ in
   # Boot loader
   boot = {
     kernelParams = [ "video=eDP-1:1920x1080@165"]; # TODO: There is def a better way to do this...
+    kernelModules = [ "kvm-amd" "kvm-intel" ]; # Needed for vm
     loader = {
       systemd-boot.enable = false;
       efi = {
@@ -196,6 +197,10 @@ in
   services.logind.extraConfig = ''
     	HandlePowerKey=ignore
   '';
+
+  # VMs
+  virtualisation.libvirtd.enable = true;
+
 
   #Disk space saving
   nix.gc = {

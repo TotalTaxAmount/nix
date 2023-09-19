@@ -75,6 +75,7 @@ in
     nomacs
     bottles
     qbittorrent
+    virt-manager
 
     #Terminal Apps/Config
     zsh-powerlevel10k
