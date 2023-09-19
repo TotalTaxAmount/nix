@@ -194,14 +194,17 @@ in
   };
 
   services.logind.extraConfig = ''
-	HandlePowerKey=ignore
+    	HandlePowerKey=ignore
   '';
 
+  #Disk space saving
   nix.gc = {
     automatic = true;
     dates = "weekly";
     persistent = true;
     options = "--delete-older-than 7d";
   };
+  nix.settings.auto-optimise-store = true;
+
   system.stateVersion = "23.05"; # Did you read the comment?
 }
