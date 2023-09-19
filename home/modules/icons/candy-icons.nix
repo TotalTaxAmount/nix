@@ -1,4 +1,4 @@
-{ lib, stdenvNoCC, fetchFromGitHub, autoreconfHook, gtk3, gnome, gnome-icon-theme, hicolor-icon-theme}:
+{ lib, stdenvNoCC, fetchFromGitHub, gtk3, gnome, gnome-icon-theme, hicolor-icon-theme, libsForQt5}:
 
 
 stdenvNoCC.mkDerivation rec {
@@ -14,22 +14,20 @@ stdenvNoCC.mkDerivation rec {
 
     nativeBuildInputs = [
         gtk3
-        autoreconfHook
     ];
 
     propagatedBuildInputs = [
         gnome.adwaita-icon-theme
         gnome-icon-theme
         hicolor-icon-theme
+        libsForQt5.breeze-gtk
     ];
 
     dontDropIconThemeCache = true;
 
-    phases = [ "install" ];
-
     installPhase = ''
-        mkdir -p $out/share/icons
-        cp -r $src/* $out/share/icons/
+        mkdir -p "$out"/share/icons
+        cp -r "$src"/* "$out"/share/icons
     '';
 
     postFixup = ''

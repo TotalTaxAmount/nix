@@ -3,6 +3,7 @@
 let
   user="totaltaxamount";
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  candyIcons = pkgs.callPackage ./modules/icons/candy-icons.nix {};
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -16,6 +17,7 @@ in
         ./modules/eww
         ./modules/btop
         ./modules/dunst
+        ./modules/swaylock
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
@@ -86,6 +88,7 @@ in
     bat
     openal
     qt5.full
+    wget
 
     #Customization
     nerdfonts
@@ -114,6 +117,7 @@ in
     wl-clipboard
     libnotify
   ];
+
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -168,9 +172,9 @@ in
 
   gtk = {
      enable = true;
-     theme = { 
-        name = "Nordic";
-        package = pkgs.nordic;
+     iconTheme = { 
+        name = "Candy Icons";
+        package = candyIcons;
      };
   };
 
