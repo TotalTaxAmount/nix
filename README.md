@@ -18,6 +18,9 @@ Layout of this repo:
 .
 ├── build.sh
 ├── dots
+│   ├── btop
+│   │   └── themes
+│   │       └── system.theme
 │   ├── eww
 │   │   ├── eww.scss
 │   │   ├── eww.yuck
@@ -73,13 +76,19 @@ Layout of this repo:
 │   │   └── systemTheme.rasi
 │   └── swww
 │       └── wallpapers
+│           ├── 10.jpg
+│           ├── 11.jpg
+│           ├── 12.jpg
+│           ├── 13.jpg
 │           ├── 1.jpg
 │           ├── 2.jpg
 │           ├── 3.jpg
 │           ├── 4.jpg
 │           ├── 5.jpg
 │           ├── 6.jpg
-│           └── 7.jpg
+│           ├── 7.jpg
+│           ├── 8.jpg
+│           └── 9.jpg
 ├── flake.lock
 ├── flake.nix
 ├── home
@@ -87,6 +96,13 @@ Layout of this repo:
 │   │   └── sysmontask.nix
 │   ├── home.nix
 │   └── modules
+│       ├── alacritty
+│       │   ├── config
+│       │   └── default.nix
+│       ├── btop
+│       │   └── default.nix
+│       ├── dunst
+│       │   └── default.nix
 │       ├── eww
 │       │   └── default.nix
 │       ├── hypr
@@ -95,10 +111,7 @@ Layout of this repo:
 │       │   └── candy-icons.nix
 │       ├── nvim
 │       │   └── default.nix
-│       ├── rofi
-│       │   └── default.nix
-│       └── alacritty
-│           ├── config
+│       └── rofi
 │           └── default.nix
 ├── outputs
 │   ├── home.nix
@@ -141,3 +154,4 @@ If you want to install this config it would go something like this:
 - [x] Understand flakes
 - [x] Finish fully using color theme (i think).
 - [x] Figure out how to use multiple hosts
+
