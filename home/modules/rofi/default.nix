@@ -15,6 +15,7 @@ in
       font = "Overpass Nerd Font Propo 15";
       fixed-num-lines = true;
       show-icons = true;
+      icon-theme = "Candy Icons"; # Doesnt work idk why
       terminal = "${pkgs.alacritty}/bin/alacritty";
 
     };

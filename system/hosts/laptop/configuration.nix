@@ -40,7 +40,6 @@ in
      homeVPN = {config = '' config /home/totaltaxamount/VPN/home.ovpn'';};
   };
 
-
   hardware = {
     opengl = {
     	enable = true;
@@ -74,7 +73,6 @@ in
     };
   };
 
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
@@ -84,7 +82,6 @@ in
     packages = with pkgs; [];
   };
 
-  # Allow unfree packages
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
