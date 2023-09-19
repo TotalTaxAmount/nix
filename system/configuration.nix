@@ -12,6 +12,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hosts/laptop.nix
+      inputs.nix-gaming.nixosModules.pipewireLowLatency
       #<home-manager/nixos>
     ];
 
@@ -92,15 +93,14 @@ in
   };
 
   # Pipewire
-  sound.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    audio.enable  = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
+    wireplumber.enable = true;
   };
 
   hardware = {

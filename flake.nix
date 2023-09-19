@@ -17,6 +17,8 @@
         spicetify-nix.url = github:the-argus/spicetify-nix;
 
         nix-colors.url = github:misterio77/nix-colors;
+
+        nix-gaming.url = github:fufexan/nix-gaming;
     };
 
     outputs = {self, nixpkgs, home-manager, ...}@inputs :
