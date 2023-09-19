@@ -44,12 +44,9 @@ in
   # Experimental
   nix.settings.experimental-features = [ "nix-command" "flakes"];
   nix.settings.trusted-users = ["totaltaxamount"];
-  nixpkgs.config.permittedInsecurePackages = [
-    "qtwebkit-5.212.0-alpha4"
-  ];
 
   system.autoUpgrade = {
-      enable = false; # Might have broken stuff
+      enable = true;
       channel = "https://nixos.org/channels/unstable";
   };
 
@@ -183,22 +180,21 @@ in
   boot = {
     kernelParams = [ "video=eDP-1:1920x1080@165"]; # TODO: There is def a better way to do this...
     loader = {
-       systemd-boot.enable = false;
-       efi = {
-          canTouchEfiVariables = true;
-	  efiSysMountPoint = "/boot";
+      systemd-boot.enable = false;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
       };
       grub = {
-	devices = [ "nodev" ];
-	enable = true;
-	efiSupport = true;
-	useOSProber = true;
-	extraEntries = ''
-  	   menuentry "UEFI Firmware Settings" {
-    	      echo "Booting into UEFI firmware settings..."
-    	      fwsetup
-  	   }
-	'';
+        devices = [ "nodev" ];
+        enable = true;
+        efiSupport = true;
+        useOSProber = true;
+        extraEntries = ''
+          menuentry "UEFI Firmware Settings" {
+              echo "Booting into UEFI firmware settings..."
+              fwsetup
+          }'';
       };
     };
   };
