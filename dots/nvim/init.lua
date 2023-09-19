@@ -24,6 +24,7 @@ opt.mouse = "a"
 
 -- UI
 opt.number = true
+-- TODO: make this base 16
 vim.cmd "colorscheme onedark"
 
 -- QOL
