@@ -46,8 +46,8 @@ in
   nix.settings.trusted-users = ["totaltaxamount"];
 
   system.autoUpgrade = {
-      enable = true;
-      channel = "https://nixos.org/channels/unstable";
+    enable = true;
+    channel = "https://nixos.org/channels/unstable";
   };
 
   # Had to enable this for gdm to start... home configs still apply.
@@ -68,9 +68,7 @@ in
         emoji = [ "Noto Emoji" ];
       };
     };
-    
     enableDefaultPackages = true;
-  
   };
   
   # Configure  X11
@@ -79,9 +77,10 @@ in
     xkbVariant = "";
     enable = true;
     videoDrivers = ["nvidia"];
+
     displayManager.gdm = {
-	enable = true;
-        wayland = true;
+      enable = true;
+      wayland = true;
     };
   };
 
@@ -107,22 +106,24 @@ in
   hardware = {
     opengl = {
     	enable = true;
-	driSupport = true;
-	driSupport32Bit = true;
+      driSupport = true;
+      driSupport32Bit = true;
     };
+
     nvidia = {
-       modesetting.enable = true; 
-       powerManagement.enable = true;
-       open = false;
-       nvidiaSettings = true;
-       package = config.boot.kernelPackages.nvidiaPackages.stable;
-       prime = {
-	  offload.enable = true;
-	  offload.enableOffloadCmd = true;
-	  nvidiaBusId = "PCI:1:0:0";
-	  amdgpuBusId = "PCI:5:0:0";
+      modesetting.enable = true; 
+      powerManagement.enable = true;
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      prime = {
+        offload.enable = true;
+        offload.enableOffloadCmd = true;
+        nvidiaBusId = "PCI:1:0:0";
+        amdgpuBusId = "PCI:5:0:0";
        };
     };
+
     xpadneo.enable = true;
     bluetooth.enable = true;
     steam-hardware.enable = true;
@@ -149,19 +150,10 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
- environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    # eww-wayland
-
-    # audio
+  environment.systemPackages = with pkgs; [
     alsa-utils
-    
-    # lighting
     brightnessctl
-
     sqlite
-
-    # other
   ];
 
   programs.zsh = {
@@ -174,7 +166,6 @@ in
      remotePlay.openFirewall = true;
      dedicatedServer.openFirewall = true;
   };
-
 
   # Boot loader
   boot = {
