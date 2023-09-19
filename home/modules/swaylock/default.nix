@@ -1,5 +1,5 @@
 { pkgs, config, ...}:
 
 {
-  home.packages = with pkgs; [ swaylock-effects ]
+  home.packages = with pkgs; [ swaylock-effects ];
 }
