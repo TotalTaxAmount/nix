@@ -49,7 +49,7 @@ install_fresh() {
     echo "Are you sure you are ready"
     echo "is there a $HOST entry in ./outputs/nixos.conf"
     echo "and it contains all the correct imports" 
-    echo "(probaly ../system, ../system/hosts/$HOST/configuration.nix & ../system/hosts/$HOST/hardware-configuration.nix)"
+    echo "(probably ../system, ../system/hosts/$HOST/configuration.nix & ../system/hosts/$HOST/hardware-configuration.nix)"
     echo "have you created this hosts directory (/system/hosts/$HOST/)"
     echo "and created a configuration.nix (not required but recommend)"
     read -p "If so hit y: " -n 1 -r
