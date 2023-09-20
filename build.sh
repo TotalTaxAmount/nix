@@ -47,7 +47,7 @@ rebuild_system() {
 
 install_fresh() {
     echo "Are you sure you are ready"
-    echo "is there a $HOST entry in ./outputs/nixos.conf"
+    echo "is there a $HOST entry in ./outputs/nixos.nix"
     echo "and it contains all the correct imports" 
     echo "(probably ../system, ../system/hosts/$HOST/configuration.nix & ../system/hosts/$HOST/hardware-configuration.nix)"
     echo "have you created this hosts directory (/system/hosts/$HOST/)"
@@ -58,7 +58,7 @@ install_fresh() {
         echo "Copying system scan"
         cp -r /etc/nixos/hardware-configuration.nix ../system/hosts/$HOST/
         echo "Building..."
-        sudo nixos-rebuild switch --experimental-features 'nix-command flakes' --flake .#$HOST
+        sudo nixos-rebuild switch --extra-experimental-features 'nix-command flakes' --flake .#$HOST
         rebuild_home
         echo "Done"
     fi
