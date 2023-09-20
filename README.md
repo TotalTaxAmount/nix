@@ -1,6 +1,6 @@
 # TotaltTax's Nix config:
 
-This is my nixos config, its changing all the time and is probaly not stable.
+This is my nixos config, its changing all the time and is probably not stable.
 
 **DE** - Hyprland\
 **Terminal** - Alacritty (with tmux)\
