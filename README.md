@@ -74,6 +74,8 @@ Layout of this repo:
 │   ├── rofi
 │   │   ├── config.rasi
 │   │   └── systemTheme.rasi
+│   ├── swaylock
+│   │   └── config
 │   └── swww
 │       └── wallpapers
 │           ├── 10.jpg
@@ -111,7 +113,9 @@ Layout of this repo:
 │       │   └── candy-icons.nix
 │       ├── nvim
 │       │   └── default.nix
-│       └── rofi
+│       ├── rofi
+│       │   └── default.nix
+│       └── swaylock
 │           └── default.nix
 ├── outputs
 │   ├── home.nix
@@ -123,9 +127,11 @@ Layout of this repo:
 │   └── default.nix
 ├── README.md
 └── system
-    ├── configuration.nix
+    ├── default.nix
     └── hosts
-        └── laptop.nix
+        └── laptop
+            ├── configuration.nix
+            └── hardware.nix
 ```
 ### WTF is all this shit
 - `build.sh` is a shell script to mange some build commands its very simple.
@@ -141,7 +147,10 @@ If you want to install this config it would go something like this:
 1. cd ~
 2. git clone https://github.com/TotalTaxAmount/nix.git && cd nix
 3. Replace all the "totaltaxamount" strings with your username (there are a few but I will fix sometime)
-4. ./build.sh fresh
+4. Create the directory ~/nix/system/hosts/**Your host**
+5. In that directory create a configuration.nix (look at ~/nix/system/hosts/laptop/configuration.nix) for examples
+6. Inside of /outputs/nixos.nix create a new output with the name of your host (look at the outher entries for examples)
+7. ./build.sh fresh
 ```
 
 **Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
@@ -154,4 +163,3 @@ If you want to install this config it would go something like this:
 - [x] Understand flakes
 - [x] Finish fully using color theme (i think).
 - [x] Figure out how to use multiple hosts
-
