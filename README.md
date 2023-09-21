@@ -1,6 +1,8 @@
 # TotaltTax's Nix config:
 
-This is my nixos config, its changing all the time and is probaly not stable.
+This is my nixos config, its changing all the time and is probably not stable.
+
+Installer is broken atm will fix soon
 
 **DE** - Hyprland\
 **Terminal** - Alacritty (with tmux)\
@@ -144,13 +146,13 @@ Layout of this repo:
 ## Install
 If you want to install this config it would go something like this:
 ```
-1. cd ~
-2. git clone https://github.com/TotalTaxAmount/nix.git && cd nix
+1. $ cd ~
+2. $ git clone https://github.com/TotalTaxAmount/nix.git && cd nix
 3. Replace all the "totaltaxamount" strings with your username (there are a few but I will fix sometime)
-4. Create the directory ~/nix/system/hosts/**Your host**
+4. Create the directory ~/nix/system/hosts/*Your host*
 5. In that directory create a configuration.nix (look at ~/nix/system/hosts/laptop/configuration.nix) for examples
 6. Inside of /outputs/nixos.nix create a new output with the name of your host (look at the outher entries for examples)
-7. ./build.sh fresh
+7. $ ./build.sh fresh
 ```
 
 **Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
