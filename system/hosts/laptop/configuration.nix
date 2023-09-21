@@ -39,12 +39,13 @@ in
   services.openvpn.servers = {
      homeVPN = {config = '' config /home/totaltaxamount/VPN/home.ovpn'';};
   };
-
+  
   hardware = {
     opengl = {
     	enable = true;
       driSupport = true;
       driSupport32Bit = true;
+      setLdLibraryPath = true; 
     };
 
     nvidia = {

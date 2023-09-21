@@ -18,7 +18,8 @@ in
     enable = true;
     settings = {
       color_theme = "system";
-      show_gpu_info = true;
+      enable_gpu = true;
+      shown_boxes = "proc cpu mem net gpu0";
     };
   };
 

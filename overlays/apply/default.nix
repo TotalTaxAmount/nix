@@ -20,11 +20,5 @@ final: prev:
     buildInputs = old.buildInputs ++ [ prev.fmt ];
 
      # Set LD_LIBRARY_PATH to include NVIDIA library path
-    nativeBuildInputs = [ prev.writeText "set-ld-library-path.sh" ''
-      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/run/opengl-driver/lib
-    '' ];
-
-    # Modify the startCmd to run btop with the environment variable
-    startCmd = "${prev.fmt}/bin/fmt ${prev.btop}/bin/btop";
   });
 }
