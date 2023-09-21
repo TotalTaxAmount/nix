@@ -13,12 +13,12 @@ set_host() {
 }
 
 USER=$(whoami)
-if [ ! -e HOST ];then
+if [ ! -e /home/$USER/nix/HOST ];then
     echo "No host defined"
     read -p "Enter the name of your host (defined in /outputs/nixos.nix) : " name
     set_host $name
 fi
-HOST=$(cat HOST)
+HOST=$(cat /home/$USER/nix/HOST)
 
 echo "Current host: $HOST"
 nix_build() {
