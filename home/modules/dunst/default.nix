@@ -5,6 +5,7 @@
 	  enable = true;
     settings = {
       global = {
+        font = "${config.font} 8";
         monitor = 0;
         follow = "mouse";
         width = "320";

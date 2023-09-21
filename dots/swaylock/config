@@ -3,6 +3,8 @@ indicator
 clock
 screenshot
 
+font=@font@
+font-size=12;
 # Effects
 effect-blur=20x1
 effect-vignette=0.5:0.5

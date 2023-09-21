@@ -6,6 +6,7 @@ let
     base00 = "${config.colorScheme.colors.base00}";
     base05 = "${config.colorScheme.colors.base05}";
     base08 = "${config.colorScheme.colors.base08}";
+    font = "${config.font}";
 
   };
 in

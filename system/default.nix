@@ -36,10 +36,11 @@
     xwayland.enable = true;
     enableNvidiaPatches = true;
   };
-  
+
   fonts = {
     packages = with pkgs; [
-        (nerdfonts.override {fonts = [ "Overpass" ];})
+        (nerdfonts.override {fonts = [ "Overpass" "FiraCode"];})
+        
     ];
 
     fontconfig = {
