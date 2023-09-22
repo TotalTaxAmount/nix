@@ -12,7 +12,7 @@ in
   programs.rofi = {
     enable = true;
     extraConfig = {
-      font = "Overpass Nerd Font Propo 15";
+      font = "${config.font} 12";
       fixed-num-lines = true;
       show-icons = true;
       icon-theme = "Candy Icons"; # Doesnt work idk why

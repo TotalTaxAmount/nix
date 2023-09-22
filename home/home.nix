@@ -3,6 +3,7 @@
 let
   user="totaltaxamount";
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  flight-core = pkgs.callPackage ./custom-pkgs/flightcore.nix {};
   candyIcons = pkgs.callPackage ./modules/icons/candy-icons.nix {};
 in
 {
@@ -29,7 +30,7 @@ in
       type = pkgs.lib.types.str;
       example = "Noto Fonts";
       description = "
-        Name of system font
+        Name of system font (make sure its installed)
       ";
     };
   };
@@ -38,7 +39,7 @@ in
     # System theme
     # Use custom themes defined above or inputs.nix-colors.colorSchemes.THEME themes list at https://github.com/tinted-theming/base16-schemes
     colorScheme = inputs.nix-colors.colorSchemes.material-darker;
-    font = "FiraCode Nerd Font";
+    font = "NotoSansM Nerd Font";
 
     home.username = "totaltaxamount";
     home.homeDirectory = "/home/totaltaxamount";
@@ -88,10 +89,12 @@ in
       bottles
       qbittorrent
       virt-manager
+      flight-core
 
       #Terminal Apps/Config
       zsh-powerlevel10k
       neofetch
+      file
       playerctl
 
       #Utils

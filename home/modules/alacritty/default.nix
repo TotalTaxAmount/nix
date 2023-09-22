@@ -122,6 +122,7 @@ in
       font.normal = {
          family = "${config.font}";
          style = "Regular";
+         size = "11";
       };
      };
    };

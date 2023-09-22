@@ -21,6 +21,5 @@ final: prev:
     nativeBuildInputs = [ prev.rocm-smi ];
 
    # buildFlags = [ "RSMI_STATIC=true" ];
-    
   });
 }

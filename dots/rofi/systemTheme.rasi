@@ -16,27 +16,28 @@ window {
     background-color: @background;
     border: 2;
     border-color: @base0D@;
-    padding: 3;
+    padding: 3 3;
     border-radius: 10px;
 }
 
 mainbox {
     border: 0;
-    padding: 6;
+    padding: 6 6;
     background-color: @background;
 }
 
 element {
     border:  0;
-    padding: 1px ;
+    padding: 0px ;
 }
 
 element-icon {
+    margin: 5px;
     background-color: transparent;
-    margin: 10px;
 }
 
 element-text {
+    margin: 5px;
     background-color: inherit;
     text-color:       inherit;
 }
@@ -57,7 +58,7 @@ element.selected.normal {
     text-color:       @selected-text-color;
     border-color:     @selected-text-color;
     border: 2;
-    padding: 3;
+    padding: 3 3;
     border-radius: 10px;
 }
 element.selected.urgent {
@@ -69,7 +70,7 @@ element.selected.active {
     text-color:       @active-text-color;
     border-color: @text-color;
     border: 2;
-    padding: 3;
+    padding: 3 3;
     border-radius: 10px;
 }
 element.alternate.normal {
@@ -86,7 +87,7 @@ element.alternate.active {
 }
 
 message {
-    border: 2px 0px 0px;
+    border: 2;
     border-color: @sep-color;
 }
 

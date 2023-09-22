@@ -2,7 +2,7 @@
 
 configuration {
 /*	modes: "drun,run,ssh";*/
-	font: "Overpass Nerd Font Propo 15";
+	font: "";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
