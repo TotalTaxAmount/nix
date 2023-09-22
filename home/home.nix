@@ -19,6 +19,7 @@ in
         ./modules/btop
         ./modules/dunst
         ./modules/swaylock
+        ./modules/xplorer
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
@@ -89,7 +90,6 @@ in
       bottles
       qbittorrent
       virt-manager
-      xplorer
 
       #Terminal Apps/Config
       zsh-powerlevel10k
