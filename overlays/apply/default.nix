@@ -32,5 +32,7 @@ final: prev:
         Exec=xplorer
       " >> $out/share/applications/xplorer.desktop
     '';
+
+    patches = [./patches/xplorer_json_storage.patch];
   });
 }
