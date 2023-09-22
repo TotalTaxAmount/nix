@@ -1,0 +1,41 @@
+diff --git a/src-tauri/src/storage.rs b/src-tauri/src/storage.rs
+index 596923e..9ffabd5 100644
+--- a/src-tauri/src/storage.rs
++++ b/src-tauri/src/storage.rs
+@@ -1,9 +1,8 @@
+ use std::fs;
+ use std::path::Path;
+-use std::str;
+ use tauri::api::path::local_data_dir;
+ 
+-#[derive(serde::Serialize, Debug)]
++#[derive(serde::Serialize, serde::Deserialize, Debug)]
+ pub struct StorageData {
+     pub data: serde_json::Value,
+     pub status: bool,
+@@ -15,9 +14,9 @@ pub fn write_data(key: &str, value: serde_json::Value) {
+     if let Err(e) = fs::create_dir_all(&storage_dir) {
+         eprintln!("Failed to create dirs: {:?}", e);
+     }
+-    let value = bincode::serialize(&serde_json::to_vec(&value).unwrap()).unwrap();
++    let value_str = serde_json::to_string(&value).unwrap();
+ 
+-    if let Err(e) = fs::write(storage_dir.join(key), value) {
++    if let Err(e) = fs::write(storage_dir.join(key), value_str) {
+         eprintln!("Failed to write data: {:?}", e);
+     }
+ }
+@@ -27,11 +26,8 @@ pub fn read_data(key: &str) -> Result<StorageData, String> {
+     let storage_dir = Path::new(&local_data_dir().unwrap()).join("Xplorer");
+     let mut status = true;
+     let data: String;
+-    match fs::read(storage_dir.join(key)) {
+-        Ok(result) => match bincode::deserialize(&result) {
+-            Ok(deserialized_bincode) => data = deserialized_bincode,
+-            Err(_) => data = str::from_utf8(&result).unwrap().to_string(),
+-        },
++    match fs::read_to_string(storage_dir.join(key)) {
++        Ok(result) => data = result,
+         Err(e) => {
+             status = false;
+             data = e.to_string();
