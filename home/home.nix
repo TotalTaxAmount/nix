@@ -39,7 +39,7 @@ in
     # System theme
     # Use custom themes defined above or inputs.nix-colors.colorSchemes.THEME themes list at https://github.com/tinted-theming/base16-schemes
     colorScheme = inputs.nix-colors.colorSchemes.material-darker;
-    font = "NotoSansM Nerd Font";
+    font = "FiraCode Nerd Font";
 
     home.username = "totaltaxamount";
     home.homeDirectory = "/home/totaltaxamount";
@@ -89,7 +89,7 @@ in
       bottles
       qbittorrent
       virt-manager
-      flight-core
+      xplorer
 
       #Terminal Apps/Config
       zsh-powerlevel10k
@@ -125,13 +125,12 @@ in
       prismlauncher-qt5
       gamemode
       nvtop
-      xfce.thunar
 
       # Screenshot
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       slurp
       wl-clipboard
-      libnotify
+      
     ];
 
     # Home Manager is pretty good at managing dotfiles. The primary way to manage

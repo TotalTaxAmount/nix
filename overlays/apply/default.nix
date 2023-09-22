@@ -18,8 +18,19 @@ final: prev:
     };
 
     buildInputs = old.buildInputs ++ [ prev.fmt ];
-    nativeBuildInputs = [ prev.rocm-smi ];
+  });
 
-   # buildFlags = [ "RSMI_STATIC=true" ];
+  xplorer = prev.xplorer.overrideAttrs (old: {
+    postInstall = old.postInstall + ''
+      mkdir -p $out/share/applications
+      echo "
+        [Desktop Entry]
+        Type=Application
+        Version=1.0
+        Name=Xplorer
+        Path=$out/bin
+        Exec=xplorer
+      " >> $out/share/applications/xplorer.desktop
+    '';
   });
 }

@@ -5,11 +5,11 @@
 	  enable = true;
     settings = {
       global = {
+        origin = "bottom-right";
         font = "${config.font} 8";
         monitor = 0;
-        follow = "mouse";
         width = "320";
-        offset = "10x4";
+        offset = "4x4";
         indicate_hidden = true;
         shrink = false;
         transparency = 0;
@@ -58,9 +58,9 @@
         timeout = 8;
       };
       urgency_critical = {
-        background = "#${config.colorScheme.colors.base00}";
-        foreground = "#${config.colorScheme.colors.base0B}";
-        frame_color = "#${config.colorScheme.colors.base0B}";
+        background = "#${config.colorScheme.colors.base09}";
+        foreground = "#${config.colorScheme.colors.base00}";
+        frame_color = "#${config.colorScheme.colors.base00}";
         timeout = 0;
       };
     };

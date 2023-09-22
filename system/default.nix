@@ -69,7 +69,6 @@
 
   # Needed for swaylock
   security.pam.services.swaylock = {};
-  nixpkgs.config.allowUnfree = true;
 
   programs.zsh = {
      enable = true; 
