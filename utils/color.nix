@@ -158,4 +158,11 @@ rec {
       hexInRGBString = map toString hexInRGB;
     in
     concatStringsSep sep hexInRGBString;
+
+  hexToRGBFormatted = hex:
+    let
+      rgbValues = hexToRGB hex;
+      formattedRGB = builtins.concatStringsSep "," (builtins.map builtins.toString rgbValues);
+    in
+    formattedRGB;
 }

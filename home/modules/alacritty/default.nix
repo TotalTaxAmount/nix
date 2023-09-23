@@ -34,7 +34,7 @@ in
       extraConfig = ''
       set-hook -g after-new-session "source-file ~/.config/tmux/tmux.conf"
 
-      set -g @tmux_power_theme '#${config.colorScheme.colors.base05}'
+      set -g @tmux_power_theme '#${config.colorScheme.colors.base0D}'
       set -g history-limit 100000
 
       set -g @tmux_power_show_upload_speed true

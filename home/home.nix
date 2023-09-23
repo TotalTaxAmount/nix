@@ -38,8 +38,8 @@ in
 
   config = {  
     # System theme
-    # Use custom themes defined above or inputs.nix-colors.colorSchemes.THEME themes list at https://github.com/tinted-theming/base16-schemes
-    colorScheme = inputs.nix-colors.colorSchemes.material-darker;
+    # Use custom themes defined above or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
+    colorScheme = inputs.nix-colors.colorSchemes.google-dark;
     font = "FiraCode Nerd Font";
 
     home.username = "totaltaxamount";
@@ -83,7 +83,6 @@ in
       # Apps
       discord
       gimp
-      vscode-fhs
       brave
       fluent-reader
       nomacs

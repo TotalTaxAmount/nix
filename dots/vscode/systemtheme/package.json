@@ -1,0 +1,21 @@
+{
+  "name": "systemtheme",
+  "displayName": "systemTheme",
+  "description": "VScode theme that changes with the system",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "System Theme",
+        "uiTheme": "vs-dark",
+        "path": "./themes/System Theme-color-theme.json"
+      }
+    ]
+  }
+}
