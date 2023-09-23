@@ -6,8 +6,15 @@ let
     files = [
       "themes/System\ Theme-color-theme.json"
       "README.md"
+      ".vscode/launch.json"
+      ".vscodeignore"
+      "package.json"
+      "README.md"
+      "CHANGELOG.md"
+      "vsc-extension-quickstart.md"
     ];
-    base00 = "#${config.colorScheme.colors.base01}";
+    base00 = "#${config.colorScheme.colors.base00}";
+    base01 = "#${config.colorScheme.colors.base01}";
     base02 = "#${config.colorScheme.colors.base02}";
     base03 = "#${config.colorScheme.colors.base03}";
     base04 = "#${config.colorScheme.colors.base04}";
@@ -20,9 +27,10 @@ let
     base0B = "#${config.colorScheme.colors.base0B}";
     base0C = "#${config.colorScheme.colors.base0C}";
     base0E = "#${config.colorScheme.colors.base0E}";
+    user = "totaltaxamount"; # FIXME: No static usernames here!
   };
 in {
   home.packages = with pkgs; [ vscode-fhs ];
 
-  home.file.".vscode/extensions/systemtheme".source = vscodeThemeExtension.out;
+  home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source = vscodeThemeExtension.out;
 }

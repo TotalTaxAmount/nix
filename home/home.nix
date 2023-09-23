@@ -2,7 +2,14 @@
 
 let
   user="totaltaxamount";
+
+  # Custom color themes
+  customThemes = import ../../../theme/custom.nix {};
+
+  # Flake stuff
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  
+  # Custom pkgs (gonna do this better sometime ;))
   flight-core = pkgs.callPackage ./custom-pkgs/flightcore.nix {};
   candyIcons = pkgs.callPackage ./modules/icons/candy-icons.nix {};
 in
@@ -20,6 +27,7 @@ in
         ./modules/dunst
         ./modules/swaylock
         ./modules/xplorer
+        ./modules/vscode
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
@@ -38,8 +46,8 @@ in
 
   config = {  
     # System theme
-    # Use custom themes defined above or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
-    colorScheme = inputs.nix-colors.colorSchemes.google-dark;
+    # Use custom themes customThemes.[theme] (defined in themes/custom.nix) or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
+    colorScheme = customThemes.tomorrow-night-dark;
     font = "FiraCode Nerd Font";
 
     home.username = "totaltaxamount";

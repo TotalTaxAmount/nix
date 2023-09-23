@@ -1,9 +1,8 @@
 # Change Log
 
-All notable changes to the "systemtheme" extension will be documented in this file.
+## [0.0.1] - 2023-8-23
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### Added
+- Everything!
 
-## [Unreleased]
 
-- Initial release

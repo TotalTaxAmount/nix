@@ -1,10 +1,14 @@
 {
   "name": "systemtheme",
-  "displayName": "systemTheme",
-  "description": "VScode theme that changes with the system",
-  "version": "0.0.1",
+  "displayName": "System Theme",
+  "description": "VScode theme configured for @user@'s system",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.82.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TotalTaxAmount/nix"
   },
   "categories": [
     "Themes"
