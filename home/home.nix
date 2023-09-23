@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, nixpkgs-lib, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
   user="totaltaxamount";

@@ -1,10 +1,10 @@
-{pkgs, config, ...}:
+{pkgs, config, lib, ...}:
 
 let 
-  colorUtils = pkgs.callPackage (import ../../../utils/colors.nix) {};
+  colorUtils = import ../../../utils/color.nix { inherit lib; };
   theme = pkgs.substituteAll {
     src = ../../../dots/xplorer/systemTheme.xtension;
-    base00 = "${colorUtils.hexToRGB config.colorScheme.colors.base00}";
+    base00 = colorUtils.hexToRGB config.colorScheme.colors.base00;
     base01 = "#${config.colorScheme.colors.base01}";
     base03 = "#${config.colorScheme.colors.base03}";
     base04 = "#${config.colorScheme.colors.base04}";

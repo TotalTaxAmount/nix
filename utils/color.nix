@@ -1,4 +1,4 @@
-{ nixpkgs-lib }:
+{ lib }:
 let
   hexToDecMap = {
     "0" = 0;
@@ -22,7 +22,7 @@ let
   /* Power funcation (why is there not a builtin one??)*/
 
   pow = base: exponent:
-    let inherit (nixpkgs-lib) mod;
+    let inherit (lib) mod;
     in if exponent > 1 then
       let
         x = pow base (exponent / 2);
@@ -77,7 +77,7 @@ let
   */
   hexCharToDec = hex:
     let
-      inherit (nixpkgs-lib) toLower;
+      inherit (lib) toLower;
       lowerHex = toLower hex;
     in
     if builtins.stringLength hex != 1 then
@@ -105,7 +105,7 @@ rec {
   */
   hexToDec = hex:
     let
-      inherit (nixpkgs-lib) stringToCharacters reverseList imap0 foldl;
+      inherit (lib) stringToCharacters reverseList imap0 foldl;
       decimals = builtins.map hexCharToDec (stringToCharacters hex);
       decimalsAscending = reverseList decimals;
       decimalsPowered = imap0 base16To10 decimalsAscending;
@@ -153,7 +153,7 @@ rec {
   hexToRGBString = sep: hex:
     let
       inherit (builtins) map toString;
-      inherit (nixpkgs-lib) concatStringsSep;
+      inherit (lib) concatStringsSep;
       hexInRGB = hexToRGB hex;
       hexInRGBString = map toString hexInRGB;
     in

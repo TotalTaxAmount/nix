@@ -3,8 +3,6 @@
     inputs = {
         nixpkgs.url = "nixpkgs/nixos-unstable";
 
-        nixpkgs-lib.url = github:nix-community/nixpkgs.lib;
-
         home-manager = {
             url = github:nix-community/home-manager;
             inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +21,7 @@
         nix-gaming.url = github:fufexan/nix-gaming;
     };
 
-    outputs = {self, nixpkgs, home-manager, nixpkgs-lib, ...}@inputs :
+    outputs = {self, nixpkgs, home-manager, ...}@inputs :
     let 
         system = "x86_64-linux"; 
         user = "totaltaxamount";
