@@ -21,7 +21,7 @@ let
       inherit pkgs;
 
       extraSpecialArgs = {
-        inherit pkgs inputs;
+        inherit pkgs inputs nixpkgs-lib;
       };
 
       modules = [
