@@ -33,6 +33,6 @@ final: prev:
       " >> $out/share/applications/xplorer.desktop
     '';
 
-    patches = [./patches/xplorer_json_storage.patch];
+    patches = (old.patches or [ ]) ++ [./patches/xplorer_json_storage.patch];
   });
 }

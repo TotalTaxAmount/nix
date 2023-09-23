@@ -1,7 +1,7 @@
-diff --git a/src-tauri/src/storage.rs b/src-tauri/src/storage.rs
+diff --git src-tauri/src/storage.rs src-tauri/src/storage.rs
 index 596923e..9ffabd5 100644
---- a/src-tauri/src/storage.rs
-+++ b/src-tauri/src/storage.rs
+--- src-tauri/src/storage.rs
++++ src-tauri/src/storage.rs
 @@ -1,9 +1,8 @@
  use std::fs;
  use std::path::Path;
