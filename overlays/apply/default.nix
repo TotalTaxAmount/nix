@@ -30,6 +30,7 @@ final: prev:
         Name=Xplorer
         Path=$out/bin
         Exec=xplorer
+        Icon=$src/src/Icon/icon.png
       " >> $out/share/applications/xplorer.desktop
     '';
 
