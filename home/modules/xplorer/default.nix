@@ -1,10 +1,10 @@
 {pkgs, config, inputs, ...}:
 
 let 
-  colorUtils = pkgs.callPackage (import ../../../utils/colors.nix) {};
+  colorUtils = pkgs.callPackage (import ../../../utils/color.nix) {};
   theme = pkgs.substituteAll {
     src = ../../../dots/xplorer/systemTheme.xtension;
-    base00rgb = colorUtils.hexToDec "${config.colorScheme.colors.base00}";
+    base00 = (colorUtils.hexToRgb config.colorScheme.colors.base00);
   };
 in 
 {

@@ -1,6 +1,5 @@
 {
   "author": "TotalTaxAmount",
-  "test": "@base00rgb@",
   "decoder": "json",
   "description": "Base 16 System theme",
   "extensionType": "theme",
