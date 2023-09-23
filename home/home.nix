@@ -20,6 +20,7 @@ in
         ./modules/dunst
         ./modules/swaylock
         ./modules/xplorer
+        ./custom-pkgs/discord-krisp
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
