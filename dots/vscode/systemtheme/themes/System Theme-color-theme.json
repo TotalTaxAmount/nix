@@ -323,7 +323,7 @@
                 "storage.type.function"
             ],
             "settings": {
-                "foreground": "@base0C@"
+                "foreground": "@base0D@"
             }
         },
         {
@@ -376,7 +376,7 @@
                 "keyword.other.special-method"
             ],
             "settings": {
-                "foreground": "@base0C@"
+                "foreground": "@base0D@"
             }
         },
         {
@@ -526,7 +526,7 @@
                 "variable.function.constructor"
             ],
             "settings": {
-                "foreground": "@base0C@"
+                "foreground": "@base0D@"
             }
         },
         {

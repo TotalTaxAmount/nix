@@ -26,6 +26,7 @@ let
     base0A = "#${config.colorScheme.colors.base0A}";
     base0B = "#${config.colorScheme.colors.base0B}";
     base0C = "#${config.colorScheme.colors.base0C}";
+    base0D = "#${config.colorScheme.colors.base0D}";
     base0E = "#${config.colorScheme.colors.base0E}";
     user = "totaltaxamount"; # FIXME: No static usernames here!
     theme = "${config.colorScheme.name}";
