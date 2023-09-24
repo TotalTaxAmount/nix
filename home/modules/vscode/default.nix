@@ -28,6 +28,8 @@ let
     base0C = "#${config.colorScheme.colors.base0C}";
     base0E = "#${config.colorScheme.colors.base0E}";
     user = "totaltaxamount"; # FIXME: No static usernames here!
+    theme = "${config.colorScheme.name}";
+    author = "${config.colorScheme.author}";
   };
 in {
   home.packages = with pkgs; [ vscode-fhs ];

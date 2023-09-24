@@ -4,7 +4,7 @@ let
   user="totaltaxamount";
 
   # Custom color themes
-  customThemes = import ../../../theme/custom.nix {};
+  customThemes = import ../theme/custom.nix;
 
   # Flake stuff
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
@@ -12,6 +12,7 @@ let
   # Custom pkgs (gonna do this better sometime ;))
   flight-core = pkgs.callPackage ./custom-pkgs/flightcore.nix {};
   candyIcons = pkgs.callPackage ./modules/icons/candy-icons.nix {};
+  schemer2 = pkgs.callPackage ./custom-pkgs/schemer2.nix {};
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -47,7 +48,7 @@ in
   config = {  
     # System theme
     # Use custom themes customThemes.[theme] (defined in themes/custom.nix) or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
-    colorScheme = customThemes.tomorrow-night-dark;
+    colorScheme = inputs.nix-colors.colorSchemes.tomorrow-night;
     font = "FiraCode Nerd Font";
 
     home.username = "totaltaxamount";
@@ -103,6 +104,7 @@ in
       neofetch
       file
       playerctl
+      schemer2
 
       #Utils
       jq
