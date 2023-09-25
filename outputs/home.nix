@@ -1,4 +1,4 @@
-{inputs, system, ...}:
+{inputs, system, user, ...}:
 
 with inputs;
 
@@ -21,7 +21,7 @@ let
       inherit pkgs;
 
       extraSpecialArgs = {
-        inherit pkgs inputs;
+        inherit pkgs inputs user;
       };
 
       modules = [

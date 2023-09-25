@@ -1,13 +1,12 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, user, ... }:
 
 let
-  user="totaltaxamount";
-
   # Custom color themes
   customThemes = import ../theme/custom.nix;
 
   # Flake stuff
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
   
   # Custom pkgs (gonna do this better sometime ;))
   flight-core = pkgs.callPackage ./custom-pkgs/flightcore.nix {};
@@ -48,7 +47,7 @@ in
   config = {  
     # System theme
     # Use custom themes customThemes.[theme] (defined in themes/custom.nix) or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
-    colorScheme = inputs.nix-colors.colorSchemes.tomorrow-night;
+    colorScheme = inputs.nix-colors.colorSchemes.colors;
     font = "FiraCode Nerd Font";
 
     home.username = "totaltaxamount";
@@ -198,6 +197,11 @@ in
       iconTheme = { 
           name = "Candy Icons";
           package = candyIcons;
+      };
+
+      theme = {
+        package = nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
+        name = "System Theme";
       };
     };
 
