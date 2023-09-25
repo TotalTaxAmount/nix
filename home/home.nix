@@ -9,7 +9,7 @@ let
   nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
   
   # Custom pkgs (gonna do this better sometime ;))
-  flight-core = pkgs.callPackage ./custom-pkgs/flightcore.nix {};
+  flight-core = pkgs.callPackage ./custom-pkgs/flightcore/flightcore.nix {};
   candyIcons = pkgs.callPackage ./modules/icons/candy-icons.nix {};
   schemer2 = pkgs.callPackage ./custom-pkgs/schemer2.nix {};
 in

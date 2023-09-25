@@ -5,6 +5,7 @@ lib
 , nodejs_20
 , cargo-tauri
 , rustPlatform
+, buildNpmPackage
 }:
 
 let
@@ -18,8 +19,8 @@ let
     hash = "sha256-re1xU5Cx8ot1eFpNfT4cLCVYJlSEwJNzx7jYHmUnAfM=";
   };
 
-  frontend-build = lib.mkNodePackage rec {
-    inherit version src;
+  frontend-build = buildNpmPackage rec {
+    inherit pname version src;
     sourceRoot = "sources/src-vue";
 
     packageJSON = ./package.json;
@@ -41,6 +42,9 @@ rustPlatform.buildRustPackage {
 
   cargoLock = {
     lockFile = ./Cargo.lock;
+    outputHashes = {
+      "tauri-plugin-store-0.1.0" = "";
+    };
   };
 
   postPatch = ''
