@@ -4,7 +4,7 @@ lib
 , stdenv 
 , nodejs_20
 , cargo-tauri
-, mkNodePackage
+, rustPlatform
 }:
 
 let
@@ -18,7 +18,7 @@ let
     hash = "sha256-re1xU5Cx8ot1eFpNfT4cLCVYJlSEwJNzx7jYHmUnAfM=";
   };
 
-  fontend = mkNodePackage {
+  frontend-build = lib.mkNodePackage rec {
     inherit version src;
     sourceRoot = "sources/src-vue";
 
@@ -34,16 +34,24 @@ let
 
 
 in 
-stdenv.mkDerivation rec {
+rustPlatform.buildRustPackage {
   inherit pname version src;
 
-  buildInputs = [
-    nodejs_20
-  ];
+  sourceRoot = "source/src-tauri";
 
-  buildPhase = ''
-    npx tauri build
+  cargoLock = {
+    lockFile = ./Cargo.lock;
+  };
+
+  postPatch = ''
+    cp ${./Cargo.lock} Cargo.lock
+
+    mkdir -p frontend-build
+    cp -R ${frontend-build}/src frontend-build
+
+    substituteInPlace tauri.conf.json --replace '"distDir": "../src-vue/dist",' '"distDir": "frontend-build/dist",'
   '';
+  
   meta = with lib; {
     description = "Flight Core";
     homepage = "https://github.com/R2NorthstarTools/FlightCore";
