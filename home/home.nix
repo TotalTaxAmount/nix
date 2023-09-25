@@ -28,6 +28,7 @@ in
         ./modules/swaylock
         ./modules/xplorer
         ./modules/vscode
+        ./modules/neofetch
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
