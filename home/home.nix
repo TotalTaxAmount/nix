@@ -107,6 +107,7 @@ in
       playerctl
       schemer2
       base16-builder
+      tree
 
       #Utils
       jq
