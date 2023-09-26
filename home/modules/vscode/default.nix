@@ -1,4 +1,4 @@
-{pkgs, config, ...}:
+{pkgs, config, user, ...}:
 
 let
   vscodeThemeExtension = pkgs.substituteAllFiles {
@@ -28,7 +28,9 @@ let
     base0C = "#${config.colorScheme.colors.base0C}";
     base0D = "#${config.colorScheme.colors.base0D}";
     base0E = "#${config.colorScheme.colors.base0E}";
-    user = "totaltaxamount"; # FIXME: No static usernames here!
+    base0F = "#${config.colorScheme.colors.base0F}";
+
+    user = user;
     theme = "${config.colorScheme.name}";
     author = "${config.colorScheme.author}";
   };

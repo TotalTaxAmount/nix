@@ -45,4 +45,30 @@
       base0F = "82cfff";
     };
   };
+
+  sunset = {
+    name = "Sunset";
+    slug = "sunset";
+    author = "Auto Base16 Theme (https =//github.com/makuto/auto-base16-theme/)";
+
+    colors = {
+      base00 = "040003";
+      base01 = "340211";
+      base02 = "580b05";
+      base03 = "923017";
+      base04 = "6a4a57";
+      base05 = "904d3a";
+      base06 = "502625";
+      base07 = "7a1d0a";
+
+      base08 = "e36721";
+      base09 = "a26050";
+      base0A = "f58c20";
+      base0B = "e29a6c";
+      base0C = "d0815a";
+      base0D = "e36721";
+      base0E = "a26050";
+      base0F = "d0815a";
+    };
+  };
 }

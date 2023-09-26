@@ -14,6 +14,7 @@ let
     base03 = "#${config.colorScheme.colors.base03}";
     base05 = "#${config.colorScheme.colors.base05}";
     base08 = "#${config.colorScheme.colors.base08}";
+    base0C = "#${config.colorScheme.colors.base0C}";
     base0D = "#${config.colorScheme.colors.base0D}";
     font = "${config.font}";
     scriptdir = "${scriptDir}";

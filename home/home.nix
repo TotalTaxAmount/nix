@@ -3,6 +3,7 @@
 let
   # Custom color themes
   customThemes = import ../theme/custom.nix;
+  base16Themes = inputs.nix-colors.colorSchemes;
 
   # Flake stuff
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
@@ -48,7 +49,7 @@ in
   config = {  
     # System theme
     # Use custom themes customThemes.[theme] (defined in themes/custom.nix) or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
-    colorScheme = inputs.nix-colors.colorSchemes.pop;
+    colorScheme = base16Themes.eighties;
     font = "FiraCode Nerd Font";
 
     home.username = "totaltaxamount";
@@ -98,7 +99,6 @@ in
       bottles
       qbittorrent
       virt-manager
-      flight-core
 
       #Terminal Apps/Config
       zsh-powerlevel10k

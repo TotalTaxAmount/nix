@@ -261,7 +261,7 @@
                 "invalid.deprecated"
             ],
             "settings": {
-                "foreground": "@base0C@"
+                "foreground": "@base0F@"
             }
         },
         {
@@ -352,7 +352,7 @@
                 "variable.interpolation"
             ],
             "settings": {
-                "foreground": "@base0C@"
+                "foreground": "@base0F@"
             }
         },
         {
