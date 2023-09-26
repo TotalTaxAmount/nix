@@ -31,6 +31,7 @@ in
         ./modules/vscode
         ./modules/neofetch
         ./modules/discord
+        ./modules/prismLauncher
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
@@ -134,7 +135,6 @@ in
 
       # Games
       mangohud
-      prismlauncher-qt5
       gamemode
       nvtop
 

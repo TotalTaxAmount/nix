@@ -1,8 +1,16 @@
 {pkgs, config, ...}:
 
 let
-  theme = pkgs.substituteAll {
-    src = ../../../dots/discord/system.theme.css;
+  theme = pkgs.substituteAllFiles {
+    src = ../../../dots/prismLauncher;
+    files = [
+      "preview.png"
+      "preview.png.license"
+      "theme.json"
+      "theme.json.license"
+      "themeStyle.css"
+    ];
+
     base00 = "#${config.colorScheme.colors.base00}";
     base01 = "#${config.colorScheme.colors.base01}";
     base02 = "#${config.colorScheme.colors.base02}";
@@ -21,7 +29,7 @@ let
     base0F = "#${config.colorScheme.colors.base0F}";
   };
 in {
-  home.packages = with pkgs; [discord];
+  home.packages = with pkgs; [ prismlauncher-qt5 ];
 
-  xdg.configFile."Vencord/themes/system.theme.css".source = theme.out;
+  home.file.".local/share/PrismLauncher/themes/system".source = theme.out;
 }
