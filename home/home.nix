@@ -30,6 +30,7 @@ in
         ./modules/xplorer
         ./modules/vscode
         ./modules/neofetch
+        ./modules/discord
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
@@ -49,7 +50,7 @@ in
   config = {  
     # System theme
     # Use custom themes customThemes.[theme] (defined in themes/custom.nix) or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
-    colorScheme = base16Themes.eighties;
+    colorScheme = base16Themes.tomorrow-night-eighties;
     font = "FiraCode Nerd Font";
 
     home.username = "totaltaxamount";
@@ -91,7 +92,6 @@ in
       # '')
 
       # Apps
-      discord
       gimp
       brave
       fluent-reader
@@ -203,10 +203,10 @@ in
           package = candyIcons;
       };
 
-      theme = {
-        package = nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-        name = "System Theme";
-      };
+      # theme = {
+      #   package = nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
+      #   name = "System Theme";
+      # };
     };
 
 
