@@ -114,7 +114,7 @@
 
 (defwidget system []
   (eventbox 
-    :onclick "@scriptdir@/pop.sh system"
+    :onclick "@scriptdir@/pop.shg system"
     (image
       :class "system_icon"
       :path "./nixos-icon.svg"
