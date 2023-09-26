@@ -165,3 +165,8 @@ If you want to install this config it would go something like this:
 - [x] Understand flakes
 - [x] Finish fully using color theme (i think).
 - [x] Figure out how to use multiple hosts
+- [ ] Eww shit
+- [ ] Improve vscode theme
+- [ ] Make background switcher
+- [ ] Automate this damn file tree
+ 

@@ -1,4 +1,6 @@
-
+# TODO: Seperate this into multiple files
+# TODO: Create a clock widget (chromecast like) for background
+# Probaly but in bottom right
 
 (defpoll clock_time :interval "1s" "date '+%r %b %d, %Y'")
 (defpoll calendar_day :interval "2h" "date '+%d'")
