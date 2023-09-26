@@ -2,7 +2,7 @@
 
 let
   theme = pkgs.substituteAllFiles {
-    src = ../../../dots/prismLauncher;
+    src = ../../../dots/prismLauncher/theme;
     files = [
       "preview.png"
       "preview.png.license"
