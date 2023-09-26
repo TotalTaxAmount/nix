@@ -19,11 +19,6 @@
         "label": "System Theme",
         "uiTheme": "vs-dark",
         "path": "./themes/System Theme-color-theme.json"
-      },
-      {
-        "label": "Xml version?",
-        "uiTheme": "vs-dark",
-        "path": "./themes/Systemtheme-xml.xml"
       }
     ]
   }
