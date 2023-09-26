@@ -201,3 +201,4 @@ If you want to install this config it would go something like this:
 - [ ] Improve vscode theme
 - [ ] Make background switcher
 - [ ] Automate this damn file tree
+- [ ] Swaylock
