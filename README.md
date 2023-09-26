@@ -17,7 +17,7 @@ Installer is broken atm will fix soon
 Layout of this repo:
 
 ```
-.
+ .
 ├── build.sh
 ├── dots
 │   ├── btop
@@ -38,6 +38,8 @@ Layout of this repo:
 │   │   ├── hyprland.conf
 │   │   └── scripts
 │   │       └── background.sh
+│   ├── neofetch
+│   │   └── config.conf
 │   ├── nvim
 │   │   ├── configs
 │   │   │   ├── nvim-tree.lua
@@ -47,6 +49,7 @@ Layout of this repo:
 │   │   ├── parsers
 │   │   │   ├── parser
 │   │   │   │   ├── bash.so
+│   │   │   │   ├── gitcommit.so
 │   │   │   │   ├── ini.so
 │   │   │   │   ├── json.so
 │   │   │   │   ├── lua.so
@@ -60,6 +63,7 @@ Layout of this repo:
 │   │   │   │   └── yuck.so
 │   │   │   └── parser-info
 │   │   │       ├── bash.revision
+│   │   │       ├── gitcommit.revision
 │   │   │       ├── ini.revision
 │   │   │       ├── json.revision
 │   │   │       ├── lua.revision
@@ -78,25 +82,41 @@ Layout of this repo:
 │   │   └── systemTheme.rasi
 │   ├── swaylock
 │   │   └── config
-│   └── swww
-│       └── wallpapers
-│           ├── 10.jpg
-│           ├── 11.jpg
-│           ├── 12.jpg
-│           ├── 13.jpg
-│           ├── 1.jpg
-│           ├── 2.jpg
-│           ├── 3.jpg
-│           ├── 4.jpg
-│           ├── 5.jpg
-│           ├── 6.jpg
-│           ├── 7.jpg
-│           ├── 8.jpg
-│           └── 9.jpg
+│   ├── swww
+│   │   └── wallpapers
+│   │       ├── 10.jpg
+│   │       ├── 11.jpg
+│   │       ├── 12.jpg
+│   │       ├── 13.jpg
+│   │       ├── 1.jpg
+│   │       ├── 2.jpg
+│   │       ├── 3.jpg
+│   │       ├── 4.jpg
+│   │       ├── 5.jpg
+│   │       ├── 6.jpg
+│   │       ├── 7.jpg
+│   │       ├── 8.jpg
+│   │       └── 9.jpg
+│   ├── vscode
+│   │   ├── shell.nix
+│   │   └── systemtheme
+│   │       ├── CHANGELOG.md
+│   │       ├── package.json
+│   │       ├── README.md
+│   │       ├── themes
+│   │       │   └── System Theme-color-theme.json
+│   │       └── vsc-extension-quickstart.md
+│   └── xplorer
+│       └── systemTheme.xtension
 ├── flake.lock
 ├── flake.nix
 ├── home
 │   ├── custom-pkgs
+│   │   ├── flightcore
+│   │   │   ├── Cargo.lock
+│   │   │   ├── flightcore.nix
+│   │   │   └── package.json
+│   │   ├── schemer2.nix
 │   │   └── sysmontask.nix
 │   ├── home.nix
 │   └── modules
@@ -113,12 +133,19 @@ Layout of this repo:
 │       │   └── default.nix
 │       ├── icons
 │       │   └── candy-icons.nix
+│       ├── neofetch
+│       │   └── default.nix
 │       ├── nvim
 │       │   └── default.nix
 │       ├── rofi
 │       │   └── default.nix
-│       └── swaylock
+│       ├── swaylock
+│       │   └── default.nix
+│       ├── vscode
+│       │   └── default.nix
+│       └── xplorer
 │           └── default.nix
+├── HOST
 ├── outputs
 │   ├── home.nix
 │   └── nixos.nix
@@ -126,14 +153,19 @@ Layout of this repo:
 │   ├── apply
 │   │   ├── default.nix
 │   │   └── patches
+│   │       └── xplorer_json_storage.patch
 │   └── default.nix
 ├── README.md
-└── system
-    ├── default.nix
-    └── hosts
-        └── laptop
-            ├── configuration.nix
-            └── hardware.nix
+├── system
+│   ├── default.nix
+│   └── hosts
+│       └── laptop
+│           ├── configuration.nix
+│           └── hardware.nix
+├── theme
+│   └── custom.nix
+└── utils
+    └── color.nix
 ```
 ### WTF is all this shit
 - `build.sh` is a shell script to mange some build commands its very simple.
@@ -169,4 +201,3 @@ If you want to install this config it would go something like this:
 - [ ] Improve vscode theme
 - [ ] Make background switcher
 - [ ] Automate this damn file tree
- 
