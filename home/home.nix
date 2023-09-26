@@ -106,6 +106,7 @@ in
       file
       playerctl
       schemer2
+      base16-builder
 
       #Utils
       jq
