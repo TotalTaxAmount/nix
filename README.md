@@ -2,7 +2,7 @@
 
 This is my nixos config, its changing all the time and is probably not stable.
 
-Installer is broken atm will fix soon
+Installer is broken atm will fix soon (hopefully)
 
 **DE** - Hyprland\
 **Terminal** - Alacritty (with tmux)\
