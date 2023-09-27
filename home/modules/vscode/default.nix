@@ -5,6 +5,7 @@ let
     src = ../../../dots/vscode/systemtheme;
     files = [
       "themes/System\ Theme-color-theme.json"
+      "themes/system.tmTheme"
       "README.md"
       ".vscode/launch.json"
       ".vscodeignore"
