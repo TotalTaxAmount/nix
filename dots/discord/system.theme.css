@@ -1,4 +1,4 @@
-**
+/**
  * @name System theme
  * @author TotalTaxAmount
  * @version 1.0.0
@@ -7,23 +7,23 @@
 **/
 :root {
   --sys-background: @base00@ !important;
-  --sys-current-line: @base02@ !important;
+  --sys-current-line: @base01@ !important;
   --sys-selection: @base02@ !important;
   --sys-foreground: @base05@ !important;
   --sys-comment: @base03@ !important;
-  --sys-cyan: @base0C@ !important;
-  --sys-green: @base0B@ !important;
-  --sys-orange: @base09@ !important;
-  --sys-pink: #ff79c6 !important;
-  --sys-purple: @base0E@ !important;
-  --sys-red: @base08@ !important;
-  --sys-yellow: @base0A@ !important;
-  --sys-line-highlight: @base02@75 !important;
-  --sys-non-text: @base06@1a !important;
-  --sys-white: @base06@ !important;
-  --sys-tab-drop-background: @base02@70 !important;
-  --sys-background-lighter: @base01@;
-  --sys-background-alt: @base07@ !important;
+  --sys-cyan: @base0A@ !important;
+  --sys-green: -base0B@ !important;
+  --sys-orange: @base08@ !important;
+  --sys-pink: @base0E@ !important;
+  --sys-purple: @base0D@ !important;
+  --sys-red: @base09@ !important;
+  --sys-yellow: --@base0C@ !important;
+  --sys-line-highlight: @base00@75 !important;
+  --sys-non-text: @base03@1a !important;
+  --sys-white: @base07@ !important;
+  --sys-tab-drop-background: @base07@70 !important;
+  --sys-background-lighter: @base04@;
+  --sys-background-alt: @base00@ !important;
 
   --activity-card-background: var(--sys-background) !important;
   --background-accent: var(--sys-current-line) !important;
@@ -47,9 +47,7 @@
   --rs-online-color: var(--sys-green) !important;
   --rs-streaming-color: var(--sys-purple) !important;
   --scrollbar-auto-scrollbar-color-thumb: var(--sys-comment) !important;
-  --scrollbar-auto-scrollbar-color-track: var(
-    --sys-background-alt
-  ) !important;
+  --scrollbar-auto-scrollbar-color-track: var(--sys-background-alt) !important;
   --scrollbar-auto-thumb: var(--sys-comment) !important;
   --scrollbar-auto-track: var(--sys-background-alt) !important;
   --scrollbar-thin-thumb: var(--sys-comment) !important;
