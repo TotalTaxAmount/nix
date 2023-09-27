@@ -91,38 +91,22 @@ in
     sqlite
     libnotify
   ];
-  # Battery check
-  systemd.services."battery-monitor" = {
-      wantedBy = [ "graphical.target" ];
-      script = ''
-        prev_val=100
-        check () { [[ $1 -ge $val ]] && [[ $1 -lt $prev_val ]]; }
-        notify () {
-          ${pkgs.libnotify}/bin/notify-send -a Battery "$@" \
-            -h "int:value:$val" "Discharging" "$val%, $remaining"
-        }
-        while true; do
-          IFS=: read _ bat0 < <(${pkgs.acpi}/bin/acpi -b)
-          IFS=\ , read status val remaining <<<"$bat0"
-          val=''${val%\%}
-          if [[ $status = Discharging ]]; then
-            echo "$val%, $remaining"
-            if check 30 || check 25 || check 20; then notify
-            elif check 15 || [[ $val -le 10 ]]; then notify -u critical
-            fi
-          fi
-          prev_val=$val
-          # Sleep longer when battery is high to save CPU
-          if [[ $val -gt 30 ]]; then sleep 10m; elif [[ $val -ge 20 ]]; then sleep 5m; else sleep 1m; fi
-        done
-      '';
-    };
+  
+  networking.firewall = {
+    enable = true;
+    allowedTCPPortRanges = [
+      { from = 1714; to = 1764; } # KDE Connect
+    ];
 
+    allowedUDPPortRanges = [
+      { from = 1714; to = 1764; } # KDE Connect
+    ];
+  };
   
   # Boot loader
   boot.kernelParams = [ "video=eDP-1:1920x1080@165"]; # TODO: There is def a better way to do this...
   boot.kernelModules = [ "kvm-amd" "kvm-intel" ]; # Needed for vm
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
 
   services.logind.extraConfig = ''
     	HandlePowerKey=ignore

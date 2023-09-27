@@ -39,5 +39,5 @@ in {
   home.packages = with pkgs; [ vscode-fhs ];
 
   home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source = vscodeThemeExtension.out;
-  xdg.configFile."Code/User/settings.json".source = builtins.readFile ../../../dots/vscode/settings.json;
+  xdg.configFile."Code/User/settings.json".source = ../../../dots/vscode/settings.json;
 }
