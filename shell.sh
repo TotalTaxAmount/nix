@@ -1,3 +1,4 @@
+# TODO: Make this better
 DIR="/home/$USER/nix/shells"
 
 echo "Enabling $1"

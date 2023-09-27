@@ -12,6 +12,20 @@ let
       rtpFilePath = "main.tmux";
    };
 
+   # ZSH plugins
+   zsh-autosuggestions = pkgs.fetchFromGitHub {
+      owner = "zsh-users";
+      repo = "zsh-autosuggestions";
+      rev = "c3d4e576c9c86eac62884bd47c01f6faed043fc5";
+      hash = "sha256-B+Kz3B7d97CM/3ztpQyVkE6EfMipVF8Y4HJNfSRXHtU=";
+   };
+
+   zsh-syntax-highlighting = pkgs.fetchFromGitHub {
+      owner = "zsh-users";
+      repo = "zsh-syntax-highlighting";
+      rev = "143b25eb98aa3227af63bd7f04413e1b3e7888ec";
+      hash = "sha256-TKGCck51qQ50dQGntKaeSk8waK3BlwUjueg4MImTH8k=";
+   };
 
 in
 { 
@@ -164,4 +178,9 @@ in
 	   extraConfig = '''';
      };
   };
+
+  # Plugins
+  xdg.configFile."zsh/plugins/zsh-autosuggestions".source = zsh-autosuggestions.out;
+  xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source = zsh-syntax-highlighting.out;
+
 }
