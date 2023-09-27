@@ -12,7 +12,7 @@ let
       rtpFilePath = "main.tmux";
    };
 
-   # ZSH plugins
+   # OMZ plugins
    zsh-autosuggestions = pkgs.fetchFromGitHub {
       owner = "zsh-users";
       repo = "zsh-autosuggestions";
@@ -179,7 +179,7 @@ in
      };
   };
 
-  # Plugins
+  # OMZ Plugins
   xdg.configFile."zsh/plugins/zsh-autosuggestions".source = zsh-autosuggestions.out;
   xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source = zsh-syntax-highlighting.out;
 
