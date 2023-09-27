@@ -1,0 +1,12 @@
+{
+    "window.menuBarVisibility": "toggle",
+    "cmake.configureOnOpen": true,
+    "explorer.confirmDelete": false,
+    "update.showReleaseNotes": false,
+    "css.lint.unknownProperties": "ignore",
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "workbench.colorTheme": "System Theme",
+    "workbench.editor.enablePreview": false,
+    "git.enableSmartCommit": true,
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace"
+}
