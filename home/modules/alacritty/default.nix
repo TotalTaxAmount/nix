@@ -1,6 +1,5 @@
 {pkgs, config, lib, user, ...}:
 let
-   user="totaltaxamount";  # TODO: also fix this
    tmux-powerline = pkgs.tmuxPlugins.mkTmuxPlugin {
       pluginName = "tmux-powerline";
       version = "v2.1.0";
@@ -132,6 +131,7 @@ in
       shellAliases = {
          update = "/home/${user}/nix/build.sh";
          cat = "bat";
+         shell = "/home/${user}/nix/shell.sh";
       };
       enableCompletion = true;
       # history = {
