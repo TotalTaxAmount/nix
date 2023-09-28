@@ -1,0 +1,25 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "ctrl+down",
+        "command": "-workbench.action.terminal.focus",
+        "when": "accessibilityModeEnabled && terminalAccessibleBufferOnLastLine && terminalHasBeenCreated || accessibilityModeEnabled && terminalAccessibleBufferOnLastLine && terminalProcessSupported"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "-workbench.action.showAllSymbols"
+    },
+    {
+        "key":     "ctrl+t",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key":     "ctrl+t",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when":    "terminalFocus"
+    }
+]
