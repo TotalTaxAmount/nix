@@ -6,13 +6,6 @@ let
   configDir = pkgs.substituteAllFiles {
     src = ../../../dots/eww;
     files = [
-      "scripts/battery.sh"
-      "scripts/currentapp.sh"
-      "scripts/music.sh"
-      "scripts/pop.sh"
-      "scripts/sys_info.sh"
-      "scripts/workspaces.sh"
-      
       "modules/info.yuck"
       "modules/system.yuck"
       "modules/main.yuck"
@@ -27,7 +20,9 @@ let
     base08 = "#${config.colorScheme.colors.base08}";
     base0C = "#${config.colorScheme.colors.base0C}";
     base0D = "#${config.colorScheme.colors.base0D}";
+
     font = "${config.font}";
+    scriptdir = "${scriptDir}";  # TODO: Why do I have to do it this way??
   };
 in
 {

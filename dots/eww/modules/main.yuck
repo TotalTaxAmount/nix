@@ -1,0 +1,135 @@
+(defpoll clock_time :interval "1s" "date '+%r %b %d, %Y'")
+(defpoll volume_percent :interval "3s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+
+;; System
+(defpoll cpu :interval "1s" "@scriptdir@/sys_info.sh --cpu")
+(defpoll mem :interval "1s" "@scriptdir@/sys_info.sh --mem")
+(defpoll brightness :interval "1s" "@scriptdir@/sys_info.sh --bright")
+(defpoll disks :interval "1s" "@scriptdir@/sys_info.sh --disk")
+
+;;WiFi
+(defpoll color_wlan :interval "1m" "@scriptdir@/wifi.sh --COL")
+(defpoll ssid :interval "1m" "@scriptdir@/wifi.sh --ESSID")
+(defpoll icon_wlan :interval "1m" "@scriptdir@/wifi.sh --ICON")
+
+
+
+;; Window
+(defwindow main 
+  :stacking "fg" 
+  :monitor 0
+  :exclusive false
+  :anchor "top center"
+  :windowtype "dock"
+  :geometry (geometry 
+    :width "100%" 
+    :height "40px")
+  (bar)
+)
+
+
+(defwidget bar []
+  (centerbox
+    :class "bar"
+    :orientation "h"
+    (left)
+    (center)
+    (right)
+  )
+)
+
+
+(defwidget left []
+  (box :class "left_modules" 
+      :space-evenly false
+      :orientation "h"
+      :halign "start"
+    (system)
+    (sep)
+    (workspaces)
+  )
+)
+
+(defwidget center []
+  (box :class "center_modules"
+      :space-evenly false
+      :orientation "h"
+      :halign "center"
+    (appname)
+  )
+)
+
+(defwidget right []
+  (box :class "right_modules"
+    :space-evenly false
+    :spacing 10
+    :orientation "h"
+    :halign "end"
+    (clock)
+    (sep)
+    (battery)
+  )
+)
+
+(defwidget sep []
+  (box
+    :valign "center"
+    (label
+      :class "separ"
+      :valign "center"
+      :text "|"
+    )
+  )
+)
+
+(deflisten workspace "@scriptdir@/workspaces.sh")
+(defwidget workspaces []
+  (literal :content workspace)
+)
+
+(deflisten appname_ "@scriptdir@/currentapp.sh")
+(defwidget appname []
+  (literal :content appname_)
+)
+
+(defwidget clock []
+  (eventbox :class "clock_container" 
+       :onclick "@scriptdir@/pop.sh info"
+    (label 
+      :class "clock"
+      :tooltip {clock_time}
+      :limit-width 22
+      :text {clock_time}
+      :wrap false
+    )
+  )
+)
+
+(defwidget system []
+  (eventbox 
+    :onclick "@scriptdir@/pop.sh system"
+    (image
+      :class "system_icon"
+      :path "./nixos-icon.svg"
+      :image-width 50
+      :image-height 50
+    )
+  )
+)
+
+(defwidget battery []
+  (box :class "battery_container"
+    (circular-progress
+      :value {EWW_BATTERY["BAT0"].capacity}
+      :class "battery"
+      :thickness 5
+      (label :text "🔋"
+        :class "battery_icon"
+        :tooltip "${EWW_BATTERY["BAT0"].capacity}% - ${EWW_BATTERY["BAT0"].status}"
+        :limit-width 2
+        :wrap false
+      )
+    )
+  )
+)

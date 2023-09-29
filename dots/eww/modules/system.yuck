@@ -1,0 +1,34 @@
+
+(defwindow system
+    :stacking "fg"
+    :focusable "false"
+    :screen 1
+    :monitor 0
+    :geometry (geometry
+      :x "10px"
+      :y "70px"
+      :anchor "top left"
+      :width "350px"
+      :height "550px"
+    )
+    (box
+      :class "system_container"
+      :orientation "v"
+      (disks)
+    )
+  )
+  
+  (defwidget disks []
+    (box :class "disks_container"
+      (circular-progress
+        :value {EWW_DISK["/"].used_perc}
+        :class "disks"
+        (label :text "D"
+          :class "disks_icon"
+          :tooltip "${EWW_DISK['/'].used_perc}% Disk usage"
+          :limit-width 2
+          :wrap false
+        )
+      )
+    )
+  )
