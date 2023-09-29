@@ -1,22 +1,44 @@
-(defwidget info []
-    (box :class "info")
-  ) 
+(defpoll volume_percent :interval "3s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll net_adp :interval "1m" "@script_dir@/sys_info.sh --adp")
+
+(defwidget volume []
+    (box :class "volume")
+) 
+(defwidget net []
+    (box :class "net"
+        (label 
+            :class "up"
+            :limit-width 10
+            :wrap false
+            :tooltip "${net_adp}"
+            :text "up: ${EWW_NET["wlp3s0"].up}" ;; TODO: Make this use the active net adpter
+        )
+        (label 
+            :class "down"
+            :limit-width 10
+            :wrap false
+            :tooltip "${net_adp}"
+            :text "down: ${EWW_NET["wlp3s0"].down}";; TODO: Make this use the active net adpter
+        )
+    )
+) 
   
-  (defwindow info
+(defwindow info
     :stacking "fg"
     :focusable "false"
     :screen 1
     :monitor 0
     :geometry (geometry
-                :x "10"
-                :y "70px"
-                :anchor "top right"
-                :width "300px"
-                :height "60px") 
+        :x "10"
+        :y "70px"
+        :anchor "top right"
+        :width "300px"
+        :height "60px") 
     (box
-      :class "info_container"
-      :orientation "v"
-      (info)  
+        :class "info_container"
+        :orientation "v"
+        (volume)  
+        (net)
     )
-  )
+)
   

@@ -1,17 +1,15 @@
 (defpoll clock_time :interval "1s" "date '+%r %b %d, %Y'")
-(defpoll volume_percent :interval "3s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 (defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 
-;; System
-(defpoll cpu :interval "1s" "@scriptdir@/sys_info.sh --cpu")
-(defpoll mem :interval "1s" "@scriptdir@/sys_info.sh --mem")
-(defpoll brightness :interval "1s" "@scriptdir@/sys_info.sh --bright")
-(defpoll disks :interval "1s" "@scriptdir@/sys_info.sh --disk")
+; ;; System
+; (defpoll cpu :interval "1s" "@scriptdir@/sys_info.sh --cpu")
+; (defpoll mem :interval "1s" "@scriptdir@/sys_info.sh --mem")
+; (defpoll brightness :interval "1s" "@scriptdir@/sys_info.sh --bright")
 
 ;;WiFi
-(defpoll color_wlan :interval "1m" "@scriptdir@/wifi.sh --COL")
-(defpoll ssid :interval "1m" "@scriptdir@/wifi.sh --ESSID")
-(defpoll icon_wlan :interval "1m" "@scriptdir@/wifi.sh --ICON")
+; (defpoll color_wlan :interval "1m" "@scriptdir@/wifi.sh --COL")
+; (defpoll ssid :interval "1m" "@scriptdir@/wifi.sh --ESSID")
+; (defpoll icon_wlan :interval "1m" "@scriptdir@/wifi.sh --ICON")
 
 
 

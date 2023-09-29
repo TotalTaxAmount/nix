@@ -5,10 +5,10 @@ final: prev:
     withVencord = true;
   };
 
-  eww = prev.eww.override  {
+  eww = prev.eww.override {
     withWayland = true;
   };
-
+  
   btop = prev.btop.overrideAttrs (old: {
     src = prev.fetchFromGitHub {
       owner = "romner-set";

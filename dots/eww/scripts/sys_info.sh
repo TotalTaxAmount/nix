@@ -41,8 +41,11 @@ get_mem() {
 }
 
 get_bright() {
-	echo `brightnessctl | awk 'NR==2 {gsub(/[^0-9]/, "", $4); print $4}'
-`
+	echo `brightnessctl | awk 'NR==2 {gsub(/[^0-9]/, "", $4); print $4}'`
+}
+
+get_net_adp() {
+	echo `ip addr | awk '/state UP/ {print $2}' | tr -d :`
 }
 
 get_disk () {
@@ -57,4 +60,6 @@ elif [[ "$1" == "--bright" ]]; then
 	get_bright
 elif [[ "$1" == "--disk" ]]; then
 	get_disk
+elif [[ "$1" == "--adp" ]]; then
+	get_net_adp
 fi
