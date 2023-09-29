@@ -104,8 +104,11 @@ in
   };
   
   # Boot loader
-  boot.kernelParams = [ "video=eDP-1:1920x1080@165"]; # TODO: There is def a better way to do this...
-  boot.kernelModules = [ "kvm-amd" "kvm-intel" ]; # Needed for vm
+  boot.kernelParams = [ 
+    "video=eDP-1:1920x1080@165" # TODO: There is def a better way to do this...
+    #"amd_iommu=on" # GPU passthough
+   ];
+  boot.kernelModules = [ "kvm-amd" "kvm-intel"]; # Needed for vm
   boot.tmp.cleanOnBoot = true;
 
   services.logind.extraConfig = ''
