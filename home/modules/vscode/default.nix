@@ -40,4 +40,5 @@ in {
 
   home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source = vscodeThemeExtension.out;
   xdg.configFile."Code/User/settings.json".source = ../../../dots/vscode/settings.json;
+  xdg.configFile."Code/User/keybindings.json".source = ../../../dots/vscode/keybinds.json;
 }
