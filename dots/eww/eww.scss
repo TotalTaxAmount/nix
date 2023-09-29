@@ -56,36 +56,13 @@ tooltip label {
 }
 
 
-.calendar_container {
+.info_container {
 	background-color: @base00@;
 	color: @base05@;
 	font-family: "Overpass Nerd Font";
 	border: 2px solid @base05@;
 	border-radius: 10px;
 	font-size: 1.2em;
-
-	.calendar {
-		padding: 8px;
-	}
-
-	.calendar:selected {
-		color: @base05@;
-	}
-
-	.calendar.header,
-	.calendar.button {
-		color: @base05@;
-		font-weight: bold;
-	}
-
-	.calendar.highlight {
-		color: @base05@;
-		font-weight: bold;
-	}
-
-	.calendar:indeterminate {
-		color: @base00@;
-	}
 }
 
 

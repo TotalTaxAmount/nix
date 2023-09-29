@@ -30,7 +30,7 @@ let
    # Configs:
    tmuxConfig = pkgs.substituteAll {
       src = ../../../dots/alacritty/tmux/tmux.conf;
-      base0D = "#${base0D}";
+      base0D = "#${config.colorScheme.colors.base0D}";
    };
 
 in
@@ -50,7 +50,7 @@ in
          tmuxPlugins.net-speed
       ];
 
-      extraConfig = tmuxConfig.out;
+      extraConfig = builtins.readFile tmuxConfig.out;
    };
 
    programs.alacritty = {
@@ -123,10 +123,9 @@ in
    ];
 
 	initExtraFirst = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme\nsource /home/${user}/.p10k.zsh";
-	initExtra = ''
+   initExtra = ''
    POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.colors.base03}"
-	'';
+   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.colors.base0D}"'';
 
    oh-my-zsh = {
       enable = true;
