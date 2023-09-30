@@ -125,7 +125,8 @@ in
 	initExtraFirst = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme\nsource /home/${user}/.p10k.zsh";
    initExtra = ''
    POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.colors.base0D}"'';
+   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.colors.base0D}"
+   '';
 
    oh-my-zsh = {
       enable = true;
