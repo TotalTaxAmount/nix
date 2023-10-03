@@ -92,7 +92,7 @@ in
     libnotify
   ];
   
-  networking.nftables.enable = true;
+  networking.nftables.enable = false;
   networking.firewall = {
     enable = true;
     allowedTCPPortRanges = [
@@ -102,6 +102,27 @@ in
     allowedUDPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect
     ];
+
+    allowedUDPPorts = [ 51820 /* Wireguard VPN */ ];
+  };
+
+  networking.wireguard.interfaces = {
+    wg0 = {
+      ips = [ "10.1.10.10/24" ];
+      listenPort = 51820;
+
+      privateKeyFile = builtins.readFile ../../secrets/wg_privatekey; # TODO: Make secrets better
+
+      peers = [
+        {
+          publicKey = "nbxEo4I8UwZ8Q+JXeSkghGc9cdM/ziCmWoysLNrIxQI=";
+          allowedIPs = [ "0.0.0.0/0" ];
+          endpoint = "10.1.10.101:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+
+    };
   };
   
   # Boot loader

@@ -17,7 +17,11 @@ final: prev:
       hash = "sha256-5Xe13O0FL70V9O72KhuLbaAPo0DaKL9XXWJoAj0YEQY=";
     };
 
-    buildInputs = old.buildInputs ++ [ prev.fmt ];
+    buildInputs = old.buildInputs ++ [ prev.fmt prev.makeWrapper ];
+
+    postInstall = ''
+      wrapProgram $out/bin/btop --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib"
+    '';
   });
 
   xplorer = prev.xplorer.overrideAttrs (old: {
