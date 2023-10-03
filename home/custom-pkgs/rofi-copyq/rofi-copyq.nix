@@ -12,5 +12,9 @@ python311Packages.buildPythonPackage rec {
     rev = "2ce8628b1e17d91c82d6d40302f1325f3edee207";
     hash = "sha256-xDxdKitVDonNhoNPMAoHizoaijQj9UQGSCPhWJOcB1w=";
   };
+
+  patches = [
+    ./better_type.patch
+  ];
 }
 

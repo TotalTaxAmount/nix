@@ -13,7 +13,7 @@ let
   flight-core = pkgs.callPackage ./custom-pkgs/flightcore/flightcore.nix {};
   candyIcons = pkgs.callPackage ./modules/icons/candy-icons.nix {};
   schemer2 = pkgs.callPackage ./custom-pkgs/schemer2.nix {};
-  rofi-copyq = pkgs.callPackage ./custom-pkgs/rofi-copyq.nix {};
+  rofi-copyq = pkgs.callPackage ./custom-pkgs/rofi-copyq/rofi-copyq.nix {};
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -101,6 +101,7 @@ in
       bottles
       qbittorrent
       virt-manager
+      blender
 
       #Terminal Apps/Config
       zsh-powerlevel10k
