@@ -52,6 +52,26 @@ get_disk () {
 	echo `df -h 2>/dev/null | awk '/\/nix/{print $4}' | sed 's/%//'`
 }
 
+get_net () { # TODO: Make this accurate!
+    local interface=$(get_net_adp)
+    local prev_bytes
+    local curr_bytes
+
+    if [ "$1" = "--up" ]; then
+        prev_bytes=$(cat "/sys/class/net/$interface/statistics/tx_bytes")
+        sleep 1  # Wait for 1 second
+        curr_bytes=$(cat "/sys/class/net/$interface/statistics/tx_bytes")
+    else
+        prev_bytes=$(cat "/sys/class/net/$interface/statistics/rx_bytes")
+        sleep 1  # Wait for 1 second
+        curr_bytes=$(cat "/sys/class/net/$interface/statistics/rx_bytes")
+    fi
+
+    local bytes_transferred=$((curr_bytes - prev_bytes))
+    local mbps=$(echo "scale=2; $bytes_transferred / 125000" | bc)
+    echo "$mbps Mb/s"
+}
+
 if [[ "$1" == "--cpu" ]]; then
 	get_cpu
 elif [[ "$1" == "--mem" ]]; then
@@ -62,4 +82,8 @@ elif [[ "$1" == "--disk" ]]; then
 	get_disk
 elif [[ "$1" == "--adp" ]]; then
 	get_net_adp
+elif [[ "$1" == "--netup" ]]; then
+	get_net --up
+elif [[ "$1" == "--netdown" ]]; then
+	get_net
 fi
