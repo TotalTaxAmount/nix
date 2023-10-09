@@ -18,22 +18,20 @@ music() {
 
 create_output() {
     #Make an widget for eww
-    echo "(box \
-            :class \"music_container\"
-            (label 
-                :class \"music_title\"
-                :tooltip \"$TITLE\"
-                :limit-width 22
-                :text \"$TITLE\"
-                :wrap false
-            )
-            (image
-                :class \"music_cover\"
-                :path \"$COVER\"
-                :image-width 75
-                :image-height 75
-            )
-        )"
+    echo "(box  :class \"music_container\" \
+            (label \
+                :class \"music_title\" \
+                :tooltip \"$TITLE\" \
+                :limit-width 22 \
+                :text \"$TITLE\" \
+                :wrap false \
+            ) \
+            (image \
+                :class \"music_cover\" \
+                :path \"$COVER\" \
+                :image-width 75 \
+                :image-height 75 \
+            ))"
 }
 
 while true; do

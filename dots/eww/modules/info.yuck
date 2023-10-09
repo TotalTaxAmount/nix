@@ -1,5 +1,8 @@
 (defpoll volume_percent :interval "3s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
-(defpoll net_adp :interval "1m" "@script_dir@/sys_info.sh --adp")
+(defpoll net_adp :interval "1m" "@scriptdir@/sys_info.sh --adp")
+(defpoll net_up :interval "1s" "@scriptdir@/sys_info.sh --netup")
+(defpoll net_down :interval "1s" "@scriptdir@/sys_info.sh --netdown")
+
 
 (defwidget volume []
     (box :class "volume")
@@ -8,21 +11,26 @@
     (box :class "net"
         (label 
             :class "up"
-            :limit-width 10
+            :limit-width 22
             :wrap false
             :tooltip "${net_adp}"
-            :text "up: ${EWW_NET["wlp3s0"].up}" ;; TODO: Make this use the active net adpter
+            :text "up: ${net_up}Mb/s" 
         )
         (label 
             :class "down"
-            :limit-width 10
+            :limit-width 22
             :wrap false
             :tooltip "${net_adp}"
-            :text "down: ${EWW_NET["wlp3s0"].down}";; TODO: Make this use the active net adpter
+            :text "down: ${net_down}Mb/s"
         )
     )
 ) 
-  
+
+(deflisten musicl "@scriptdir@/music.sh")
+(defwidget music []
+  (literal :content musicl)
+)
+
 (defwindow info
     :stacking "fg"
     :focusable "false"
@@ -37,7 +45,8 @@
     (box
         :class "info_container"
         :orientation "v"
-        (volume)  
+        (volume)
+        (music)  
         (net)
     )
 )

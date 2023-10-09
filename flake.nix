@@ -19,9 +19,11 @@
         nix-colors.url = github:misterio77/nix-colors;
 
         nix-gaming.url = github:fufexan/nix-gaming;
+
+        sops-nix.url = github:Mic92/sops-nix;
     };
 
-    outputs = {self, nixpkgs, home-manager, ...}@inputs :
+    outputs = {self, nixpkgs, home-manager, sops-nix, ...}@inputs :
     let 
         system = "x86_64-linux"; 
         user = "totaltaxamount";

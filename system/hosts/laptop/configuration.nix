@@ -90,7 +90,15 @@ in
     brightnessctl
     sqlite
     libnotify
+    pinentry-curses
   ];
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "curses";
+    enableSSHSupport = true;
+  };
   
   networking.nftables.enable = false;
   networking.firewall = {
@@ -111,11 +119,11 @@ in
   #     ips = [ "10.1.10.10/24" ];
   #     listenPort = 51820;
 
-  #     privateKeyFile = builtins.readFile ../../secrets/wg_privatekey; # TODO: Make secrets better
+  #     privateKey = "";
 
   #     peers = [
   #       {
-  #         publicKey = "nbxEo4I8UwZ8Q+JXeSkghGc9cdM/ziCmWoysLNrIxQI=";
+  #         publicKey = "";
   #         allowedIPs = [ "0.0.0.0/0" ];
   #         endpoint = "10.1.10.101:51820";
   #         persistentKeepalive = 25;

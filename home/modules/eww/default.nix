@@ -30,4 +30,6 @@ in
     enable = true;
     configDir = configDir.out;
   };
+
+  home.packages = with pkgs; [bc];
 }

@@ -1,12 +1,18 @@
 { pkgs ? import <nixpkgs> {} }:
 
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs/archive/refs/tags/23.05.tar.gz;
+  unstable = import unstableTarball {};
+in 
 pkgs.mkShell rec {
   buildInputs = with pkgs; [
     clang
     # Replace llvmPackages with llvmPackages_X, where X is the latest LLVM version (at the time of writing, 16)
     llvmPackages_16.bintools
     rustup
-    # jetbrains.rust-rover
+    # unstable.jetbrains.rust-rover TODO Make this work?!?!??!!?
   ];
   RUSTC_VERSION = pkgs.lib.readFile ./rust-toolchain;
   # https://github.com/rust-lang/rust-bindgen#environment-variables

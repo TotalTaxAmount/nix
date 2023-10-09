@@ -28,6 +28,7 @@ in {
     inherit pkgs system;
     specialArgs = {inherit inputs;};
     modules = [
+      inputs.sops-nix.nixosModules.sops
       ../system
       ../system/hosts/desktop/hardware.nix
       ../system/hosts/desktop/configuration.nix
