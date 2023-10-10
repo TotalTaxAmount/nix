@@ -4,17 +4,17 @@
 #   ssh-keyscan -t ed25519 [hostname] | nix run nixpkgs#ssh-to-age.
 #
 # Edit secrets with:
-#   nix run nixpkgs#sops -- secrets/[host].yml
+#   nix run nixpkgs#sops -- system/hosts/[host]/secrets/secrets.yml
 #
 # Use sops updatekeys command to re-key corresponding files:
 #   nix run nixpkgs#sops -- updatekeys [filename].
 
 keys:
-  - &admin_totaltax age1vxppynt406l77wjdsf7mz73q5gnge4ztgeyl8559ahh4xtqs938qvqyg7k
+  - &admin_totaltax age19d8ytgauxhtz9srzaze3gqm6ca3ns3djaazqpma0r4cjsvupfa0szux67a
   - &host_laptop age1kl9zyc9vp2469kqpkz4aru97lwp5znz9gmyn5904cfjxpyqpjgfq550lzm
 
 creation_rules:
-  - path_regex: secrets/[^/]+\.yml$
+  - path_regex: system/hosts/laptop/secrets/[^/]+\.yml$
     key_groups:
       - age:
         - *admin_totaltax

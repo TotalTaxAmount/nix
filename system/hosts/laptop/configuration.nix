@@ -76,7 +76,7 @@ in
   };
 
   sops = {
-    defaultSopsFile = ../../../secrets/laptop.yml;
+    defaultSopsFile = ./secrets/secrets.yml;
 
     age = {
       sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
@@ -139,7 +139,7 @@ in
 
       peers = [
         {
-          publicKey = "";
+          publicKey = "kE24u6RmvQDkOT8JSgx7tHzkwkeRywh8ofA6NLel9z0=";
           allowedIPs = [ "0.0.0.0/0" ];
           endpoint = "10.1.10.101:51820";
           persistentKeepalive = 25;
