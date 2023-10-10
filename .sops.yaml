@@ -1,3 +1,21 @@
+# .sops.yaml
+#
+# Add servers with:
+#   ssh-keyscan -t ed25519 hostname | nix run nixpkgs#ssh-to-age.
+#
+# Edit secrets with:
+#   nix run nixpkgs#sops -- hosts/name/secrets/secrets.yml
+#
+# Use sops updatekeys command to re-key corresponding files:
+#   nix run nixpkgs#sops -- updatekeys file.
+
 keys:
- - $admin_totaltax age1vxppynt406l77wjdsf7mz73q5gnge4ztgeyl8559ahh4xtqs938qvqyg7k
- - $host_laptop age1kl9zyc9vp2469kqpkz4aru97lwp5znz9gmyn5904cfjxpyqpjgfq550lzm
+  - &admin_totaltax age1vxppynt406l77wjdsf7mz73q5gnge4ztgeyl8559ahh4xtqs938qvqyg7k
+  - &host_laptop age1kl9zyc9vp2469kqpkz4aru97lwp5znz9gmyn5904cfjxpyqpjgfq550lzm
+
+creation_rules:
+  - path_regex: secrets/[^/]+\.yml$
+    key_groups:
+      - age:
+        - *admin_totaltax
+        - *host_laptop

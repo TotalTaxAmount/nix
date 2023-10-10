@@ -12,7 +12,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
-      #<home-manager/nixos>
+      inputs.sops-nix.nixosModules.default
     ];
 
   # Configure network proxy if necessary
@@ -75,6 +75,20 @@ in
     };
   };
 
+  sops = {
+    defaultSopsFile = ../../../secrets/laptop.yml;
+
+    age = {
+      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
+      
+    # Secrets
+    secrets."wireguard/private_key" = {
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
@@ -116,24 +130,24 @@ in
     allowedTCPPorts = [ 22 /* SSH */];
   };
 
-  # networking.wireguard.interfaces = {
-  #   wg0 = {
-  #     ips = [ "10.1.10.10/24" ];
-  #     listenPort = 51820;
+  networking.wireguard.interfaces = {
+    wg0 = {
+      ips = [ "10.1.10.10/24" ];
+      listenPort = 51820;
 
-  #     privateKey = "";
+      privateKeyFile = config.sops.secrets."wireguard/private_key".path;
 
-  #     peers = [
-  #       {
-  #         publicKey = "";
-  #         allowedIPs = [ "0.0.0.0/0" ];
-  #         endpoint = "10.1.10.101:51820";
-  #         persistentKeepalive = 25;
-  #       }
-  #     ];
+      peers = [
+        {
+          publicKey = "";
+          allowedIPs = [ "0.0.0.0/0" ];
+          endpoint = "10.1.10.101:51820";
+          persistentKeepalive = 25;
+        }
+      ];
 
-  #   };
-  # };
+    };
+  };
   
   # Boot loader
   boot.kernelParams = [ 

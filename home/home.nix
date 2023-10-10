@@ -37,6 +37,7 @@ in
         # Flakes
         inputs.spicetify-nix.homeManagerModule
         inputs.nix-colors.homeManagerModule
+        inputs.sops-nix.homeManagerModule
   ];
 
   options = {
@@ -72,6 +73,8 @@ in
     # want to update the value, then make sure to first check the Home Manager
     # release notes.
     home.stateVersion = "23.05"; # Please read the comment before changing.
+
+  
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
