@@ -36,8 +36,9 @@ in
     };
   };
 
-  services.openvpn.servers = {
-     homeVPN = {config = '' config /home/totaltaxamount/VPN/home.ovpn'';};
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = true;
   };
   
   hardware = {
@@ -112,6 +113,7 @@ in
     ];
 
     allowedUDPPorts = [ 51820 /* Wireguard VPN */ ];
+    allowedTCPPorts = [ 22 /* SSH */];
   };
 
   # networking.wireguard.interfaces = {
