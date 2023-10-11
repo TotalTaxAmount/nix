@@ -7,12 +7,12 @@
 
 let
   user="totaltaxamount"; #TODO: Fix this later
-  genAddress = number: "10.1.11.${toString number}/32";
 in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
+      ../../../modules/system/wireguard.nix
       inputs.sops-nix.nixosModules.default
     ];
 
@@ -126,7 +126,6 @@ in
     allowedUDPPortRanges = [
       { from = 1714; to = 1764; } # KDE Connect
     ];
-
     allowedTCPPorts = [ 22 /* SSH */];
   };
 
