@@ -20,19 +20,19 @@ in
   # manage.
 
   imports = [
-        ../home/modules/nvim
-        ../home/modules/hypr
-        ../home/modules/alacritty
-        ../home/modules/rofi
-        ../home/modules/eww
-        ../home/modules/btop
-        ../home/modules/dunst
-        ../home/modules/swaylock
-        ../home/modules/xplorer
-        ../home/modules/vscode
-        ../home/modules/neofetch
-        ../home/modules/discord
-        ../home/modules/prismLauncher
+        ../modules/home/nvim
+        ../modules/home/hypr
+        ../modules/home/alacritty
+        ../modules/home/rofi
+        ../modules/home/eww
+        ../modules/home/btop
+        ../modules/home/dunst
+        ../modules/home/swaylock
+        ../modules/home/xplorer
+        ../modules/home/vscode
+        ../modules/home/neofetch
+        ../modules/home/discord
+        ../modules/home/prismLauncher
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
