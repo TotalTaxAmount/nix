@@ -11,7 +11,7 @@ let
   
   # Custom pkgs (gonna do this better sometime ;))
   flight-core = pkgs.callPackage ./custom-pkgs/flightcore/flightcore.nix {};
-  candyIcons = pkgs.callPackage ./modules/icons/candy-icons.nix {};
+  candyIcons = pkgs.callPackage ../modules/home/icons/candy-icons.nix {};
   schemer2 = pkgs.callPackage ./custom-pkgs/schemer2.nix {};
   rofi-copyq = pkgs.callPackage ./custom-pkgs/rofi-copyq/rofi-copyq.nix {};
 in
