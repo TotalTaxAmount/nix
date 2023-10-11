@@ -8,5 +8,6 @@
     "workbench.colorTheme": "System Theme",
     "workbench.editor.enablePreview": false,
     "git.enableSmartCommit": true,
-    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace"
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace",
+    "git.confirmSync": false
 }
