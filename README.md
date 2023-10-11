@@ -15,23 +15,34 @@ Installer is broken atm will fix soon (hopefully)
 Layout of this repo:
 
 ```
- .
+.
 ├── build.sh
 ├── dots
+│   ├── alacritty
+│   │   └── tmux
+│   │       └── tmux.conf
 │   ├── btop
 │   │   └── themes
 │   │       └── system.theme
+│   ├── discord
+│   │   └── system.theme.css
 │   ├── eww
 │   │   ├── eww.scss
 │   │   ├── eww.yuck
+│   │   ├── modules
+│   │   │   ├── info.yuck
+│   │   │   ├── main.yuck
+│   │   │   └── system.yuck
+│   │   ├── music.svg
 │   │   ├── nixos-icon.svg
 │   │   └── scripts
-│   │       ├── battery
-│   │       ├── currentapp
-│   │       ├── music
-│   │       ├── pop
-│   │       ├── sys_info
-│   │       └── workspaces
+│   │       ├── battery.sh
+│   │       ├── currentapp.sh
+│   │       ├── music.sh
+│   │       ├── music_utils.sh
+│   │       ├── pop.sh
+│   │       ├── sys_info.sh
+│   │       └── workspaces.sh
 │   ├── hypr
 │   │   ├── hyprland.conf
 │   │   └── scripts
@@ -75,6 +86,13 @@ Layout of this repo:
 │   │   │       └── yuck.revision
 │   │   └── utils
 │   │       └── utils.lua
+│   ├── prismLauncher
+│   │   └── theme
+│   │       ├── preview.png
+│   │       ├── preview.png.license
+│   │       ├── theme.json
+│   │       ├── theme.json.license
+│   │       └── themeStyle.css
 │   ├── rofi
 │   │   ├── config.rasi
 │   │   └── systemTheme.rasi
@@ -96,13 +114,16 @@ Layout of this repo:
 │   │       ├── 8.jpg
 │   │       └── 9.jpg
 │   ├── vscode
+│   │   ├── keybinds.json
+│   │   ├── settings.json
 │   │   ├── shell.nix
 │   │   └── systemtheme
 │   │       ├── CHANGELOG.md
 │   │       ├── package.json
 │   │       ├── README.md
 │   │       ├── themes
-│   │       │   └── System Theme-color-theme.json
+│   │       │   ├── System Theme-color-theme.json
+│   │       │   └── system.tmTheme
 │   │       └── vsc-extension-quickstart.md
 │   └── xplorer
 │       └── systemTheme.xtension
@@ -114,36 +135,46 @@ Layout of this repo:
 │   │   │   ├── Cargo.lock
 │   │   │   ├── flightcore.nix
 │   │   │   └── package.json
+│   │   ├── rofi-copyq
+│   │   │   ├── better_type.patch
+│   │   │   └── rofi-copyq.nix
 │   │   ├── schemer2.nix
 │   │   └── sysmontask.nix
-│   ├── home.nix
-│   └── modules
-│       ├── alacritty
-│       │   ├── config
-│       │   └── default.nix
-│       ├── btop
-│       │   └── default.nix
-│       ├── dunst
-│       │   └── default.nix
-│       ├── eww
-│       │   └── default.nix
-│       ├── hypr
-│       │   └── default.nix
-│       ├── icons
-│       │   └── candy-icons.nix
-│       ├── neofetch
-│       │   └── default.nix
-│       ├── nvim
-│       │   └── default.nix
-│       ├── rofi
-│       │   └── default.nix
-│       ├── swaylock
-│       │   └── default.nix
-│       ├── vscode
-│       │   └── default.nix
-│       └── xplorer
-│           └── default.nix
+│   └── home.nix
 ├── HOST
+├── modules
+│   ├── home
+│   │   ├── alacritty
+│   │   │   ├── config
+│   │   │   └── default.nix
+│   │   ├── btop
+│   │   │   └── default.nix
+│   │   ├── discord
+│   │   │   └── default.nix
+│   │   ├── dunst
+│   │   │   └── default.nix
+│   │   ├── eww
+│   │   │   └── default.nix
+│   │   ├── hypr
+│   │   │   └── default.nix
+│   │   ├── icons
+│   │   │   └── candy-icons.nix
+│   │   ├── neofetch
+│   │   │   └── default.nix
+│   │   ├── nvim
+│   │   │   └── default.nix
+│   │   ├── prismLauncher
+│   │   │   └── default.nix
+│   │   ├── rofi
+│   │   │   └── default.nix
+│   │   ├── swaylock
+│   │   │   └── default.nix
+│   │   ├── vscode
+│   │   │   └── default.nix
+│   │   └── xplorer
+│   │       └── default.nix
+│   └── system
+│       └── wireguard.nix
 ├── outputs
 │   ├── home.nix
 │   └── nixos.nix
@@ -154,12 +185,23 @@ Layout of this repo:
 │   │       └── xplorer_json_storage.patch
 │   └── default.nix
 ├── README.md
+├── shells
+│   ├── apk_debug
+│   │   └── default.nix
+│   ├── cuda_tools
+│   │   └── default.nix
+│   └── rust
+│       ├── default.nix
+│       └── rust-toolchain
+├── shell.sh
 ├── system
 │   ├── default.nix
 │   └── hosts
 │       └── laptop
 │           ├── configuration.nix
-│           └── hardware.nix
+│           ├── hardware.nix
+│           └── secrets
+│               └── secrets.yml
 ├── theme
 │   └── custom.nix
 └── utils
