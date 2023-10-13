@@ -26,9 +26,23 @@
     )
 ) 
 
-(deflisten musicl "@scriptdir@/music.sh")
+(deflisten music_ "@scriptdir@/music.sh")
 (defwidget music []
-  (literal :content musicl)
+  (literal :content music_)
+)
+
+(defwidget vpn []
+    (box 
+        :class "vpn_container"
+        (checkbox 
+            :class "toggle"
+            :onchecked "@script_dir@/vpn.sh --enable"
+            :onunchecked "@script_dir@/vpn.sh --disable"
+            (label :class "text"
+                :text "Wireguard"
+            )
+        )
+    )
 )
 
 (defwindow info
@@ -46,7 +60,8 @@
         :class "info_container"
         :orientation "v"
         (volume)
-        (music)  
+        (music) 
+        (vpn) 
         (net)
     )
 )

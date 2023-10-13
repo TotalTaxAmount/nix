@@ -76,6 +76,21 @@ tooltip label {
 	@return darken($color, $amount);
 }
 
+.vpn_container {
+	color: @base05@;
+	padding: 10px 0px;
+
+	 .toggle {
+	 	background-color: gray;
+	 	border-radius: 5px;
+
+		.text {
+			padding-left: 5px;
+			background-color: @base00@;
+		}
+	}
+}
+
 /* Occupied */
 .w01, .w02, .w03, .w04, .w05, .w06, .w07, .w08, .w09 {
 	padding: 0px 3px 0px 3px;

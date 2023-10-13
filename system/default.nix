@@ -25,10 +25,10 @@
   # Experimental
   nix.settings.experimental-features = [ "nix-command" "flakes"];
 
-  system.autoUpgrade = {
-    enable = true;
-    channel = "https://nixos.org/channels/unstable";
-  };
+  # system.autoUpgrade = { Might be breaking shitl
+  #   enable = true;
+  #   channel = "https://nixos.org/channels/unstable";
+  # };
 
   # Need this for gdm to work
   programs.hyprland = {

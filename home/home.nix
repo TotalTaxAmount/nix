@@ -56,8 +56,8 @@ in
     colorScheme = base16Themes.twilight;
     font = "FiraCode Nerd Font";
 
-    home.username = "totaltaxamount";
-    home.homeDirectory = "/home/totaltaxamount";
+    home.username = user;
+    home.homeDirectory = "/home/${user}";
 
     # Unfree stuff/Insecure
     nixpkgs.config.allowUnfree = true;

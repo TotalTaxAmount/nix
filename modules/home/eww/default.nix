@@ -1,8 +1,8 @@
 { pkgs, config, ...}:
 
 let
-  # Fix werid script thing
-  scriptDir = builtins.dirOf ../../../dots/eww/scripts/battery;
+  # Fix werid script thing 
+  scriptDir = builtins.dirOf ../../../dots/eww/scripts/battery; # I hate this
   configDir = pkgs.substituteAllFiles {
     src = ../../../dots/eww;
     files = [
