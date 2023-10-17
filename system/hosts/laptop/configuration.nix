@@ -95,7 +95,7 @@ in
     isNormalUser = true;
     description = "Coen Shields";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker"];
     packages = with pkgs; [];
   };
 
@@ -145,4 +145,7 @@ in
 
   # VMs
   virtualisation.libvirtd.enable = true;
+  virtualisation.waydroid.enable = true;
+  virtualisation.docker.enable = true;
+
 }

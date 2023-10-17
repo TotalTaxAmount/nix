@@ -1,5 +1,7 @@
 LOCKDIR=/tmp/vpnlock
 
+set -e
+
 enable() {
     alacritty -T VPN_ -e systemctl start wg-quick-wg0.service | echo
 }
@@ -21,7 +23,7 @@ if mkdir -- "$LOCKDIR"; then
     #Ensure that if we "grabbed a lock", we release it
     #Works for SIGTERM and SIGINT(Ctrl-C) as well in some shells
     #including bash.
-    trap "cleanup" EXIT
+    trap cleanup EXIT
     if [ "$1" = "--enable" ]; then
         enable
     else

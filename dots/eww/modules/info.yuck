@@ -36,8 +36,8 @@
         :class "vpn_container"
         (checkbox 
             :class "toggle"
-            :onchecked "@script_dir@/vpn.sh --enable"
-            :onunchecked "@script_dir@/vpn.sh --disable"
+            :onchecked "@scriptdir@/vpn.sh --enable"
+            :onunchecked "@scriptdir@/vpn.sh --disable"
             (label :class "text"
                 :text "Wireguard"
             )

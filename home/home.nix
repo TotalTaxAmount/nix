@@ -134,6 +134,7 @@ in
       nodejs
       gcc
 
+      slack
       
       # IDEs
       jetbrains.clion
