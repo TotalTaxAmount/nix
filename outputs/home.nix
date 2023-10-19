@@ -16,31 +16,29 @@ let
 
 in {
   laptop = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+    inherit pkgs;
 
-      extraSpecialArgs = {
-        inherit pkgs inputs user;
-      };
+    extraSpecialArgs = {
+      inherit pkgs inputs user;
+    };
 
-      modules = [
-        ../modules/home/common
-        ../modules/home/laptop
-      ];
-
-  }
+    modules = [
+      ../modules/home/common
+      ../modules/home/laptop
+    ];
+  };
 
   remote = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+    inherit pkgs;
 
-      extraSpecialArgs = {
-        inherit pkgs inputs user;
-      };
+    extraSpecialArgs = {
+      inherit pkgs inputs user;
+    };
 
-      modules = [
-        ../modules/home/common
-        ../modules/home/remote
-      ];
-
-    }
+    modules = [
+      ../modules/home/common
+      ../modules/home/remote
+    ];
+  }
 }
 
