@@ -7,8 +7,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
-      ../../modules/system/wireguard.nix
-      inputs.sops-nix.nixosModules.default
+      # inputs.sops-nix.nixosModules.default
     ];
 
   # Configure network proxy if necessary
@@ -24,8 +23,6 @@ in
     settings.PasswordAuthentication = true;
   };
   
-
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
