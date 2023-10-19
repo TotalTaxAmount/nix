@@ -84,14 +84,14 @@ in {
       nerdfonts
 
       # Langs and compilers
-      python3      
+      python3   
+    ];   
 
     programs.git = {
       enable = true;
       userEmail = "shieldscoen@gmail.com";
       userName = "TotalTaxAmount";
-    };
-
+    }
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
