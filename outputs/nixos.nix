@@ -41,8 +41,8 @@ in {
     modules = [
       inputs.sops-nix.nixosModules.sops
       ../hosts
-      ../hosts/desktop/hardware.nix
-      ../hosts/desktop/configuration.nix
+      ../hosts/remote/hardware.nix
+      ../hosts/remote/configuration.nix
     ];
   };
 }
