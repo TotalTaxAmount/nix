@@ -12,7 +12,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
-      ../../system/wireguard.nix
+      ../../modules/system/wireguard.nix
       inputs.sops-nix.nixosModules.default
     ];
 
@@ -165,6 +165,5 @@ in
     libvirtd.enable = true;
     waydroid.enable = true;
     docker.enable = true;
-  }
-
+  };
 }

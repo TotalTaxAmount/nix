@@ -18,9 +18,9 @@ in {
     inherit pkgs system;
     specialArgs = {inherit inputs;};
     modules = [
-      ../system
-      ../system/hosts/laptop/hardware.nix
-      ../system/hosts/laptop/configuration.nix
+      ../hosts
+      ../hosts/laptop/hardware.nix
+      ../hosts/laptop/configuration.nix
     ];
   };
 
@@ -29,9 +29,20 @@ in {
     specialArgs = {inherit inputs;};
     modules = [
       inputs.sops-nix.nixosModules.sops
-      ../system
-      ../system/hosts/desktop/hardware.nix
-      ../system/hosts/desktop/configuration.nix
+      ../hosts
+      ../hosts/desktop/hardware.nix
+      ../hosts/desktop/configuration.nix
+    ];
+  };
+
+  remote = nixosSystem {
+    inherit pkgs system;
+    specialArgs = {inherit inputs;};
+    modules = [
+      inputs.sops-nix.nixosModules.sops
+      ../hosts
+      ../hosts/desktop/hardware.nix
+      ../hosts/desktop/configuration.nix
     ];
   };
 }
