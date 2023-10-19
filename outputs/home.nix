@@ -39,6 +39,6 @@ in {
       ../modules/home/common
       ../modules/home/remote
     ];
-  }
+  };
 }
 
