@@ -2,7 +2,7 @@
 
 let
   vscodeThemeExtension = pkgs.substituteAllFiles {
-    src = ../../../dots/vscode/systemtheme;
+    src = ../../../../dots/vscode/systemtheme;
     files = [
       "themes/System\ Theme-color-theme.json"
       "themes/system.tmTheme"
@@ -39,6 +39,6 @@ in {
   home.packages = with pkgs; [ vscode-fhs ];
 
   home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source = vscodeThemeExtension.out;
-  xdg.configFile."Code/User/settings.json".source = ../../../dots/vscode/settings.json;
-  xdg.configFile."Code/User/keybindings.json".source = ../../../dots/vscode/keybinds.json;
+  xdg.configFile."Code/User/settings.json".source = ../../../../dots/vscode/settings.json;
+  xdg.configFile."Code/User/keybindings.json".source = ../../../../dots/vscode/keybinds.json;
 }

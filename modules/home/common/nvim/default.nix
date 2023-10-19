@@ -36,7 +36,7 @@ in
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    extraConfig = ''luafile ${../../../dots/nvim/init.lua}'';
+    extraConfig = ''luafile ${../../../../dots/nvim/init.lua}'';
     viAlias = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [

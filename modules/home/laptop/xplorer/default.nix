@@ -1,9 +1,9 @@
 {pkgs, config, lib, ...}:
 
 let 
-  colorUtils = import ../../../utils/color.nix { inherit lib; };
+  colorUtils = import ../../../../utils/color.nix { inherit lib; };
   theme = pkgs.substituteAll {
-    src = ../../../dots/xplorer/systemTheme.xtension;
+    src = ../../../../dots/xplorer/systemTheme.xtension;
     base00rgb = "${colorUtils.hexToRGBFormatted config.colorScheme.colors.base00}";
     base01rgb = "${colorUtils.hexToRGBFormatted config.colorScheme.colors.base01}";
     base05rgb = "${colorUtils.hexToRGBFormatted config.colorScheme.colors.base05}";

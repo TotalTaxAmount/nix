@@ -29,7 +29,7 @@ let
 
    # Configs:
    tmuxConfig = pkgs.substituteAll {
-      src = ../../../dots/alacritty/tmux/tmux.conf;
+      src = ../../../../dots/alacritty/tmux/tmux.conf;
       base0D = "#${config.colorScheme.colors.base0D}";
    };
 

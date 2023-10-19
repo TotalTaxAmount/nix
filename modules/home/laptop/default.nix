@@ -2,7 +2,7 @@
 
 let
   # Custom color themes
-  customThemes = import ../theme/custom.nix;
+  customThemes = import ../../theme/custom.nix;
   base16Themes = inputs.nix-colors.colorSchemes;
 
   # Flake stuff
@@ -10,29 +10,25 @@ let
   nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
   
   # Custom pkgs (gonna do this better sometime ;))
-  flight-core = pkgs.callPackage ./custom-pkgs/flightcore/flightcore.nix {};
-  candyIcons = pkgs.callPackage ../modules/home/icons/candy-icons.nix {};
-  schemer2 = pkgs.callPackage ./custom-pkgs/schemer2.nix {};
-  rofi-copyq = pkgs.callPackage ./custom-pkgs/rofi-copyq/rofi-copyq.nix {};
+  flight-core = pkgs.callPackage ../../../custom/flightcore {};
+  schemer2 = pkgs.callPackage ../../../custom/schemer2 {};
+  rofi-copyq = pkgs.callPackage ../../../custom/rofi-copyq {};
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
 
   imports = [
-        ../modules/home/nvim
-        ../modules/home/hypr
-        ../modules/home/alacritty
-        ../modules/home/rofi
-        ../modules/home/eww
-        ../modules/home/btop
-        ../modules/home/dunst
-        ../modules/home/swaylock
-        ../modules/home/xplorer
-        ../modules/home/vscode
-        ../modules/home/neofetch
-        ../modules/home/discord
-        ../modules/home/prismLauncher
+        ./hypr
+        ./alacritty
+        ./rofi
+        ./eww
+        ./dunst
+        ./swaylock
+        ./xplorer
+        ./vscode
+        ./discord
+        ./prismLauncher
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
@@ -211,15 +207,11 @@ in
 
     gtk = {
       enable = true;
-      iconTheme = { 
-          name = "Candy Icons";
-          package = candyIcons;
-      };
 
-      # theme = {
-      #   package = nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-      #   name = "System Theme";
-      # };
+      theme = {
+        package = nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
+        name = "System Theme";
+      };
     };
 
 

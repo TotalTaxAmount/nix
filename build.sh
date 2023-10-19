@@ -21,6 +21,7 @@ fi
 HOST=$(cat /home/$USER/nix/HOST)
 
 echo "Current host: $HOST"
+
 nix_build() {
     case $2 in
         "offline")
@@ -32,7 +33,7 @@ nix_build() {
 }
 
 rebuild_home() {
-    nix_build ".#homeConfigurations.totaltax.activation-script" $1
+    nix_build ".#homeConfigurations.$HOST.activation-script" $1
     if [ $? -eq 0 ]; then
         HOME_MANAGER_BACKUP=bak result/activate
         result/activate

@@ -2,7 +2,7 @@
 
 let
   theme = pkgs.substituteAll {
-    src = ../../../dots/discord/system.theme.css;
+    src = ../../../../dots/discord/system.theme.css; # TODO: <- this theme
     base00 = "#${config.colorScheme.colors.base00}";
     base01 = "#${config.colorScheme.colors.base01}";
     base02 = "#${config.colorScheme.colors.base02}";

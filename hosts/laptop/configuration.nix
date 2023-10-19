@@ -12,7 +12,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
-      ../../../modules/system/wireguard.nix
+      ../../system/wireguard.nix
       inputs.sops-nix.nixosModules.default
     ];
 
@@ -108,6 +108,23 @@ in
     libnotify
     pinentry-curses
   ];
+
+  # Need this for gdm to work
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+    enableNvidiaPatches = true;
+  };
+
+   # Needed for swaylock
+  security.pam.services.swaylock = {};
+
+  # Why not home-manager??
+  programs.steam = {
+     enable = true;
+     remotePlay.openFirewall = true;
+     dedicatedServer.openFirewall = true;
+  };
 
   services.avahi.enable = true;
   services.pcscd.enable = true;

@@ -2,7 +2,7 @@
 
 let
   rofiTheme = pkgs.substituteAll {
-    src = ../../../dots/rofi/systemTheme.rasi;
+    src = ../../../../dots/rofi/systemTheme.rasi;
     base00 = "#${config.colorScheme.colors.base00}";
     base05 = "#${config.colorScheme.colors.base05}";
     base0D = "#${config.colorScheme.colors.base0D}";

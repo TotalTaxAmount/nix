@@ -2,9 +2,9 @@
 
 let
   # Fix werid script thing 
-  scriptDir = builtins.dirOf ../../../dots/eww/scripts/battery; # I hate this
+  scriptDir = builtins.dirOf ../../../../dots/eww/scripts/battery; # I hate this
   configDir = pkgs.substituteAllFiles {
-    src = ../../../dots/eww;
+    src = ../../../../dots/eww;
     files = [
       "modules/info.yuck"
       "modules/system.yuck"
