@@ -54,7 +54,7 @@ install_fresh() {
         echo "Copying system scan"
         cp -r /etc/nixos/hardware-configuration.nix ./hosts/$HOST/hardware.nix
         echo "Building..."
-        sudo nixos-rebuild switch --extra-experimental-features 'nix-command flakes' --flake .#$HOST
+        sudo nixos-rebuild --extra-experimental-features 'nix-command flakes' switch --flake .#$HOST
         rebuild_home
         echo "Done"
     fi
