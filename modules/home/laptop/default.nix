@@ -36,16 +36,6 @@ in
         inputs.sops-nix.homeManagerModule
   ];
 
-  options = {
-    font = pkgs.lib.mkOption {
-      type = pkgs.lib.types.str;
-      example = "Noto Fonts";
-      description = "
-        Name of system font (make sure its installed)
-      ";
-    };
-  };
-
   config = {  
     # System theme
     # Use custom themes customThemes.[theme] (defined in themes/custom.nix) or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
