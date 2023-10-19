@@ -144,8 +144,10 @@ in
   '';
 
   # VMs
-  virtualisation.libvirtd.enable = true;
-  virtualisation.waydroid.enable = true;
-  virtualisation.docker.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    waydroid.enable = true;
+    docker.enable = true;
+  }
 
 }

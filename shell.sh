@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 DIR="/home/$USER/nix/shells"
 
+activate () {
+    echo "Starting $1..."
+    nix-shell $DIR/$1 --run "$SHELL" 
+}
+
+
 start_shell() {
     if [ -z $1 ]; then
         echo "Error: No shell specified!"
@@ -8,14 +14,11 @@ start_shell() {
         list_shells
         exit 1
     fi
-    echo "Enabling $1"
     if [ "$2" = "--unfree" ]; then
         echo "Enableing unfree pkgs"
         export NIXPKGS_ALLOW_UNFREE=1 
-        nix-shell $DIR/$1 --run "zsh" 
-    else
-        nix-shell $DIR/$1 --run "zsh" 
     fi
+    activate $1
 }
 
 list_shells() {

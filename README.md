@@ -205,7 +205,7 @@ Layout of this repo:
 ├── theme
 │   └── custom.nix
 └── utils
-    └── color.nix
+    └── color.nix 
 ```
 ### WTF is all this shit
 - `build.sh` is a shell script to mange some build commands its very simple.

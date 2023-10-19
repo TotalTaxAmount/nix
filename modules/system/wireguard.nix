@@ -3,10 +3,6 @@
 let
 
 in {
-  boot.kernel.sysctl = {
-    "net.ipv4.conf.all.forwarding" = lib.mkOverride 98 true;
-    "net.ipv4.conf.default.forwarding" = lib.mkOverride 98 true;
-  };
 
   networking.firewall.allowedUDPPorts = [ 51820 /* Wireguard VPN */ ];
   networking.firewall.trustedInterfaces = [ "wg0" ];
