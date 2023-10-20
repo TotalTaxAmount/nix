@@ -75,7 +75,7 @@ in {
          }
          {
             name = "powerlevel10k-config";
-            src = ../../../../dots/zsh/.p10k.zsh;
+            src = ./config;
             file = "p10k.zsh";
          }
    ];
@@ -97,4 +97,7 @@ in {
   # OMZ Plugins
   xdg.configFile."zsh/plugins/zsh-autosuggestions".source = zsh-autosuggestions.out;
   xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source = zsh-syntax-highlighting.out;
+  
+  # .p10k.zsh
+  home.file.".p10k.zsh".source = ../../../../dots/zsh/.p10k.zsh;
 }
