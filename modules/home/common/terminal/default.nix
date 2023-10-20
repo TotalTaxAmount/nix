@@ -1,6 +1,21 @@
-{pkgs, config, ...}:
+{pkgs, config, user, ...}:
 
 let
+  # Tmux
+
+   tmux-powerline = pkgs.tmuxPlugins.mkTmuxPlugin {
+      pluginName = "tmux-powerline";
+      version = "v2.1.0";
+      src = pkgs.fetchFromGitHub {
+         owner = "erikw";
+         repo = "tmux-powerline";
+         rev = "1b53117641fd42a16362e487414d70a51f9bf25e";
+         sha256 = "sha256-ikZuryJl/i0sfmHkKXhffJi9rL4OC8UmfdGzp2uEKr0=";
+      };
+      rtpFilePath = "main.tmux";
+   };
+
+
   # OMZ plugins
    zsh-autosuggestions = pkgs.fetchFromGitHub {
       owner = "zsh-users";
