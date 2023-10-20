@@ -17,195 +17,204 @@ Layout of this repo:
 ```
 .
 ├── build.sh
+├── custom
+│   ├── flightcore
+│   │   ├── Cargo.lock
+│   │   ├── default.nix
+│   │   └── package.json
+│   ├── rofi-copyq
+│   │   ├── better_type.patch
+│   │   └── default.nix
+│   └── schemer2
+│       └── default.nix
 ├── dots
-│   ├── alacritty
-│   │   └── tmux
-│   │       └── tmux.conf
-│   ├── btop
-│   │   └── themes
-│   │       └── system.theme
-│   ├── discord
-│   │   └── system.theme.css
-│   ├── eww
-│   │   ├── eww.scss
-│   │   ├── eww.yuck
-│   │   ├── modules
-│   │   │   ├── info.yuck
-│   │   │   ├── main.yuck
-│   │   │   └── system.yuck
-│   │   ├── music.svg
-│   │   ├── nixos-icon.svg
-│   │   └── scripts
-│   │       ├── battery.sh
-│   │       ├── currentapp.sh
-│   │       ├── music.sh
-│   │       ├── music_utils.sh
-│   │       ├── pop.sh
-│   │       ├── sys_info.sh
-│   │       └── workspaces.sh
-│   ├── hypr
-│   │   ├── hyprland.conf
-│   │   └── scripts
-│   │       └── background.sh
-│   ├── neofetch
-│   │   └── config.conf
-│   ├── nvim
-│   │   ├── configs
-│   │   │   ├── nvim-tree.lua
-│   │   │   ├── vim-airline.lua
-│   │   │   └── vim-buffet.lua
-│   │   ├── init.lua
-│   │   ├── parsers
-│   │   │   ├── parser
-│   │   │   │   ├── bash.so
-│   │   │   │   ├── gitcommit.so
-│   │   │   │   ├── ini.so
-│   │   │   │   ├── json.so
-│   │   │   │   ├── lua.so
-│   │   │   │   ├── markdown.so
-│   │   │   │   ├── nix.so
-│   │   │   │   ├── python.so
-│   │   │   │   ├── scss.so
-│   │   │   │   ├── vimdoc.so
-│   │   │   │   ├── vim.so
-│   │   │   │   ├── yaml.so
-│   │   │   │   └── yuck.so
-│   │   │   └── parser-info
-│   │   │       ├── bash.revision
-│   │   │       ├── gitcommit.revision
-│   │   │       ├── ini.revision
-│   │   │       ├── json.revision
-│   │   │       ├── lua.revision
-│   │   │       ├── markdown.revision
-│   │   │       ├── nix.revision
-│   │   │       ├── python.revision
-│   │   │       ├── scss.revision
-│   │   │       ├── vimdoc.revision
-│   │   │       ├── vim.revision
-│   │   │       ├── yaml.revision
-│   │   │       └── yuck.revision
-│   │   └── utils
-│   │       └── utils.lua
-│   ├── prismLauncher
-│   │   └── theme
-│   │       ├── preview.png
-│   │       ├── preview.png.license
-│   │       ├── theme.json
-│   │       ├── theme.json.license
-│   │       └── themeStyle.css
-│   ├── rofi
-│   │   ├── config.rasi
-│   │   └── systemTheme.rasi
-│   ├── swaylock
-│   │   └── config
-│   ├── swww
-│   │   └── wallpapers
-│   │       ├── 10.jpg
-│   │       ├── 11.jpg
-│   │       ├── 12.jpg
-│   │       ├── 13.jpg
-│   │       ├── 1.jpg
-│   │       ├── 2.jpg
-│   │       ├── 3.jpg
-│   │       ├── 4.jpg
-│   │       ├── 5.jpg
-│   │       ├── 6.jpg
-│   │       ├── 7.jpg
-│   │       ├── 8.jpg
-│   │       └── 9.jpg
-│   ├── vscode
-│   │   ├── keybinds.json
-│   │   ├── settings.json
-│   │   ├── shell.nix
-│   │   └── systemtheme
-│   │       ├── CHANGELOG.md
-│   │       ├── package.json
-│   │       ├── README.md
-│   │       ├── themes
-│   │       │   ├── System Theme-color-theme.json
-│   │       │   └── system.tmTheme
-│   │       └── vsc-extension-quickstart.md
-│   └── xplorer
-│       └── systemTheme.xtension
+│   ├── alacritty
+│   │   └── tmux
+│   │       └── tmux.conf
+│   ├── btop
+│   │   └── themes
+│   │       └── system.theme
+│   ├── discord
+│   │   └── system.theme.css
+│   ├── eww
+│   │   ├── eww.scss
+│   │   ├── eww.yuck
+│   │   ├── modules
+│   │   │   ├── info.yuck
+│   │   │   ├── main.yuck
+│   │   │   └── system.yuck
+│   │   ├── music.svg
+│   │   ├── nixos-icon.svg
+│   │   └── scripts
+│   │       ├── battery.sh
+│   │       ├── currentapp.sh
+│   │       ├── music.sh
+│   │       ├── music_utils.sh
+│   │       ├── pop.sh
+│   │       ├── sys_info.sh
+│   │       ├── vpn.sh
+│   │       └── workspaces.sh
+│   ├── hypr
+│   │   ├── hyprland.conf
+│   │   └── scripts
+│   │       └── background.sh
+│   ├── neofetch
+│   │   └── config.conf
+│   ├── nvim
+│   │   ├── configs
+│   │   │   ├── nvim-tree.lua
+│   │   │   ├── vim-airline.lua
+│   │   │   └── vim-buffet.lua
+│   │   ├── init.lua
+│   │   ├── parsers
+│   │   │   ├── parser
+│   │   │   │   ├── bash.so
+│   │   │   │   ├── gitcommit.so
+│   │   │   │   ├── ini.so
+│   │   │   │   ├── json.so
+│   │   │   │   ├── lua.so
+│   │   │   │   ├── markdown.so
+│   │   │   │   ├── nix.so
+│   │   │   │   ├── python.so
+│   │   │   │   ├── scss.so
+│   │   │   │   ├── vimdoc.so
+│   │   │   │   ├── vim.so
+│   │   │   │   ├── yaml.so
+│   │   │   │   └── yuck.so
+│   │   │   └── parser-info
+│   │   │       ├── bash.revision
+│   │   │       ├── gitcommit.revision
+│   │   │       ├── ini.revision
+│   │   │       ├── json.revision
+│   │   │       ├── lua.revision
+│   │   │       ├── markdown.revision
+│   │   │       ├── nix.revision
+│   │   │       ├── python.revision
+│   │   │       ├── scss.revision
+│   │   │       ├── vimdoc.revision
+│   │   │       ├── vim.revision
+│   │   │       ├── yaml.revision
+│   │   │       └── yuck.revision
+│   │   └── utils
+│   │       └── utils.lua
+│   ├── prismLauncher
+│   │   └── theme
+│   │       ├── preview.png
+│   │       ├── preview.png.license
+│   │       ├── theme.json
+│   │       ├── theme.json.license
+│   │       └── themeStyle.css
+│   ├── rofi
+│   │   ├── config.rasi
+│   │   └── systemTheme.rasi
+│   ├── swaylock
+│   │   └── config
+│   ├── swww
+│   │   └── wallpapers
+│   │       ├── 10.jpg
+│   │       ├── 11.jpg
+│   │       ├── 12.jpg
+│   │       ├── 13.jpg
+│   │       ├── 1.jpg
+│   │       ├── 2.jpg
+│   │       ├── 3.jpg
+│   │       ├── 4.jpg
+│   │       ├── 5.jpg
+│   │       ├── 6.jpg
+│   │       ├── 7.jpg
+│   │       ├── 8.jpg
+│   │       └── 9.jpg
+│   ├── vscode
+│   │   ├── keybinds.json
+│   │   ├── settings.json
+│   │   ├── shell.nix
+│   │   └── systemtheme
+│   │       ├── CHANGELOG.md
+│   │       ├── package.json
+│   │       ├── README.md
+│   │       ├── themes
+│   │       │   ├── System Theme-color-theme.json
+│   │       │   └── system.tmTheme
+│   │       └── vsc-extension-quickstart.md
+│   └── xplorer
+│       └── systemTheme.xtension
 ├── flake.lock
 ├── flake.nix
-├── home
-│   ├── custom-pkgs
-│   │   ├── flightcore
-│   │   │   ├── Cargo.lock
-│   │   │   ├── flightcore.nix
-│   │   │   └── package.json
-│   │   ├── rofi-copyq
-│   │   │   ├── better_type.patch
-│   │   │   └── rofi-copyq.nix
-│   │   ├── schemer2.nix
-│   │   └── sysmontask.nix
-│   └── home.nix
 ├── HOST
+├── hosts
+│   ├── default.nix
+│   ├── laptop
+│   │   ├── configuration.nix
+│   │   ├── hardware.nix
+│   │   └── secrets
+│   │       └── secrets.yml
+│   └── remote
+│       ├── configuration.nix
+│       └── hardware.nix
 ├── modules
-│   ├── home
-│   │   ├── alacritty
-│   │   │   ├── config
-│   │   │   └── default.nix
-│   │   ├── btop
-│   │   │   └── default.nix
-│   │   ├── discord
-│   │   │   └── default.nix
-│   │   ├── dunst
-│   │   │   └── default.nix
-│   │   ├── eww
-│   │   │   └── default.nix
-│   │   ├── hypr
-│   │   │   └── default.nix
-│   │   ├── icons
-│   │   │   └── candy-icons.nix
-│   │   ├── neofetch
-│   │   │   └── default.nix
-│   │   ├── nvim
-│   │   │   └── default.nix
-│   │   ├── prismLauncher
-│   │   │   └── default.nix
-│   │   ├── rofi
-│   │   │   └── default.nix
-│   │   ├── swaylock
-│   │   │   └── default.nix
-│   │   ├── vscode
-│   │   │   └── default.nix
-│   │   └── xplorer
-│   │       └── default.nix
-│   └── system
-│       └── wireguard.nix
+│   ├── home
+│   │   ├── common
+│   │   │   ├── btop
+│   │   │   │   └── default.nix
+│   │   │   ├── default.nix
+│   │   │   ├── neofetch
+│   │   │   │   └── default.nix
+│   │   │   ├── nvim
+│   │   │   │   └── default.nix
+│   │   │   └── terminal
+│   │   │       ├── config
+│   │   │       └── default.nix
+│   │   ├── laptop
+│   │   │   ├── alacritty
+│   │   │   │   └── default.nix
+│   │   │   ├── default.nix
+│   │   │   ├── discord
+│   │   │   │   └── default.nix
+│   │   │   ├── dunst
+│   │   │   │   └── default.nix
+│   │   │   ├── eww
+│   │   │   │   └── default.nix
+│   │   │   ├── hypr
+│   │   │   │   └── default.nix
+│   │   │   ├── icons
+│   │   │   │   └── candy-icons.nix
+│   │   │   ├── prismLauncher
+│   │   │   │   └── default.nix
+│   │   │   ├── rofi
+│   │   │   │   └── default.nix
+│   │   │   ├── swaylock
+│   │   │   │   └── default.nix
+│   │   │   ├── vscode
+│   │   │   │   └── default.nix
+│   │   │   └── xplorer
+│   │   │       └── default.nix
+│   │   └── remote
+│   │       └── default.nix
+│   └── system
+│       └── wireguard.nix
 ├── outputs
-│   ├── home.nix
-│   └── nixos.nix
+│   ├── home.nix
+│   └── nixos.nix
 ├── overlays
-│   ├── apply
-│   │   ├── default.nix
-│   │   └── patches
-│   │       └── xplorer_json_storage.patch
-│   └── default.nix
+│   ├── apply
+│   │   ├── default.nix
+│   │   └── patches
+│   │       └── xplorer_json_storage.patch
+│   └── default.nix
 ├── README.md
 ├── shells
-│   ├── apk_debug
-│   │   └── default.nix
-│   ├── cuda_tools
-│   │   └── default.nix
-│   └── rust
-│       ├── default.nix
-│       └── rust-toolchain
+│   ├── apk_debug
+│   │   └── default.nix
+│   ├── cuda_tools
+│   │   └── default.nix
+│   └── rust
+│       ├── default.nix
+│       └── rust-toolchain
 ├── shell.sh
-├── system
-│   ├── default.nix
-│   └── hosts
-│       └── laptop
-│           ├── configuration.nix
-│           ├── hardware.nix
-│           └── secrets
-│               └── secrets.yml
 ├── theme
-│   └── custom.nix
+│   └── custom.nix
 └── utils
-    └── color.nix 
+    └── color.nix
 ```
 ### WTF is all this shit
 - `build.sh` is a shell script to mange some build commands its very simple.
