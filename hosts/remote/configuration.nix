@@ -8,7 +8,6 @@ in
     [ # Include the results of the hardware scan.
       ./hardware.nix
       inputs.vscode-server.nixosModules.default
-      inputs.sops-nix.nixosModules.default
     ];
 
   nix.settings.trusted-users = [ user ];
