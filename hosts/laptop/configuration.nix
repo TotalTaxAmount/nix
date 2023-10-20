@@ -130,8 +130,8 @@ in
   };
   
   networking = {
-    nftables.enable = false;
     hostName = "laptop";
+    nftables.enable = false;
     firewall = {
       enable = true;
       allowedTCPPortRanges = [
