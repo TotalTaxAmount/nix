@@ -11,6 +11,7 @@ in {
   imports = [
     ./btop
     ./nvim
+    ./neofetch
     ./terminal
       
     inputs.nix-colors.homeManagerModule
