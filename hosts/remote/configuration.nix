@@ -18,12 +18,15 @@ in
     enable = true;
     settings.PasswordAuthentication = true;
     settings.X11Forwarding = true;
+    extraConfig = ''
+      X11DisplayOffset 10
+    '';
   };
 
-  programs.ssh = {
-    forwardX11 = true;
-    # setXAuthLocation = true;
-  };
+  # programs.ssh = {
+  #   forwardX11 = true;
+  #   # setXAuthLocation = true;
+  # };
   
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
