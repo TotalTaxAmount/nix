@@ -9,7 +9,7 @@ Installer is broken atm will fix soon (hopefully)
 **Theme** - Changes\
 **Bar** - Eww\
 **Browser** - Brave\
-**Login manager** - GDM\
+**Tools** - To many
 **More shit** - ???
 
 Layout of this repo:

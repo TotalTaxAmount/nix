@@ -35,6 +35,10 @@ in
     enable = true;
     settings.PasswordAuthentication = true;
   };
+
+  programs.ssh = {
+    forwardX11 = true;
+  };
   
   hardware = {
     opengl = {
