@@ -44,18 +44,7 @@ in
   services.xserver = {
     enable = true;
 
-    displayManager = {
-      sddm.enable = true;
-      defaultSession = "none+awesome";
-    };
-
-    windowManager.awesome = {
-      enable = true;
-      luaModules = with pkgs.luaPackages; [
-        luarocks
-        luadbi-mysql
-      ];
-    };
+    displayManager.startx.enable = true;
   };
 
   programs.gnupg.agent = {
@@ -64,19 +53,22 @@ in
     enableSSHSupport = true;
   };
   
-  networking.nftables.enable = false;
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 22 /* SSH */];
+  networking = { 
+    nftables.enable = false;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 22 /* SSH */];
+    };
+
+    interfaces.ens18.ipv4.addresses = [{
+      address = "10.1.10.104";
+      prefixLength = 24;
+    }];
+
+    defaultGateway = "10.1.10.1";
+    nameservers = [ "1.1.1.1" ];
+    hostName = "remote";
   };
-
-  networking.interfaces.ens18.ipv4.addresses = [{
-    address = "10.1.10.104";
-    prefixLength = 24;
-  }];
-
-  networking.defaultGateway = "10.1.10.1";
-  networking.nameservers = [ "1.1.1.1" ];
 
   # Boot loader
   boot.kernelModules = [ "kvm-amd" "kvm-intel"]; # Needed for vm
