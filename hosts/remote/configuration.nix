@@ -1,7 +1,7 @@
 { config, inputs, lib, user, pkgs, ... }:
 
 let
-  user="totaltax";
+  user="totaltaxamount";
 in
 {
   imports =
@@ -15,7 +15,7 @@ in
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  nix.settings.trusted-users = ["totaltax"];
+  nix.settings.trusted-users = [ user ];
   services.vscode-server.enable = true;
 
 
