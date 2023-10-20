@@ -129,7 +129,9 @@ in
     enableSSHSupport = true;
   };
   
-  networking = {nftables.enable = false;
+  networking = {
+    nftables.enable = false;
+    hostName = "laptop";
     firewall = {
       enable = true;
       allowedTCPPortRanges = [

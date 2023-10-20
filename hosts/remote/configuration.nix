@@ -8,6 +8,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware.nix
       inputs.vscode-server.nixosModules.default
+      inputs.sops-nix.nixosModules.default
     ];
 
   # Configure network proxy if necessary
@@ -68,6 +69,15 @@ in
     defaultGateway = "10.1.10.1";
     nameservers = [ "1.1.1.1" ];
     hostName = "remote";
+  };
+
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yml;
+
+    age = {
+      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
   };
 
   # Boot loader
