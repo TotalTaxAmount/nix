@@ -10,7 +10,18 @@
     "git.enableSmartCommit": true,
     "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace",
     "git.confirmSync": false,
+
+    // This doesnt work rn
     "terminal.integrated.env.windows": {
         "DISPLAY": "127.0.0.1:0.0"
+    },
+
+    // Tmux TODO: Make this work... 
+    "terminal.integrated.profiles.linux": {
+        "tmux-shell": {
+          "path": "tmux",
+          "args": ["new-session", "-A", "-s", "vscode:${workspaceFolder}"]
+        }  
     }
+
 }
