@@ -255,3 +255,5 @@ If you want to install this config it would go something like this **(Dont right
 - [ ] Store secrets in private git repo
 - [ ] Finish wireguard
     - [ ] Make wireguard easy to toggle
+- [ ] Fix werid terminal in remote vscode
+- [ ] Fix rust-anyalizer on the remote
