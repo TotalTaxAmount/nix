@@ -9,5 +9,8 @@
     "workbench.editor.enablePreview": false,
     "git.enableSmartCommit": true,
     "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace",
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "terminal.integrated.env.windows": {
+        "DISPLAY": "127.0.0.1:0.0"
+    }
 }
