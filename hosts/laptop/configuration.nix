@@ -6,7 +6,7 @@
 { config, inputs, lib, user, pkgs, ... }:
 
 let
-  user="totaltaxamount"; #TODO: Fix this later
+
 in
 {
   imports =
@@ -15,7 +15,7 @@ in
       ../../modules/system/wireguard
       inputs.sops-nix.nixosModules.default
     ];
-  nix.settings.trusted-users = ["totaltaxamount"];
+  nix.settings.trusted-users = [ user ];
 
   
   # Configure  X11
