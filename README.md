@@ -258,4 +258,5 @@ If you want to install this config it would go something like this **(Dont right
 - [ ] Fix werid terminal in remote vscode
 - [ ] Fix rust-anyalizer on the remote
 - [ ] Fix vscode theme
-- [ ] Make the terminal not look like shit
+- [ ] Make the terminal better?
+- [ ] Fix the way diffrent hosts work
