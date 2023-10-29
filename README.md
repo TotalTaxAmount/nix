@@ -237,26 +237,14 @@ If you want to install this config it would go something like this **(Dont right
 **Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
 
 ## To Do
-- [ ] Fix all paths
-- [x] Better file layout
-- [x] Add a global config thing to change colors from one place
-- [x] Add eww configs
-- [x] Understand flakes
-- [x] Finish fully using color theme (i think).
-- [x] Figure out how to use multiple hosts
-- [ ] Fix vscode theme not full working
+- [ ] Better layout
+- [ ] Fix vscode theme
+    - [ ] Fix rust-anyalizer on the remote
 - [ ] Explain the layout better
-- [ ] Eww shit
-- [x] Improve vscode theme
+- [ ] Finish Eww
+    - [ ] System info (cpu, ram, disk, etc)
 - [ ] Make background switcher
-- [ ] Automate this damn file tree
 - [ ] Swaylock
-- [x] Copyq config
 - [ ] Store secrets in private git repo
 - [ ] Finish wireguard
     - [ ] Make wireguard easy to toggle
-- [ ] Fix werid terminal in remote vscode
-- [ ] Fix rust-anyalizer on the remote
-- [ ] Fix vscode theme
-- [ ] Make the terminal better?
-- [ ] Fix the way diffrent hosts work
