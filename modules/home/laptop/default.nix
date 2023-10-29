@@ -10,9 +10,9 @@ let
   nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
   
   # Custom pkgs (gonna do this better sometime ;))
-  flight-core = pkgs.callPackage ../../../custom/flightcore {};
-  schemer2 = pkgs.callPackage ../../../custom/schemer2 {};
-  rofi-copyq = pkgs.callPackage ../../../custom/rofi-copyq {};
+  flight-core = pkgs.callPackage ../../../custom/pkgs/flightcore {};
+  schemer2 = pkgs.callPackage ../../../custom/pkgs/schemer2 {};
+  rofi-copyq = pkgs.callPackage ../../../custom/pkgs/rofi-copyq {};
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
