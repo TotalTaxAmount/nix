@@ -48,8 +48,8 @@ in
     # Unfree stuff/Insecure
     nixpkgs.config.allowUnfree = true;
     nixpkgs.config.permittedInsecurePackages = [
-                  "qtwebkit-5.212.0-alpha4"
-                ];
+      "qtwebkit-5.212.0-alpha4"
+    ];
 
     
     # This value determines the Home Manager release that your configuration is
@@ -91,6 +91,7 @@ in
       qbittorrent
       virt-manager
       blender
+      slack
 
       #Terminal Apps/Config
       zsh-powerlevel10k
@@ -119,14 +120,12 @@ in
       python3
       nodejs
       gcc
-
-      slack
       
       # IDEs
       jetbrains.clion
       jetbrains.idea-ultimate
 
-      # Games
+      # Game utils
       mangohud
       gamemode
       nvtop
@@ -140,31 +139,6 @@ in
       
     ];
 
-    # Home Manager is pretty good at managing dotfiles. The primary way to manage
-    # plain files is through 'home.file'.
-    home.file = {
-      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-      # # symlink to the Nix store copy.
-      # ".screenrc".source = dotfiles/screenrc;
-
-      # # You can also set the file content immediately.
-      # ".gradle/gradle.properties".text = ''
-      #   org.gradle.console=verbose
-      #   org.gradle.daemon.idle1timeout=3600000
-      # '';
-    };
-
-    # You can also manage environment variables but you will have to manually
-    # source
-    #
-    #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-    #
-    # o
-    #
-    #  /etc/profiles/per-user/totaltaxamount/etc/profile.d/hm-session-vars.sh
-    #
-    # if you don't want to manage your shell through Home Manager.
     programs.spicetify = {
       enable = true;
       theme = spicePkgs.themes.Ziro;
@@ -203,7 +177,6 @@ in
         name = "System Theme";
       };
     };
-
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
