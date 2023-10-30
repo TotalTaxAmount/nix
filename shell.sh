@@ -3,7 +3,7 @@ DIR="/home/$USER/nix/shells"
 
 activate () {
     echo "Starting $1..."
-    nix-shell $DIR/$1 --run "$SHELL" 
+    nix-shell $DIR/$1 --run "zsh" 
 }
 
 
