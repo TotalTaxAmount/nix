@@ -132,6 +132,10 @@ in
     pinentryFlavor = "curses";
     enableSSHSupport = true;
   };
+
+  programs.corectl = {
+    enable = true;
+  };
   
   networking = {
     hostName = "laptop";
