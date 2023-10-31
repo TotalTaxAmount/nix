@@ -3,7 +3,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, inputs, lib, user, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 let
 
@@ -89,7 +89,7 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${user} = {
+  users.users."totaltaxamount" = {
     isNormalUser = true;
     description = "Coen Shields";
     shell = pkgs.zsh;
