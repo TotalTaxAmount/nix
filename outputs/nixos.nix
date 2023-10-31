@@ -15,7 +15,7 @@ let
 
 in {
   laptop = nixosSystem {
-    inherit pkgs system;
+    inherit pkgs system user;
     specialArgs = {inherit inputs;};
     modules = [
       ../hosts
@@ -25,7 +25,7 @@ in {
   };
 
   desktop = nixosSystem {
-    inherit pkgs system;
+    inherit pkgs system user;
     specialArgs = {inherit inputs;};
     modules = [
       inputs.sops-nix.nixosModules.sops
@@ -36,7 +36,7 @@ in {
   };
 
   remote = nixosSystem {
-    inherit pkgs system;
+    inherit pkgs system user;
     specialArgs = {inherit inputs;};
     modules = [
       inputs.sops-nix.nixosModules.sops
