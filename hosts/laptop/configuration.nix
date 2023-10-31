@@ -15,7 +15,7 @@ in
       ../../modules/system/wireguard
       inputs.sops-nix.nixosModules.default
     ];
-  nix.settings.trusted-users = [ user ];
+  nix.settings.trusted-users = [ "totaltaxamount" /* TODO: use the user varbile*/ ];
 
   
   # Configure  X11
