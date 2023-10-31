@@ -53,7 +53,7 @@ in
       powerManagement.enable = true;
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
       prime = {
         offload.enable = true;
         offload.enableOffloadCmd = true;
@@ -133,7 +133,7 @@ in
     enableSSHSupport = true;
   };
 
-  programs.corectl = {
+  programs.corectrl = {
     enable = true;
   };
   
