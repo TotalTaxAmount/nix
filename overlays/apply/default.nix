@@ -2,7 +2,7 @@ final: prev:
 
 {
   discord = prev.discord.override {
-    # withVencord = true; Disable this until it is fixed
+     withVencord = true;
   };
 
   eww = prev.eww.override {
