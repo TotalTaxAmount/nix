@@ -1,4 +1,4 @@
-{ config, inputs, lib, user, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 let
   user="totaltaxamount";
