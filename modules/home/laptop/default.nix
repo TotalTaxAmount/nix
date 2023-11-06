@@ -105,6 +105,7 @@ in
       #Utils
       jq
       socat
+      nvtop
       glxinfo
       bat
       openal
@@ -128,7 +129,7 @@ in
       # Game utils
       mangohud
       gamemode
-      nvtop
+      inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
 
       # Screenshot
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
