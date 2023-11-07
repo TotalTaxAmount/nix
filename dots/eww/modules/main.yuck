@@ -15,14 +15,13 @@
 
 ;; Window
 (defwindow main 
-  :stacking "fg" 
   :monitor 0
-  :exclusive false
-  :anchor "top center"
-  :windowtype "dock"
+  :exclusive true
+  :stacking "bt" 
   :geometry (geometry 
     :width "100%" 
-    :height "40px")
+    :height "40px"
+    :anchor "top center")
   (bar)
 )
 
