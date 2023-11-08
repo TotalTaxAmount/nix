@@ -112,6 +112,7 @@ in
     sqlite
     libnotify
     pinentry-curses
+    xwaylandvideobridge
   ];
 
   # Need this for gdm to work

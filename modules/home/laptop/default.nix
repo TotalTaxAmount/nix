@@ -25,7 +25,7 @@ in
         ./eww
         ./dunst
         ./swaylock
-        ./xplorer
+        # ./xplorer # not really using this rn
         ./vscode
         ./discord
         ./prismLauncher
