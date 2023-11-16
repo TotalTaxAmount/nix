@@ -42,8 +42,8 @@ final: prev:
   });
 
   xwaylandvideobridge = prev.xwaylandvideobridge.overrideAttrs (old: {
-    patches = [
-      ./patches/xwaylandvideobridge_hyprland.patch
-    ];
+    # patches = [
+    #   ./patches/xwaylandvideobridge_hyprland.patch
+    # ];
   });
 }

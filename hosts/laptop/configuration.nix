@@ -36,6 +36,15 @@ in
     settings.PasswordAuthentication = true;
   };
 
+  services.supergfxd.enable = true;
+
+  services.asusd = {
+    enable = true;
+    enableUserService = true;
+  };
+
+  systemd.services.asusd.wantedBy = lib.mkForce [ "multi-user.target" ];
+
   programs.ssh = {
     forwardX11 = true;
   };
@@ -73,13 +82,12 @@ in
     bluetooth.enable = true;
     steam-hardware.enable = true;
   };
-  services = {
-    blueman.enable = true;
-    hardware.openrgb = {
-      enable = true;
-      motherboard = "amd";
-    };
-  };
+  services.blueman.enable = true;
+    # hardware.openrgb = {
+    #   enable = true;
+    #   motherboard = "amd";
+    # };
+
 
   sops = {
     defaultSopsFile = ./secrets/secrets.yml;
@@ -139,10 +147,6 @@ in
     enable = true;
     pinentryFlavor = "curses";
     enableSSHSupport = true;
-  };
-
-  programs.corectrl = {
-    enable = true;
   };
   
   networking = {

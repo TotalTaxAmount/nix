@@ -17,7 +17,7 @@
 (defwindow main 
   :monitor 0
   :exclusive true
-  :stacking "bt" 
+  :stacking "fg" 
   :geometry (geometry 
     :width "100%" 
     :height "40px"
