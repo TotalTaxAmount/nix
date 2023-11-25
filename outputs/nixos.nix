@@ -36,7 +36,7 @@ in {
   };
 
   remote = nixosSystem {
-    inherit pkgs system user;
+    inherit pkgs system;
     specialArgs = {inherit inputs;};
     modules = [
       inputs.sops-nix.nixosModules.sops

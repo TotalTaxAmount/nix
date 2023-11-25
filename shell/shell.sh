@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DIR="/home/$USER/nix/shells"
+DIR=path
 
 activate () {
     echo "Starting $1..."
