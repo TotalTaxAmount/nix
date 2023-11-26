@@ -36,6 +36,15 @@ in
     settings.PasswordAuthentication = true;
   };
 
+  services.supergfxd.enable = true;
+
+  services.asusd = {
+    enable = true;
+    enableUserService = true;
+  };
+
+  systemd.services.asusd.wantedBy = lib.mkForce [ "multi-user.target" ];
+
   programs.ssh = {
     forwardX11 = true;
   };
@@ -46,6 +55,13 @@ in
       driSupport = true;
       driSupport32Bit = true;
       setLdLibraryPath = true; 
+
+      extraPackages = with pkgs; [
+        intel-media-driver # LIBVA_DRIVER_NAME=iHD
+        vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
     };
 
     nvidia = {
@@ -66,13 +82,12 @@ in
     bluetooth.enable = true;
     steam-hardware.enable = true;
   };
-  services = {
-    blueman.enable = true;
-    hardware.openrgb = {
-      enable = true;
-      motherboard = "amd";
-    };
-  };
+  services.blueman.enable = true;
+    # hardware.openrgb = {
+    #   enable = true;
+    #   motherboard = "amd";
+    # };
+
 
   sops = {
     defaultSopsFile = ./secrets/secrets.yml;
@@ -105,6 +120,7 @@ in
     sqlite
     libnotify
     pinentry-curses
+    xwaylandvideobridge
   ];
 
   # Need this for gdm to work
@@ -131,10 +147,6 @@ in
     enable = true;
     pinentryFlavor = "curses";
     enableSSHSupport = true;
-  };
-
-  programs.corectrl = {
-    enable = true;
   };
   
   networking = {

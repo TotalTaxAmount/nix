@@ -40,4 +40,10 @@ final: prev:
 
     patches = (old.patches or [ ]) ++ [./patches/xplorer_json_storage.patch];
   });
+
+  xwaylandvideobridge = prev.xwaylandvideobridge.overrideAttrs (old: {
+    # patches = [
+    #   ./patches/xwaylandvideobridge_hyprland.patch
+    # ];
+  });
 }
