@@ -13,6 +13,7 @@ in {
     ./nvim
     ./neofetch
     ./terminal
+    ./shell
       
     inputs.nix-colors.homeManagerModule
 

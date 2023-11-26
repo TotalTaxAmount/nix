@@ -1,18 +1,16 @@
-{ stdenv,
-  substituteInPlace
-}:
+{ stdenv }:
 
 stdenv.mkDerivation rec {
-  pname = "shell";
-  version = "1.0.0";
+  name = "shell-1.0.0";
 
-  src = .;
+  src = ./src;
 
-  configurePhase = ''
-    substituteInPlace $src/shell.sh --replace 'path' '$out/shells' 
-  '';
+  # patchPhase = ''
+  #   substituteInPlace $src/shell.sh --replace 'path' '$out/shells' 
+  # '';
 
   installPhase = ''
-    cp $src/shells $out/shells
+    mkdir -p $out/bin
+    mv $src/shell.sh $out/bin
   '';
 }
