@@ -60,7 +60,6 @@ in {
       shellAliases = {
          update = "/home/${user}/nix/build.sh";
          cat = "bat";
-         shell = "/home/${user}/nix/shell.sh";
       };
       enableCompletion = true;
       # history = {

@@ -5,12 +5,13 @@ stdenv.mkDerivation rec {
 
   src = ./src;
 
-  # patchPhase = ''
-  #   substituteInPlace $src/shell.sh --replace 'path' '$out/shells' 
-  # '';
-
   installPhase = ''
+    mkdir -p $out/shells
+    cp -r $src/shells $out/
+
     mkdir -p $out/bin
-    mv $src/shell.sh $out/bin
+    cp $src/shell.sh $out/bin/shell
+    substituteInPlace $out/bin/shell --replace 'path' "$out/shells"
+
   '';
 }
