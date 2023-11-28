@@ -1,4 +1,4 @@
-(defpoll clock_time :interval "1s" "date '+%r %b %d, %Y'")
+(defpoll clock_time :interval "1s" "date '+%R:%S %b %d, %Y'")
 (defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 
 ; ;; System
