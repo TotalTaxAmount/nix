@@ -76,7 +76,7 @@
       devices = [ "nodev" ];
       enable = true;
      # efiSupport = true;
-      useOSProber = true;
+      #useOSProber = true;
       extraEntries = ''
         menuentry "UEFI Firmware Settings" {
             echo "Booting into UEFI firmware settings..."
@@ -84,6 +84,9 @@
         }'';
     };
   };
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   nix.gc = {
     automatic = true;
     dates = "weekly";

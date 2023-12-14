@@ -244,7 +244,7 @@ If you want to install this config it would go something like this **(Dont right
 - [ ] Fix vscode theme
     - [ ] Fix rust-anyalizer on the remote
 - [ ] Explain the layout better
-- [ ] Finish Eww
+- [ ] Finish Eww (rewrite)
     - [ ] System info (cpu, ram, disk, etc)
 - [ ] Make background switcher
 - [ ] Swaylock

@@ -172,6 +172,10 @@ in
    ];
   boot.kernelModules = [ "kvm-amd" "kvm-intel"]; # Needed for vm
   boot.tmp.cleanOnBoot = true;
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 16777216;
+    "fs.file-max" = 524288;
+  };
 
   services.logind.extraConfig = ''
     	HandlePowerKey=ignore
@@ -183,4 +187,12 @@ in
     waydroid.enable = false;
     docker.enable = false;
   };
+
+  swapDevices = [ 
+    { 
+      device = "/var/lib/swapfile";
+      size = 32 * 1024; 
+      }
+    ];
+
 }

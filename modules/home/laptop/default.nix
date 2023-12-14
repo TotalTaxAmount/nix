@@ -84,7 +84,8 @@ in
 
       # Apps
       gimp
-      brave
+      # brave
+      firefox
       fluent-reader
       nomacs
       bottles
@@ -111,7 +112,7 @@ in
       openal
       qt5.full
       wget
-      rofi-copyq
+      rofi-copyq 
 
       #Customization
       nerdfonts
@@ -127,6 +128,10 @@ in
       jetbrains.idea-ultimate
 
       # Game utils
+      lutris
+      wineWowPackages.waylandFull
+      gamescope    
+      winetricks
       mangohud
       gamemode
       inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
@@ -175,7 +180,7 @@ in
 
       theme = {
         package = nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-        name = "System Theme";
+        name = "test";
       };
     };
 

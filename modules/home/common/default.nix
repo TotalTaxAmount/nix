@@ -42,6 +42,8 @@ in {
       neofetch
       file
       tree
+      zip
+      unzip
 
       #Utils
       jq

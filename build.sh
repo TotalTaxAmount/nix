@@ -32,6 +32,10 @@ nix_build() {
     esac
 }
 
+package_update() {
+    sudo nixos-rebuild switch --flake .#$HOST --upgrade
+}
+
 rebuild_home() {
     nix_build ".#homeConfigurations.$HOST.activation-script" $1
     if [ $? -eq 0 ]; then
@@ -69,8 +73,10 @@ case $1 in
         (cd /home/$USER/nix && rebuild_system $2);;
     "fresh")
         (cd /home/$USER/nix && install_fresh);;
+    "packages")
+        (cd /home/$USER/nix && package_update);;
     "set")
         (cd /home/$USER/nix && set_host $2);;
     *)
-    echo "Options are home, system, set and fresh"
+    echo "Options are home, system, set, packages and fresh"
 esac
