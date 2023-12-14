@@ -180,7 +180,7 @@ in
   # VMs
   virtualisation = {
     libvirtd.enable = true;
-    waydroid.enable = true;
-    docker.enable = true;
+    waydroid.enable = false;
+    docker.enable = false;
   };
 }

@@ -239,6 +239,9 @@ If you want to install this config it would go something like this **(Dont right
 ## To Do
 - [ ] Full Rewrite basicly 
 - [ ] Better layout
+    - [ ] File sturcture
+- [ ] Better support for multi-device
+- [ ] Rust anyalzer LSP working on remote better
 - [ ] Fix vscode theme
     - [ ] Fix rust-anyalizer on the remote
 - [ ] Explain the layout better
