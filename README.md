@@ -237,6 +237,7 @@ If you want to install this config it would go something like this **(Dont right
 **Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
 
 ## To Do
+- [ ] Full Rewrite basicly 
 - [ ] Better layout
 - [ ] Fix vscode theme
     - [ ] Fix rust-anyalizer on the remote
