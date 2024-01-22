@@ -12,7 +12,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
-      ../../modules/system/wireguard
+      ./wireguard
       inputs.sops-nix.nixosModules.default
     ];
   nix.settings.trusted-users = [ "totaltaxamount" /* TODO: use the user varbile*/ ];
