@@ -184,7 +184,7 @@ in
   # VMs
   virtualisation = {
     libvirtd.enable = true;
-    waydroid.enable = false;
+    waydroid.enable = true;
     docker.enable = false;
   };
 

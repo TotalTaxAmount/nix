@@ -84,6 +84,8 @@ in
 
       # Apps
       gimp
+      audacity
+
       # brave
       firefox
       fluent-reader
