@@ -18,8 +18,6 @@ in
       colors.selection.text = "CellForeground";
       colors.search.matches.background = "CellBackground";
       colors.search.matches.foreground = "#${config.colorScheme.colors.base05}";
-      colors.search.footer_bar.background = "#${config.colorScheme.colors.base00}";
-      colors.search.footer_bar.foreground = "#${config.colorScheme.colors.base05}";
 
       colors.normal.black = "#${config.colorScheme.colors.base00}";
       colors.normal.red = "#${config.colorScheme.colors.base08}";
@@ -42,7 +40,6 @@ in
       font.normal = {
          family = "${config.font}";
          style = "Regular";
-         size = "11";
       };
      };
    };

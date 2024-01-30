@@ -85,6 +85,7 @@ in
       # Apps
       gimp
       audacity
+      qFlipper
 
       # brave
       firefox
@@ -168,7 +169,7 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
-      enableNvidiaPatches = true;
+      # enableNvidiaPatches = true;
     };
 
     programs.git = {
