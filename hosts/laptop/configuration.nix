@@ -64,6 +64,8 @@ in
       ];
     };
 
+    flipperzero.enable = true;
+
     nvidia = {
       modesetting.enable = true; 
       powerManagement.enable = true;
@@ -186,6 +188,14 @@ in
     libvirtd.enable = true;
     waydroid.enable = true;
     docker.enable = false;
+
+    podman = {
+      enable = true;
+
+      dockerCompat = true;
+
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   swapDevices = [ 

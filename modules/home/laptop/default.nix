@@ -145,6 +145,9 @@ in
      
       # Clipboard
       copyq
+
+      # Virt
+      distrobox
       
     ];
 
