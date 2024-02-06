@@ -49,6 +49,7 @@ in {
       jq
       bat
       wget
+      eza
 
       #Customization
       nerdfonts

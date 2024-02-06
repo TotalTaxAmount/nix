@@ -23,8 +23,8 @@ in {
     };
 
     modules = [
-      ../modules/home/common
-      ../modules/home/laptop
+      ../modules/home-manager/common
+      ../modules/home-manager/laptop
     ];
   };
 
@@ -36,8 +36,8 @@ in {
     };
 
     modules = [
-      ../modules/home/common
-      ../modules/home/remote
+      ../modules/home-manager/common
+      ../modules/home-manager/remote
     ];
   };
 }

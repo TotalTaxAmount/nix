@@ -61,6 +61,7 @@ in {
          update = "/home/${user}/nix/build.sh";
          cat = "bat";
          open = "f() { xdg-open $1 > /dev/null 2>&1 &};f";
+         ls = "eza -l --icons";
       };
       enableCompletion = true;
       # history = {

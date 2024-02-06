@@ -46,4 +46,9 @@ final: prev:
     #   ./patches/xwaylandvideobridge_hyprland.patch
     # ];
   });
+
+  audacity = prev.audacity.overrideAttrs (old: {
+    postInstall = (old.postInstall or "") + ''
+    wrapProgram $out/bin/audacity --set GDK_BACKEND x11 --set UBUNTU_MENUPROXY 0'';
+  });
 }

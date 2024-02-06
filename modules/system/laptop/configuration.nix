@@ -68,7 +68,9 @@ in
 
     nvidia = {
       modesetting.enable = true; 
-      powerManagement.enable = true;
+      powerManagement = {
+        enable = true;
+      };
       open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -101,8 +103,7 @@ in
     };
       
     # Secrets
-    secrets."wireguard/private_key" = {
-    };
+    secrets."wireguard/private_key" = {};
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
