@@ -1,5 +1,5 @@
 {
-    description = "NixO & HomeManager config flake";
+    description = "TotalTaxAmount's NixOS and home-manager flake";
     inputs = {
         nixpkgs.url = "nixpkgs/nixos-unstable";
 
@@ -22,7 +22,7 @@
 
         sops-nix.url = github:Mic92/sops-nix;
 
-	vscode-server.url = github:nix-community/nixos-vscode-server;
+	    vscode-server.url = github:nix-community/nixos-vscode-server;
     };
 
     outputs = {self, nixpkgs, home-manager, sops-nix, ...}@inputs :
