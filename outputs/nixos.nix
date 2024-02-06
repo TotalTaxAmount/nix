@@ -18,9 +18,9 @@ in {
     inherit pkgs system; # TODO fix!
     specialArgs = {inherit inputs;};
     modules = [
-      ../system
-      ../system/laptop/hardware.nix
-      ../system/laptop/configuration.nix
+      ../modules/system/common
+      ../modules/system/laptop/hardware.nix
+      ../modules/system/laptop/configuration.nix
     ];
   };
 
@@ -29,9 +29,9 @@ in {
     specialArgs = {inherit inputs;};
     modules = [
       inputs.sops-nix.nixosModules.sops
-      ../system
-      ../system/desktop/hardware.nix
-      ../system/desktop/configuration.nix
+      ../modules/system/common
+      ../modules/system/desktop/hardware.nix
+      ../modules/system/desktop/configuration.nix
     ];
   };
 
@@ -40,9 +40,9 @@ in {
     specialArgs = {inherit inputs;};
     modules = [
       inputs.sops-nix.nixosModules.sops
-      ../system
-      ../system/remote/hardware.nix
-      ../system/remote/configuration.nix
+      ../modules/system/common
+      ../modules/system/remote/hardware.nix
+      ../modules/system/remote/configuration.nix
     ];
   };
 }

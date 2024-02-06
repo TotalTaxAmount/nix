@@ -30,6 +30,8 @@
   #   channel = "https://nixos.org/channels/unstable";
   # };
 
+  environment.systemPackages = [(pkgs.callPackage ../../custom/pkgs/shell { }) ]'
+
 
   fonts = {
     packages = with pkgs; [
