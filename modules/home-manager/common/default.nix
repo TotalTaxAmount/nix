@@ -13,7 +13,6 @@ in {
     ./nvim
     ./neofetch
     ./terminal
-    ./shell
       
     inputs.nix-colors.homeManagerModule
 
@@ -50,6 +49,7 @@ in {
       bat
       wget
       eza
+      (pkgs.callPackage ./shell { })
 
       #Customization
       nerdfonts
