@@ -37,6 +37,8 @@ in
       colors.bright.cyan = "#${config.colorScheme.colors.base0F}";
       colors.bright.white = "#${config.colorScheme.colors.base07}";
 
+      window.opacity = 0.95;
+
       font.normal = {
          family = "${config.font}";
          style = "Regular";
