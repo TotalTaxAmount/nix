@@ -13,7 +13,7 @@ let
   flight-core = pkgs.callPackage ../../../custom/pkgs/flightcore {};
   schemer2 = pkgs.callPackage ../../../custom/pkgs/schemer2 {};
   rofi-copyq = pkgs.callPackage ../../../custom/pkgs/rofi-copyq {};
-inr/;
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

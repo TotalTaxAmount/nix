@@ -518,30 +518,6 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>Info and Line Numbers</string>
-			<key>scope</key>
-			<string>gutter, lineNumbers</string>
-			<key>settings</key>
-			<dict>
-				<key>foreground</key>
-				<string>@base0F@</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>Side Bar</string>
-			<key>scope</key>
-			<string>sideBar</string>
-			<key>settings</key>
-			<dict>
-				<key>background</key>
-				<string>@base00@</string>
-				<key>foreground</key>
-				<string>@base05@</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>name</key>
 			<string>Deprecated</string>
 			<key>scope</key>
 			<string>invalid.deprecated</string>
