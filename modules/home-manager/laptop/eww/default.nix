@@ -6,22 +6,13 @@ let
   configDir = pkgs.substituteAllFiles {
     src = ../../../../dots/eww;
     files = [
-      "scripts/battery"
-      "scripts/mem-ad"
-      "scripts/memory"
-      "scripts/music_info"
-      "scripts/pop"
-      "scripts/wifi"
-      "scripts/workspaces"
-
-      "images/mic.png"
-      "images/music.png"
-      "images/profile.png"
-      "images/speaker.png"
+      "modules/info.yuck"
+      "modules/system.yuck"
+      "modules/main.yuck"
 
       "eww.scss"
       "eww.yuck"
-      "launch_bar"
+      "nixos-icon.svg"
     ];
     base00 = "#${config.colorScheme.colors.base00}";
     base03 = "#${config.colorScheme.colors.base03}";
