@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 
 total="$(free -m | grep Mem: | awk '{ print $2 }')"

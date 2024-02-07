@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 status=$(nmcli g | grep -oE "disconnected")
 essid=$(nmcli c | grep wlp2s0 | awk '{print ($1)}')
