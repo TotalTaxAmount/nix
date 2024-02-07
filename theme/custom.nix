@@ -71,4 +71,29 @@
       base0F = "d0815a";
     };
   };
+
+  onedark-darker = {
+  slug = "onedark-darker";
+  name = "OneDark Darker";
+  author = "TotalTaxAmount";
+  colors = {
+    base00 = "1c1e26";
+    base01 = "2f353f";
+    base02 = "42474f";
+    base03 = "58606e";
+    base04 = "5a6169";
+    base05 = "b0b8c8";
+    base06 = "c5ccd6";
+    base07 = "d7dae0";
+    base08 = "d95664";
+    base09 = "e69f66";
+    base0A = "ecc787";
+    base0B = "a4cc8c";
+    base0C = "62b6c4";
+    base0D = "6fa1eb";
+    base0E = "d38aea";
+    base0F = "c35752";
+  };
+};
+
 }

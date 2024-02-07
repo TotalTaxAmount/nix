@@ -2,13 +2,22 @@
 
 let
   # Fix werid script thing 
-  scriptDir = builtins.dirOf ../../../../dots/eww/scripts/battery; # I hate this
+  scriptDir = builtins.dirOf ../../../../dots/eww/scripts/battery.sh; # I hate this
   configDir = pkgs.substituteAllFiles {
     src = ../../../../dots/eww;
     files = [
       "modules/info.yuck"
       "modules/system.yuck"
       "modules/main.yuck"
+
+      "scripts/battery.sh"
+      "scripts/currentapp.sh"
+      "scripts/music_utils.sh"
+      "scripts/music.sh"
+      "scripts/pop.sh"
+      "scripts/sys_info.sh"
+      "scripts/vpn.sh"
+      "scripts/workspaces.sh"
 
       "eww.scss"
       "eww.yuck"

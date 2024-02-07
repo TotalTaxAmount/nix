@@ -2,7 +2,7 @@
 
 let
   # Custom color themes
-  customThemes = import ../../theme/custom.nix;
+  customThemes = import ../../../theme/custom.nix;
   base16Themes = inputs.nix-colors.colorSchemes;
 
   # Flake stuff
@@ -13,7 +13,7 @@ let
   flight-core = pkgs.callPackage ../../../custom/pkgs/flightcore {};
   schemer2 = pkgs.callPackage ../../../custom/pkgs/schemer2 {};
   rofi-copyq = pkgs.callPackage ../../../custom/pkgs/rofi-copyq {};
-in
+inr/;
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -39,7 +39,7 @@ in
   config = {  
     # System theme
     # Use custom themes customThemes.[theme] (defined in themes/custom.nix) or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
-    colorScheme = base16Themes.twilight;
+    colorScheme = customThemes.onedark-darker;
     font = "FiraCode Nerd Font";
 
     home.username = user;
