@@ -1,4 +1,4 @@
 result
 .vscode
-dots/nvim/parsers/*
 /HOST
+dots/nvim/parsers
