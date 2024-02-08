@@ -51,17 +51,17 @@ rebuild_system() {
 }
 
 install_fresh() {
-    echo "Are you sure you are ready"
-    read -p "If so hit y: " -n 1 -r
-    echo   
-    if [[ $REPLY =~ ^[Yy]$ ]];then
-        echo "Copying system scan"
-        cp -r /etc/nixos/hardware-configuration.nix ./hosts/$HOST/hardware.nix
-        echo "Building..."
-        sudo nixos-rebuild switch --flake .#$HOST
-        rebuild_home
-        echo "Done"
-    fi
+    # echo "Are you sure you are ready"
+    # read -p "If so hit y: " -n 1 -r
+    # echo   
+    # if [[ $REPLY =~ ^[Yy]$ ]];then
+    #     echo "Copying system scan"
+    #     cp -r /etc/nixos/hardware-configuration.nix ./hosts/$HOST/hardware.nix
+    #     echo "Building..."
+    #     sudo nixos-rebuild switch --flake .#$HOST
+    #     rebuild_home
+    #     echo "Done"
+    # fi
     
 }
 
@@ -78,5 +78,5 @@ case $1 in
     "set")
         (cd /home/$USER/nix && set_host $2);;
     *)
-    echo "Options are home, system, set, packages and fresh"
+    echo "Options are home, system, set, packages and fresh (broken)"
 esac
