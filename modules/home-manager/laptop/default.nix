@@ -9,10 +9,10 @@ let
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
   nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
   
-  # Custom pkgs (gonna do this better sometime ;))
-  flight-core = pkgs.callPackage ../../../custom/pkgs/flightcore {};
-  schemer2 = pkgs.callPackage ../../../custom/pkgs/schemer2 {};
-  rofi-copyq = pkgs.callPackage ../../../custom/pkgs/rofi-copyq {};
+  # Custom pkgs
+  flight-core = pkgs.callPackage ../../../external/pkgs/flightcore {};
+  schemer2 = pkgs.callPackage ../../../external/pkgs/schemer2 {};
+  rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq {};
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
