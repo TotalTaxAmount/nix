@@ -20,8 +20,10 @@ in
   
   # Configure  X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "";
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
     enable = true;
     videoDrivers = ["nvidia"];
 
