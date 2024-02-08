@@ -26,8 +26,6 @@ in
         ./dunst
         ./swaylock
         ./vscode
-        ./discord
-        ./prismLauncher
 
         # Flakes
         inputs.spicetify-nix.homeManagerModule
@@ -85,10 +83,10 @@ in
       gimp
       audacity
       qFlipper
-
-      # brave
+      discord 
+      prismlauncher-qt5
       firefox
-      fluent-reader
+      # fluent-reader
       nomacs
       bottles
       qbittorrent
