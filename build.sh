@@ -66,6 +66,10 @@ install_fresh() {
     
 }
 
+update_flake() {
+    nix flake update
+}
+
 
 case $1 in
     "home")
@@ -78,6 +82,8 @@ case $1 in
         (cd /home/$USER/nix && package_update);;
     "set")
         (cd /home/$USER/nix && set_host $2);;
+    "flake")
+        (cd /home/$USER/nix && update_flake);;
     *)
     echo "Options are home, system, set, packages and fresh (untested)"
 esac
