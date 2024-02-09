@@ -7,11 +7,12 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
-      inputs.vscode-server.nixosModules.default
     ];
 
   nix.settings.trusted-users = [ user ];
-  services.vscode-server.enable = true;
+  services.openvscode-server = {
+    enable = true;
+  };
 
 
   services.openssh = {
@@ -90,6 +91,13 @@ in
   boot.tmp.cleanOnBoot = true;
 
   virtualisation = {
-    docker.enable = true;
+    podman = {
+      enable = true;
+      enableNvidia = true;
+
+      dockerCompat = true;
+
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 }
