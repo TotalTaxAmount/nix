@@ -44,7 +44,7 @@ in
     brightnessctl
     sqlite
     pinentry-curses
-    nodejs-10_x
+    nodejs_20
   ];
 
   services.xserver = {
