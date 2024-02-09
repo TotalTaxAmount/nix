@@ -36,7 +36,7 @@ in
   config = {  
     # System theme
     # Use custom themes customThemes.[theme] (defined in themes/custom.nix) or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
-    palette = customThemes.onedark-darker;
+    colorScheme = customThemes.onedark-darker;
     font = "FiraCode Nerd Font";
 
     home.username = user;

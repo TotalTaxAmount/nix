@@ -3,7 +3,7 @@
     slug = "tomorrow-dark";
     name = "Tomorrow Night Dark";
     author = "jntesteves (modified by TotalTaxAmount)";
-    colors = {
+    palette = {
       base00 = "000000";
       base01 = "282a2e";
       base02 = "373b41"; 
@@ -26,7 +26,7 @@
     slug = "oxocarbon";
     name = "Oxocarbon Dark";
     author = "shaunsingh/IBM";
-    colors = {
+    palette = {
       base00 = "161616";
       base01 = "262626"; 
       base02 = "393939"; 
@@ -51,7 +51,7 @@
     slug = "sunset";
     author = "Auto Base16 Theme (https =//github.com/makuto/auto-base16-theme/)";
 
-    colors = {
+    palette = {
       base00 = "040003";
       base01 = "340211";
       base02 = "580b05";
@@ -76,7 +76,7 @@
   slug = "onedark-darker";
   name = "OneDark Darker";
   author = "TotalTaxAmount";
-  colors = {
+  palette = {
     base00 = "1c1e26";
     base01 = "2f353f";
     base02 = "42474f";
