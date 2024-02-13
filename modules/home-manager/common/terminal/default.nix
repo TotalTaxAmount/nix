@@ -37,62 +37,71 @@ let
       base0D = "#${config.colorScheme.colors.base0D}";
    };
 in {
-  programs.tmux = {
-      enable = true;
+  programs = {
+      tmux = {
+         enable = true;
 
-      baseIndex = 1;
-      prefix = "C-Space";
-      mouse = true;
-      keyMode = "vi";
+         baseIndex = 1;
+         prefix = "C-Space";
+         mouse = true;
+         keyMode = "vi";
 
-      plugins = with pkgs; [ 
-         tmux-powerline 
-         tmuxPlugins.better-mouse-mode 
-         tmuxPlugins.power-theme
-         tmuxPlugins.net-speed
-      ];
+         plugins = with pkgs; [ 
+            tmux-powerline 
+            tmuxPlugins.better-mouse-mode 
+            tmuxPlugins.power-theme
+            tmuxPlugins.net-speed
+         ];
 
-      extraConfig = builtins.readFile tmuxConfig.out;
-   };
-
-   programs.zsh = {
-      enable = true;
-      shellAliases = {
-         update = "/home/${user}/nix/build.sh";
-         cat = "bat";
-         open = "f() { xdg-open $1 > /dev/null 2>&1 &};f";
-         ls = "eza -l --icons";
+         extraConfig = builtins.readFile tmuxConfig.out;
       };
-      enableCompletion = true;
-      # history = {
-      #    size = 10000;
-      #    path = "${config.xdg.dataHome}/zsh/history";
-      # };
-      plugins = [
-         {
-            name = "powerlevel10k";
-            src = pkgs.zsh-powerlevel10k;
-            file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-         }
-         {
-            name = "powerlevel10k-config";
-            src = ./config;
-            file = "p10k.zsh";
-         }
-   ];
 
-	initExtraFirst = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme\nsource /home/${user}/.p10k.zsh";
-   initExtra = ''
-   POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-   ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.colors.base0D}"
-   '';
+      zsh = {
+         enable = true;
+         shellAliases = {
+            update = "/home/${user}/nix/build.sh";
+            cat = "bat";
+            open = "f() { xdg-open $1 > /dev/null 2>&1 &};f";
+            ls = "eza -l --icons";
+         };
+         enableCompletion = true;
+         # history = {
+         #    size = 10000;
+         #    path = "${config.xdg.dataHome}/zsh/history";
+         # };
+         plugins = [
+            {
+               name = "powerlevel10k";
+               src = pkgs.zsh-powerlevel10k;
+               file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+            }
+            {
+               name = "powerlevel10k-config";
+               src = ./config;
+               file = "p10k.zsh";
+            }
+         ];
 
-   oh-my-zsh = {
-      enable = true;
-	   custom = "/home/${user}/.config/zsh";
-	   plugins = ["zsh-syntax-highlighting" "zsh-autosuggestions"];
-	   extraConfig = '''';
-     };
+         initExtraFirst = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme\nsource /home/${user}/.p10k.zsh";
+         initExtra = ''
+         POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.colors.base0D}"
+         '';
+
+         oh-my-zsh = {
+            enable = true;
+            custom = "/home/${user}/.config/zsh";
+            plugins = ["zsh-syntax-highlighting" "zsh-autosuggestions"];
+            extraConfig = '''';
+         };
+      };
+
+      direnv = {
+         enable = true;
+         enableZshIntegration = true;
+         nix-direnv.enable = true;
+      };
+
   };
 
   # OMZ Plugins

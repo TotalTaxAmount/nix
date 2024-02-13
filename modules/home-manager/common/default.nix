@@ -45,6 +45,7 @@ in {
       unzip
 
       #Utils
+      nixd
       jq
       bat
       wget
