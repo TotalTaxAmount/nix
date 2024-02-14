@@ -60,6 +60,10 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+        nix-output-monitor
+  ];
+
 
   programs.zsh = {
      enable = true; 

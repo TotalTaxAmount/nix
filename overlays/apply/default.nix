@@ -5,9 +5,16 @@ final: prev:
      withVencord = true;
   };
 
-  eww = prev.eww.override {
-    withWayland = true;
-  };
+  eww = prev.eww-wayland.overrideAttrs (old: {
+    # src = prev.fetchFromGitHub {
+    #   owner = "ralismark";
+    #   repo = "eww";
+    #   rev = "5b507c8";
+    #   hash = "sha256-oTxEbleVjtagYqFAb0rcoqvDcYcmiTgKCF9mk11ztSo=";
+    # };
+
+    # cargoHash = "0000000000000000000000000000000000000000000000000000";
+  });
   
   # btop = prev.btop.overrideAttrs (old: {
   #   src = prev.fetchFromGitHub {

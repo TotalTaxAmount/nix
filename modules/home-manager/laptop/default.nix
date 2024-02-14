@@ -86,6 +86,8 @@ in
       discord 
       prismlauncher-qt5
       firefox
+      activitywatch
+      
       # fluent-reader
       nomacs
       bottles
