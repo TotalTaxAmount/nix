@@ -83,10 +83,10 @@ in
       gimp
       audacity
       qFlipper
-      discord 
+#      discord 
       prismlauncher-qt5
       firefox
-      kicad
+#      kicad
 
       # fluent-reader
       nomacs
@@ -108,7 +108,7 @@ in
       #Utils
       jq
       socat
-      nvtop
+#      nvtop
       glxinfo
       bat
       openal
@@ -126,13 +126,13 @@ in
       # gcc
       
       # IDEs
-      jetbrains.clion
+ #     jetbrains.clion
       jetbrains.idea-ultimate
 
       # Game utils
-      lutris
+  #    lutris
       wineWowPackages.waylandFull
-      gamescope    
+   #   gamescope    
       winetricks
       mangohud
       gamemode

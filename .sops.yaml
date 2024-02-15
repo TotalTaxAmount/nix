@@ -4,25 +4,25 @@
 #   ssh-keyscan -t ed25519 [hostname] | nix run nixpkgs#ssh-to-age.
 #
 # Edit secrets with:
-#   nix run nixpkgs#sops -- /hosts/[host]/secrets/secrets.yml
+#   nix run nixpkgs#sops -- ~/nix/modules/nixos/[host]/secrets/secrets.yml
 #
 # Use sops updatekeys command to re-key corresponding files:
 #   nix run nixpkgs#sops -- updatekeys [filename].
 
 keys:
-  - &admin_totaltax age19d8ytgauxhtz9srzaze3gqm6ca3ns3djaazqpma0r4cjsvupfa0szux67a
+  - &admin_totaltax age15z26efrlkzyy9yut5m5twp4gmmd4s25zfwe5eqc2xw7sj5ptgp3qx6887r
 
-  - &host_laptop age1kl9zyc9vp2469kqpkz4aru97lwp5znz9gmyn5904cfjxpyqpjgfq550lzm
+  - &host_laptop age1mv90crq5dyg9t0jah96kx2xq6s4vn2hs03tnwh8sn3fpd3h80feqjd8ayx
   - &host_remote age1glckwtavpgnv8cauzh9jqryxs367lm4tjf8fruvewl6exajh65aq4cqk8u
 
 creation_rules:
-  - path_regex: hosts/laptop/secrets/[^/]+\.yml$
+  - path_regex: modules/nixos/laptop/secrets/[^/]+\.yml$
     key_groups:
       - age:
         - *admin_totaltax
         - *host_laptop
   
-  - path_regex: hosts/remote/secrets/[^/]+\.yml$
+  - path_regex: modules/nixos/remote/secrets/[^/]+\.yml$
     key_groups:
       - age:
         - *admin_totaltax
