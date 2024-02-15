@@ -14,13 +14,24 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        spicetify-nix.url = github:the-argus/spicetify-nix;
+        spicetify-nix ={
+            url = github:the-argus/spicetify-nix;
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
-        nix-colors.url = github:misterio77/nix-colors;
+        nix-colors = {
+            url = github:misterio77/nix-colors;
+        };
 
-        nix-gaming.url = github:fufexan/nix-gaming;
+        nix-gaming = {
+            url = github:fufexan/nix-gaming;
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
-        sops-nix.url = github:Mic92/sops-nix;
+        sops-nix = {
+            url = github:Mic92/sops-nix;
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
 
 	    # vscode-server.url = github:nix-community/nixos-vscode-server;
     };

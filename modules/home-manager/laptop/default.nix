@@ -86,8 +86,8 @@ in
       discord 
       prismlauncher-qt5
       firefox
-      activitywatch
-      
+      kicad
+
       # fluent-reader
       nomacs
       bottles
@@ -123,7 +123,7 @@ in
       # Langs and compilers
       python3
       nodejs
-      gcc
+      # gcc
       
       # IDEs
       jetbrains.clion

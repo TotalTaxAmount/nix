@@ -41,7 +41,7 @@ package_update() {
 }
 
 rebuild_home() {
-    nom_buil ".#homeConfigurations.$HOST.activation-script" $1
+    nom_build ".#homeConfigurations.$HOST.activation-script" $1
     if [ $? -eq 0 ]; then
         HOME_MANAGER_BACKUP=bak result/activate
         result/activate
