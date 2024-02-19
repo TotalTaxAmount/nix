@@ -75,11 +75,11 @@ in {
                src = pkgs.zsh-powerlevel10k;
                file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
             }
-            {
-               name = "powerlevel10k-config";
-               src = ./config.zsh;
-               file = ".p10k.zsh";
-            }
+            # {
+            #    name = "powerlevel10k-config";
+            #    src = ./config.zsh;
+            #    file = ".p10k.zsh";
+            # }
          ];
 
          initExtraFirst = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme\nsource /home/${user}/.p10k.zsh";
@@ -108,6 +108,5 @@ in {
   xdg.configFile."zsh/plugins/zsh-autosuggestions".source = zsh-autosuggestions.out;
   xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source = zsh-syntax-highlighting.out;
   
-  # .p10k.zsh
-  #home.file.".p10k.zsh".source = ../../../../dots/zsh/.p10k.zsh;
+  home.file.".p10k.zsh".source = ../../../../dots/zsh/.p10k.zsh;
 }
