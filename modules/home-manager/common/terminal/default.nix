@@ -77,8 +77,8 @@ in {
             }
             {
                name = "powerlevel10k-config";
-               src = ./config;
-               file = "p10k.zsh";
+               src = ./config.zsh;
+               file = ".p10k.zsh";
             }
          ];
 

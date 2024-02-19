@@ -83,9 +83,10 @@ in
       gimp
       audacity
       qFlipper
-#      discord 
+      discord 
       prismlauncher-qt5
       firefox
+      android-studio
 #      kicad
 
       # fluent-reader
@@ -108,7 +109,7 @@ in
       #Utils
       jq
       socat
-#      nvtop
+      nvtop
       glxinfo
       bat
       openal
@@ -123,14 +124,14 @@ in
       # Langs and compilers
       python3
       nodejs
-      # gcc
+      gcc
       
       # IDEs
  #     jetbrains.clion
       jetbrains.idea-ultimate
 
       # Game utils
-  #    lutris
+      lutris
       wineWowPackages.waylandFull
    #   gamescope    
       winetricks
