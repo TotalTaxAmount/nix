@@ -200,6 +200,7 @@ File Structure:
 5. In that directory create a configuration.nix (look at ~/nix/system/hosts/laptop/configuration.nix) for examples
 6. Inside of /outputs/nixos.nix create a new output with the name of your host (look at the outher entries for examples)
 7. $ ./build.sh fresh
+8. Enter the host that you have defined previously
 ```
 
 **Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
