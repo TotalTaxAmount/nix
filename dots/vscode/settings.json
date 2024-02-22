@@ -5,7 +5,7 @@
     "update.showReleaseNotes": false,
     "css.lint.unknownProperties": "ignore",
     "editor.unicodeHighlight.invisibleCharacters": false,
-    "workbench.colorTheme": "System Theme",
+    "workbench.colorTheme": "onedark.nvim",
     "workbench.editor.enablePreview": false,
     "git.enableSmartCommit": true,
     "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace",

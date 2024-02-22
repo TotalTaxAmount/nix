@@ -1,5 +1,5 @@
 {pkgs, config, user, ...}:
-
+# TODO: Make the theme a real extension in nix
 let
   vscodeThemeExtension = pkgs.substituteAllFiles {
     src = ../../../../dots/vscode/systemtheme;
@@ -37,7 +37,25 @@ let
     author = "${config.colorScheme.author}";
   };
 in {
-  home.packages = with pkgs; [ vscode-fhs ];
+
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      rust-lang.rust-analyzer
+      ms-vscode.cpptools
+      ms-vscode-remote.remote-ssh
+      mkhl.direnv
+      jnoortheen.nix-ide
+      ] ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "onedark";
+          publisher = "bartoszmaka95";
+          version = "0.2.1";      
+          sha256 = "sha256-j03kdtx9CqypUsBGk04mtvTvPf5Uy36c+wnJaOGFaNU=";
+        }
+      ]
+    );
+  };
 
   home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source = vscodeThemeExtension.out;
   xdg.configFile."Code/User/settings.json".source = ../../../../dots/vscode/settings.json;
