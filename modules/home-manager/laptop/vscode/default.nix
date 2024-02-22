@@ -46,6 +46,7 @@ in {
       ms-vscode-remote.remote-ssh
       mkhl.direnv
       jnoortheen.nix-ide
+      ms-vscode.makefile-tools
       ] ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "onedark";
