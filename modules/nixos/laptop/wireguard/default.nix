@@ -23,5 +23,5 @@ in {
     };
   };
 
-  systemd.services.wg-quick-wg0.wantedBy = lib.mkForce [ ];
+  # systemd.services.wg-quick-wg0.wantedBy = lib.mkForce [ ];
 }

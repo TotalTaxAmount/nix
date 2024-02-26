@@ -87,6 +87,7 @@ in
       prismlauncher-qt5
       firefox
       android-studio
+      element-desktop
 #      kicad
 
       # fluent-reader

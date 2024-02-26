@@ -18,6 +18,12 @@ in
   nix.settings.trusted-users = [ "totaltaxamount" /* TODO: use the user varbile*/ ];
 
   
+  fileSystems."/data/truenas" = {
+    device = "10.1.10.3:/mnt/main/totaltaxamount";
+    fsType = "nfs";
+    options = ["x-systemd.idle-timeout=600"];
+  };
+
   # Configure  X11
   services.xserver = {
     xkb = {
@@ -93,6 +99,8 @@ in
     #   enable = true;
     #   motherboard = "amd";
     # };
+
+  
 
 
   sops = {
@@ -175,7 +183,8 @@ in
     "video=eDP-1:1920x1080@60" # TODO: There is def a better way to do this...
     #"amd_iommu=on" # GPU passthough
    ];
-  boot.kernelModules = [ "kvm-amd" "kvm-intel"]; # Needed for vm
+  boot.supportedFilesystems = [ "nfs" ];
+  boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
   boot.tmp.cleanOnBoot = true;
   boot.kernel.sysctl = {
     "vm.max_map_count" = 16777216;

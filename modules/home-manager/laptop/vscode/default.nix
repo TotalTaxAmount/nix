@@ -47,15 +47,15 @@ in {
       mkhl.direnv
       jnoortheen.nix-ide
       ms-vscode.makefile-tools
-      ] ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "onedark";
-          publisher = "bartoszmaka95";
-          version = "0.2.1";      
-          sha256 = "sha256-j03kdtx9CqypUsBGk04mtvTvPf5Uy36c+wnJaOGFaNU=";
-        }
-      ]
-    );
+
+    ] ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "onedark";
+        publisher = "bartoszmaka95";
+        version = "0.2.1";      
+        sha256 = "sha256-j03kdtx9CqypUsBGk04mtvTvPf5Uy36c+wnJaOGFaNU=";
+      }
+    ]);
   };
 
   home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source = vscodeThemeExtension.out;

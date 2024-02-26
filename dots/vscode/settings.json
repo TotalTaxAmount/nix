@@ -19,6 +19,9 @@
           "path": "tmux",
           "args": ["new-session", "-A", "-s", "vscode:${workspaceFolder}"]
         }  
-    }
+    },
+    "cmake.showNotAllDocumentsSavedQuestion": false,
+    "cmake.showOptionsMovedNotification": false
+
 
 }
