@@ -18,11 +18,13 @@ in
   nix.settings.trusted-users = [ "totaltaxamount" /* TODO: use the user varbile*/ ];
 
   
-  fileSystems."/data/truenas" = {
-    device = "10.1.10.3:/mnt/main/totaltaxamount";
-    fsType = "nfs";
-    options = ["x-systemd.idle-timeout=600"];
-  };
+  # fileSystems."/data/truenas" = {
+  #   device = "10.1.10.3:/mnt/main/totaltaxamount";
+  #   fsType = "nfs";
+  #   options = ["x-systemd.idle-timeout=600"];
+  # };
+  #  systemd.services.data-truenas.wantedBy = lib.mkForce [ ];
+
 
   # Configure  X11
   services.xserver = {
@@ -51,7 +53,12 @@ in
     enableUserService = true;
   };
 
-  systemd.services.asusd.wantedBy = lib.mkForce [ "multi-user.target" ];
+  systemd = {
+    enableCgroupAccounting = true;
+    services = {
+      asusd.wantedBy = lib.mkForce [ "multi-user.target" ];
+      };
+    };
 
   programs.ssh = {
     forwardX11 = true;
@@ -181,6 +188,7 @@ in
   # Boot loader
   boot.kernelParams = [ 
     "video=eDP-1:1920x1080@60" # TODO: There is def a better way to do this...
+    "systemd.unified_cgroup_hierarchy=0"
     #"amd_iommu=on" # GPU passthough
    ];
   boot.supportedFilesystems = [ "nfs" ];

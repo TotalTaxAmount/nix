@@ -88,6 +88,7 @@ in
       firefox
       android-studio
       element-desktop
+      ghidra
 #      kicad
 
       # fluent-reader
@@ -117,6 +118,7 @@ in
       qt5.full
       wget
       rofi-copyq 
+      asusctl
 
       #Customization
       nerdfonts

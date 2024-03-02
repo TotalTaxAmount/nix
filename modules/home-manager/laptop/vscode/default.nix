@@ -44,9 +44,8 @@ in {
       rust-lang.rust-analyzer
       ms-vscode.cpptools
       ms-vscode-remote.remote-ssh
-      mkhl.direnv
       jnoortheen.nix-ide
-      ms-vscode.makefile-tools
+      ms-vscode.makefile-tools 
 
     ] ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
@@ -54,6 +53,12 @@ in {
         publisher = "bartoszmaka95";
         version = "0.2.1";      
         sha256 = "sha256-j03kdtx9CqypUsBGk04mtvTvPf5Uy36c+wnJaOGFaNU=";
+      }
+      {
+        name = "vscode-direnv";
+        publisher = "Rubymaniac";
+        version = "0.0.2";
+        sha256 = "sha256-TVvjKdKXeExpnyUh+fDPl+eSdlQzh7lt8xSfw1YgtL4=";
       }
     ]);
   };
