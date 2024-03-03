@@ -21,7 +21,11 @@
         }  
     },
     "cmake.showNotAllDocumentsSavedQuestion": false,
-    "cmake.showOptionsMovedNotification": false
-
+    "cmake.showOptionsMovedNotification": false,
+    "update.mode": "none",
+    "workbench.iconTheme": "vscode-icons",
+    "terminal.integrated.cursorBlinking": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "terminal.integrated.fontFamily": "@font@"
 
 }

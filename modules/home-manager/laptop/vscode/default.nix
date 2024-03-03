@@ -36,6 +36,12 @@ let
     theme = "${config.colorScheme.name}";
     author = "${config.colorScheme.author}";
   };
+
+  settings = pkgs.substituteAll {
+    src = "../../../../dots/vscode/settings.json";
+
+    font = config.font;
+  };
 in {
 
   programs.vscode = {
@@ -46,6 +52,11 @@ in {
       ms-vscode-remote.remote-ssh
       jnoortheen.nix-ide
       ms-vscode.makefile-tools 
+      esbenp.prettier-vscode
+      eamodio.gitlens
+      vscode-icons-team.vscode-icons
+      alefragnani.bookmarks
+      streetsidesoftware.code-spell-checker
 
     ] ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
@@ -64,6 +75,6 @@ in {
   };
 
   home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source = vscodeThemeExtension.out;
-  xdg.configFile."Code/User/settings.json".source = ../../../../dots/vscode/settings.json;
+  xdg.configFile."Code/User/settings.json".source = settings.out;
   xdg.configFile."Code/User/keybindings.json".source = ../../../../dots/vscode/keybinds.json;
 }
