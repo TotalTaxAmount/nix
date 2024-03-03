@@ -1,4 +1,4 @@
 
 [Default Applications]
-image/png=nomacs.desktop
-image/jpeg=nomacs.desktop
+image/png=org.nomacs.ImageLounge.desktop
+image/jpeg=org.nomacs.ImageLounge.desktop
