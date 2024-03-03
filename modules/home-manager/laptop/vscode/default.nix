@@ -78,15 +78,6 @@ in {
         version = "0.0.2";
         sha256 = "sha256-TVvjKdKXeExpnyUh+fDPl+eSdlQzh7lt8xSfw1YgtL4=";
       }
-      {
-        name = "vscode-custom-css";
-        publisher = "be5invis";
-        version = "7.2.1";
-        sha256 = "sha256-vNEVfDR4hGFXoElGqSNcmCyGi0vxN9gvPO9xkMhEfu8=";
-        patches = [
-          ../../../../overlays/apply/patches/vscode_customcss_nix.patch
-        ];
-      }
     ]);
   };
 
