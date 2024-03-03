@@ -38,7 +38,7 @@ let
   };
 
   settings = pkgs.substituteAll {
-    src = "../../../../dots/vscode/settings.json";
+    src = ../../../../dots/vscode/settings.json;
 
     font = config.font;
   };
