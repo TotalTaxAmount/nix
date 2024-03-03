@@ -1,31 +1,43 @@
 {
+    // Editor
     "window.menuBarVisibility": "toggle",
-    "cmake.configureOnOpen": true,
     "explorer.confirmDelete": false,
     "update.showReleaseNotes": false,
-    "css.lint.unknownProperties": "ignore",
     "editor.unicodeHighlight.invisibleCharacters": false,
     "workbench.colorTheme": "onedark.nvim",
     "workbench.editor.enablePreview": false,
+    "editor.fontFamily": "'@font@', 'monospace', monospace",
+
+    // Git
     "git.enableSmartCommit": true,
-    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace",
     "git.confirmSync": false,
 
-    "terminal.integrated.env.windows": {
-        "DISPLAY": "localhost:10.0"
-    },
+    // Cmake
+    "cmake.showNotAllDocumentsSavedQuestion": false,
+    "cmake.showOptionsMovedNotification": false,
+    "cmake.configureOnOpen": true,
+
+    // Terminal
+    "terminal.integrated.fontFamily": "@font@",
     "terminal.integrated.profiles.linux": {
         "tmux-shell": {
           "path": "tmux",
           "args": ["new-session", "-A", "-s", "vscode:${workspaceFolder}"]
         }  
     },
-    "cmake.showNotAllDocumentsSavedQuestion": false,
-    "cmake.showOptionsMovedNotification": false,
+    "terminal.integrated.env.windows": {
+        "DISPLAY": "localhost:10.0"
+    },
+
+    // Custom css
+    "vscode_custom_css.imports": [
+        "file://@customcss@"
+    ],
+
+    // Misc
     "update.mode": "none",
     "workbench.iconTheme": "vscode-icons",
     "terminal.integrated.cursorBlinking": true,
     "vsicons.dontShowNewVersionMessage": true,
-    "terminal.integrated.fontFamily": "@font@"
-
+    "css.lint.unknownProperties": "ignore",
 }
