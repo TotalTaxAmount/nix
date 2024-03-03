@@ -61,7 +61,7 @@ in {
          shellAliases = {
             update = "/home/${user}/nix/build.sh";
             cat = "bat";
-            open = "f() { xdg-open $1 > /dev/null 2>&1 &};f";
+            open = "stupidAlias";
             ls = "eza -l --icons";
          };
          enableCompletion = true;
@@ -86,7 +86,11 @@ in {
          initExtra = ''
          POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
          ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.colors.base0D}"
-         '';
+         
+         stupidAlias() {
+            xdg-open $1 > /dev/null 2>&1 & 
+         } 
+         ''; # Hacky fix for syntax highlighting
 
          oh-my-zsh = {
             enable = true;
