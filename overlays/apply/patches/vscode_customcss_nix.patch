@@ -1,0 +1,20 @@
+diff --git a/src/extension.js b/src/extension.js
+index afd59cb..fc74f13 100644
+--- src/extension.js
++++ src/extension.js
+@@ -5,13 +5,14 @@ const msg = require("./messages").messages;
+ const uuid = require("uuid");
+ const fetch = require("node-fetch");
+ const Url = require("url");
++const os = require("os");
+
+ function activate(context) {
+        const appDir = path.dirname(require.main.filename);
+        const base = path.join(appDir, "vs", "code");
+        const htmlFile = path.join(base, "electron-sandbox", "workbench", "workbench.html");
+        const BackupFilePath = uuid =>
+-               path.join(base, "electron-sandbox", "workbench", `workbench.${uuid}.bak-custom-css`);
++               path.join(os.homedir(), ".config", "Code", "css_backups", `workbench.${uuid}.bak-custom-css.css`)
+
+        async function getContent(url) {
+                if (/^file:/.test(url)) {

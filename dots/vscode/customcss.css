@@ -1,0 +1,9 @@
+.terminal {
+    border-left: 1px solid @focusColor@;
+    padding-left: 1em;
+    opacity: 1;
+}
+.terminal:not(.focus) {
+    border-color: transparent;
+    opacity: 0.5;
+}
