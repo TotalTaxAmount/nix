@@ -31,7 +31,7 @@ opt.mouse = "a"
 opt.number = true
 vim.o.termguicolors = true
 -- TODO: make this base 16
--- vim.cmd "colorscheme onedark"
+vim.cmd "colorscheme onedark"
 
 -- Terminal
 opt.shell = "zsh"

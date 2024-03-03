@@ -2,3 +2,9 @@
 [Default Applications]
 image/png=org.nomacs.ImageLounge.desktop
 image/jpeg=org.nomacs.ImageLounge.desktop
+text/plain=nvim.desktop
+text/x-shellscript=nvim.desktop
+
+[Removed Associations]
+application/octet-stream=firefox.desktop
+inode/directory=code.desktop
