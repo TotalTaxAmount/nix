@@ -193,6 +193,9 @@ in
       };
     };
 
+    # Random stuff    
+    home.file.".config/mimeapps.list".source = ../../../dots/mimeapps.list;
+
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
   };
