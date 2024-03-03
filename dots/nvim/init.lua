@@ -1,12 +1,17 @@
 -- Add modules to package cause nixos
-local config_dir = os.getenv("HOME") .. "/nix/dots/nvim"
+local config_dir = os.getenv("HOME") .. "/nix/dots/nvim" -- TODO: This is not
 package.path = package.path .. ";" .. config_dir .."/?.lua"
 
 local utils = require("utils.utils");
 local opt = utils.get_opt()
 local fn = utils.get_fn()
 
-local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
+local opts = {
+    silent = true, 
+    noremap = true, 
+    expr = true, 
+    replace_keycodes = false,
+}
 
 
 -- Undo
@@ -24,8 +29,12 @@ opt.mouse = "a"
 
 -- UI
 opt.number = true
+vim.o.termguicolors = true
 -- TODO: make this base 16
-vim.cmd "colorscheme onedark"
+-- vim.cmd "colorscheme onedark"
+
+-- Terminal
+opt.shell = "zsh"
 
 -- QOL
 opt.smartcase = true
