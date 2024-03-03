@@ -89,5 +89,5 @@ case $1 in
     "flake")
         (cd /home/$USER/nix && update_flake);;
     *)
-    echo "Options are home, system, set, packages, flake and fresh (untested)"
+    echo "Options are home, system, set, packages, flake and fresh (might work)"
 esac
