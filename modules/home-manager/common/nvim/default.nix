@@ -37,7 +37,7 @@ in
     lunarvim
   ];
 
-  zsh.shellAliases = {
+  programs.zsh.shellAliases = {
     vi = "lvim";
     vim = "lvim";
     nvim = "lvim";

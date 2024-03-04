@@ -6,7 +6,7 @@
 -- vim options
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 -- general
 lvim.log.level = "info"
@@ -21,7 +21,11 @@ lvim.format_on_save = {
 -- keymappings <https://www.lunarvim.org/docs/configuration/keybindings>
 lvim.leader = "space"
 -- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.insert_mode["<C-s>"] = ":w<cr>"
+lvim.keys.insert_mode["<C-w>"] = ":bd<cr>"
+for i = 1, 9 do
+  lvim.keys.insert_mode["<C-" .. i .. ">"] = ":" .. i .. "b<cr>"
+end
 
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
