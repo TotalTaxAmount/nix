@@ -30,32 +30,7 @@
 │   ├── neofetch
 │   │   └── config.conf
 │   ├── nvim
-│   │   ├── configs
-│   │   │   ├── nvim-tree.lua
-│   │   │   ├── vim-airline.lua
-│   │   │   └── vim-buffet.lua
-│   │   ├── init.lua
-│   │   ├── parsers
-│   │   │   ├── parser
-│   │   │   │   ├── bash.so
-│   │   │   │   ├── c.so
-│   │   │   │   ├── gitcommit.so
-│   │   │   │   ├── ini.so
-│   │   │   │   ├── javascript.so
-│   │   │   │   ├── nix.so
-│   │   │   │   ├── vim.so
-│   │   │   │   └── yaml.so
-│   │   │   └── parser-info
-│   │   │       ├── bash.revision
-│   │   │       ├── c.revision
-│   │   │       ├── gitcommit.revision
-│   │   │       ├── ini.revision
-│   │   │       ├── javascript.revision
-│   │   │       ├── nix.revision
-│   │   │       ├── vim.revision
-│   │   │       └── yaml.revision
-│   │   └── utils
-│   │       └── utils.lua
+│   │   └── config.lua
 │   ├── rofi
 │   │   ├── config.rasi
 │   │   └── systemTheme.rasi
@@ -189,4 +164,4 @@
 │   └── custom.nix
 └── tree.txt
 
-66 directories, 124 files
+61 directories, 104 files
