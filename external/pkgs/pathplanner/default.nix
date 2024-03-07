@@ -1,8 +1,9 @@
 { fetchFromGitHub
-, buildFlutterApplication
+, flutter
+, lib
 }:
 
-buildFlutterApplication rec {
+flutter.buildFlutterApplication rec {
   pname = "pathplanner";
   version = "v2024.1.4";
 
@@ -12,6 +13,8 @@ buildFlutterApplication rec {
     rev = "db1bd38";
     hash = "";
   };
+
+  pubspecLock = lib.importJSON ./pubspec.lock.json;
 
 }
 

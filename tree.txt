@@ -83,7 +83,8 @@
 │       │   ├── default.nix
 │       │   └── package.json
 │       ├── pathplanner
-│       │   └── default.nix
+│       │   ├── default.nix
+│       │   └── pubspec.lock.json
 │       ├── rofi-copyq
 │       │   ├── better_type.patch
 │       │   └── default.nix
@@ -166,4 +167,4 @@
 │   └── custom.nix
 └── tree.txt
 
-62 directories, 105 files
+62 directories, 106 files
