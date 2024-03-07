@@ -51,7 +51,15 @@ lvim.builtin.treesitter.auto_install = true
 -- -- always installed on startup, useful for parsers without a strict filetype
 -- lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "regex" }
 
--- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
+-- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-suppor
+
+require('nvim-treesitter.parsers').get_parser_configs().asm = {
+  install_info = {
+    url = 'https://github.com/rush-rs/tree-sitter-asm.git',
+    files = { 'src/parser.c' },
+    branch = 'main',
+  },
+}
 
 -- --- disable automatic installation of servers
 -- lvim.lsp.installer.setup.automatic_installation = false

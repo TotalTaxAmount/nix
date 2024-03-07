@@ -12,7 +12,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
-      ./wireguard
+#      ./wireguard
       inputs.sops-nix.nixosModules.default
     ];
   nix.settings.trusted-users = [ "totaltaxamount" /* TODO: use the user varbile*/ ];
@@ -41,10 +41,10 @@ in
     };
   };
 
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = true;
-  };
+ services.openssh = {
+   enable = true;
+   settings.PasswordAuthentication = true;
+ };
 
   services.supergfxd.enable = true;
 
@@ -60,9 +60,9 @@ in
       };
     };
 
-  programs.ssh = {
-    forwardX11 = true;
-  };
+ programs.ssh = {
+   forwardX11 = true;
+ };
   
   hardware = {
     opengl = {
@@ -110,18 +110,18 @@ in
   
 
 
-  sops = {
-    defaultSopsFile = ./secrets/secrets.yml;
+ sops = {
+   defaultSopsFile = ./secrets/secrets.yml;#
 
-    age = {
-      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-      keyFile = "/var/lib/sops-nix/key.txt";
-      generateKey = true;
-    };
-      
-    # Secrets
-    secrets."wireguard/private_key" = {};
-  };
+   age = {
+     sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+     keyFile = "/var/lib/sops-nix/key.txt";
+     generateKey = true;
+   };
+     
+   # Secrets
+   secrets."wireguard/private_key" = {};
+ };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."totaltaxamount" = {
@@ -151,7 +151,7 @@ in
   };
 
    # Needed for swaylock
-  security.pam.services.swaylock = {};
+  #security.pam.services.swaylock = {};
 
   # Why not home-manager??
   programs.steam = {
@@ -217,12 +217,11 @@ in
   # VMs
   virtualisation = {
     libvirtd.enable = true;
-    waydroid.enable = true;
+    # waydroid.enable = true;
     docker.enable = false;
 
     podman = {
       enable = true;
-      enableNvidia = true;
 
       dockerCompat = true;
 

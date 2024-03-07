@@ -82,6 +82,8 @@
 │       │   ├── Cargo.lock
 │       │   ├── default.nix
 │       │   └── package.json
+│       ├── pathplanner
+│       │   └── default.nix
 │       ├── rofi-copyq
 │       │   ├── better_type.patch
 │       │   └── default.nix
@@ -159,9 +161,9 @@
 │   │       └── xplorer_json_storage.patch
 │   └── default.nix
 ├── README.md
-├── result -> /nix/store/ax6qk8xi6mpzpr2d6arc40jb0lp0kdww-home-manager-generation
+├── result -> /nix/store/zzdascjvhhrzbb1z5chniwibdzj96gx8-home-manager-generation
 ├── theme
 │   └── custom.nix
 └── tree.txt
 
-61 directories, 104 files
+62 directories, 105 files

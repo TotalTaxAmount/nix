@@ -78,6 +78,18 @@ in {
         version = "0.0.2";
         sha256 = "sha256-TVvjKdKXeExpnyUh+fDPl+eSdlQzh7lt8xSfw1YgtL4=";
       }
+      {
+        name = "asm-code-lens";
+        publisher = "maziac";
+        version = "2.6.0";
+        sha256 = "sha256-4p3kizvEqqsMNJOhyKxJQ0rH3ePjstKLWb22BYy3yZk=";
+      }
+    #  {
+    #    name = "yuck";
+    #    publisher = "eww-yuck";
+    #    version = "0.0.3";
+    #    sha256 = "sha256-DITgLedaO0Ifrttu+ZXkiaVA7Ua5RXc4jXQHPYLqrcM=";
+    #  }
     ]);
   };
 

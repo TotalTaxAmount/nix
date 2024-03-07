@@ -1,6 +1,7 @@
 * {
 	all: unset;
 	font-family: @font@;
+
 }
 
 .bar {
@@ -26,6 +27,7 @@ tooltip label {
 	color: @base05@;
 
 	.battery_icon {
+		font-family: "Font Awesome 6 Free Solid";
 		padding: 10px 10px;
 		font-size: 1em;
 	}

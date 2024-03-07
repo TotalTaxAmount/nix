@@ -13,6 +13,7 @@ let
   flight-core = pkgs.callPackage ../../../external/pkgs/flightcore {};
   schemer2 = pkgs.callPackage ../../../external/pkgs/schemer2 {};
   rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq {};
+  pathplanner = pkgs.callPackage ../../../external/pkgs/pathplanner {};
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -88,6 +89,7 @@ in
       firefox
       android-studio
       element-desktop
+      pathplanner
       ghidra
 #      kicad
 
@@ -121,7 +123,6 @@ in
       asusctl
 
       #Customization
-      nerdfonts
       swww
 
       # Langs and compilers
@@ -151,8 +152,12 @@ in
 
       # Virt
       distrobox
-      
+
+      # Fonts
+      nerdfonts
+      font-awesome
     ];
+
 
     programs.spicetify = {
       enable = true;
