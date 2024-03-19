@@ -12,7 +12,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
-#      ./wireguard
+      ./wireguard
       inputs.sops-nix.nixosModules.default
     ];
   nix.settings.trusted-users = [ "totaltaxamount" /* TODO: use the user varbile*/ ];
@@ -65,6 +65,7 @@ in
  };
   
   hardware = {
+    enableRedistributableFirmware = true;
     opengl = {
     	enable = true;
       driSupport = true;
@@ -140,7 +141,7 @@ in
     sqlite
     libnotify
     pinentry-curses
-    xwaylandvideobridge
+    # xwaylandvideobridge
   ];
 
   # Need this for gdm to work

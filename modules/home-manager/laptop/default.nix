@@ -83,12 +83,12 @@ in
       # Apps
       gimp
       audacity
-      qFlipper
-      discord 
+      qFlipper 
       prismlauncher-qt5
-      firefox
+      firefox-devedition
       android-studio
       element-desktop
+      vesktop
       pathplanner
       ghidra
 #      kicad
@@ -172,6 +172,8 @@ in
         powerBar
       ];
     };
+
+    
 
     services.kdeconnect = {
       enable = true;

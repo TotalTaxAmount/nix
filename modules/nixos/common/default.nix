@@ -92,10 +92,9 @@
 
   nix.gc = {
     automatic = true;
-    dates = "weekly";
-    persistent = true;
-    options = "--delete-older-than 7d";
+    options = "--delete-older-than 30d";
   };
+  
   nix.settings.auto-optimise-store = true;
 
   system.stateVersion = "23.05"; # Did you read the comment?

@@ -65,6 +65,11 @@ in {
       userName = "TotalTaxAmount";
     };
 
+    nix.gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+    };
+
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
      # This value determines the Home Manager release that your configuration is
