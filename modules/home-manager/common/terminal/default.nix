@@ -62,7 +62,7 @@ in {
             update = "/home/${user}/nix/build.sh";
             cat = "bat";
             open = "stupidAlias";
-            ls = "eza -l --icons";
+            ls = "exa -l --icons";
          };
          enableCompletion = true;
          # history = {

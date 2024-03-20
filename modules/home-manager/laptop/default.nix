@@ -91,6 +91,7 @@ in
       vesktop
       pathplanner
       ghidra
+      pulseview
 #      kicad
 
       # fluent-reader
