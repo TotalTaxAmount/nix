@@ -43,5 +43,6 @@
     in {
         homeConfigurations = import ./outputs/home.nix {inherit inputs system user;};
         nixosConfigurations = import ./outputs/nixos.nix {inherit inputs system user;};
+        iso = import ./outputs/iso.nix {inherit inputs system user; };
     };
 }
