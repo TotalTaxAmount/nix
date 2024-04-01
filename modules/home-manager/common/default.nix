@@ -1,7 +1,7 @@
 { config, pkgs, inputs, user, ... }:
 
 let 
-  customThemes = import ../../theme/custom.nix;
+  customThemes = import ../../../theme/custom.nix;
   base16Themes = inputs.nix-colors.colorSchemes;
 
   # Flake stuff
@@ -30,6 +30,9 @@ in {
   config = {  
     home.username = user;
     home.homeDirectory = "/home/${user}";
+
+    colorScheme = customThemes.onedark-darker;
+    font = "FiraCode Nerd Font";
 
     # Unfree stuff/Insecure
     nixpkgs.config.allowUnfree = true;

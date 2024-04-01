@@ -37,7 +37,7 @@ nom_build() {
 }
 
 package_update() {
-    sudo nixos-rebuild switch --flake .#$HOST --upgrade
+    sudo nixos-rebuild switch --flake .#system.$HOST --upgrade
 }
 
 rebuild_home() {

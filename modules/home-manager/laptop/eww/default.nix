@@ -33,12 +33,12 @@ let
     font = "${config.font}";
     scriptdir = "${scriptDir}";  # TODO: Why do I have to do it this way??
   };
+
 in
 {
-  programs.eww = {
-    enable = true;
-    configDir = configDir.out;
-  };
-
-  home.packages = with pkgs; [bc];
+  home.file.".config/eww".source = configDir.out;
+  home.packages = with pkgs; [
+    bc
+    eww
+  ];
 }
