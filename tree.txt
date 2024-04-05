@@ -146,6 +146,8 @@
 │       │   ├── hardware.nix
 │       │   ├── secrets
 │       │   │   └── secrets.yml
+│       │   ├── vfio
+│       │   │   └── default.nix
 │       │   └── wireguard
 │       │       └── default.nix
 │       └── remote
@@ -161,9 +163,9 @@
 │   │       └── xplorer_json_storage.patch
 │   └── default.nix
 ├── README.md
-├── result -> /nix/store/3bps7vh1x47ac906k1c246idlnfrwrkc-home-manager-generation
+├── result -> /nix/store/g5ialwjbdv679y5h7w123xqvkb3mwi18-home-manager-generation
 ├── theme
 │   └── custom.nix
 └── tree.txt
 
-62 directories, 105 files
+63 directories, 106 files

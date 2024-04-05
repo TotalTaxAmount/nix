@@ -16,7 +16,7 @@ in {
         {
           publicKey = "kE24u6RmvQDkOT8JSgx7tHzkwkeRywh8ofA6NLel9z0=";
           allowedIPs = [ "0.0.0.0/0" ];
-          endpoint = "totaltax.dev:51820";
+          endpoint = "wg.totaltax.dev:51820";
           persistentKeepalive = 25;
         }
       ];

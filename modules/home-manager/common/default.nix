@@ -31,8 +31,8 @@ in {
     home.username = user;
     home.homeDirectory = "/home/${user}";
 
-    colorScheme = customThemes.onedark-darker;
-    font = "FiraCode Nerd Font";
+    # colorScheme = customThemes.onedark-darker;
+    # font = "FiraCode Nerd Font";
 
     # Unfree stuff/Insecure
     nixpkgs.config.allowUnfree = true;

@@ -192,14 +192,14 @@ in
       userName = "TotalTaxAmount";
     };
 
-    gtk = {
-      enable = true;
+    # gtk = {
+    #   enable = true;
 
-      theme = {
-        package = nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-        name = "test";
-      };
-    };
+    #   theme = {
+    #     package = nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
+    #     name = "test";
+    #   };
+    # };
 
     # Random files
     home.file.".config/mimeapps.list".source = ../../../dots/mimeapps.list;

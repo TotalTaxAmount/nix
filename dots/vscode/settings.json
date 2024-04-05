@@ -40,4 +40,10 @@
     "terminal.integrated.cursorBlinking": true,
     "vsicons.dontShowNewVersionMessage": true,
     "css.lint.unknownProperties": "ignore",
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/.hg/store/**": true
+    }    
 }
