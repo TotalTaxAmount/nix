@@ -13,6 +13,7 @@ in
     [ # Include the results of the hardware scan.
       ./hardware.nix
       ./wireguard
+      ./vfio
       inputs.sops-nix.nixosModules.default
     ];
   nix.settings.trusted-users = [ "totaltaxamount" /* TODO: use the user varbile*/ ];
@@ -83,7 +84,7 @@ in
     flipperzero.enable = true;
 
     nvidia = {
-      modesetting.enable = true; 
+      modesetting.enable =  true; 
       powerManagement = {
         enable = true;
       };
@@ -214,9 +215,14 @@ in
     	HandlePowerKey=ignore
   '';
 
+  specialisation."VFIO".configuration = {
+    system.nixos.tags = [ "with-vfio" ];
+    vfio.enable = true;
+  };
+
   # VMs
   virtualisation = {
-    libvirtd.enable = true;
+    # libvirtd.enable = true;
     # waydroid.enable = true;
     docker.enable = false;
 

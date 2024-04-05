@@ -98,7 +98,7 @@ in
       nomacs
       bottles
       qbittorrent
-      virt-manager
+      # virt-manager
       blender
       slack
 

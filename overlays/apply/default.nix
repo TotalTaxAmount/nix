@@ -19,6 +19,21 @@ final: prev:
   #   '';
   # });
 
+  qemu-patched = prev.qemu.overrideAttrs ( old: {
+    src = prev.fetchurl {
+      url = "https://download.qemu.org/qemu-8.2.0.tar.xz";
+      hash = "sha256-l2Ox7+xP1JeWtQgNCINRLXDLY4nq1lxmHMNoalIjKJY=";
+    };
+    patches = (
+      (old.patches or []) ++ [
+        (prev.fetchurl {
+          url = "https://raw.githubusercontent.com/zhaodice/qemu-anti-detection/496124b175716f99edac49a37012f5b55946a76e/qemu-8.2.0.patch";
+          hash = "sha256-zCF/eb8quODgcNC3Rpcf2zQcriWoTzYTnprCSbh98yo=";
+        })
+      ] 
+    );
+  });
+
   xplorer = prev.xplorer.overrideAttrs (old: {
     postInstall = old.postInstall + ''
       mkdir -p $out/share/applications

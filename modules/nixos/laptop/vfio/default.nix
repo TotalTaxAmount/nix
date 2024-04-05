@@ -15,12 +15,11 @@ in { pkgs, lib, config, ... }: {
         "vfio_pci"
         "vfio"
         "vfio_iommu_type1"
-        "vfio_virqfd"
 
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
+        # "nvidia"
+        # "nvidia_modeset"
+        # "nvidia_uvm"
+        # "nvidia_drm"
       ];
 
       kernelParams = [
@@ -31,7 +30,23 @@ in { pkgs, lib, config, ... }: {
         ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs);
     };
 
-    hardware.opengl.enable = true;
-    virtualisation.spiceUSBRedirection.enable = true;
+    hardware = {
+      opengl.enable = true;
+      # nvidia.prime.offload.enable = lib.optionals cfg.enable ([false]);
+    };
+    virtualisation = {
+      spiceUSBRedirection.enable = cfg.enable;
+      libvirtd.enable = cfg.enable;
+    };
+
+    programs.virt-manager.enable = cfg.enable;
+    environment.systemPackages = with pkgs; [ ] ++ lib.optional cfg.enable (qemu-patched);
+    boot.kernelPackages = lib.mkIf (cfg.enable) pkgs.linuxKernel.packages.linux_6_8;
+    boot.kernelPatches = lib.mkIf (cfg.enable) [
+      {
+        name = "fake-rdtsc";
+        patch = ./linux-fake-rdtsc.patch;
+      }
+    ];
   };
 }

@@ -147,7 +147,8 @@
 │       │   ├── secrets
 │       │   │   └── secrets.yml
 │       │   ├── vfio
-│       │   │   └── default.nix
+│       │   │   ├── default.nix
+│       │   │   └── linux-fake-rdtsc.patch
 │       │   └── wireguard
 │       │       └── default.nix
 │       └── remote
@@ -168,4 +169,4 @@
 │   └── custom.nix
 └── tree.txt
 
-63 directories, 106 files
+63 directories, 107 files
