@@ -148,7 +148,8 @@
 │       │   │   └── secrets.yml
 │       │   ├── vfio
 │       │   │   ├── default.nix
-│       │   │   └── linux-fake-rdtsc.patch
+│       │   │   ├── linux-fake-rdtsc.patch
+│       │   │   └── OVMF.nix
 │       │   └── wireguard
 │       │       └── default.nix
 │       └── remote
@@ -164,9 +165,9 @@
 │   │       └── xplorer_json_storage.patch
 │   └── default.nix
 ├── README.md
-├── result -> /nix/store/g5ialwjbdv679y5h7w123xqvkb3mwi18-home-manager-generation
+├── result -> /nix/store/askirgwgpdh4h28x9m7bnx1qpxlgpqah-home-manager-generation
 ├── theme
 │   └── custom.nix
 └── tree.txt
 
-63 directories, 107 files
+63 directories, 108 files
