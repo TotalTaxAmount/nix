@@ -3,7 +3,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, inputs, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, user, ... }:
 
 let
 
@@ -34,7 +34,7 @@ in
       variant = "";
     };
     enable = true;
-    videoDrivers = ["nvidia"];
+    videoDrivers = lib.mkDefault ["nvidia"];
 
     displayManager.gdm = {
       enable = true;
@@ -84,9 +84,9 @@ in
     flipperzero.enable = true;
 
     nvidia = {
-      modesetting.enable =  true; 
+      modesetting.enable = lib.mkDefault true; 
       powerManagement = {
-        enable = true;
+        enable = lib.mkDefault true;
       };
       open = false;
       nvidiaSettings = true;
@@ -188,7 +188,7 @@ in
 
   # Boot loader
   boot.kernelParams = [ 
-    "video=eDP-1:1920x1080@60" # TODO: There is def a better way to do this...
+   # "video=eDP-1:1920x1080@60" # TODO: There is def a better way to do this...
     "systemd.unified_cgroup_hierarchy=0"
     #"amd_iommu=on" # GPU passthough
    ];
@@ -199,7 +199,6 @@ in
     "vm.max_map_count" = 16777216;
     "fs.file-max" = 524288;
   };
-
   boot.loader = {
     efi = {
       efiSysMountPoint = "/boot";
@@ -233,5 +232,11 @@ in
 
       defaultNetwork.settings.dns_enabled = true;
     };
+  };
+
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
   };
 }

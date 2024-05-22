@@ -16,7 +16,7 @@ let
 in {
   laptop = nixosSystem {
     inherit pkgs system; # TODO fix!
-    specialArgs = {inherit inputs;};
+    specialArgs = {inherit inputs user;};
     modules = [
       ../modules/nixos/common
       ../modules/nixos/laptop/hardware.nix

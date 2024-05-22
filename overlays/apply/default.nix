@@ -22,7 +22,7 @@ final: prev:
   qemu-patched = prev.qemu.overrideAttrs ( old: {
     src = prev.fetchurl {
       url = "https://download.qemu.org/qemu-8.2.0.tar.xz";
-      hash = "sha256-l2Ox7+xP1JeWtQgNCINRLXDLY4nq1lxmHMNoalIjKJY=";
+      hash = "sha256-vwDS+hIBDfiwrekzcd71jmMssypr/cX1oP+Oah+xvzI=";
     };
     patches = (
       (old.patches or []) ++ [

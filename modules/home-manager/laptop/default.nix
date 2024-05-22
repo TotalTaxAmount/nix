@@ -14,6 +14,7 @@ let
   schemer2 = pkgs.callPackage ../../../external/pkgs/schemer2 {};
   rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq {};
   pathplanner = pkgs.callPackage ../../../external/pkgs/pathplanner {};
+  # gfn-electron = pkgs.callPackage ../../../external/pkgs/gfn-electron {};
 in
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -82,16 +83,17 @@ in
 
       # Apps
       gimp
-      audacity
+    #  audacity
       qFlipper 
-      prismlauncher-qt5
+      prismlauncher
       firefox-devedition
-      android-studio
+   #   android-studio
       element-desktop
       vesktop
       pathplanner
       ghidra
       pulseview
+      # gfn-electron
 #      kicad
 
       # fluent-reader
@@ -136,7 +138,7 @@ in
       jetbrains.idea-ultimate
 
       # Game utils
-      lutris
+  #    lutris
       wineWowPackages.waylandFull
    #   gamescope    
       winetricks
@@ -161,7 +163,7 @@ in
 
 
     programs.spicetify = {
-      enable = true;
+      enable = false;
       theme = spicePkgs.themes.Ziro;
       colorScheme = "ziro";
 
