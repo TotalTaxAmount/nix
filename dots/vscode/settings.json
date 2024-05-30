@@ -7,6 +7,8 @@
     "workbench.colorTheme": "onedark.nvim",
     "workbench.editor.enablePreview": false,
     "editor.fontFamily": "'@font@', 'monospace', monospace",
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2,
 
     // Git
     "git.enableSmartCommit": true,

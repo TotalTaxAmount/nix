@@ -12,7 +12,7 @@ flutter.buildFlutterApplication rec {
   src = fetchFromGitHub {
     owner = "mjansen4857";
     repo = pname;
-    rev = "db1bd38";
+    rev = version;
     hash = "sha256-8CDdY+l1PgqJeB9jVQeRS8vZR2us9rNnOXbuezPipww=";
   };
 
@@ -43,7 +43,7 @@ flutter.buildFlutterApplication rec {
 
   meta = with lib; {
     homepage = "https://pathplanner.dev/home.html";
-    description = "A tool for creating autonomus paths for First Robots";
+    description = "A tool for creating autonomus paths for the First Robotics Compitition";
     license = with licenses; [
       mit
     ];

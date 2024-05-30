@@ -216,3 +216,4 @@ File Structure:
 - [ ] Finish wireguard
     - [ ] Make wireguard easy to toggle
 - [ ] Setup VFIO stuff as a real module instead of the frankenstein that it is
+- [ ] Fix pathplanner (contribute to nixpkgs eventually)

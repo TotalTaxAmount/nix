@@ -90,7 +90,7 @@ in
    #   android-studio
       element-desktop
       vesktop
-      pathplanner
+   #   pathplanner
       ghidra
       pulseview
       # gfn-electron
@@ -116,7 +116,7 @@ in
       #Utils
       jq
       socat
-      nvtop
+#      nvtop
       glxinfo
       bat
       openal
@@ -144,7 +144,7 @@ in
       winetricks
       mangohud
       gamemode
-      inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
+     # inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
 
       # Screenshot
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast

@@ -170,7 +170,7 @@
 │   │       └── xplorer_json_storage.patch
 │   └── default.nix
 ├── README.md
-├── result -> /nix/store/askirgwgpdh4h28x9m7bnx1qpxlgpqah-home-manager-generation
+├── result -> /nix/store/0zbaraha81vjml7lv973si27m996xzsp-home-manager-generation
 ├── theme
 │   └── custom.nix
 └── tree.txt
