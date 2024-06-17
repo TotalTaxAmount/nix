@@ -99,8 +99,15 @@ in
        };
     };
 
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      package = pkgs.bluez-experimental;
+      settings.Policy.AutoEnable = "true";
+      settings.General.Enable = "Source,Sink,Media,Socket";
+    };
+
     xpadneo.enable = true;
-    bluetooth.enable = true;
     steam-hardware.enable = true;
   };
   services.blueman.enable = true;
@@ -138,13 +145,15 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alsa-utils
+    bluez-experimental
+    bluez-tools
+    bluez-alsa
     brightnessctl
     sqlite
     libnotify
     pinentry-curses
     # xwaylandvideobridge
   ];
-
   # Need this for gdm to work
   programs.hyprland = {
     enable = true;
@@ -162,7 +171,15 @@ in
      dedicatedServer.openFirewall = true;
   };
 
-  services.avahi.enable = true;
+  
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+  services.printing.enable = true;
+  
   services.pcscd.enable = true;
 
   programs.gnupg.agent = {

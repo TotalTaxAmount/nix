@@ -83,6 +83,7 @@ in
 
       # Apps
       gimp
+      spotify
     #  audacity
       qFlipper 
       prismlauncher
@@ -98,7 +99,7 @@ in
 
       # fluent-reader
       nomacs
-      bottles
+      #bottles
       qbittorrent
       # virt-manager
       blender
@@ -180,6 +181,14 @@ in
 
     services.kdeconnect = {
       enable = true;
+    };
+
+    services.spotifyd.enable = true;
+
+    services.avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
     };
   
     wayland.windowManager.hyprland = {
