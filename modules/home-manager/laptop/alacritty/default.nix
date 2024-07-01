@@ -7,7 +7,7 @@ in
 	  enable = true;	
      settings = {
       shell.program = "${pkgs.zsh}/bin/zsh";
-      shell.args = ["-l" "-c" "tmux || tmux attach"];
+      shell.args = ["-l" "-c" "tmux a || tmux"];
       cursor.style = "Underline";
       colors.primary.background = "#${config.colorScheme.colors.base00}";
       colors.primary.foreground = "#${config.colorScheme.colors.base05}";

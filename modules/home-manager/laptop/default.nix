@@ -184,12 +184,6 @@ in
     };
 
     services.spotifyd.enable = true;
-
-    services.avahi = {
-      enable = true;
-      nssmdns = true;
-      openFirewall = true;
-    };
   
     wayland.windowManager.hyprland = {
       enable = true;
