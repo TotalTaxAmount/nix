@@ -1,7 +1,7 @@
 { config, inputs, lib, pkgs, ... }:
 
 {
-  imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
+ # imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -55,9 +55,9 @@
     jack.enable = true;
     wireplumber.enable = true;
 
-    lowLatency = {
-      enable = true;
-    };
+#    lowLatency = {
+ #     enable = true;
+  #  };
   };
 
   environment.systemPackages = with pkgs; [

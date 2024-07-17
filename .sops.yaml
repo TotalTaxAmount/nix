@@ -10,9 +10,9 @@
 #   nix run nixpkgs#sops -- updatekeys [filename].
 
 keys:
-  - &admin_totaltax age15z26efrlkzyy9yut5m5twp4gmmd4s25zfwe5eqc2xw7sj5ptgp3qx6887r
+  - &admin_totaltax age1ep9m2ackk06q5clj3s4tqgjlld0hd9qhy83tgfkp2yl9s70azscs8zuvqf
 
-  - &host_laptop age1mv90crq5dyg9t0jah96kx2xq6s4vn2hs03tnwh8sn3fpd3h80feqjd8ayx
+  - &host_laptop age1dmh7zyq2x9me5v82lqean45c5dtzaks8l4crupl3axdv934lx56qy87u24
   - &host_remote age1glckwtavpgnv8cauzh9jqryxs367lm4tjf8fruvewl6exajh65aq4cqk8u
 
 creation_rules:

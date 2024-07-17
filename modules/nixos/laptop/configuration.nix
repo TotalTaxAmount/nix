@@ -67,11 +67,9 @@ in
   
   hardware = {
     enableRedistributableFirmware = true;
-    opengl = {
-    	enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-      setLdLibraryPath = true; 
+    graphics = {
+      enable = true;
+      enable32Bit = true;
 
       extraPackages = with pkgs; [
         intel-media-driver # LIBVA_DRIVER_NAME=iHD
@@ -231,25 +229,25 @@ in
     	HandlePowerKey=ignore
   '';
 
-  specialisation."VFIO".configuration = {
-    system.nixos.tags = [ "with-vfio" ];
-    vfio.enable = true;
-  };
+#  specialisation."VFIO".configuration = {
+ #   system.nixos.tags = [ "with-vfio" ];
+  #  vfio.enable = true;
+ # };
 
-  # VMs
+ # VMs
   virtualisation = {
-    # libvirtd.enable = true;
-    # waydroid.enable = true;
-    docker.enable = false;
+     libvirtd.enable = true;
+     waydroid.enable = true;
+     docker.enable = false;
 
-    podman = {
+     podman = {
       enable = true;
 
       dockerCompat = true;
 
       defaultNetwork.settings.dns_enabled = true;
     };
-  };
+ };
 
   security.pam.services.swaylock = {
     text = ''
