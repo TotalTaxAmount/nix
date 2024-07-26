@@ -72,15 +72,15 @@
 
   boot.loader = {
     systemd-boot.enable = false;
-    #efi = {
-      #canTouchEfiVariables = true;
-     # efiSysMountPoint = "/boot";
-    #};
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
     grub = {
       devices = [ "nodev" ];
       enable = true;
-     # efiSupport = true;
-      #useOSProber = true;
+     efiSupport = true;
+      useOSProber = true;
       extraEntries = ''
         menuentry "UEFI Firmware Settings" {
             echo "Booting into UEFI firmware settings..."
@@ -98,5 +98,5 @@
   
   nix.settings.auto-optimise-store = true;
 
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 }

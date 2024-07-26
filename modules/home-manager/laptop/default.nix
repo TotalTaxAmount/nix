@@ -96,6 +96,10 @@ in
       pulseview
       # gfn-electron
 #      kicad
+      gthumb
+      wl-screenrec
+      clapper
+      ffmpeg
 
       # fluent-reader
       nomacs
