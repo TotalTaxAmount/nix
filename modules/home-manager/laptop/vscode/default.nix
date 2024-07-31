@@ -64,6 +64,8 @@ in {
       vscode-icons-team.vscode-icons
       alefragnani.bookmarks
       streetsidesoftware.code-spell-checker
+      pkief.material-icon-theme
+      equinusocio.vsc-material-theme
 
     ] ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {

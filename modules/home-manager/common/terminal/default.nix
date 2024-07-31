@@ -122,5 +122,5 @@ in {
   xdg.configFile."zsh/plugins/zsh-autosuggestions".source = zsh-autosuggestions.out;
   xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source = zsh-syntax-highlighting.out;
   
-   home.file.".p10k.zsh".source = ../../../../dots/zsh/.p10k.zsh;
+  home.file.".p10k.zsh".source = ../../../../dots/zsh/.p10k.zsh;
 }

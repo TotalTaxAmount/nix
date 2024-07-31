@@ -100,6 +100,8 @@ in
       wl-screenrec
       clapper
       ffmpeg
+      killall
+      # zed-editor
 
       # fluent-reader
       nomacs
