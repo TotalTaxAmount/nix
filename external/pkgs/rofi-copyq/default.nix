@@ -13,4 +13,3 @@ python311Packages.buildPythonPackage rec {
 
   patches = [ ./better_type.patch ];
 }
-

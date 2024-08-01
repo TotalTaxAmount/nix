@@ -12,7 +12,8 @@ let
     base0D = "#${config.colorScheme.colors.base0D}";
     base0F = "#${config.colorScheme.colors.base0F}";
   };
-in {
+in
+{
   programs.btop = {
     enable = true;
     settings = {

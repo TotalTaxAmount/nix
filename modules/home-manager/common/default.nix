@@ -1,4 +1,10 @@
-{ config, pkgs, inputs, user, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  user,
+  ...
+}:
 
 let
   customThemes = import ../../../theme/custom.nix;
@@ -7,7 +13,8 @@ let
   # Flake stuff
   nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
 
-in {
+in
+{
   imports = [
     ./btop
     ./nvim
@@ -21,8 +28,7 @@ in {
     font = pkgs.lib.mkOption {
       type = pkgs.lib.types.str;
       example = "Noto Fonts";
-      description =
-        "\n        Name of system font (make sure its installed)\n      ";
+      description = "\n        Name of system font (make sure its installed)\n      ";
     };
   };
 

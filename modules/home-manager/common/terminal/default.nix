@@ -1,4 +1,9 @@
-{ pkgs, config, user, ... }:
+{
+  pkgs,
+  config,
+  user,
+  ...
+}:
 
 let
   # Tmux
@@ -35,7 +40,8 @@ let
     src = ../../../../dots/zsh/tmux.conf;
     base0D = "#${config.colorScheme.colors.base0D}";
   };
-in {
+in
+{
   programs = {
     tmux = {
       enable = true;
@@ -106,7 +112,10 @@ in {
       oh-my-zsh = {
         enable = true;
         custom = "/home/${user}/.config/zsh";
-        plugins = [ "zsh-syntax-highlighting" "zsh-autosuggestions" ];
+        plugins = [
+          "zsh-syntax-highlighting"
+          "zsh-autosuggestions"
+        ];
         extraConfig = "";
       };
     };
@@ -120,10 +129,8 @@ in {
   };
 
   # OMZ Plugins
-  xdg.configFile."zsh/plugins/zsh-autosuggestions".source =
-    zsh-autosuggestions.out;
-  xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source =
-    zsh-syntax-highlighting.out;
+  xdg.configFile."zsh/plugins/zsh-autosuggestions".source = zsh-autosuggestions.out;
+  xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source = zsh-syntax-highlighting.out;
 
   home.file.".p10k.zsh".source = ../../../../dots/zsh/.p10k.zsh;
 }

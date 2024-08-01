@@ -49,8 +49,7 @@
   sunset = {
     name = "Sunset";
     slug = "sunset";
-    author =
-      "Auto Base16 Theme (https =//github.com/makuto/auto-base16-theme/)";
+    author = "Auto Base16 Theme (https =//github.com/makuto/auto-base16-theme/)";
 
     palette = {
       base00 = "040003";
@@ -94,6 +93,30 @@
       base0D = "6fa1eb";
       base0E = "d38aea";
       base0F = "c35752";
+    };
+  };
+
+  material-ocean = {
+    slug = "material-ocean";
+    name = "Material Ocean";
+    author = "Material Theme";
+    palette = {
+      base00 = "0f111a";
+      base01 = "1b1f27";
+      base02 = "1f2329";
+      base03 = "4b5263";
+      base04 = "7c819c";
+      base05 = "d8dee9";
+      base06 = "e5e9f0";
+      base07 = "eceff4";
+      base08 = "bf616a";
+      base09 = "d08770";
+      base0A = "ebcb8b";
+      base0B = "a3be8c";
+      base0C = "88c0d0";
+      base0D = "81a1c1";
+      base0E = "b48ead";
+      base0F = "5e81ac";
     };
   };
 

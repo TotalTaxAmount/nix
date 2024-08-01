@@ -1,4 +1,9 @@
-{ pkgs, config, user, ... }:
+{
+  pkgs,
+  config,
+  user,
+  ...
+}:
 let
   scriptDir = builtins.dirOf ../../../../dots/eww/scripts/battery.sh;
   ewwCfg = pkgs.substituteAllFiles {
@@ -31,7 +36,8 @@ let
     font = "${config.font}";
     scriptdir = "${scriptDir}";
   };
-in {
+in
+{
   # xdg.configFile."eww".source = ewwCfg.out;
   programs.eww = {
     enable = true;
@@ -81,4 +87,3 @@ in {
 #     eww
 #   ];
 # }
-

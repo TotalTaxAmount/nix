@@ -1,4 +1,10 @@
-{ pkgs, lib, config, user, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  user,
+  ...
+}:
 let
   # RTX 3070 Ti
   gpuIDs = [
@@ -7,14 +13,22 @@ let
   ];
 
   cfg = config.vfio;
-in {
-  options.vfio.enable = with lib;
-    mkEnableOption "Configure the machine for VFIO";
+in
+{
+  options.vfio.enable = with lib; mkEnableOption "Configure the machine for VFIO";
 
   config = lib.mkIf (cfg.enable) {
     boot = {
-      initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
-      blacklistedKernelModules = [ "nvidia" "nvidiafb" "nouveau" ];
+      initrd.kernelModules = [
+        "vfio_pci"
+        "vfio"
+        "vfio_iommu_type1"
+      ];
+      blacklistedKernelModules = [
+        "nvidia"
+        "nvidiafb"
+        "nouveau"
+      ];
 
       extraModprobeConfig = ''
         options vfio_iommu_type1 allow_unsafe_interrupts=1 
@@ -35,9 +49,14 @@ in {
       ];
     };
 
-    hardware = { opengl.enable = true; };
+    hardware = {
+      opengl.enable = true;
+    };
 
-    services.xserver.videoDrivers = [ "modesetting" "fbdev" ];
+    services.xserver.videoDrivers = [
+      "modesetting"
+      "fbdev"
+    ];
 
     virtualisation = {
       spiceUSBRedirection.enable = true;
@@ -52,12 +71,18 @@ in {
           swtpm.enable = true;
         };
 
-        hooks.qemu = { win10 = ./win10.sh; };
+        hooks.qemu = {
+          win10 = ./win10.sh;
+        };
       };
     };
 
     users.users.totaltaxamount = {
-      extraGroups = [ "libvirtd" "kvm" "qemu-libvirtd" ];
+      extraGroups = [
+        "libvirtd"
+        "kvm"
+        "qemu-libvirtd"
+      ];
     };
 
     programs.virt-manager.enable = true;
@@ -71,9 +96,11 @@ in {
       '')
     ];
     boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
-    boot.kernelPatches = [{
-      name = "fake-rdtsc";
-      patch = ./linux-fake-rdtsc.patch;
-    }];
+    boot.kernelPatches = [
+      {
+        name = "fake-rdtsc";
+        patch = ./linux-fake-rdtsc.patch;
+      }
+    ];
   };
 }

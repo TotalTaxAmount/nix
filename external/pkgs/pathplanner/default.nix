@@ -1,4 +1,10 @@
-{ fetchFromGitHub, flutter, lib, libuuid, makeDesktopItem }:
+{
+  fetchFromGitHub,
+  flutter,
+  lib,
+  libuuid,
+  makeDesktopItem,
+}:
 
 flutter.buildFlutterApplication rec {
   pname = "pathplanner";
@@ -18,7 +24,10 @@ flutter.buildFlutterApplication rec {
     icon = pname;
     comment = "FRC auto tool";
     type = "Application";
-    categories = [ "Application" "Utility" ];
+    categories = [
+      "Application"
+      "Utility"
+    ];
     genericName = pname;
   };
 
@@ -34,9 +43,7 @@ flutter.buildFlutterApplication rec {
 
   meta = with lib; {
     homepage = "https://pathplanner.dev/home.html";
-    description =
-      "A tool for creating autonomus paths for the First Robotics Compitition";
+    description = "A tool for creating autonomus paths for the First Robotics Compitition";
     license = with licenses; [ mit ];
   };
 }
-

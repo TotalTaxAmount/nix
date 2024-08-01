@@ -1,4 +1,9 @@
-{ pkgs, config, user, ... }:
+{
+  pkgs,
+  config,
+  user,
+  ...
+}:
 # TODO: Make the theme a real extension in nix
 let
   vscodeThemeExtension = pkgs.substituteAllFiles {
@@ -49,11 +54,13 @@ let
     font = config.font;
     customcss = customcss.out;
   };
-in {
+in
+{
 
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions;
+    extensions =
+      with pkgs.vscode-extensions;
       [
         rust-lang.rust-analyzer
         ms-vscode.cpptools
@@ -68,7 +75,8 @@ in {
         pkief.material-icon-theme
         equinusocio.vsc-material-theme
 
-      ] ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      ]
+      ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "onedark";
           publisher = "bartoszmaka95";
@@ -96,9 +104,7 @@ in {
       ]);
   };
 
-  home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source =
-    vscodeThemeExtension.out;
+  home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source = vscodeThemeExtension.out;
   xdg.configFile."Code/User/settings.json".source = settings.out;
-  xdg.configFile."Code/User/keybindings.json".source =
-    ../../../../dots/vscode/keybinds.json;
+  xdg.configFile."Code/User/keybindings.json".source = ../../../../dots/vscode/keybinds.json;
 }

@@ -1,16 +1,21 @@
-{ pkgs, config, inputs, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}:
 
 let
 
-in {
+in
+{
   imports = [ inputs.nix-colors.homeManagerModule ];
 
   config = {
     colorScheme = inputs.nix-colors.colorSchemes.twilight;
 
-    home.packages = with pkgs;
-      [
+    home.packages = with pkgs; [
 
-      ];
+    ];
   };
 }

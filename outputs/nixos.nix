@@ -1,18 +1,28 @@
-{ inputs, system, user, ... }:
+{
+  inputs,
+  system,
+  user,
+  ...
+}:
 
 let
   inherit (inputs.nixpkgs.lib) nixosSystem;
 
   pkgs = import inputs.nixpkgs {
     inherit system;
-    config = { allowUnfree = true; };
+    config = {
+      allowUnfree = true;
+    };
     overlays = [ (import ../overlays) ];
   };
 
-in {
+in
+{
   laptop = nixosSystem {
     inherit pkgs system; # TODO fix!
-    specialArgs = { inherit inputs user; };
+    specialArgs = {
+      inherit inputs user;
+    };
     modules = [
       ../modules/nixos/common
       ../modules/nixos/laptop/hardware.nix
@@ -22,7 +32,9 @@ in {
 
   desktop = nixosSystem {
     inherit pkgs system;
-    specialArgs = { inherit inputs; };
+    specialArgs = {
+      inherit inputs;
+    };
     modules = [
       inputs.sops-nix.nixosModules.sops
       ../modules/nixos/common
@@ -33,7 +45,9 @@ in {
 
   remote = nixosSystem {
     inherit pkgs system;
-    specialArgs = { inherit inputs; };
+    specialArgs = {
+      inherit inputs;
+    };
     modules = [
       inputs.sops-nix.nixosModules.sops
       ../modules/nixos/common

@@ -2,12 +2,21 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, inputs, lib, pkgs, user, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  user,
+  ...
+}:
 
 let
 
-in {
-  imports = [ # Include the results of the hardware scan.
+in
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware.nix
     ./wireguard
     ./vfio
@@ -53,10 +62,14 @@ in {
 
   systemd = {
     enableCgroupAccounting = true;
-    services = { asusd.wantedBy = lib.mkForce [ "multi-user.target" ]; };
+    services = {
+      asusd.wantedBy = lib.mkForce [ "multi-user.target" ];
+    };
   };
 
-  programs.ssh = { forwardX11 = true; };
+  programs.ssh = {
+    forwardX11 = true;
+  };
 
   hardware = {
     enableRedistributableFirmware = true;
@@ -76,7 +89,9 @@ in {
 
     nvidia = {
       modesetting.enable = lib.mkDefault true;
-      powerManagement = { enable = lib.mkDefault true; };
+      powerManagement = {
+        enable = lib.mkDefault true;
+      };
       open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -123,7 +138,12 @@ in {
     isNormalUser = true;
     description = "Coen Shields";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "docker"
+    ];
     packages = with pkgs; [ ];
   };
 
@@ -177,17 +197,21 @@ in {
     nftables.enable = false;
     firewall = {
       enable = true;
-      allowedTCPPortRanges = [{
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
-        ];
+      allowedTCPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+        # KDE Connect
+      ];
 
-      allowedUDPPortRanges = [{
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
-        ];
+      allowedUDPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+        # KDE Connect
+      ];
       allowedTCPPorts = [
         22 # SSH
       ];
@@ -201,7 +225,10 @@ in {
     #"amd_iommu=on" # GPU passthough
   ];
   boot.supportedFilesystems = [ "nfs" ];
-  boot.kernelModules = [ "kvm-amd" "kvm-intel" ];
+  boot.kernelModules = [
+    "kvm-amd"
+    "kvm-intel"
+  ];
   boot.tmp.cleanOnBoot = true;
   boot.kernel.sysctl = {
     "vm.max_map_count" = 16777216;
@@ -213,7 +240,9 @@ in {
       canTouchEfiVariables = true;
     };
 
-    grub = { efiSupport = true; };
+    grub = {
+      efiSupport = true;
+    };
   };
 
   services.logind.extraConfig = ''

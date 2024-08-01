@@ -1,4 +1,10 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
@@ -23,7 +29,10 @@
   };
 
   # Experimental
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # system.autoUpgrade = { Might be breaking shitl
   #   enable = true;
@@ -31,15 +40,22 @@
   # };
 
   fonts = {
-    packages = with pkgs;
-      [
-        (nerdfonts.override { fonts = [ "Overpass" "FiraCode" "Noto" ]; })
+    packages = with pkgs; [
+      (nerdfonts.override {
+        fonts = [
+          "Overpass"
+          "FiraCode"
+          "Noto"
+        ];
+      })
 
-      ];
+    ];
 
     fontconfig = {
       enable = true;
-      defaultFonts = { emoji = [ "Noto Emoji" ]; };
+      defaultFonts = {
+        emoji = [ "Noto Emoji" ];
+      };
     };
     enableDefaultPackages = true;
   };
@@ -62,7 +78,9 @@
 
   environment.systemPackages = with pkgs; [ nix-output-monitor ];
 
-  programs.zsh = { enable = true; };
+  programs.zsh = {
+    enable = true;
+  };
 
   boot.loader = {
     systemd-boot.enable = false;

@@ -1,13 +1,24 @@
-{ config, inputs, lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
-let user = "totaltaxamount";
-in {
-  imports = [ # Include the results of the hardware scan.
+let
+  user = "totaltaxamount";
+in
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware.nix
   ];
 
   nix.settings.trusted-users = [ user ];
-  services.openvscode-server = { enable = true; };
+  services.openvscode-server = {
+    enable = true;
+  };
 
   services.openssh = {
     enable = true;
@@ -28,7 +39,12 @@ in {
     isNormalUser = true;
     description = "Coen Shields";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "docker"
+    ];
     packages = with pkgs; [ ];
   };
 
@@ -63,10 +79,12 @@ in {
       ];
     };
 
-    interfaces.ens18.ipv4.addresses = [{
-      address = "10.1.10.104";
-      prefixLength = 24;
-    }];
+    interfaces.ens18.ipv4.addresses = [
+      {
+        address = "10.1.10.104";
+        prefixLength = 24;
+      }
+    ];
 
     defaultGateway = "10.1.10.1";
     nameservers = [ "1.1.1.1" ];
@@ -84,7 +102,10 @@ in {
   };
 
   # Boot loader
-  boot.kernelModules = [ "kvm-amd" "kvm-intel" ]; # Needed for docker
+  boot.kernelModules = [
+    "kvm-amd"
+    "kvm-intel"
+  ]; # Needed for docker
   boot.tmp.cleanOnBoot = true;
 
   virtualisation = {

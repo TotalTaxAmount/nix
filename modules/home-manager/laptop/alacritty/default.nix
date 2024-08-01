@@ -1,12 +1,23 @@
-{ pkgs, config, lib, user, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  user,
+  ...
+}:
 let
 
-in {
+in
+{
   programs.alacritty = {
     enable = true;
     settings = {
       shell.program = "${pkgs.zsh}/bin/zsh";
-      shell.args = [ "-l" "-c" "tmux a || tmux" ];
+      shell.args = [
+        "-l"
+        "-c"
+        "tmux a || tmux"
+      ];
       cursor.style = "Underline";
       colors.primary.background = "#${config.colorScheme.colors.base00}";
       colors.primary.foreground = "#${config.colorScheme.colors.base05}";

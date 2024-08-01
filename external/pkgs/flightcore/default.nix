@@ -1,5 +1,13 @@
-{ lib, fetchFromGitHub, fetchNpmDeps, stdenv, nodejs_20, cargo-tauri
-, rustPlatform, buildNpmPackage }:
+{
+  lib,
+  fetchFromGitHub,
+  fetchNpmDeps,
+  stdenv,
+  nodejs_20,
+  cargo-tauri,
+  rustPlatform,
+  buildNpmPackage,
+}:
 
 let
   pname = "flight-core";
@@ -28,7 +36,8 @@ let
     distPhase = true;
   };
 
-in rustPlatform.buildRustPackage {
+in
+rustPlatform.buildRustPackage {
   inherit pname version src;
 
   sourceRoot = "${src.name}/src-tauri";
@@ -36,8 +45,7 @@ in rustPlatform.buildRustPackage {
   cargoLock = {
     lockFile = ./Cargo.lock;
     outputHashes = {
-      "tauri-plugin-store-0.1.0" =
-        "sha256-G7b1cIMr7YcI5cUhlYi4vhLFCe3/CMSPSB4gYY1Ynz8=";
+      "tauri-plugin-store-0.1.0" = "sha256-G7b1cIMr7YcI5cUhlYi4vhLFCe3/CMSPSB4gYY1Ynz8=";
     };
   };
 
