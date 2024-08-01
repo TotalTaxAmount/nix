@@ -1,6 +1,4 @@
-{ fetchFromGitHub
-, python311Packages
-}:
+{ fetchFromGitHub, python311Packages }:
 
 python311Packages.buildPythonPackage rec {
   pname = "rofi-copyq";
@@ -13,8 +11,6 @@ python311Packages.buildPythonPackage rec {
     hash = "sha256-xDxdKitVDonNhoNPMAoHizoaijQj9UQGSCPhWJOcB1w=";
   };
 
-  patches = [
-    ./better_type.patch
-  ];
+  patches = [ ./better_type.patch ];
 }
 

@@ -8,6 +8,7 @@
     "workbench.editor.enablePreview": false,
     "editor.fontFamily": "'JetBrains Mono Regular', 'Courier New', monospace",
     "editor.detectIndentation": false,
+    "editor.guides.indentation": false,
     "editor.tabSize": 2,
 
     "editor.renderWhitespace": "selection",
@@ -23,6 +24,8 @@
         "tab.activeBorder": "#0000"
     },
 
+    "workbench.tree.renderIndentGuides": "none",
+    "workbench.layoutControl.type": "menu",
     "editor.fontSize": 14,
     "editor.fontLigatures": true,
     "editor.fontVariations": true,

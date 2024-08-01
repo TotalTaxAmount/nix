@@ -1,7 +1,7 @@
 { config, inputs, lib, pkgs, ... }:
 
 {
- # imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
+  # imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
   networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -23,7 +23,7 @@
   };
 
   # Experimental
-  nix.settings.experimental-features = [ "nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # system.autoUpgrade = { Might be breaking shitl
   #   enable = true;
@@ -31,16 +31,15 @@
   # };
 
   fonts = {
-    packages = with pkgs; [
-        (nerdfonts.override {fonts = [ "Overpass" "FiraCode" "Noto"];})
-        
-    ];
+    packages = with pkgs;
+      [
+        (nerdfonts.override { fonts = [ "Overpass" "FiraCode" "Noto" ]; })
+
+      ];
 
     fontconfig = {
       enable = true;
-      defaultFonts = {
-        emoji = [ "Noto Emoji" ];
-      };
+      defaultFonts = { emoji = [ "Noto Emoji" ]; };
     };
     enableDefaultPackages = true;
   };
@@ -55,20 +54,15 @@
     jack.enable = true;
     wireplumber.enable = true;
 
-#    lowLatency = {
- #     enable = true;
-  #  };
+    #    lowLatency = {
+    #     enable = true;
+    #  };
   };
   services.gnome.gnome-keyring.enable = true;
 
-  environment.systemPackages = with pkgs; [
-        nix-output-monitor
-  ];
+  environment.systemPackages = with pkgs; [ nix-output-monitor ];
 
-
-  programs.zsh = {
-     enable = true; 
-  };
+  programs.zsh = { enable = true; };
 
   boot.loader = {
     systemd-boot.enable = false;
@@ -79,7 +73,7 @@
     grub = {
       devices = [ "nodev" ];
       enable = true;
-     efiSupport = true;
+      efiSupport = true;
       useOSProber = true;
       extraEntries = ''
         menuentry "UEFI Firmware Settings" {
@@ -95,7 +89,7 @@
     automatic = true;
     options = "--delete-older-than 30d";
   };
-  
+
   nix.settings.auto-optimise-store = true;
 
   system.stateVersion = "24.11"; # Did you read the comment?

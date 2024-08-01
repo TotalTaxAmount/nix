@@ -13,19 +13,11 @@ in {
 
   config = lib.mkIf (cfg.enable) {
     boot = {
-      initrd.kernelModules = [
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
-      ];
-      blacklistedKernelModules = [
-        "nvidia"
-        "nvidiafb"
-        "nouveau"
-      ];
+      initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
+      blacklistedKernelModules = [ "nvidia" "nvidiafb" "nouveau" ];
 
       extraModprobeConfig = ''
-      options vfio_iommu_type1 allow_unsafe_interrupts=1 
+        options vfio_iommu_type1 allow_unsafe_interrupts=1 
       '';
       kernelParams = [
         # enable IOMMU
@@ -40,17 +32,12 @@ in {
         # "hugepages=12"
         # "transparent_hugepage=never"
         ("vfio-pci.ids=" + lib.concatStringsSep "," gpuIDs)
-        ];
+      ];
     };
 
-    hardware = {
-      opengl.enable = true;
-    };
+    hardware = { opengl.enable = true; };
 
-    services.xserver.videoDrivers = [
-      "modesetting"
-      "fbdev"
-    ];  
+    services.xserver.videoDrivers = [ "modesetting" "fbdev" ];
 
     virtualisation = {
       spiceUSBRedirection.enable = true;
@@ -58,21 +45,19 @@ in {
         enable = true;
         qemu = {
           package = pkgs.qemu-patched;
-          ovmf= {
-            packages = [(pkgs.callPackage ./OVMF.nix {})];
+          ovmf = {
+            packages = [ (pkgs.callPackage ./OVMF.nix { }) ];
             enable = true;
           };
           swtpm.enable = true;
         };
 
-        hooks.qemu = {
-          win10 = ./win10.sh;
-        };
+        hooks.qemu = { win10 = ./win10.sh; };
       };
     };
 
     users.users.totaltaxamount = {
-      extraGroups = [ "libvirtd" "kvm" "qemu-libvirtd"];
+      extraGroups = [ "libvirtd" "kvm" "qemu-libvirtd" ];
     };
 
     programs.virt-manager.enable = true;
@@ -81,16 +66,14 @@ in {
       virt-manager
       win-virtio
       freerdp
-      (pkgs.writeShellScriptBin "rdp-connect"''
+      (pkgs.writeShellScriptBin "rdp-connect" ''
         ${pkgs.freerdp}/bin/xfreerdp /v:$1 /w:1920 /h:1080 /bpp:32 +clipboard +fonts /gdi:hw /rfx /rfx-mode:video /sound:sys:pulse +menu-anims +window-drag /u:$2
       '')
     ];
     boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
-    boot.kernelPatches =  [
-      {
-        name = "fake-rdtsc";
-        patch = ./linux-fake-rdtsc.patch;
-      }
-    ];
+    boot.kernelPatches = [{
+      name = "fake-rdtsc";
+      patch = ./linux-fake-rdtsc.patch;
+    }];
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs, config, ...}:
+{ pkgs, config, ... }:
 
 let
   swaylockConfig = pkgs.substituteAll {
@@ -9,8 +9,7 @@ let
     font = "${config.font}";
 
   };
-in
-{
+in {
   home.packages = with pkgs; [ swaylock-effects ];
 
   xdg.configFile."swaylock/config".source = swaylockConfig.out;

@@ -1,10 +1,12 @@
-{pkgs, config, lib, ...}:
+{ pkgs, config, lib, ... }:
 
 let
 
 in {
 
-  networking.firewall.allowedUDPPorts = [ 51820 /* Wireguard VPN */ ];
+  networking.firewall.allowedUDPPorts = [
+    51820 # Wireguard VPN
+  ];
   networking.firewall.trustedInterfaces = [ "wg0" ];
   networking.wg-quick.interfaces = {
     wg0 = {
@@ -12,14 +14,12 @@ in {
       dns = [ "1.1.1.1" ];
       privateKeyFile = config.sops.secrets."wireguard/private_key".path;
 
-      peers = [
-        {
-          publicKey = "kE24u6RmvQDkOT8JSgx7tHzkwkeRywh8ofA6NLel9z0=";
-          allowedIPs = [ "0.0.0.0/0" ];
-          endpoint = "wg.totaltax.dev:51820";
-          persistentKeepalive = 25;
-        }
-      ];
+      peers = [{
+        publicKey = "kE24u6RmvQDkOT8JSgx7tHzkwkeRywh8ofA6NLel9z0=";
+        allowedIPs = [ "0.0.0.0/0" ];
+        endpoint = "wg.totaltax.dev:51820";
+        persistentKeepalive = 25;
+      }];
     };
   };
 

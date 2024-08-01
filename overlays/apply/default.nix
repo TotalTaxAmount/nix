@@ -1,9 +1,7 @@
 final: prev:
 
 {
-  discord = prev.discord.override {
-     withVencord = true;
-  };  
+  discord = prev.discord.override { withVencord = true; };
   # btop = prev.btop.overrideAttrs (old: {
   #   src = prev.fetchFromGitHub {
   #     owner = "romner-set";
@@ -19,19 +17,18 @@ final: prev:
   #   '';
   # });
 
-  qemu-patched = prev.qemu.overrideAttrs ( old: {
+  qemu-patched = prev.qemu.overrideAttrs (old: {
     src = prev.fetchurl {
       url = "https://download.qemu.org/qemu-8.2.0.tar.xz";
       hash = "sha256-vwDS+hIBDfiwrekzcd71jmMssypr/cX1oP+Oah+xvzI=";
     };
-    patches = (
-      (old.patches or []) ++ [
-        (prev.fetchurl {
-          url = "https://raw.githubusercontent.com/zhaodice/qemu-anti-detection/496124b175716f99edac49a37012f5b55946a76e/qemu-8.2.0.patch";
-          hash = "sha256-zCF/eb8quODgcNC3Rpcf2zQcriWoTzYTnprCSbh98yo=";
-        })
-      ] 
-    );
+    patches = ((old.patches or [ ]) ++ [
+      (prev.fetchurl {
+        url =
+          "https://raw.githubusercontent.com/zhaodice/qemu-anti-detection/496124b175716f99edac49a37012f5b55946a76e/qemu-8.2.0.patch";
+        hash = "sha256-zCF/eb8quODgcNC3Rpcf2zQcriWoTzYTnprCSbh98yo=";
+      })
+    ]);
   });
 
   xplorer = prev.xplorer.overrideAttrs (old: {
@@ -48,17 +45,18 @@ final: prev:
       " >> $out/share/applications/xplorer.desktop
     '';
 
-    patches = (old.patches or [ ]) ++ [./patches/xplorer_json_storage.patch];
+    patches = (old.patches or [ ]) ++ [ ./patches/xplorer_json_storage.patch ];
   });
 
-  xwaylandvideobridge = prev.xwaylandvideobridge.overrideAttrs (old: {
-    # patches = [
-    #   ./patches/xwaylandvideobridge_hyprland.patch
-    # ];
-  });
+  xwaylandvideobridge = prev.xwaylandvideobridge.overrideAttrs (old:
+    {
+      # patches = [
+      #   ./patches/xwaylandvideobridge_hyprland.patch
+      # ];
+    });
 
   audacity = prev.audacity.overrideAttrs (old: {
-    postInstall = (old.postInstall or "") + ''
-    wrapProgram $out/bin/audacity --set GDK_BACKEND x11 --set UBUNTU_MENUPROXY 0'';
+    postInstall = (old.postInstall or "")
+      + "wrapProgram $out/bin/audacity --set GDK_BACKEND x11 --set UBUNTU_MENUPROXY 0";
   });
 }

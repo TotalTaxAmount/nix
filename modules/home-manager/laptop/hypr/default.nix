@@ -1,4 +1,4 @@
-{pkgs, config, user, ...}:
+{ pkgs, config, user, ... }:
 
 let
   hyprConfig = pkgs.substituteAll {
@@ -7,12 +7,11 @@ let
     base0D = "${config.colorScheme.colors.base0D}";
     user = "${user}";
   };
-in
-{
+in {
   wayland.windowManager.hyprland = {
     enable = true;
     # enableNvidiaPatches = true;
-    extraConfig = builtins.readFile hyprConfig.out;   
+    extraConfig = builtins.readFile hyprConfig.out;
   };
 
 }

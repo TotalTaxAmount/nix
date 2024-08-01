@@ -1,6 +1,6 @@
-{pkgs, config, user, ...}:
+{ pkgs, config, user, ... }:
 let
-  scriptDir =builtins.dirOf ../../../../dots/eww/scripts/battery.sh;
+  scriptDir = builtins.dirOf ../../../../dots/eww/scripts/battery.sh;
   ewwCfg = pkgs.substituteAllFiles {
     src = ../../../../dots/eww;
     files = [
@@ -39,8 +39,6 @@ in {
   };
   home.packages = with pkgs; [ bc ];
 }
-
-
 
 # { pkgs, config, ...}:
 
@@ -83,5 +81,4 @@ in {
 #     eww
 #   ];
 # }
-
 

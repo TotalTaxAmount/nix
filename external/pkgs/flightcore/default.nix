@@ -1,13 +1,5 @@
-{ 
-lib
-, fetchFromGitHub
-, fetchNpmDeps
-, stdenv 
-, nodejs_20
-, cargo-tauri
-, rustPlatform
-, buildNpmPackage
-}:
+{ lib, fetchFromGitHub, fetchNpmDeps, stdenv, nodejs_20, cargo-tauri
+, rustPlatform, buildNpmPackage }:
 
 let
   pname = "flight-core";
@@ -24,7 +16,7 @@ let
     inherit pname version src;
 
     sourceRoot = "${src.name}/src-vue";
-    
+
     npmDepsHash = "sha256-X5gOO/ynx+I69brGFhqXtFEhb0AQLqv2vA4eLo7rZkE=";
 
     buildPhase = ''
@@ -36,9 +28,7 @@ let
     distPhase = true;
   };
 
-
-in 
-rustPlatform.buildRustPackage {
+in rustPlatform.buildRustPackage {
   inherit pname version src;
 
   sourceRoot = "${src.name}/src-tauri";
@@ -46,7 +36,8 @@ rustPlatform.buildRustPackage {
   cargoLock = {
     lockFile = ./Cargo.lock;
     outputHashes = {
-      "tauri-plugin-store-0.1.0" = "sha256-G7b1cIMr7YcI5cUhlYi4vhLFCe3/CMSPSB4gYY1Ynz8=";
+      "tauri-plugin-store-0.1.0" =
+        "sha256-G7b1cIMr7YcI5cUhlYi4vhLFCe3/CMSPSB4gYY1Ynz8=";
     };
   };
 
@@ -57,7 +48,7 @@ rustPlatform.buildRustPackage {
 
     substituteInPlace tauri.conf.json --replace '"distDir": "../src-vue/dist",' '"distDir": "frontend-build/dist",'
   '';
-  
+
   meta = with lib; {
     description = "Flight Core";
     homepage = "https://github.com/R2NorthstarTools/FlightCore";

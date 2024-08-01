@@ -1,8 +1,8 @@
-{pkgs, config, ...}:
+{ pkgs, config, ... }:
 
 {
   services.dunst = {
-	  enable = true;
+    enable = true;
     settings = {
       global = {
         origin = "bottom-right";

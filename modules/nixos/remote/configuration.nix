@@ -1,19 +1,13 @@
 { config, inputs, lib, pkgs, ... }:
 
-let
-  user="totaltaxamount";
-in
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware.nix
-    ];
+let user = "totaltaxamount";
+in {
+  imports = [ # Include the results of the hardware scan.
+    ./hardware.nix
+  ];
 
   nix.settings.trusted-users = [ user ];
-  services.openvscode-server = {
-    enable = true;
-  };
-
+  services.openvscode-server = { enable = true; };
 
   services.openssh = {
     enable = true;
@@ -28,14 +22,14 @@ in
   #   forwardX11 = true;
   #   # setXAuthLocation = true;
   # };
-  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
     isNormalUser = true;
     description = "Coen Shields";
     shell = pkgs.zsh;
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker"];
-    packages = with pkgs; [];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "docker" ];
+    packages = with pkgs; [ ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -59,12 +53,14 @@ in
     pinentryFlavor = "curses";
     enableSSHSupport = true;
   };
-  
-  networking = { 
+
+  networking = {
     nftables.enable = false;
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 22 /* SSH */];
+      allowedTCPPorts = [
+        22 # SSH
+      ];
     };
 
     interfaces.ens18.ipv4.addresses = [{
@@ -88,7 +84,7 @@ in
   };
 
   # Boot loader
-  boot.kernelModules = [ "kvm-amd" "kvm-intel"]; # Needed for docker
+  boot.kernelModules = [ "kvm-amd" "kvm-intel" ]; # Needed for docker
   boot.tmp.cleanOnBoot = true;
 
   virtualisation = {

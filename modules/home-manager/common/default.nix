@@ -1,19 +1,19 @@
 { config, pkgs, inputs, user, ... }:
 
-let 
+let
   customThemes = import ../../../theme/custom.nix;
   base16Themes = inputs.nix-colors.colorSchemes;
 
   # Flake stuff
   nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
-  
+
 in {
   imports = [
     ./btop
     ./nvim
     ./neofetch
     ./terminal
-      
+
     inputs.nix-colors.homeManagerModule
 
   ];
@@ -21,13 +21,12 @@ in {
     font = pkgs.lib.mkOption {
       type = pkgs.lib.types.str;
       example = "Noto Fonts";
-      description = "
-        Name of system font (make sure its installed)
-      ";
+      description =
+        "\n        Name of system font (make sure its installed)\n      ";
     };
   };
 
-  config = {  
+  config = {
     home.username = user;
     home.homeDirectory = "/home/${user}";
 
@@ -59,8 +58,8 @@ in {
       nerdfonts
 
       # Langs and compilers
-      python3   
-    ];   
+      python3
+    ];
 
     programs.git = {
       enable = true;
@@ -75,7 +74,7 @@ in {
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
-     # This value determines the Home Manager release that your configuration is
+    # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
     # introduces backwards incompatible changes.
     # You should not change this value, even if you update Home Manager. If you do

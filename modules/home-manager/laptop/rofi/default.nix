@@ -1,4 +1,4 @@
-{ pkgs, config, ...}:
+{ pkgs, config, ... }:
 
 let
   rofiTheme = pkgs.substituteAll {
@@ -7,8 +7,7 @@ let
     base05 = "#${config.colorScheme.colors.base05}";
     base0D = "#${config.colorScheme.colors.base0D}";
   };
-in
-{
+in {
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;

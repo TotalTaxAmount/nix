@@ -8,34 +8,33 @@ let
   # Flake stuff
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
   nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
-  
+
   # Custom pkgs
-  flight-core = pkgs.callPackage ../../../external/pkgs/flightcore {};
-  schemer2 = pkgs.callPackage ../../../external/pkgs/schemer2 {};
-  rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq {};
-  pathplanner = pkgs.callPackage ../../../external/pkgs/pathplanner {};
+  flight-core = pkgs.callPackage ../../../external/pkgs/flightcore { };
+  schemer2 = pkgs.callPackage ../../../external/pkgs/schemer2 { };
+  rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq { };
+  pathplanner = pkgs.callPackage ../../../external/pkgs/pathplanner { };
   # gfn-electron = pkgs.callPackage ../../../external/pkgs/gfn-electron {};
-in
-{
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
 
   imports = [
-        ./hypr
-        ./alacritty
-        ./rofi
-        ./eww
-        ./dunst
-        ./swaylock
-        ./vscode
+    ./hypr
+    ./alacritty
+    ./rofi
+    ./eww
+    ./dunst
+    ./swaylock
+    ./vscode
 
-        # Flakes
-        inputs.spicetify-nix.homeManagerModule
-        inputs.nix-colors.homeManagerModule
-        inputs.sops-nix.homeManagerModule
+    # Flakes
+    inputs.spicetify-nix.homeManagerModule
+    inputs.nix-colors.homeManagerModule
+    inputs.sops-nix.homeManagerModule
   ];
 
-  config = {  
+  config = {
     # System theme
     # Use custom themes customThemes.[theme] (defined in themes/custom.nix) or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
     colorScheme = customThemes.onedark-darker;
@@ -46,11 +45,8 @@ in
 
     # Unfree stuff/Insecure
     nixpkgs.config.allowUnfree = true;
-    nixpkgs.config.permittedInsecurePackages = [
-      "qtwebkit-5.212.0-alpha4"
-    ];
+    nixpkgs.config.permittedInsecurePackages = [ "qtwebkit-5.212.0-alpha4" ];
 
-    
     # This value determines the Home Manager release that your configuration is
     # compatible with. This helps avoid breakage when a new Home Manager release
     # introduces backwards incompatible changes.
@@ -58,8 +54,6 @@ in
     # want to update the value, then make sure to first check the Home Manager
     # release notes.
     home.stateVersion = "23.05"; # Please read the comment before changing.
-
-  
 
     # The home.packages option allows you to install Nix packages into your
     # environment.
@@ -69,7 +63,7 @@ in
       # pkgs.hello
 
       # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
+      # # overrides. You can do that directly here, just don't forget the
       # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
       # # fonts?
       # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
@@ -84,18 +78,18 @@ in
       # Apps
       gimp
       spotify
-    #  audacity
-      qFlipper 
+      #  audacity
+      qFlipper
       prismlauncher
       firefox-devedition
-   #   android-studio
+      #   android-studio
       element-desktop
       vesktop
-   #   pathplanner
+      #   pathplanner
       ghidra
       pulseview
       # gfn-electron
-#      kicad
+      #      kicad
       gthumb
       wl-screenrec
       clapper
@@ -123,13 +117,13 @@ in
       #Utils
       jq
       socat
-#      nvtop
+      #      nvtop
       glxinfo
       bat
       openal
       qt5.full
       wget
-      rofi-copyq 
+      rofi-copyq
       asusctl
 
       #Customization
@@ -139,24 +133,24 @@ in
       python3
       nodejs
       gcc
-      
+
       # IDEs
- #     jetbrains.clion
+      #     jetbrains.clion
       jetbrains.idea-ultimate
 
       # Game utils
-  #    lutris
+      #    lutris
       wineWowPackages.waylandFull
-   #   gamescope    
+      #   gamescope    
       winetricks
       mangohud
       gamemode
-     # inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
+      # inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
 
       # Screenshot
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       slurp
-     
+
       # Clipboard
       copyq
 
@@ -167,7 +161,6 @@ in
       nerdfonts
       font-awesome
     ];
-
 
     programs.spicetify = {
       enable = false;
@@ -183,14 +176,10 @@ in
       ];
     };
 
-    
-
-    services.kdeconnect = {
-      enable = true;
-    };
+    services.kdeconnect = { enable = true; };
 
     services.spotifyd.enable = true;
-  
+
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -203,14 +192,15 @@ in
       userName = "TotalTaxAmount";
     };
 
-    # gtk = {
-    #   enable = true;
+    gtk = {
+      enable = true;
 
-    #   theme = {
-    #     package = nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-    #     name = "test";
-    #   };
-    # };
+      theme = {
+        package =
+          nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
+        name = "System";
+      };
+    };
 
     # Random files
     home.file.".config/mimeapps.list".source = ../../../dots/mimeapps.list;

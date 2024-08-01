@@ -1,7 +1,4 @@
-{ lib
-, buildGoPackage
-, fetchFromGitHub
-}:
+{ lib, buildGoPackage, fetchFromGitHub }:
 
 buildGoPackage rec {
   pname = "schemer2";

@@ -31,11 +31,8 @@ let
   #   };
   # };
 
-in
-{
-  home.packages = with pkgs; [
-    lunarvim
-  ];
+in {
+  home.packages = with pkgs; [ lunarvim ];
 
   programs.zsh.shellAliases = {
     vi = "lvim";
@@ -44,27 +41,27 @@ in
   };
 
   home.file.".config/lvim/config.lua".source = ../../../../dots/nvim/config.lua;
-#   programs.neovim = {
-#     enable = true;
-#     defaultEditor = true;
-#     extraConfig = ''luafile ${../../../../dots/nvim/init.lua}'';
-#     viAlias = true;
-#     vimAlias = true;
-#     plugins = with pkgs.vimPlugins; [
-#       vim-devicons
-#       vim-startify
-#       nvim-tree
-#       vim-airline
-#       vim-airline-theme
-#       vim-buffet
-#       onedark-vim
-#       nvim-lspconfig
-#       (nvim-treesitter.withPlugins (p: [p.cpp p.java p.lua p.nix p.bash p.yuck]))
-#     ];
+  #   programs.neovim = {
+  #     enable = true;
+  #     defaultEditor = true;
+  #     extraConfig = ''luafile ${../../../../dots/nvim/init.lua}'';
+  #     viAlias = true;
+  #     vimAlias = true;
+  #     plugins = with pkgs.vimPlugins; [
+  #       vim-devicons
+  #       vim-startify
+  #       nvim-tree
+  #       vim-airline
+  #       vim-airline-theme
+  #       vim-buffet
+  #       onedark-vim
+  #       nvim-lspconfig
+  #       (nvim-treesitter.withPlugins (p: [p.cpp p.java p.lua p.nix p.bash p.yuck]))
+  #     ];
 
-#     coc = {
-#         enable = true;
-# #      settings = pkgs.lib.fileContents
-#     };
+  #     coc = {
+  #         enable = true;
+  # #      settings = pkgs.lib.fileContents
+  #     };
   # };
 }
