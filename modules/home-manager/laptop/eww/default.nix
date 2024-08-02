@@ -26,12 +26,12 @@ let
       "eww.yuck"
       "nixos-icon.svg"
     ];
-    base00 = "#${config.colorScheme.colors.base00}";
-    base03 = "#${config.colorScheme.colors.base03}";
-    base05 = "#${config.colorScheme.colors.base05}";
-    base08 = "#${config.colorScheme.colors.base08}";
-    base0C = "#${config.colorScheme.colors.base0C}";
-    base0D = "#${config.colorScheme.colors.base0D}";
+    base00 = "#${config.colorScheme.palette.base00}";
+    base03 = "#${config.colorScheme.palette.base03}";
+    base05 = "#${config.colorScheme.palette.base05}";
+    base08 = "#${config.colorScheme.palette.base08}";
+    base0C = "#${config.colorScheme.palette.base0C}";
+    base0D = "#${config.colorScheme.palette.base0D}";
 
     font = "${config.font}";
     scriptdir = "${scriptDir}";
@@ -78,12 +78,12 @@ in
 #       "eww.yuck"
 #       "nixos-icon.svg"
 #     ];
-#     base00 = "#${config.colorScheme.colors.base00}";
-#     base03 = "#${config.colorScheme.colors.base03}";
-#     base05 = "#${config.colorScheme.colors.base05}";
-#     # base08 = "#${config.colorScheme.colors.base08}";
-#     # base0C = "#${config.colorScheme.colors.base0C}";
-#     base0D = "#${config.colorScheme.colors.base0D}";
+#     base00 = "#${config.colorScheme.palette.base00}";
+#     base03 = "#${config.colorScheme.palette.base03}";
+#     base05 = "#${config.colorScheme.palette.base05}";
+#     # base08 = "#${config.colorScheme.palette.base08}";
+#     # base0C = "#${config.colorScheme.palette.base0C}";
+#     base0D = "#${config.colorScheme.palette.base0D}";
 
 #     font = "${config.font}";
 #     scriptdir = "${scriptDir}";  # TODO: Why do I have to do it this way??

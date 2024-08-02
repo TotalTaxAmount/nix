@@ -18,7 +18,7 @@
         gap_size = 5;
         horizontal_padding = 3;
         frame_width = 2;
-        frame_color = "#${config.colorScheme.colors.base05}";
+        frame_color = "#${config.colorScheme.palette.base05}";
         separator_color = "frame";
         sort = true;
         idle_threshold = 120;
@@ -48,21 +48,21 @@
         close_all = "ctrl+shift+space";
       };
       urgency_low = {
-        background = "#${config.colorScheme.colors.base00}";
-        foreground = "#${config.colorScheme.colors.base05}";
-        frame_color = "#${config.colorScheme.colors.base0D}";
+        background = "#${config.colorScheme.palette.base00}";
+        foreground = "#${config.colorScheme.palette.base05}";
+        frame_color = "#${config.colorScheme.palette.base0D}";
         timeout = 8;
       };
       urgency_normal = {
-        background = "#${config.colorScheme.colors.base00}";
-        foreground = "#${config.colorScheme.colors.base05}";
-        frame_color = "#${config.colorScheme.colors.base0D}";
+        background = "#${config.colorScheme.palette.base00}";
+        foreground = "#${config.colorScheme.palette.base05}";
+        frame_color = "#${config.colorScheme.palette.base0D}";
         timeout = 8;
       };
       urgency_critical = {
-        background = "#${config.colorScheme.colors.base09}";
-        foreground = "#${config.colorScheme.colors.base00}";
-        frame_color = "#${config.colorScheme.colors.base0D}";
+        background = "#${config.colorScheme.palette.base09}";
+        foreground = "#${config.colorScheme.palette.base00}";
+        frame_color = "#${config.colorScheme.palette.base0D}";
         timeout = 0;
       };
     };

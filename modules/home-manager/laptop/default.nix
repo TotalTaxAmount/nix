@@ -16,8 +16,6 @@ let
   nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
 
   # Custom pkgs
-  flight-core = pkgs.callPackage ../../../external/pkgs/flightcore { };
-  schemer2 = pkgs.callPackage ../../../external/pkgs/schemer2 { };
   rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq { };
 in
 {
@@ -115,7 +113,6 @@ in
       neofetch
       file
       playerctl
-      schemer2
       base16-builder
       tree
 

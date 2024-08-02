@@ -38,7 +38,7 @@ let
   # Configs:
   tmuxConfig = pkgs.substituteAll {
     src = ../../../../dots/zsh/tmux.conf;
-    base0D = "#${config.colorScheme.colors.base0D}";
+    base0D = "#${config.colorScheme.palette.base0D}";
   };
 in
 {
@@ -102,7 +102,7 @@ in
         source /home/${user}/.p10k.zsh'';
       initExtra = ''
         POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
-        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.colors.base0D}"
+        ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.palette.base0D}"
 
         stupidAlias() {
            xdg-open $1
