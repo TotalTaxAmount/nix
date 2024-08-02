@@ -6,10 +6,10 @@
     :monitor 0
     :geometry (geometry
       :x "10px"
-      :y "70px"
+      :y "12px"
       :anchor "top left"
       :width "350px"
-      :height "550px"
+      :height "225px"
     )
     (box
       :class "system_container"
@@ -23,7 +23,8 @@
       (circular-progress
         :value {EWW_DISK["/"].used_perc}
         :class "disks"
-        (label :text "D"
+        :thickness 15
+        (label :text "🖴"
           :class "disks_icon"
           :tooltip "${EWW_DISK['/'].used_perc}% Disk usage"
           :limit-width 2

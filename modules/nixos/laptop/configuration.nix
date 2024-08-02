@@ -61,7 +61,7 @@ in
   };
 
   systemd = {
-    enableCgroupAccounting = true;
+    # enableCgroupAccounting = true;
     services = {
       asusd.wantedBy = lib.mkForce [ "multi-user.target" ];
     };
@@ -221,7 +221,7 @@ in
   # Boot loader
   boot.kernelParams = [
     # "video=eDP-1:1920x1080@60" # TODO: There is def a better way to do this...
-    "systemd.unified_cgroup_hierarchy=0"
+    # "systemd.unified_cgroup_hierarchy=0"
     #"amd_iommu=on" # GPU passthough
   ];
   boot.supportedFilesystems = [ "nfs" ];

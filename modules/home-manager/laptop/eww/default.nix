@@ -36,14 +36,22 @@ let
     font = "${config.font}";
     scriptdir = "${scriptDir}";
   };
+
+  ewwCfgPatch = pkgs.runCommand "fix-scripts" { } ''
+    mkdir -p $out
+    cp -r ${ewwCfg.out}/* $out
+    chmod +x $out/scripts/*.sh
+  '';
 in
 {
+
   # xdg.configFile."eww".source = ewwCfg.out;
   programs.eww = {
     enable = true;
-    configDir = ewwCfg.out;
+    configDir = ewwCfgPatch.out;
   };
   home.packages = with pkgs; [ bc ];
+
 }
 
 # { pkgs, config, ...}:
