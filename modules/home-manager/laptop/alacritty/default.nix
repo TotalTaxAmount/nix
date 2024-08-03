@@ -6,7 +6,11 @@
   ...
 }:
 let
-
+  scripts = pkgs.runCommand "fix-scripts" { } ''
+    mkdir -p $out
+    cp -r ${../../../../dots/alacritty}/* $out
+    chmod +x $out/*.sh
+  '';
 in
 {
   programs.alacritty = {
@@ -16,7 +20,7 @@ in
       shell.args = [
         "-l"
         "-c"
-        "tmux new-session || tmux"
+        "${scripts.out}/tmux-attach.sh || tmux"
       ];
       cursor.style = "Underline";
       colors.primary.background = "#${config.colorScheme.palette.base00}";
