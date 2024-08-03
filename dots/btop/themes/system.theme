@@ -2,10 +2,10 @@
 theme[main_bg]="@base00@"
 
 # Main text color
-theme[main_fg]="@base04@"
+theme[main_fg]="@base05@"
 
 # Title color for boxes
-theme[title]="@base07@"
+theme[title]="@base03@"
 
 # Higlight color for keyboard shortcuts
 theme[hi_fg]="@base0F@"

@@ -102,21 +102,21 @@
     author = "Material Theme";
     palette = {
       base00 = "0f111a";
-      base01 = "1b1f27";
-      base02 = "1f2329";
-      base03 = "4b5263";
-      base04 = "7c819c";
-      base05 = "d8dee9";
-      base06 = "e5e9f0";
-      base07 = "eceff4";
-      base08 = "bf616a";
-      base09 = "d08770";
-      base0A = "ebcb8b";
-      base0B = "a3be8c";
-      base0C = "88c0d0";
-      base0D = "81a1c1";
-      base0E = "b48ead";
-      base0F = "5e81ac";
+      base01 = "292929";
+      base02 = "404040";
+      base03 = "616161";
+      base04 = "808c91";
+      base05 = "b0bec5";
+      base06 = "b0bec5";
+      base07 = "0f111a";
+      base08 = "d1e3e3";
+      base09 = "ffcb6b";
+      base0A = "f78c6c";
+      base0B = "c3e88d";
+      base0C = "80cbc4";
+      base0D = "82aaff";
+      base0E = "c792ea";
+      base0F = "616161";
     };
   };
 

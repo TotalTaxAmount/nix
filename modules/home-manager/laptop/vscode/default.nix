@@ -40,6 +40,7 @@ let
     user = user;
     theme = "${config.colorScheme.name}";
     author = "${config.colorScheme.author}";
+    font = "${config.font}";
   };
 
   customcss = pkgs.substituteAll {

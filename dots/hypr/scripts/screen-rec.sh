@@ -5,8 +5,7 @@ if pgrep -x "wl-screenrec" > /dev/null; then
 fi
 
 FILE="$XDG_SCREENSHOTS_DIR/$(date +'screencast_%Y%m%d%H%M%S.mp4')"
-dunstify "Starting screencast" --timeout=1000
-wl-screenrec -g "$(slurp)" --filename $FILE &&
+wl-screenrec -g "$(slurp && dunstify "Starting screencast" --timeout=1000)" --filename $FILE &&
 ffmpeg -i $FILE -ss 00:00:00 -vframes 1 /tmp/screenrec_thumbnail.png -y &&
 printf -v out "`dunstify "Recording saved to $FILE" \
     --icon "/tmp/screenrec_thumbnail.png" \

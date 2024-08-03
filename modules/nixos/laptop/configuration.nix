@@ -177,6 +177,11 @@ in
     dedicatedServer.openFirewall = true;
   };
 
+  programs.coolercontrol = {
+    enable = true;
+    nvidiaSupport =  true;
+  };
+
   services.avahi = {
     enable = true;
     nssmdns4 = true;

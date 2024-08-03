@@ -16,7 +16,7 @@ in
       shell.args = [
         "-l"
         "-c"
-        "tmux a || tmux"
+        "tmux new-session || tmux"
       ];
       cursor.style = "Underline";
       colors.primary.background = "#${config.colorScheme.palette.base00}";
@@ -30,9 +30,9 @@ in
       colors.search.matches.foreground = "#${config.colorScheme.palette.base05}";
 
       colors.normal.black = "#${config.colorScheme.palette.base00}";
-      colors.normal.red = "#${config.colorScheme.palette.base08}";
+      colors.normal.red = "#${config.colorScheme.palette.base0A}";
       colors.normal.green = "#${config.colorScheme.palette.base0B}";
-      colors.normal.yellow = "#${config.colorScheme.palette.base0A}";
+      colors.normal.yellow = "#${config.colorScheme.palette.base09}";
       colors.normal.blue = "#${config.colorScheme.palette.base0D}";
       colors.normal.magenta = "#${config.colorScheme.palette.base0E}";
       colors.normal.cyan = "#${config.colorScheme.palette.base0C}";

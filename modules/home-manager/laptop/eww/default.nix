@@ -27,9 +27,12 @@ let
       "nixos-icon.svg"
     ];
     base00 = "#${config.colorScheme.palette.base00}";
+    base01 = "#${config.colorScheme.palette.base01}";
     base03 = "#${config.colorScheme.palette.base03}";
     base05 = "#${config.colorScheme.palette.base05}";
     base08 = "#${config.colorScheme.palette.base08}";
+    base0A = "#${config.colorScheme.palette.base0A}";
+    base0B = "#${config.colorScheme.palette.base0B}";
     base0C = "#${config.colorScheme.palette.base0C}";
     base0D = "#${config.colorScheme.palette.base0D}";
 
