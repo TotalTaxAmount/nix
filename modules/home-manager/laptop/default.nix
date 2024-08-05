@@ -108,7 +108,6 @@ in
     ./rofi
     ./eww
     ./dunst
-    ./swaylock
     ./vscode
 
     # Flakes
