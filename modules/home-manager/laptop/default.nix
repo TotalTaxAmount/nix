@@ -102,7 +102,8 @@ in
   # manage.
 
   imports = [
-    ./hypr
+    ./hypr/hyprland.nix
+    ./hypr/hyprlock.nix
     ./alacritty
     ./rofi
     ./eww
@@ -276,7 +277,7 @@ in
         general = {
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
-          lock_cmd = "swaylock";
+          lock_cmd = "hyprlock";
         };
 
         listener = [

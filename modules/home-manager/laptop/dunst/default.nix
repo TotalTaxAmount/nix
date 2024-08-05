@@ -51,13 +51,13 @@
         background = "#${config.colorScheme.palette.base00}";
         foreground = "#${config.colorScheme.palette.base05}";
         frame_color = "#${config.colorScheme.palette.base0D}";
-        timeout = 8;
+        timeout = 4;
       };
       urgency_normal = {
         background = "#${config.colorScheme.palette.base00}";
         foreground = "#${config.colorScheme.palette.base05}";
         frame_color = "#${config.colorScheme.palette.base0D}";
-        timeout = 8;
+        timeout = 4;
       };
       urgency_critical = {
         background = "#${config.colorScheme.palette.base09}";
