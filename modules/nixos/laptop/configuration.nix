@@ -179,7 +179,7 @@ in
 
   programs.coolercontrol = {
     enable = true;
-    nvidiaSupport =  true;
+    nvidiaSupport = true;
   };
 
   services.avahi = {
