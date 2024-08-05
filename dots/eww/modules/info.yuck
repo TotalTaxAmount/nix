@@ -1,4 +1,3 @@
-(defpoll volume_percent :interval "3s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 (defpoll net_adp :interval "1m" "@scriptdir@/sys_info.sh --adp")
 (defpoll net_up :interval "1s" "@scriptdir@/sys_info.sh --netup")
 (defpoll net_down :interval "1s" "@scriptdir@/sys_info.sh --netdown")

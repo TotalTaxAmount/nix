@@ -13,7 +13,7 @@ workspaces() {
 	num="$(hyprctl monitors -j | jq '.[] | select(.id == 0).activeWorkspace.id')"
 	export f"$num"="$num"
 
-	echo	"(eventbox :onscroll \"echo {} | sed -e 's/up/-1/g' -e 's/down/+1/g' | xargs hyprctl dispatch workspace\" \
+	echo	"(eventbox :onscroll \"echo {} | sed -e 's/up/-1/g' -e 's/down/+1/g' | xargs hyprctl dispatch workspace\" :valign \"fill\" :vexpand true \
 				(box	:class \"workspaces\"	:orientation \"h\" :space-evenly \"false\" 	\
 					(button :onclick \"hyprctl dispatch workspace 1\" :class \"w0$o1$f1\" \"1\") \
 					(button :onclick \"hyprctl dispatch workspace 2\" :class \"w0$o2$f2\" \"2\") \

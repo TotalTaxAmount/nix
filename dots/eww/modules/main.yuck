@@ -1,6 +1,12 @@
 (defpoll clock_time :interval "1s" "date '+%R:%S %b %d, %Y'")
-(defpoll mic_percent :interval "3s" "amixer -D pulse sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll volume_percent :interval "1s" "@scriptdir@/sys_info.sh --vol")
+(defpoll battery_percent :interval "1s" "@scriptdir@/battery.sh charge")
+(defpoll battery_status :interval "1s" "@scriptdir@/battery.sh status")
+(defpoll battery_icon :interval "1s" "@scriptdir@/battery.sh icon")
 
+
+(defvar volum false)
+(defvar tray false)
 ; ;; System
 ; (defpoll cpu :interval "1s" "@scriptdir@/sys_info.sh --cpu")
 ; (defpoll mem :interval "1s" "@scriptdir@/sys_info.sh --mem")
@@ -44,6 +50,8 @@
       :halign "start"
     (system)
     (sep)
+    (volum)  
+    (sep)
     (workspaces)
   )
 )
@@ -64,6 +72,8 @@
     :orientation "h"
     :halign "end"
     (clock)
+    (sep)
+    (system_tray)
     (sep)
     (battery)
   )
@@ -118,13 +128,75 @@
 (defwidget battery []
   (box :class "battery_container"
     (circular-progress
-      :value {EWW_BATTERY["BAT0"].capacity}
+      :value {battery_percent}
       :class "battery"
       :thickness 5
-      (label :text "🔋"
+      (label :text "${battery_icon}"
         :class "battery_icon"
-        :tooltip "${EWW_BATTERY["BAT0"].capacity}% - ${EWW_BATTERY["BAT0"].status}"
+        :tooltip "${battery_percent}% - ${battery_status}"
         :limit-width 2
+        :wrap false
+      )
+    )
+  )
+)
+
+(defwidget volum []
+  (eventbox 
+    :onhover "eww update volum=true"
+    :onhoverlost "eww update volum=false"
+    (box
+      :orientation "h"
+      :space-evenly "false"
+      (label
+        :class "icon"
+        :text "    "
+        :wrap false
+      )
+      (revealer
+        :transition "slideright"
+        :reveal {volum}
+        :duration "400ms"
+        (progress 
+          :class "volbar"
+          :value {volume_percent}
+          :orientation "h"
+          :flipped false
+          :tooltip "Volume: ${volume_percent}%"
+          :max 101
+          :min 0
+          :onchange "amixer -D pulse sset Master {}%"
+        )
+      )
+    )
+  )
+)
+
+(defwidget system_tray []
+  (eventbox 
+    :class "system_tray_container"
+    :onhover "eww update tray=true"
+    :onhoverlost "eww update tray=false"
+    (box
+      :orientation "h"
+      :space-evenly "false"
+      (revealer
+        :transition "slideleft"
+        :reveal {tray}
+        :duration "400ms"
+        (box
+          :orientation "h"
+          (systray
+            :class "tray"
+            :spacing 9
+            :orientation "h"
+            :icon-size 25
+          )
+        )
+      )
+      (label
+        :class "icon"
+        :text "󱊖  "
         :wrap false
       )
     )

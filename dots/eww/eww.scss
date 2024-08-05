@@ -1,6 +1,6 @@
 * {
 	all: unset;
-	font-family: @font@;
+	font-family: "@font@", sans-serif;
 
 }
 
@@ -19,16 +19,32 @@ tooltip.background {
 }
 
 tooltip label {
-    margin: 6px;
+  margin: 6px;
 }
+
+tooltip {
+  border: 2px solid @base0D@;
+}
+
+.icon {
+  margin: 6px
+}
+
+// scale trough {
+//   all: unset;
+//   background-color: @base00@;
+//   border-radius: 5px;
+//   min-width: 10px;
+//   margin: .3rem 0 .3rem 0;
+// }
 
 .battery_container {
 	margin-right: 10px;
 	color: @base05@;
+  padding: 7px 0px;
 
 	.battery_icon {
-		font-family: "Font Awesome 6 Free Solid";
-		padding: 10px 10px;
+		padding: 15px;
 		font-size: 1em;
 	}
 
@@ -55,17 +71,42 @@ tooltip label {
 	background-color: @base00@;
 	border: 2px solid @base0D@;
 	border-radius: 10px;
-}
+  padding: 10px;
 
-.disks_container {
+
+  .stats_container {
+    background-color: @base01@;
+    border-radius: 5px;
+    padding: 6px 3px;
+    margin: 6px;
+  }
+
+  .circular_container {
+    // padding: 60px;
+    font-size: 25;
+    padding: 6px 3px;
+    margin: 6px;
+    background-color: @base01@;
+    border-radius: 5px;
   
-}
+    .disks {
+      color: @base0A@;
+    }
+  
+    .mem {
+      color: @base0B@;
+    }
+  
+    .cpu {
+      color: @base0C@;
+    }
 
+  }  
+}
 
 .info_container {
 	background-color: @base00@;
 	color: @base05@;
-	font-family: "Overpass Nerd Font";
 	border: 2px solid @base0D@;
 	border-radius: 10px;
 	font-size: 1.2em;

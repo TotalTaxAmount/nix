@@ -1,3 +1,9 @@
+(defpoll disks :interval "1s" "@scriptdir@/sys_info.sh --disk")
+(defpoll mem :interval "1s" "@scriptdir@/sys_info.sh --mem")
+(defpoll cpu :interval "1s" "@scriptdir@/sys_info.sh --cpu")
+(defpoll uptime :interval "1s" "@scriptdir@/sys_info.sh --up")
+(defpoll temp :interval "1s" "@scriptdir@/sys_info.sh --temp")
+
 
 (defwindow system
     :stacking "fg"
@@ -14,20 +20,81 @@
     (box
       :class "system_container"
       :orientation "v"
-      (disks)
+      (box
+        :class "stats_container"
+        :orientation "h"
+        :height 20
+        (label 
+          :text "Uptime: ${uptime}"
+          :class "uptime"
+          :wrap false
+          :halign "center"
+        )
+
+        (label
+          :text "Temp: ${temp}°F"
+          :class "temp"
+          :wrap false
+          :halign "center"
+        )
+      )
+
+      (box
+        :class "resources_container"
+        :orientation "h"
+        :height 20
+        (disks)
+        (mem)
+        (cpu)
+      )
     )
   )
   
   (defwidget disks []
-    (box :class "disks_container"
+    (box :class "circular_container"
       (circular-progress
-        :value {EWW_DISK["/"].used_perc}
+        :value {disks}
         :class "disks"
-        :thickness 15
+        :thickness 9
         (label :text "🖴"
-          :class "disks_icon"
-          :tooltip "${EWW_DISK['/'].used_perc}% Disk usage"
+          :class "icon"
+          :tooltip "${disks}% Disk usage"
           :limit-width 2
+          :halign "center"
+          :wrap false
+        )
+      )
+    )
+  )
+
+  (defwidget mem []
+    (box :class "circular_container"
+      (circular-progress
+        :value {mem}
+        :class "mem"
+        :thickness 9
+        (label :text "​      "
+          :class "icon"
+          :tooltip "${mem}% Memory usage"
+          :limit-width 2
+          :halign "center"
+          :wrap false
+        )
+      )
+    )
+  )
+
+  (defwidget cpu []
+    (box :class "circular_container"
+      (circular-progress
+        :value {cpu}
+        :class "cpu"
+        :thickness 9
+        (label :text "     "
+          :class "icon"
+          :tooltip "${cpu}% CPU usage"
+          :limit-width 2
+          :halign "center"
           :wrap false
         )
       )
