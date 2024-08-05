@@ -76,11 +76,6 @@ in
       # };
       plugins = [
         {
-          name = "powerlevel10k";
-          src = pkgs.zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-        }
-        {
           name = "zsh-nix-shell";
           file = "nix-shell.plugin.zsh";
           src = pkgs.fetchFromGitHub {
@@ -90,16 +85,8 @@ in
             sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
           };
         }
-        # {
-        #    name = "powerlevel10k-config";
-        #    src = ./config.zsh;
-        #    file = ".p10k.zsh";
-        # }
       ];
 
-      initExtraFirst = ''
-        source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-        source /home/${user}/.p10k.zsh'';
       initExtra = ''
         POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.palette.base0D}"
@@ -126,11 +113,20 @@ in
       nix-direnv.enable = true;
     };
 
+    starship = { # TODO: use system theme
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        format = ''$all'';
+        add_newline = false;
+        character = {
+          success_symbol = "[➜](bold green)";
+        };
+      };
+    };
+
   };
 
   # OMZ Plugins
   xdg.configFile."zsh/plugins/zsh-autosuggestions".source = zsh-autosuggestions.out;
-  xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source = zsh-syntax-highlighting.out;
-
-  home.file.".p10k.zsh".source = ../../../../dots/zsh/.p10k.zsh;
-}
+  xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source = zsh-syntax-highlighting.out;}
