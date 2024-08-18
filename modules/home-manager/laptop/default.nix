@@ -102,13 +102,13 @@ in
   # manage.
 
   imports = [
-    ./hypr/hyprland.nix
-    ./hypr/hyprlock.nix
-    ./alacritty
-    ./rofi
-    ./eww
-    ./dunst
-    ./vscode
+    ../modules/hypr/hyprland.nix
+    ../modules/hypr/hyprlock.nix
+    ../modules/alacritty
+    ../modules/rofi
+    ../modules/eww
+    ../modules/dunst
+    ../modules/vscode
 
     # Flakes
     inputs.spicetify-nix.homeManagerModule
@@ -282,7 +282,7 @@ in
         listener = [
           {
             timeout = 900;
-            on-timeout = "swaylock";
+            on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
           }
           {
             timeout = 1200;

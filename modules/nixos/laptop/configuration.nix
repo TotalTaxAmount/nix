@@ -22,9 +22,6 @@ in
     ./vfio
     inputs.sops-nix.nixosModules.default
   ];
-  nix.settings.trusted-users = [
-    "totaltaxamount" # TODO: use the user varbile
-  ];
 
   # fileSystems."/data/truenas" = {
   #   device = "10.1.10.3:/mnt/main/totaltaxamount";
@@ -35,10 +32,6 @@ in
 
   # Configure  X11
   services.xserver = {
-    xkb = {
-      layout = "us";
-      variant = "";
-    };
     enable = true;
     videoDrivers = lib.mkDefault [ "nvidia" ];
 
@@ -46,11 +39,6 @@ in
       enable = true;
       wayland = true;
     };
-  };
-
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = true;
   };
 
   services.supergfxd.enable = true;
@@ -103,13 +91,6 @@ in
       };
     };
 
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-      package = pkgs.bluez-experimental;
-      settings.Policy.AutoEnable = "true";
-      settings.General.Enable = "Source,Sink,Media,Socket";
-    };
 
     xpadneo.enable = true;
     steam-hardware.enable = true;
@@ -134,18 +115,7 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."totaltaxamount" = {
-    isNormalUser = true;
-    description = "Coen Shields";
-    shell = pkgs.zsh;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "libvirtd"
-      "docker"
-    ];
-    packages = with pkgs; [ ];
-  };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -191,11 +161,6 @@ in
   services.printing.enable = true;
 
   services.pcscd.enable = true;
-
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   networking = {
     hostName = "laptop";

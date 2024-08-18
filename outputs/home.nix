@@ -42,4 +42,17 @@ in
       ../modules/home-manager/remote
     ];
   };
+
+  desktop = home-manager.lib.homeManagerConfiguration {
+    inherit pkgs;
+
+    extraSpecialArgs = {
+      inherit pkgs inputs user;
+    };
+
+    modules = [
+      ../modules/home-manager/common
+      ../modules/home-manager/desktop
+    ];
+  };
 }

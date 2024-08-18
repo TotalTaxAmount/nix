@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  user,
   ...
 }:
 
@@ -33,6 +34,31 @@
     "nix-command"
     "flakes"
   ];
+
+  nix.settings.trusted-users = [
+    # "totaltaxamount" #
+    user
+  ];
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+
+
+  users.users."${user}" = {
+    isNormalUser = true;
+    description = "Coen Shields";
+    shell = pkgs.zsh;
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "docker"
+    ];
+    packages = with pkgs; [ ];
+  };
 
   # system.autoUpgrade = { Might be breaking shitl
   #   enable = true;
@@ -81,6 +107,29 @@
   programs.zsh = {
     enable = true;
   };
+
+  services.xserver = {
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
+  };
+
+  security.apparmor = {
+    enable = true;
+    enableCache = true;
+  };
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      package = pkgs.bluez-experimental;
+      settings.Policy.AutoEnable = "true";
+      settings.General.Enable = "Source,Sink,Media,Socket";
+    };
+  };
+
 
   boot.loader = {
     systemd-boot.enable = false;

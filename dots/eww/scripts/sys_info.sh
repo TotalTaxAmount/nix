@@ -48,7 +48,7 @@ get_temp() {
   TEMP_C=$(echo "scale=1; $TEMP / 1000" | bc)
   TEMP_F=$(echo "scale=1; ($TEMP_C * 9/5) + 32" | bc)
 
-  echo $TEMP_F
+  echo $TEMP_C
 }
 
 get_mem() {

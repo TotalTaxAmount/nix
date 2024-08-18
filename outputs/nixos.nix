@@ -33,7 +33,7 @@ in
   desktop = nixosSystem {
     inherit pkgs system;
     specialArgs = {
-      inherit inputs;
+      inherit inputs user;
     };
     modules = [
       inputs.sops-nix.nixosModules.sops

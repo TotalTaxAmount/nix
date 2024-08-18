@@ -16,10 +16,10 @@ let
 in
 {
   imports = [
-    ./btop
-    ./nvim
-    ./neofetch
-    ./terminal
+    ../modules/btop
+    ../modules/nvim
+    ../modules/neofetch
+    ../modules/terminal
 
     inputs.nix-colors.homeManagerModule
 
