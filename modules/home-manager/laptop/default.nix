@@ -14,8 +14,7 @@ let
 
   # Custom pkgs
   rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq { };
-  utils = import ./path/to/utils.nix { inherit lib pkgs inputs config; };
-  
+  utils = import ../modules/utils.nix { inherit lib pkgs inputs config; };
 in
 {
   # Home Manager needs a bit of information about you and the paths it should

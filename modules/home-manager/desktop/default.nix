@@ -9,7 +9,7 @@
 }: 
 
 let 
-    utils = import ./path/to/utils.nix { inherit lib pkgs inputs config; };
+    utils = import ../modules/utils.nix { inherit lib pkgs inputs config; };
     rofy-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq { };
 in
 {

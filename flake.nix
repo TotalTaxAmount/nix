@@ -4,7 +4,7 @@
         nixpkgs.url = "nixpkgs/nixos-unstable";
 
         home-manager = {
-            url = github:nix-community/home-manager;
+            url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
 
         };
@@ -15,12 +15,12 @@
         };
 
         spicetify-nix ={
-            url = github:the-argus/spicetify-nix;
+            url = "github:the-argus/spicetify-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
         nix-colors = {
-            url = github:misterio77/nix-colors;
+            url = "github:misterio77/nix-colors";
         };
 
 #        nix-gaming = {
@@ -29,7 +29,7 @@
    #     };
 
         sops-nix = {
-            url = github:Mic92/sops-nix;
+            url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 

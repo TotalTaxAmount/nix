@@ -22,6 +22,7 @@ in
 
     extraSpecialArgs = {
       inherit pkgs inputs user;
+      host = "laptop";
     };
 
     modules = [
@@ -48,6 +49,7 @@ in
 
     extraSpecialArgs = {
       inherit pkgs inputs user;
+      host = "desktop";
     };
 
     modules = [

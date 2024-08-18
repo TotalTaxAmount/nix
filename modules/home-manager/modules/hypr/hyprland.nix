@@ -7,11 +7,13 @@
 }:
 
 let
-  baseConfig = builtins.readFile ../../../../dots/hypr/hyprland.conf;
-  laptopExtra = builtins.readFile ../../../../dots/hypr/laptopExtra.conf;
-  desktopExtra = builtins.readFile ../../../../dots/hypr/desktopExtra.conf;
+  baseConfig = builtins.readFile ../../../../dots/hypr/hyprland/hyprland.conf;
+  laptopExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopExtra.conf;
+  desktopExtra = builtins.readFile ../../../../dots/hypr/hyprland/desktopExtra.conf;
 
-  fullConfig = baseConfig + (if host == "desktop" then desktopExtra else if host == "laptop" then laptopExtra else "");
+  fullConfig = pkgs.writeText "hyprFullConfig.conf" (baseConfig + 
+    (if host == "laptop" then laptopExtra else "") +
+    (if host == "desktop" then desktopExtra else ""));
 
   hyprConfig = pkgs.substituteAll {
     src = fullConfig;
@@ -20,6 +22,7 @@ let
     user = "${user}";
   };
 
+
 in
 {
   wayland.windowManager.hyprland = {
@@ -27,5 +30,4 @@ in
     # enableNvidiaPatches = true;
     extraConfig = builtins.readFile hyprConfig.out;
   };
-
 }
