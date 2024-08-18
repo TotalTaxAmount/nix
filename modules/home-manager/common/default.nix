@@ -58,7 +58,7 @@ in
       bat
       wget
       eza
-      (pkgs.callPackage ./shell { })
+      (pkgs.callPackage ../modules/shell { })
 
       #Customization
       nerdfonts
