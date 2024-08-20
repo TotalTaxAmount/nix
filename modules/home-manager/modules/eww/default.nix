@@ -53,7 +53,10 @@ in
     enable = true;
     configDir = ewwCfgPatch.out;
   };
-  home.packages = with pkgs; [ bc ];
+  home.packages = with pkgs; [ 
+    bc
+    hyprland-workspaces
+   ];
 
 }
 

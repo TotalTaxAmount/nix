@@ -3,17 +3,20 @@
   config,
   user,
   host,
+  inputs,
   ...
 }:
 
 let
   baseConfig = builtins.readFile ../../../../dots/hypr/hyprland/hyprland.conf;
-  laptopExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopExtra.conf;
+  laptopExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopExtra.conf;                                                                               
   desktopExtra = builtins.readFile ../../../../dots/hypr/hyprland/desktopExtra.conf;
 
-  fullConfig = pkgs.writeText "hyprFullConfig.conf" (baseConfig + 
-    (if host == "laptop" then laptopExtra else "") +
-    (if host == "desktop" then desktopExtra else ""));
+  fullConfig = pkgs.writeText "hyprFullConfig.conf" (
+    baseConfig
+    + (if host == "laptop" then laptopExtra else "")
+    + (if host == "desktop" then desktopExtra else "")
+  );
 
   hyprConfig = pkgs.substituteAll {
     src = fullConfig;
@@ -22,12 +25,18 @@ let
     user = "${user}";
   };
 
-
 in
 {
+  home.packages = with pkgs; [
+    wlr-randr
+  ];
   wayland.windowManager.hyprland = {
     enable = true;
     # enableNvidiaPatches = true;
     extraConfig = builtins.readFile hyprConfig.out;
+    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    plugins = [
+      inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
+    ];
   };
 }

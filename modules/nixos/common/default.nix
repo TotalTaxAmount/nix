@@ -45,8 +45,6 @@
     enableSSHSupport = true;
   };
 
-
-
   users.users."${user}" = {
     isNormalUser = true;
     description = "Coen Shields";
@@ -129,7 +127,6 @@
       settings.General.Enable = "Source,Sink,Media,Socket";
     };
   };
-
 
   boot.loader = {
     systemd-boot.enable = false;

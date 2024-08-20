@@ -1,7 +1,8 @@
-{ config,
+{
+  config,
   pkgs,
   inputs,
-  lib
+  lib,
 }:
 
 let
@@ -88,7 +89,14 @@ let
       ]
     }
   '';
-  in
-  {
-    inherit customThemes base16Themes nix-colors-lib pow hexToDec print-colors;
-  }
+in
+{
+  inherit
+    customThemes
+    base16Themes
+    nix-colors-lib
+    pow
+    hexToDec
+    print-colors
+    ;
+}

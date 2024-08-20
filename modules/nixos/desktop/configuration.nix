@@ -1,5 +1,5 @@
 {
-  config, 
+  config,
   inputs,
   lib,
   pkgs,
@@ -8,9 +8,7 @@
 }:
 
 {
-  imports = [
-    ./hardware.nix
-  ];
+  imports = [ ./hardware.nix ];
 
   services.xserver = {
     enable = true;
@@ -18,7 +16,7 @@
 
     displayManager.gdm = {
       enable = true;
-      wayland =  true;
+      wayland = true;
     };
   };
 
@@ -28,12 +26,12 @@
       enable = true;
       enable32Bit = true;
 
-      extraPackages = with pkgs; [ 
-        intel-media-driver 
-        intel-ocl 
-        intel-vaapi-driver 
+      extraPackages = with pkgs; [
+        intel-media-driver
+        intel-ocl
+        intel-vaapi-driver
         nvidia-vaapi-driver
-        ];
+      ];
     };
 
     flipperzero.enable = true;
@@ -67,21 +65,21 @@
   ];
 
   programs = {
-  hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
 
-  steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
 
-  coolercontrol = {
-    enable = true;
-    nvidiaSupport = true;
-  };
+    coolercontrol = {
+      enable = true;
+      nvidiaSupport = true;
+    };
   };
 
   services = {
@@ -121,9 +119,7 @@
 
   boot = {
     supportedFilesystems = [ "nfs" ];
-    kernelModules = [
-      "kvm-amd"
-    ];
+    kernelModules = [ "kvm-amd" ];
 
     tmp.cleanOnBoot = true;
 

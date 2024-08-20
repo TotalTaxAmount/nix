@@ -113,7 +113,8 @@ in
       nix-direnv.enable = true;
     };
 
-    starship = { # TODO: use system theme
+    starship = {
+      # TODO: use system theme
       enable = true;
       enableZshIntegration = true;
       settings = {
@@ -130,4 +131,5 @@ in
 
   # OMZ Plugins
   xdg.configFile."zsh/plugins/zsh-autosuggestions".source = zsh-autosuggestions.out;
-  xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source = zsh-syntax-highlighting.out;}
+  xdg.configFile."zsh/plugins/zsh-syntax-highlighting".source = zsh-syntax-highlighting.out;
+}

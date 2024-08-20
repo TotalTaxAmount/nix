@@ -91,7 +91,6 @@ in
       };
     };
 
-
     xpadneo.enable = true;
     steam-hardware.enable = true;
   };
@@ -115,7 +114,6 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

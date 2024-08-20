@@ -6,11 +6,18 @@
   lib,
   host,
   ...
-}: 
+}:
 
-let 
-    utils = import ../modules/utils.nix { inherit lib pkgs inputs config; };
-    rofy-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq { };
+let
+  utils = import ../modules/utils.nix {
+    inherit
+      lib
+      pkgs
+      inputs
+      config
+      ;
+  };
+  rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq { };
 in
 {
   imports = [
@@ -68,7 +75,7 @@ in
       ffmpeg
       killall
       wl-screenrec
-      utils.print-colors      
+      utils.print-colors
       jq
       socat
       glxinfo
@@ -81,7 +88,7 @@ in
 
       # Virt
       distrobox
-      
+
       # Customization/Fonts
       swww
       nerdfonts
@@ -99,61 +106,56 @@ in
       nodejs
       gcc
     ];
-  };
 
-  services.kdeconnect = {
-    enable = true;
-  };
-
-  services = {
-    spotifyd.enable = true;
-
-    hypridle = {
+    services.kdeconnect = {
       enable = true;
-      general = {
-        after_sleep_cmd = "hyprctl dispatch dpms on";
-        ignore_dbus_inhibit = false;
-        lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+    };
+
+    services = {
+      spotifyd.enable = true;
+
+      hypridle = {
+        enable = true;
+        settings = {
+          general = {
+            after_sleep_cmd = "hyprctl dispatch dpms on";
+            ignore_dbus_inhibit = false;
+            lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+          };
+
+          listener = [
+            {
+              timeout = 900;
+              on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+            }
+            {
+              timeout = 1200;
+              on-timeout = "hyprctl dispatch dpms off";
+              on-resume = "hyprctl dispatch dpms on";
+            }
+          ];
+        };
       };
-
-      listener = [
-        {
-          timeout = 900;
-          on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
-        }
-        {
-          timeout = 1200;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
-      ];
     };
-  };
 
-  programs = {
-    git = {
+    programs = {};
+    gtk = {
       enable = true;
-      userEmail = "shieldscoen@gmail.com";
-      userName = user;
+
+      theme = {
+        package = utils.nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
+        name = config.colorScheme.name;
+      };
     };
-  };
 
-  gtk = {
-    enable = true;
-
-    theme = {
-      package = utils.nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-      name = config.colorScheme.name;
+    wayland.windowManager.hyprland = {
+      enable = true;
+      xwayland.enable = true;
     };
+
+    # Extra Files 
+    home.file.".config/mimeapps.list".source = ../../../dots/mimeapps.list;
+
+    programs.home-manager.enable = true;
   };
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-
-  # Extra Files 
-  home.file.".config/mimeapps.list".source = ../../../dots/mimeapps.list;
-
-  programs.home-manager.enable = true;
 }

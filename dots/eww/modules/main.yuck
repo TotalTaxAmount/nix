@@ -28,7 +28,7 @@
     :width "100%" 
     :height "40px"
     :anchor "top center")
-  (bar)
+  (bar :monitor 0)
 )
 
 (defwindow main1
@@ -36,26 +36,26 @@
   :exclusive true
   :stacking "fg" 
   :geometry (geometry 
-    :width "100%" 
+    :width "1436px" 
     :height "40px"
     :anchor "top center")
-  (bar)
+  (bar :monitor 1)
 )
 
 
 
-(defwidget bar []
+(defwidget bar [monitor]
   (centerbox
     :class "bar"
     :orientation "h"
-    (left)
+    (left :monitor {monitor})
     (center)
     (right)
   )
 )
 
 
-(defwidget left []
+(defwidget left [monitor]
   (box :class "left_modules" 
       :space-evenly false
       :orientation "h"
@@ -64,9 +64,10 @@
     (sep)
     (volum)  
     (sep)
-    (workspaces)
+    (workspaces :monitor {monitor})
   )
 )
+
 
 (defwidget center []
   (box :class "center_modules"
@@ -102,10 +103,33 @@
   )
 )
 
-(deflisten workspace "@scriptdir@/workspaces.sh")
-(defwidget workspaces []
-  (literal :content workspace)
-)
+;;(deflisten workspace "@scriptdir@/workspaces.sh")
+;;(defwidget workspaces []
+;;  (literal :content workspace)
+;;)
+
+(deflisten workspaces "hyprland-workspaces _")
+
+(defwidget workspaces [monitor]
+  (eventbox :onscroll "hyprctl dispatch workspace `echo {} | sed 's/up/+/\' | sed 's/down/-/'`1"
+    (box :class "workspaces"
+      (for i in {workspaces[monitor].workspaces}
+        (button
+          :onclick "hyprctl dispatch workspace ${i.id}"
+          :class "${i.class}"
+          "${i.name}")))))
+
+; (defwidget bar0 []
+;   (box
+;     (workspaceWidget :monitor 0)
+;   )
+; )
+
+; (defwidget bar1 []
+;   (box
+;     (workspaceWidget :monitor 1)
+;   )
+; )
 
 (deflisten appname_ "@scriptdir@/currentapp.sh")
 (defwidget appname []
