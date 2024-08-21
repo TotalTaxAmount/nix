@@ -44,6 +44,10 @@ in
 
     home.stateVersion = "23.05";
 
+    home.sessionVariables = {
+      XDG_SCREENSHOTS_DIR = "/home/${user}/Pictures/Screenshots";
+    };
+
     home.packages = with pkgs; [
       # Apps
       gimp
@@ -144,7 +148,7 @@ in
 
       theme = {
         package = utils.nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-        name = config.colorScheme.name;
+        name = "${config.colorScheme.slug}";
       };
     };
 

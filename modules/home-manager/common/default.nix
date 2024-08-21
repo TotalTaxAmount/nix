@@ -62,10 +62,15 @@ in
 
       #Customization
       nerdfonts
+      inputs.mcmojave-hyprcursor.packages.${pkgs.system}.default
 
       # Langs and compilers
       python3
     ];
+
+    home.sessionVariables = {
+      HYPRCURSOR_THEME = "McMojave";
+    };
 
     programs.git = {
       enable = true;

@@ -27,10 +27,11 @@
       enable32Bit = true;
 
       extraPackages = with pkgs; [
-        intel-media-driver
-        intel-ocl
-        intel-vaapi-driver
         nvidia-vaapi-driver
+        libvdpau-va-gl
+        libva-vdpau-driver
+        vaapiVdpau
+
       ];
     };
 
@@ -44,7 +45,7 @@
 
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
 
     xpadneo.enable = true;
@@ -63,6 +64,18 @@
     libnotify
     pinentry-rofi
   ];
+
+  environment.variables = { 
+    EDITOR = "nvim"; 
+    VISUAL = "code";
+    LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    NVD_BACKEND = "direct";
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+  };
 
   programs = {
     hyprland = {
@@ -111,9 +124,9 @@
     docker.enable = true;
   };
 
-  security.pam.services = {
-    hyprlock.text = ''
-      auth include loginc
+  security.pam.services.hyprlock = {
+    text = ''
+      auth include login
     '';
   };
 

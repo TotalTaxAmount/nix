@@ -20,7 +20,7 @@
 
 
 ;; Window
-(defwindow main0 
+(defwindow main0
   :monitor 0
   :exclusive true
   :stacking "fg" 

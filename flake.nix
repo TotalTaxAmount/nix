@@ -28,11 +28,11 @@
       type = "git";
       submodules = true;
       url = "https://github.com/hyprwm/Hyprland";
-      rev = "918d8340afd652b011b937d29d5eea0be08467f5";
+      rev = "9a09eac79b85c846e3a865a9078a3f8ff65a9259";
     };
 
     hyprsplit = {
-      url = "github:shezdy/hyprsplit?ref=v0.41.2";
+      url = "github:shezdy/hyprsplit?ref=v0.42.0";
       inputs.hyprland.follows = "hyprland";
     };
 
@@ -43,6 +43,11 @@
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mcmojave-hyprcursor = { 
+      url = "github:libadoxon/mcmojave-hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
