@@ -12,7 +12,7 @@ rustPlatform.buildRustPackage rec {
     owner = "TotalTaxAmount";
     repo = "hyprland-workspaces";
     rev = "0a3febcb1700ad99bcb25515b4d2175b62b524fa";
-    hash = "sha256-xPp1nyne+4anTbEc/NN7WVY0mgCxxUpitlZDgN915n0=";
+    hash = "sha256-j5ikM/4jtowRuwDPPx3IC44SxlNVHWWThydzuroKb1A=";
   };
 
   cargoHash = "sha256-AT3K6trQ2i5KihWbRnSv+jJggygnj4/B9Oncme4VkC4=";
@@ -22,7 +22,7 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://github.com/FieldofClay/hyprland-workspaces";
     license = licenses.mit;
     platforms = platforms.linux;
-    maintainers = with maintainers; [ kiike donovanglover ];
+    maintainers = with maintainers; [ donovanglover ];
     mainProgram = "hyprland-workspaces";
   };
 }
