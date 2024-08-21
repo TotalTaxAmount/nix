@@ -22,7 +22,7 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://github.com/FieldofClay/hyprland-workspaces";
     license = licenses.mit;
     platforms = platforms.linux;
-    maintainers = with maintainers; [ kiike donovanglover ];
+    maintainers = with maintainers; [ donovanglover ];
     mainProgram = "hyprland-workspaces";
   };
 }
