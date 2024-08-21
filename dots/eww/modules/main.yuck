@@ -108,7 +108,7 @@
 ;;  (literal :content workspace)
 ;;)
 
-(deflisten workspaces "hyprland-workspaces _")
+(deflisten workspaces "hyprland-workspaces -w 9 _")
 
 (defwidget workspaces [monitor]
   (eventbox :onscroll "hyprctl dispatch workspace `echo {} | sed 's/up/+/\' | sed 's/down/-/'`1"

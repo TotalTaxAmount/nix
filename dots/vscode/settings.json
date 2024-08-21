@@ -17,7 +17,7 @@
     "editor.folding": false,
     "editor.glyphMargin": false,
     "explorer.openEditors.visible": 0,
-    "workbench.statusBar.visible": false,
+    "workbench.statusBar.visible": true,
     "indenticator.color.dark": "rgba(255,255,255,.1)",
     "workbench.colorCustomizations": { 
       // Tab active border

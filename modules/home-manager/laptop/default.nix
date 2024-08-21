@@ -223,7 +223,7 @@ in
     programs.git = {
       enable = true;
       userEmail = "shieldscoen@gmail.com";
-      userName = "TotalTaxAmount";
+      userName = user;
     };
 
     gtk = {

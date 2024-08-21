@@ -47,7 +47,7 @@
 
   users.users."${user}" = {
     isNormalUser = true;
-    description = "Coen Shields";
+    description = "";
     shell = pkgs.zsh;
     extraGroups = [
       "networkmanager"
