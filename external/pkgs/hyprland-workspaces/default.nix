@@ -11,8 +11,8 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "TotalTaxAmount";
     repo = "hyprland-workspaces";
-    rev = "f33d0d60c1d3bb263bd0977b4d4ae1b85c562924";
-    hash = "sha256-6IWUwx0a2SMxFWbRxi1VND80kHRyaKAQAh86Y3rmbCQ=";
+    rev = "0a3febcb1700ad99bcb25515b4d2175b62b524fa";
+    hash = "sha256-xPp1nyne+4anTbEc/NN7WVY0mgCxxUpitlZDgN915n0=";
   };
 
   cargoHash = "sha256-AT3K6trQ2i5KihWbRnSv+jJggygnj4/B9Oncme4VkC4=";
