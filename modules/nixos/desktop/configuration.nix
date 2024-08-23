@@ -52,7 +52,15 @@
     steam-hardware.enable = true;
   };
 
-  services.blueman.enable = true;
+  services = { 
+    blueman.enable = true; 
+    fstrim.enable = true;
+
+    hardware.openrgb = {
+      enable = true;
+      motherboard = "amd";
+    };
+  };
 
   environment.systemPackages = with pkgs; [
     alsa-utils

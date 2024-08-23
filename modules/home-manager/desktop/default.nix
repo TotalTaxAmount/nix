@@ -103,7 +103,10 @@ in
       winetricks
       protontricks
       mangohud
+      gamescope
       gamemode
+      protonup-qt
+      lutris
 
       # Scripts/Misc
       python3
