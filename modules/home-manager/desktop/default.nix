@@ -36,6 +36,7 @@ in
   config = {
     colorScheme = utils.customThemes.material-ocean;
     font = "FiraCode Nerd Font";
+    cursor = "McMojave";
 
     home.username = user;
     home.homeDirectory = "/home/${user}";
@@ -46,6 +47,8 @@ in
 
     home.sessionVariables = {
       XDG_SCREENSHOTS_DIR = "/home/${user}/Pictures/Screenshots";
+      HYPRCURSOR_THEME = config.cursor;
+      HYPRCURSOR_SIZE = 24;
     };
 
     home.packages = with pkgs; [

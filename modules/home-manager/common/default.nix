@@ -30,6 +30,12 @@ in
       example = "Noto Fonts";
       description = "\n        Name of system font (make sure its installed)\n      ";
     };
+
+    cursor = pkgs.lib.mkOption {
+      type = pkgs.lib.types.str;
+      example = "McMojave";
+      description = "\n       Name of the hyprcursor theme to use";
+    };
   };
 
   config = {
@@ -69,7 +75,7 @@ in
     ];
 
     home.sessionVariables = {
-      HYPRCURSOR_THEME = "McMojave";
+      HYPRCURSOR_THEME = config.cursor;
     };
 
     programs.git = {

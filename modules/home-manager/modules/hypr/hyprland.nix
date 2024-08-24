@@ -66,6 +66,7 @@ in
   home.packages = with pkgs; [
     wlr-randr
     backgrounds
+    hyprland-activewindow
   ];
   wayland.windowManager.hyprland = {
     enable = true;
