@@ -136,6 +136,10 @@
     };
   };
 
+  security.polkit = {
+    enable = true;
+  };
+
   boot.loader = {
     systemd-boot.enable = false;
     efi = {

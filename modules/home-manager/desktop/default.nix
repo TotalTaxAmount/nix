@@ -37,6 +37,7 @@ in
   config = {
     colorScheme = utils.customThemes.material-ocean;
     font = "FiraCode Nerd Font";
+    cursor = "McMojave";
 
     home.username = user;
     home.homeDirectory = "/home/${user}";
@@ -44,6 +45,12 @@ in
     nixpkgs.config.allows = true;
 
     home.stateVersion = "23.05";
+
+    home.sessionVariables = {
+      XDG_SCREENSHOTS_DIR = "/home/${user}/Pictures/Screenshots";
+      HYPRCURSOR_THEME = config.cursor;
+      HYPRCURSOR_SIZE = 24;
+    };
 
     home.packages = with pkgs; [
       # Apps
@@ -100,7 +107,10 @@ in
       winetricks
       protontricks
       mangohud
+      gamescope
       gamemode
+      protonup-qt
+      lutris
 
       # Scripts/Misc
       python3
