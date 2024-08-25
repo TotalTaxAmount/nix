@@ -4,6 +4,7 @@
   user,
   host,
   inputs,
+  system,
   ...
 }:
 
@@ -34,9 +35,9 @@ in
     enable = true;
     # enableNvidiaPatches = true;
     extraConfig = builtins.readFile hyprConfig.out;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = inputs.hyprland.packages.${system}.hyprland;
     plugins = [
-      inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
+       inputs.hyprsplit.packages.${system}.hyprsplit
     ];
   };
 }

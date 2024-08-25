@@ -5,6 +5,7 @@
   user,
   lib,
   host,
+  system,
   ...
 }:
 
@@ -43,10 +44,6 @@ in
     nixpkgs.config.allows = true;
 
     home.stateVersion = "23.05";
-
-    home.sessionVariables = {
-      XDG_SCREENSHOTS_DIR = "/home/${user}/Pictures/Screenshots";
-    };
 
     home.packages = with pkgs; [
       # Apps
@@ -143,14 +140,6 @@ in
     };
 
     programs = {};
-    gtk = {
-      enable = true;
-
-      theme = {
-        package = utils.nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-        name = "${config.colorScheme.slug}";
-      };
-    };
 
     wayland.windowManager.hyprland = {
       enable = true;

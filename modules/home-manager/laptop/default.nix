@@ -5,6 +5,7 @@
   user,
   lib,
   host,
+  system,
   ...
 }:
 
@@ -14,6 +15,7 @@ let
 
   # Custom pkgs
   rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq { };
+  path-planner = pkgs.callPackage ../../../external/pkgs/pathplanner { };
   utils = import ../modules/utils.nix {
     inherit
       lib
@@ -105,6 +107,7 @@ in
       killall
       utils.print-colors
       # zed-editor
+      # path-plannesr
 
       # fluent-reader
       nomacs
@@ -225,16 +228,6 @@ in
       userEmail = "shieldscoen@gmail.com";
       userName = user;
     };
-
-    gtk = {
-      enable = true;
-
-      theme = {
-        package = utils.nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-        name = config.colorScheme.name;
-      };
-    };
-
     # Random files
     home.file.".config/mimeapps.list".source = ../../../dots/mimeapps.list;
 

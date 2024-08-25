@@ -102,6 +102,14 @@
 
   environment.systemPackages = with pkgs; [ nix-output-monitor ];
 
+  environment.variables = {
+    EDITOR = "nvim"; 
+    VISUAL = "code";
+    NVD_BACKEND = "direct";
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+  };
+
   programs.zsh = {
     enable = true;
   };
