@@ -86,6 +86,9 @@ in
       enable = true;
       userEmail = "shieldscoen@gmail.com";
       userName = user;
+      extraConfig = {
+        pull.rebase = false;
+      };
     };
 
     nix.gc = {
