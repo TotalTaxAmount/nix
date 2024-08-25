@@ -114,8 +114,8 @@
   };
 
   security.apparmor = {
-    enable = true;
-    enableCache = true;
+    enable = false;
+    enableCache = false;
   };
 
   hardware = {

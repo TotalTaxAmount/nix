@@ -95,13 +95,32 @@
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
+      gamescopeSession = {
+        enable = true;
+        
+      };
     };
 
     coolercontrol = {
       enable = true;
       nvidiaSupport = true;
     };
+
+    gamemode = {
+      enable = true;
+    };
+
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
   };
+
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "performance";
+  };
+  
 
   services = {
     avahi = {
@@ -137,6 +156,13 @@
       auth include login
     '';
   };
+
+  # security.wrappers.gamescope = {
+  #   owner = "root";
+  #   group = "root";
+  #   capabilities="cap_sys_nice+eip";
+  #   source = "${pkgs.gamescope}/bin/gamescope";
+  # };
 
   boot = {
     supportedFilesystems = [ "nfs" ];
