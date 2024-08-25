@@ -64,9 +64,11 @@ final: prev:
       + "wrapProgram $out/bin/audacity --set GDK_BACKEND x11 --set UBUNTU_MENUPROXY 0";
   });
 
-  # vscode = prev.vscode.overrideAttrs (old: {
-  #   postInstall =
-  #     (old.postInstall or "")
-  #     + "wrapProgram $out/bin/code --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto --unity-launch";
-  # });
+  vscode = prev.vscode.overrideAttrs (old: {
+    postInstall =
+      (old.postInstall or "")
+      + ''wrapProgram $out/bin/code \
+      --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations \
+      --add-flags --ozone-platform-hint=auto'';
+  });
 }

@@ -141,7 +141,6 @@
     },
     "hyprland": {
       "inputs": {
-        "aquamarine": "aquamarine",
         "hyprcursor": "hyprcursor",
         "hyprlang": "hyprlang",
         "hyprutils": "hyprutils",
@@ -160,7 +159,7 @@
         "url": "https://github.com/hyprwm/Hyprland"
       },
       "original": {
-        "rev": "9a09eac79b85c846e3a865a9078a3f8ff65a9259",
+        "rev": "918d8340afd652b011b937d29d5eea0be08467f5",
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
@@ -277,16 +276,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1723077859,
-        "narHash": "sha256-2KwSOv+7XzQWxxGrAlBPwRjYMUyMYDwXjTEAY1I8H8w=",
+        "lastModified": 1719357451,
+        "narHash": "sha256-AMK4/87EdBcl8ukTdHMll+zbU76TySqpgwgi6J/jyks=",
         "owner": "shezdy",
         "repo": "hyprsplit",
-        "rev": "d4c59ca20581b04ef9348944377a12b911d9b5e3",
+        "rev": "fcf00b770e3b89fd93de2de1bb5e68721090f5fe",
         "type": "github"
       },
       "original": {
         "owner": "shezdy",
-        "ref": "v0.42.0",
+        "ref": "v0.41.2",
         "repo": "hyprsplit",
         "type": "github"
       }

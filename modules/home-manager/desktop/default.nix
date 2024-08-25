@@ -5,6 +5,7 @@
   user,
   lib,
   host,
+  system,
   ...
 }:
 
@@ -149,14 +150,6 @@ in
     };
 
     programs = {};
-    gtk = {
-      enable = true;
-
-      theme = {
-        package = utils.nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-        name = "${config.colorScheme.slug}";
-      };
-    };
 
     wayland.windowManager.hyprland = {
       enable = true;

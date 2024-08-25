@@ -8,13 +8,13 @@
 
 flutter.buildFlutterApplication rec {
   pname = "pathplanner";
-  version = "v2024.1.4";
+  version = "2024.1.7";
 
   src = fetchFromGitHub {
     owner = "mjansen4857";
     repo = pname;
     rev = version;
-    hash = "sha256-8CDdY+l1PgqJeB9jVQeRS8vZR2us9rNnOXbuezPipww=";
+    hash = "sha256-A8HGBpkO4xmUoWS5+Fz5IO81/G0NKI0pIemDgUFN9SY=";
   };
 
   desktop = makeDesktopItem {

@@ -3,6 +3,7 @@
   pkgs,
   inputs,
   user,
+  lib,
   ...
 }:
 
@@ -12,6 +13,14 @@ let
 
   # Flake stuff
   nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
+  utils = import ../modules/utils.nix {
+    inherit
+      lib
+      pkgs
+      inputs
+      config
+      ;
+  };
 
 in
 {
@@ -75,6 +84,7 @@ in
     ];
 
     home.sessionVariables = {
+      XDG_SCREENSHOTS_DIR = "/home/${user}/Pictures/Screenshots";
       HYPRCURSOR_THEME = config.cursor;
     };
 
@@ -82,11 +92,23 @@ in
       enable = true;
       userEmail = "shieldscoen@gmail.com";
       userName = user;
+      extraConfig = {
+        pull.rebase = false;
+      };
     };
 
     nix.gc = {
       automatic = true;
       options = "--delete-older-than 30d";
+    };
+
+    gtk = {
+      enable = true;
+
+      theme = {
+        package = utils.nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
+        name = "${config.colorScheme.slug}";
+      };
     };
 
     # Let Home Manager install and manage itself.
