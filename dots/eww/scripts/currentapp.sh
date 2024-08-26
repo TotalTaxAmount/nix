@@ -1,25 +1,14 @@
-workspaces() {
-	title=$(hyprctl activewindow -j | jq -r '.title')
-	if [ "$title" == "null" ]; then
-		title=""
-	fi
-}
+MONITOR=$1
+# Get the JSON data from `hyprctl monitors -j`
+monitor_data=$(hyprctl monitors -j)
 
-module() {
-#output eww widget
-	echo 	"(box \
-                :orientation \"h\" \
-                :space-evenly false \
-                :valign \"fill\" \
-                :vexpand true \
-                (label \
-                    :class \"appname\" \
-                    :limit-width \"35\" \
-                    :text \"$title\" \
-                    :tooltip \"$title\"))"
-}
+# Extract the monitor name based on the provided MONITOR ID
+MON_TEXT=$(echo "$monitor_data" | jq -r --arg monitor_id "$MONITOR" \
+  '.[] | select(.id == ($monitor_id | tonumber)) | .name')
+# Check if MON_TEXT was found and is not empty
+if [ -z "$MON_TEXT" ]; then
+  echo "Monitor with ID $MONITOR not found."
+  exit 1
+fi
 
-socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock - | while read -r event; do 
-workspaces "$event"
-module
-done
+hyprland-activewindow $MON_TEXT

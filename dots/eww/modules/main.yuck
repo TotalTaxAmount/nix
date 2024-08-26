@@ -3,6 +3,9 @@
 (defpoll battery_percent :interval "1s" "@scriptdir@/battery.sh charge")
 (defpoll battery_status :interval "1s" "@scriptdir@/battery.sh status")
 (defpoll battery_icon :interval "1s" "@scriptdir@/battery.sh icon")
+(deflisten title0 "@scriptdir@/currentapp.sh 0")
+(deflisten title1 "@scriptdir@/currentapp.sh 1")
+
 
 
 (defvar volum false)
@@ -36,7 +39,7 @@
   :exclusive true
   :stacking "fg" 
   :geometry (geometry 
-    :width "1436px" 
+    :width "1436px" ;  1440 - margin*2
     :height "40px"
     :anchor "top center")
   (bar :monitor 0)
@@ -49,7 +52,7 @@
     :class "bar"
     :orientation "h"
     (left :monitor {monitor})
-    (center)
+    (center :monitor {monitor})
     (right)
   )
 )
@@ -69,12 +72,12 @@
 )
 
 
-(defwidget center []
+(defwidget center [monitor]
   (box :class "center_modules"
       :space-evenly false
       :orientation "h"
       :halign "center"
-    (appname)
+    (appname :monitor {monitor})
   )
 )
 
@@ -131,9 +134,19 @@
 ;   )
 ; )
 
-(deflisten appname_ "@scriptdir@/currentapp.sh")
-(defwidget appname []
-  (literal :content appname_)
+(defwidget appname [monitor] 
+  (box
+    :orientation "h"
+    :space-evenly false
+    :valign "fill"
+    :vexpand true
+    (label
+      :class "appname"
+      :limit-width 35
+      :text {title1}
+      :tooltip {title1}
+    )
+  )
 )
 
 (defwidget clock []

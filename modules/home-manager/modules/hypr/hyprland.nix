@@ -9,23 +9,6 @@
 }:
 
 let
-  baseConfig = builtins.readFile ../../../../dots/hypr/hyprland/hyprland.conf;
-  laptopExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopExtra.conf;                                                                               
-  desktopExtra = builtins.readFile ../../../../dots/hypr/hyprland/desktopExtra.conf;
-
-  fullConfig = pkgs.writeText "hyprFullConfig.conf" (
-    baseConfig
-    + (if host == "laptop" then laptopExtra else "")
-    + (if host == "desktop" then desktopExtra else "")
-  );
-
-  hyprConfig = pkgs.substituteAll {
-    src = fullConfig;
-    base03 = "${config.colorScheme.palette.base03}";
-    base0D = "${config.colorScheme.palette.base0D}";
-    user = "${user}";
-  };
-
   backgrounds = pkgs.writeScriptBin "backgrounds" ''
     #!${pkgs.bash}/bin/bash
     export SWWW_TRANSITION_FPS=60
@@ -61,7 +44,23 @@ let
     esac
   '';
 
+  baseConfig = builtins.readFile ../../../../dots/hypr/hyprland/hyprland.conf;
+  laptopExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopExtra.conf;                                                                               
+  desktopExtra = builtins.readFile ../../../../dots/hypr/hyprland/desktopExtra.conf;
 
+  fullConfig = pkgs.writeText "hyprFullConfig.conf" (
+    baseConfig
+    + (if host == "laptop" then laptopExtra else "")
+    + (if host == "desktop" then desktopExtra else "")
+  );
+
+  hyprConfig = pkgs.substituteAll {
+    src = fullConfig;
+    base03 = "${config.colorScheme.palette.base03}";
+    base0D = "${config.colorScheme.palette.base0D}";
+    user = "${user}";
+    backgrounds = "${backgrounds}/bin/backgrounds";
+  };
 in
 {
   home.packages = with pkgs; [
@@ -69,6 +68,15 @@ in
     backgrounds
     hyprland-activewindow
   ];
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    # x11.enable = true;
+    package = config.cursor.package;
+    name = config.cursor.name;
+    size = config.cursor.size;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     # enableNvidiaPatches = true;

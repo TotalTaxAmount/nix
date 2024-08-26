@@ -40,10 +40,19 @@ in
       description = "\n        Name of system font (make sure its installed)\n      ";
     };
 
-    cursor = pkgs.lib.mkOption {
-      type = pkgs.lib.types.str;
-      example = "McMojave";
-      description = "\n       Name of the hyprcursor theme to use";
+    cursor = lib.mkOption {
+      # type = lib.types.attrsOf lib.types.str;
+      default = {
+        name = "Bibata-Modern-Classic";
+        package = pkgs.bibata-cursors;
+        size = 24;
+      };
+      description = ''
+        Configuration for the cursor theme.
+        - `name` specifies the cursor theme to use.
+        - `package` specifies the package that contains the cursor theme.
+        - `size` specifies the size of the cursor.
+      '';
     };
   };
 
@@ -77,7 +86,6 @@ in
 
       #Customization
       nerdfonts
-      inputs.mcmojave-hyprcursor.packages.${pkgs.system}.default
 
       # Langs and compilers
       python3
@@ -85,7 +93,8 @@ in
 
     home.sessionVariables = {
       XDG_SCREENSHOTS_DIR = "/home/${user}/Pictures/Screenshots";
-      HYPRCURSOR_THEME = config.cursor;
+      HYPRCURSOR_THEME = config.cursor.name;
+      HYPRCURSOR_SIZE = config.cursor.size;
     };
 
     programs.git = {

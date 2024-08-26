@@ -121,6 +121,10 @@
     };
   };
 
+  services.fstrim = {
+    enable = true;
+  };
+
   security.apparmor = {
     enable = false;
     enableCache = false;

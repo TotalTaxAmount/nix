@@ -37,7 +37,11 @@ in
   config = {
     colorScheme = utils.customThemes.material-ocean;
     font = "FiraCode Nerd Font";
-    cursor = "McMojave";
+    cursor = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 24;
+    };
 
     home.username = user;
     home.homeDirectory = "/home/${user}";
@@ -45,12 +49,6 @@ in
     nixpkgs.config.allows = true;
 
     home.stateVersion = "23.05";
-
-    home.sessionVariables = {
-      XDG_SCREENSHOTS_DIR = "/home/${user}/Pictures/Screenshots";
-      HYPRCURSOR_THEME = config.cursor;
-      HYPRCURSOR_SIZE = 24;
-    };
 
     home.packages = with pkgs; [
       # Apps
@@ -99,8 +97,8 @@ in
 
       # Customization/Fonts
       swww
-      nerdfonts
       font-awesome
+
 
       # Game Stuff
       wineWowPackages.waylandFull
