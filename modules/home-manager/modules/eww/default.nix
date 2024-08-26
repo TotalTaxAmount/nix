@@ -20,7 +20,6 @@ let
       "scripts/pop.sh"
       "scripts/sys_info.sh"
       "scripts/vpn.sh"
-      "scripts/workspaces.sh"
 
       "eww.scss"
       "eww.yuck"

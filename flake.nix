@@ -23,12 +23,20 @@
       url = "github:misterio77/nix-colors";
     };
 
+    aquamarine = {
+      url = "github:hyprwm/aquamarine";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland = {
       # url = "github:hyprwm/Hyprland?ref=v0.41.2&submodules=1";
       type = "git";
       submodules = true;
       url = "https://github.com/hyprwm/Hyprland";
       rev = "9a09eac79b85c846e3a865a9078a3f8ff65a9259";
+
+      inputs.aquamarine.follows = "aquamarine";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprsplit = {
