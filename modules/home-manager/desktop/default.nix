@@ -37,10 +37,11 @@ in
   config = {
     colorScheme = utils.customThemes.material-ocean;
     font = "FiraCode Nerd Font";
+
     cursor = {
       name = "Bibata-Modern-Classic";
       package = pkgs.bibata-cursors;
-      size = 24;
+      size = 16;
     };
 
     home.username = user;
