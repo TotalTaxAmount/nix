@@ -45,6 +45,17 @@
   (bar :monitor 0)
 )
 
+(defwindow laptopMain
+  :monitor 0
+  :exclusive true
+  :stacking "fg" 
+  :geometry (geometry 
+    :width "100%" ;  1440 - margin*2
+    :height "40px"
+    :anchor "top center")
+  (bar :monitor 0)
+)
+
 
 
 (defwidget bar [monitor]
@@ -143,11 +154,12 @@
     (label
       :class "appname"
       :limit-width 35
-      :text {title1}
-      :tooltip {title1}
+      :text {monitor == 0 ? title0 : title1}
+      :tooltip {monitor == 0 ? title0 : title1}
     )
   )
 )
+
 
 (defwidget clock []
   (eventbox :class "clock_container" 

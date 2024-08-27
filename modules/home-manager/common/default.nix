@@ -95,6 +95,10 @@ in
       XDG_SCREENSHOTS_DIR = "/home/${user}/Pictures/Screenshots";
       HYPRCURSOR_THEME = config.cursor.name;
       HYPRCURSOR_SIZE = config.cursor.size;
+      XCURSOR_SIZE = config.cursor.size;
+      XDG_DATA_HOME = "/home/${user}/.local/share";
+      XDG_SCREENREC_DIR = "/home/${user}/Vidoes/Screenrecordings";
+      ZSH_TMUX_AUTOSTART = "true";
     };
 
     programs.git = {

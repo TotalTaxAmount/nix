@@ -206,14 +206,12 @@ File Structure:
 **Note**: After doing this you should be able to update your system with `update home/system` from anywhere.
 
 ## To Do
-- [ ] Better support for multi-device
+- [x] Better support for multi-device
 - [ ] Fix vscode theme
 - [ ] Finish Eww (rewrite)
-    - [ ] System info (cpu, ram, disk, etc)
-- [ ] Make background switcher
-- [ ] Swaylock
+    - [x] System info (cpu, ram, disk, etc)
+- [x] Make background switcher
+- [x] ~~Swaylock~~ Hyprlock
 - [ ] Store secrets in private git repo
 - [ ] Finish wireguard
     - [ ] Make wireguard easy to toggle
-- [ ] Setup VFIO stuff as a real module instead of the frankenstein that it is
-- [ ] Fix pathplanner (contribute to nixpkgs eventually)
