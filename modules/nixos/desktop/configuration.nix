@@ -137,9 +137,9 @@
 
     pcscd.enable = true;
 
-    logind.extraConfig = ''
-      HandlePowerKey=ignore
-    '';
+    # logind.extraConfig = ''
+    #   HandlePowerKey=ignore
+    # '';
   };
 
   networking = {
