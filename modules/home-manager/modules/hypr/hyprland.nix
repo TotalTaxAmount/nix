@@ -69,13 +69,13 @@ in
     hyprland-activewindow
   ];
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    # x11.enable = true;
-    package = config.cursor.package;
-    name = config.cursor.name;
-    size = config.cursor.size;
-  };
+  # home.pointerCursor = {
+  #   gtk.enable = true;
+  #   # x11.enable = true;
+  #   package = config.cursor.package;
+  #   name = config.cursor.name;
+  #   size = config.cursor.size;
+  # };
 
   wayland.windowManager.hyprland = {
     enable = true;

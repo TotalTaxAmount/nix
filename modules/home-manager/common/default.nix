@@ -124,6 +124,13 @@ in
       };
     };
 
+    home.pointerCursor = {
+      gtk.enable = true;
+      name = config.cursor.name;
+      package = config.cursor.package;
+      size = config.cursor.size;
+    };
+
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
     # This value determines the Home Manager release that your configuration is
