@@ -60,6 +60,15 @@
       enable = true;
       motherboard = "amd";
     };
+
+    openvpn = {
+      servers = {
+        vpnbookUK = {
+          config = "config /home/${user}/VPNs/vpnbook-uk205-udp25000.ovpn";
+          autoStart = false;
+        };
+      };
+    };
   };
 
   environment.systemPackages = with pkgs; [
