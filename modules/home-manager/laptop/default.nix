@@ -206,6 +206,10 @@ in
       # enableNvidiaPatches = true;
     };
 
+    dconf.settings = {
+      
+    };
+
     services.hypridle = {
       enable = true;
       settings = {
@@ -236,7 +240,6 @@ in
       userName = user;
     };
     # Random files
-    home.file.".config/mimeapps.list".source = ../../../dots/mimeapps.list;
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;

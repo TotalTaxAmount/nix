@@ -22,6 +22,7 @@ in
     inherit pkgs system; # TODO fix!
     specialArgs = {
       inherit inputs user;
+      host = "laptop";
     };
     modules = [
       ../modules/nixos/common
@@ -34,6 +35,7 @@ in
     inherit pkgs system;
     specialArgs = {
       inherit inputs user;
+      host = "desktop";
     };
     modules = [
       inputs.sops-nix.nixosModules.sops
@@ -47,6 +49,7 @@ in
     inherit pkgs system;
     specialArgs = {
       inherit inputs;
+      host = "remote";
     };
     modules = [
       inputs.sops-nix.nixosModules.sops

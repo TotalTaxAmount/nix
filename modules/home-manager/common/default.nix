@@ -119,10 +119,11 @@ in
       enable = true;
 
       theme = {
-        package = utils.nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; };
-        name = "${config.colorScheme.slug}";
+        package = lib.mkDefault (utils.nix-colors-lib.gtkThemeFromScheme { scheme = config.colorScheme; });
+        name = lib.mkDefault "${config.colorScheme.slug}";
       };
     };
+
 
     home.pointerCursor = {
       gtk.enable = true;
