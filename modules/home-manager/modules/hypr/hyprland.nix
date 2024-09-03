@@ -77,6 +77,10 @@ in
   #   size = config.cursor.size;
   # };
 
+  xdg.portal.extraPortals = with pkgs; [
+    xdg-desktop-portal-gtk
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     # enableNvidiaPatches = true;

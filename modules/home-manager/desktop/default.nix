@@ -69,6 +69,10 @@ in
       slack
       copyq
       rofi-copyq
+      jetbrains.idea-ultimate
+      lunar-client
+      nemo
+      
 
       # Terminal
       zsh-powerlevel10k
@@ -117,10 +121,6 @@ in
       gcc
     ];
 
-    services.kdeconnect = {
-      enable = true;
-    };
-
     services = {
       spotifyd.enable = true;
 
@@ -155,8 +155,10 @@ in
       xwayland.enable = true;
     };
 
-    # Extra Files 
-    home.file.".config/mimeapps.list".source = ../../../dots/mimeapps.list;
+    gtk.theme = {
+      package = pkgs.lavanda-gtk-theme;
+      name = "Lavanda-Dark";
+    };
 
     programs.home-manager.enable = true;
   };

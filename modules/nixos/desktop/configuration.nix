@@ -4,6 +4,7 @@
   lib,
   pkgs,
   user,
+  host,
   ...
 }:
 
@@ -45,7 +46,7 @@
 
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
     xpadneo.enable = true;
@@ -56,11 +57,6 @@
     blueman.enable = true; 
     fstrim.enable = true;
 
-    hardware.openrgb = {
-      enable = true;
-      motherboard = "amd";
-    };
-
     openvpn = {
       servers = {
         vpnbookUK = {
@@ -68,6 +64,11 @@
           autoStart = false;
         };
       };
+    };
+
+    hardware.openrgb = {
+      enable = true;
+      motherboard = "amd";
     };
   };
 
@@ -122,7 +123,7 @@
 
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "performance";
+    cpuFreqGovernor = "preformace";
   };
   
 
@@ -143,7 +144,7 @@
   };
 
   networking = {
-    hostName = "desktop";
+    hostName = host;
     nftables.enable = false;
     firewall = {
       enable = true;
@@ -171,6 +172,7 @@
   boot = {
     supportedFilesystems = [ "nfs" ];
     kernelModules = [ "kvm-amd" ];
+    kernelPackages = pkgs.linuxPackages_zen;
 
     tmp.cleanOnBoot = true;
 
