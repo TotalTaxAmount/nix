@@ -60,6 +60,8 @@ let
     base0D = "${config.colorScheme.palette.base0D}";
     user = "${user}";
     backgrounds = "${backgrounds}/bin/backgrounds";
+    cursorSize = config.cursor.size;
+    cursorTheme = config.cursor.name;
   };
 in
 {
