@@ -99,6 +99,7 @@ in
       XDG_DATA_HOME = "/home/${user}/.local/share";
       XDG_SCREENREC_DIR = "/home/${user}/Vidoes/Screenrecordings";
       ZSH_TMUX_AUTOSTART = "true";
+      TERMINAL = "${pkgs.alacritty}";
     };
 
     programs.git = {
