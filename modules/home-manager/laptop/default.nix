@@ -112,6 +112,7 @@ in
       ffmpeg
       killall
       utils.print-colors
+      nautilus
       # zed-editor
       # path-plannesr
 

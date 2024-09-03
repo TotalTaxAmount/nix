@@ -96,6 +96,7 @@ in
       HYPRCURSOR_THEME = config.cursor.name;
       HYPRCURSOR_SIZE = config.cursor.size;
       XCURSOR_SIZE = config.cursor.size;
+      XCURSOR_THEME = config.cursor.name;
       XDG_DATA_HOME = "/home/${user}/.local/share";
       XDG_SCREENREC_DIR = "/home/${user}/Vidoes/Screenrecordings";
       ZSH_TMUX_AUTOSTART = "true";
