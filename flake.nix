@@ -44,6 +44,11 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     #        nix-gaming = {
     #           url = github:fufexan/nix-gaming;
     #          inputs.nixpkgs.follows = "nixpkgs";
@@ -64,10 +69,7 @@
 
   outputs =
     {
-      self,
       nixpkgs,
-      home-manager,
-      sops-nix,
       ...
     }@inputs:
     let

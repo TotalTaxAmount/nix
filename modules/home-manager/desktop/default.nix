@@ -112,7 +112,7 @@ in
       mangohud
       gamescope
       gamemode
-      protonup-qt
+      protonplus
       lutris
 
       # Scripts/Misc

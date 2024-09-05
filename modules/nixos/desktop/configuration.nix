@@ -168,11 +168,21 @@
   #   capabilities="cap_sys_nice+eip";
   #   source = "${pkgs.gamescope}/bin/gamescope";
   # };
+  # chaotic = {
+  #   scx.enable = true;
+  # };
+
+  chaotic = {
+    scx = { 
+      enable = true;
+      scheduler = "scx_bpfland";
+    };
+  };
 
   boot = {
     supportedFilesystems = [ "nfs" ];
     kernelModules = [ "kvm-amd" ];
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_cachyos;
 
     tmp.cleanOnBoot = true;
 

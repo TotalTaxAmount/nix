@@ -38,6 +38,7 @@ in
       host = "desktop";
     };
     modules = [
+      inputs.chaotic.nixosModules.default
       inputs.sops-nix.nixosModules.sops
       ../modules/nixos/common
       ../modules/nixos/desktop/hardware.nix
