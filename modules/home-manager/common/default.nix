@@ -126,7 +126,6 @@ in
       };
     };
 
-
     home.pointerCursor = {
       gtk.enable = true;
       name = config.cursor.name;

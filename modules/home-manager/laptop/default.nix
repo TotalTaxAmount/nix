@@ -49,7 +49,7 @@ in
     # Use custom themes customThemes.[theme] (defined in themes/custom.nix) or inputs.nix-colors.colorSchemes.[theme] themes list at https://github.com/tinted-theming/base16-schemes
     colorScheme = utils.customThemes.material-ocean;
     font = "FiraCode Nerd Font";
-    
+
     cursor = {
       name = "Bibata-Modern-Classic";
       package = pkgs.bibata-cursors;
@@ -146,7 +146,6 @@ in
 
       #Customization
       swww
-      
 
       # Scripts
       python3
@@ -208,7 +207,7 @@ in
     };
 
     dconf.settings = {
-      
+
     };
 
     services.hypridle = {

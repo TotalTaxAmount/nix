@@ -21,7 +21,12 @@ in
     inherit pkgs;
 
     extraSpecialArgs = {
-      inherit pkgs inputs user system;
+      inherit
+        pkgs
+        inputs
+        user
+        system
+        ;
       host = "laptop";
     };
 
@@ -35,7 +40,12 @@ in
     inherit pkgs;
 
     extraSpecialArgs = {
-      inherit pkgs inputs user system;
+      inherit
+        pkgs
+        inputs
+        user
+        system
+        ;
     };
 
     modules = [
@@ -48,7 +58,12 @@ in
     inherit pkgs;
 
     extraSpecialArgs = {
-      inherit pkgs inputs user system;
+      inherit
+        pkgs
+        inputs
+        user
+        system
+        ;
       host = "desktop";
     };
 

@@ -45,7 +45,7 @@ let
   '';
 
   baseConfig = builtins.readFile ../../../../dots/hypr/hyprland/hyprland.conf;
-  laptopExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopExtra.conf;                                                                               
+  laptopExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopExtra.conf;
   desktopExtra = builtins.readFile ../../../../dots/hypr/hyprland/desktopExtra.conf;
 
   fullConfig = pkgs.writeText "hyprFullConfig.conf" (
@@ -89,54 +89,53 @@ in
     extraConfig = builtins.readFile hyprConfig.out;
     package = inputs.hyprland.packages.${system}.hyprland;
     plugins = [
-        inputs.hyprsplit.packages.${system}.hyprsplit
+      inputs.hyprsplit.packages.${system}.hyprsplit
     ];
 
+    #   settings = {
+    #     exec-once = [
+    #       "${backgrounds}/bin/backgrounds"
+    #       "${pkgs.copyq}"
+    #       "sleep 2 && ${inputs.hyprland.packages.${system}.hyprland}/bin/hyprctl setcursor ${config.cursor.name} ${config.cursor.size}"
+    #     ];
 
-  #   settings = {
-  #     exec-once = [
-  #       "${backgrounds}/bin/backgrounds"
-  #       "${pkgs.copyq}"
-  #       "sleep 2 && ${inputs.hyprland.packages.${system}.hyprland}/bin/hyprctl setcursor ${config.cursor.name} ${config.cursor.size}"
-  #     ];
+    #     input = {
+    #       kb_layout = "us";
+    #       # kb_variant =
+    #       # kb_model =
+    #       # kb_options =
+    #       # kb_rules =
 
-  #     input = {
-  #       kb_layout = "us";
-  #       # kb_variant =
-  #       # kb_model =
-  #       # kb_options =
-  #       # kb_rules =
+    #       follow_mouse = 1;
 
-  #       follow_mouse = 1;
+    #       touchpad = {
+    #           natural_scroll = "no";
+    #           clickfinger_behavior = "yes";
+    #           tap-to-click = "no";
+    #           disable_while_typing = "no";
+    #       };
 
-  #       touchpad = {
-  #           natural_scroll = "no";
-  #           clickfinger_behavior = "yes";
-  #           tap-to-click = "no";
-  #           disable_while_typing = "no";
-  #       };
+    #       sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+    #     };
 
-  #       sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-  #     };
+    #     general = {
+    #       gaps_in = 5;
+    #       gaps_out = 10;
+    #       border_size = 2;
+    #       col.active_border = "rgb(${config.colorScheme.palette.base0D})";
+    #       col.inactive_border = "rgb(${config.colorScheme.palette.base03})";
 
-  #     general = {
-  #       gaps_in = 5;
-  #       gaps_out = 10;
-  #       border_size = 2;
-  #       col.active_border = "rgb(${config.colorScheme.palette.base0D})";
-  #       col.inactive_border = "rgb(${config.colorScheme.palette.base03})";
+    #       layout = "dwindle";
+    #     };
 
-  #       layout = "dwindle";
-  #     };
-
-  #     decoration = {
-  #       rounding = 10;
-  #       drop_shadow = "yes";
-  #       shadow_range = 10;
-  #       shadow_render_power = 3;
-  #       col.shadow = "rgb(${config.colorScheme.palette.base0D})";
-  #       col.shadow_inactive = "rgb(${config.colorScheme.palette.base03})";
-  #     };
-  #   };
+    #     decoration = {
+    #       rounding = 10;
+    #       drop_shadow = "yes";
+    #       shadow_range = 10;
+    #       shadow_render_power = 3;
+    #       col.shadow = "rgb(${config.colorScheme.palette.base0D})";
+    #       col.shadow_inactive = "rgb(${config.colorScheme.palette.base03})";
+    #     };
+    #   };
   };
 }

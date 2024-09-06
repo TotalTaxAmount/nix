@@ -67,8 +67,9 @@ final: prev:
   vscode = prev.vscode.overrideAttrs (old: {
     postInstall =
       (old.postInstall or "")
-      + ''wrapProgram $out/bin/code \
-      --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations \
-      --add-flags --ozone-platform-hint=auto'';
+      + ''
+        wrapProgram $out/bin/code \
+              --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations \
+              --add-flags --ozone-platform-hint=auto'';
   });
 }
