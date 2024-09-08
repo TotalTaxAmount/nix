@@ -49,12 +49,15 @@ let
 
   baseConfig = builtins.readFile ../../../../dots/hypr/hyprland/hyprland.conf;
   laptopExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopExtra.conf;
+  laptopStrixExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopStrixExtra.conf;
   desktopExtra = builtins.readFile ../../../../dots/hypr/hyprland/desktopExtra.conf;
+
 
   fullConfig = pkgs.writeText "hyprFullConfig.conf" (
     baseConfig
     + (if host == "laptop" then laptopExtra else "")
     + (if host == "desktop" then desktopExtra else "")
+    + (if host == "laptop-strix" then laptopStrixExtra else "")
   );
 
   hyprConfig = pkgs.substituteAll {
