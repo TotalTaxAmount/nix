@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  host,
   lib,
   pkgs,
   user,
@@ -142,6 +143,11 @@
 
   security.polkit = {
     enable = true;
+  };
+
+  networking = {
+    hostName = host;
+    nftables.enable = false;
   };
 
   boot.loader = {

@@ -7,6 +7,7 @@
   inputs,
   lib,
   pkgs,
+  host,
   user,
   ...
 }:
@@ -176,8 +177,6 @@ in
   # };
 
   networking = {
-    hostName = "laptop";
-    nftables.enable = false;
     firewall = {
       enable = true;
       allowedTCPPortRanges = [

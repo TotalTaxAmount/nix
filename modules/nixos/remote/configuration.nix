@@ -71,7 +71,6 @@ in
   };
 
   networking = {
-    nftables.enable = false;
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -88,7 +87,6 @@ in
 
     defaultGateway = "10.1.10.1";
     nameservers = [ "1.1.1.1" ];
-    hostName = "remote";
   };
 
   sops = {

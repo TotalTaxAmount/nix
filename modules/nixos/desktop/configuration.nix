@@ -143,8 +143,6 @@
   };
 
   networking = {
-    hostName = host;
-    nftables.enable = false;
     firewall = {
       enable = true;
     };

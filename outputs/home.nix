@@ -41,6 +41,7 @@ in
 
     extraSpecialArgs = {
       inherit pkgs inputs user system;
+      host = "laptop-strix";
     };
 
     modules = [
