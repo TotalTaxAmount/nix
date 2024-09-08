@@ -72,7 +72,6 @@ in
       jetbrains.idea-ultimate
       lunar-client
       nemo
-      
 
       # Terminal
       zsh-powerlevel10k
@@ -103,7 +102,6 @@ in
       # Customization/Fonts
       swww
       font-awesome
-
 
       # Game Stuff
       wineWowPackages.waylandFull
@@ -148,7 +146,7 @@ in
       };
     };
 
-    programs = {};
+    programs = { };
 
     wayland.windowManager.hyprland = {
       enable = true;

@@ -32,6 +32,19 @@ in
     ];
   };
 
+  laptop-strix = nixosSystem {
+    inherit pkgs system; # TODO fix!
+    specialArgs = {
+      inherit inputs user;
+      host = "laptop-strix";
+    };
+    modules = [
+      ../modules/nixos/common
+      ../modules/nixos/laptop-strix/hardware.nix
+      ../modules/nixos/laptop-strix/configuration.nix
+    ];
+  };
+
   desktop = nixosSystem {
     inherit pkgs system;
     specialArgs = {
