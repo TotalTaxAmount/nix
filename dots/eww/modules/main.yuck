@@ -39,7 +39,7 @@
   :exclusive true
   :stacking "fg" 
   :geometry (geometry 
-    :width "1436px" ;  1440 - margin*2
+    :width "1436px"
     :height "40px"
     :anchor "top center")
   (bar :monitor 0)
@@ -50,7 +50,7 @@
   :exclusive true
   :stacking "fg" 
   :geometry (geometry 
-    :width "100%" ;  1440 - margin*2
+    :width "150.25%"
     :height "40px"
     :anchor "top center")
   (bar :monitor 0)

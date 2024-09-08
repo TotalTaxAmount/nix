@@ -41,13 +41,6 @@ in
     };
   };
 
-  services.supergfxd.enable = true;
-
-  services.asusd = {
-    enable = true;
-    enableUserService = true;
-  };
-
   systemd = {
     # enableCgroupAccounting = true;
     services = {
@@ -87,7 +80,7 @@ in
         offload.enable = true;
         offload.enableOffloadCmd = true;
         nvidiaBusId = "PCI:1:0:0";
-        amdgpuBusId = "PCI:5:0:0";
+        amdgpuBusId = "PCI:65:0:0";
       };
     };
 
@@ -160,21 +153,6 @@ in
 
   services.pcscd.enable = true;
 
-  services.auto-cpufreq = {
-    enable = true;
-    settings = {
-      battery = {
-        governor = "powersave";
-        turbo = "never";
-      };
-
-      charger = {
-        governor = "preformace";
-        turbo = "auto";
-      };
-    };
-  };
-
   networking = {
     hostName = "laptop";
     nftables.enable = false;
@@ -205,13 +183,15 @@ in
   boot.kernelParams = [
     # "video=eDP-1:1920x1080@60" # TODO: There is def a better way to do this...
     # "systemd.unified_cgroup_hierarchy=0"
-    #"amd_iommu=on" # GPU passthough
+    #"amd_iommu=on" # GPU passthoug
+    "acpi_backlight=native"
+
   ];
   boot.supportedFilesystems = [ "nfs" ];
   boot.kernelModules = [
     "kvm-amd"
-    "kvm-intel"
   ];
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
   boot.tmp.cleanOnBoot = true;
   boot.kernel.sysctl = {
     "vm.max_map_count" = 16777216;
@@ -227,11 +207,6 @@ in
       efiSupport = true;
     };
   };
-
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
-
   #  specialisation."VFIO".configuration = {
   #   system.nixos.tags = [ "with-vfio" ];
   #  vfio.enable = true;

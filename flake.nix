@@ -24,7 +24,10 @@
     };
 
     aquamarine = {
-      url = "github:hyprwm/aquamarine";
+      type = "git";
+      url = "https://github.com/hyprwm/aquamarine";
+      ref = "refs/tags/v0.3.3";
+
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -33,21 +36,25 @@
       type = "git";
       submodules = true;
       url = "https://github.com/hyprwm/Hyprland";
-      rev = "9a09eac79b85c846e3a865a9078a3f8ff65a9259";
+      ref = "refs/tags/v0.41.2";
 
       inputs.aquamarine.follows = "aquamarine";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprsplit = {
-      url = "github:shezdy/hyprsplit?ref=v0.42.0";
+      type = "git";
+      url = "https://github.com/shezdy/hyprsplit";
+      ref = "refs/tags/v0.41.2";
+
       inputs.hyprland.follows = "hyprland";
-    };
+      inputs.nixpkgs.follows = "nixpkgs";
+};
 
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
+   };
 
     #        nix-gaming = {
     #           url = github:fufexan/nix-gaming;
