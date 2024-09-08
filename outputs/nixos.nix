@@ -25,6 +25,7 @@ in
       host = "laptop";
     };
     modules = [
+      inputs.chaotic.nixosModules.default
       ../modules/nixos/common
       ../modules/nixos/laptop/hardware.nix
       ../modules/nixos/laptop/configuration.nix
@@ -52,7 +53,6 @@ in
     };
     modules = [
       inputs.chaotic.nixosModules.default
-      inputs.sops-nix.nixosModules.sops
       ../modules/nixos/common
       ../modules/nixos/desktop/hardware.nix
       ../modules/nixos/desktop/configuration.nix

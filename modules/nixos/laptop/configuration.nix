@@ -41,13 +41,6 @@ in
     };
   };
 
-  services.supergfxd.enable = true;
-
-  services.asusd = {
-    enable = true;
-    enableUserService = true;
-  };
-
   systemd = {
     # enableCgroupAccounting = true;
     services = {
@@ -87,7 +80,7 @@ in
         offload.enable = true;
         offload.enableOffloadCmd = true;
         nvidiaBusId = "PCI:1:0:0";
-        amdgpuBusId = "PCI:5:0:0";
+        amdgpuBusId = "PCI:65:0:0";
       };
     };
 
@@ -160,21 +153,6 @@ in
 
   services.pcscd.enable = true;
 
-  # services.auto-cpufreq = {
-  #   enable = true;
-  #   settings = {
-  #     battery = {
-  #       governor = "powersave";
-  #       turbo = "never";
-  #     };
-
-  #     charger = {
-  #       governor = "preformace";
-  #       turbo = "auto";
-  #     };
-  #   };
-  # };
-
   networking = {
     firewall = {
       enable = true;
@@ -204,6 +182,7 @@ in
       # "video=eDP-1:1920x1080@60" # TODO: There is def a better way to do this...
       # "systemd.unified_cgroup_hierarchy=0"
       #"amd_iommu=on" # GPU passthough
+      "acpi_backlight=native"
     ];
 
     kernelPatches = [
@@ -237,11 +216,6 @@ in
       };
     };
   };
-
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-  '';
-
   #  specialisation."VFIO".configuration = {
   #   system.nixos.tags = [ "with-vfio" ];
   #  vfio.enable = true;

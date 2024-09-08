@@ -13,29 +13,32 @@ let
     #!${pkgs.bash}/bin/bash
     export SWWW_TRANSITION_FPS=60
     export SWWW_TRANSITION_STEP=2
-
     INTERVAL=60
     ${pkgs.swww}/bin/swww-daemon
 
     case "${host}" in
       "laptop")
+        WALLPAPER_DIR="/home/${user}/nix/dots/swww/wallpapers"
+
+        # Create an array of all the wallpaper image files
+        IMAGE_FILES=($WALLPAPER_DIR/*.jpg)
+
+        # Infinite loop to rotate through images
         while true; do
-          find "/home/${user}/nix/dots/swww/wallpapers/" \
-            | while read -r img; do
-              echo "$((RANDOM % 1000)):$img"
-            done \
-            | sort -n | cut -d':' -f2- \
-            | while read -r img; do
-              ${pkgs.dunst}/bin/dunstify "Background Changed" "New background: $img"
-              ${pkgs.swww}/bin/swww img --transition-type=center "$img"
-              sleep $INTERVAL
-            done
+          # Shuffle the array of image files
+          SHUFFLED_FILES=($(shuf -e "$IMAGE_FILES[@]"))
+
+          # Iterate through the shuffled array
+          for IMAGE in "$SHUFFLED_FILES[@]"; do
+            ${pkgs.swww} img -o eDP-1 "$IMAGE"
+            sleep "$INTERVAL"
+          done
         done
         ;;
         
       "desktop")
-        swww img -o DP-1 "/home/${user}/nix/dots/swww/desktop/ultrawide.png"
-        swww img -o HDMI-A-1 "/home/${user}/nix/dots/swww/desktop/2nd.jpg"
+        ${pkgs.swww} img -o DP-1 "/home/${user}/nix/dots/swww/desktop/ultrawide.png"
+        ${pkgs.swww} img -o HDMI-A-1 "/home/${user}/nix/dots/swww/desktop/2nd.jpg"
         ;;
         
       *)
@@ -85,6 +88,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
     # enableNvidiaPatches = true;
     extraConfig = builtins.readFile hyprConfig.out;
     package = inputs.hyprland.packages.${system}.hyprland;
