@@ -10,41 +10,48 @@
 
 let
   backgrounds = pkgs.writeScriptBin "backgrounds" ''
-    #!${pkgs.bash}/bin/bash
-    export SWWW_TRANSITION_FPS=60
-    export SWWW_TRANSITION_STEP=2
-    INTERVAL=60
-    ${pkgs.swww}/bin/swww-daemon
+    #!${pkgs.python3}/bin/python3
 
-    case "${host}" in
-      "laptop")
-        WALLPAPER_DIR="/home/${user}/nix/dots/swww/wallpapers"
+    import os
+    import subprocess
+    import time
+    import random
+    from pathlib import Path
 
-        # Create an array of all the wallpaper image files
-        IMAGE_FILES=($WALLPAPER_DIR/*.jpg)
+    os.environ['SWWW_TRANSITION_FPS'] = '60'
+    os.environ['SWWW_TRANSITION_STEP'] = '2'
+    interval = 60
 
-        # Infinite loop to rotate through images
-        while true; do
-          # Shuffle the array of image files
-          SHUFFLED_FILES=($(shuf -e "$IMAGE_FILES[@]"))
+    # Path configuration
 
-          # Iterate through the shuffled array
-          for IMAGE in "$SHUFFLED_FILES[@]"; do
-            ${pkgs.swww} img -o eDP-1 "$IMAGE"
-            sleep "$INTERVAL"
-          done
-        done
-        ;;
-        
-      "desktop")
-        ${pkgs.swww} img -o DP-1 "/home/${user}/nix/dots/swww/desktop/ultrawide.png"
-        ${pkgs.swww} img -o HDMI-A-1 "/home/${user}/nix/dots/swww/desktop/2nd.jpg"
-        ;;
-        
-      *)
-        exit 1
-        ;;
-    esac
+    # Start the swww daemon
+    subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'])
+
+    def set_wallpaper_image(path, output=None):
+        """ Set the wallpaper image using swww. """
+        cmd = [f'${pkgs.swww}/bin/swww', 'img']
+        if output:
+            cmd += ['-o', output]
+        cmd.append(path)
+        subprocess.run(cmd)
+
+    if "${host}" in ["laptop", "laptop-strix"]:
+        wallpaper_dir = Path(f'/home/${user}/nix/dots/swww/wallpapers')
+        image_files = list(wallpaper_dir.glob('*.jpg'))
+
+        while True:
+            shuffled_files = random.sample(image_files, len(image_files))
+            for path in shuffled_files:
+                print(f"ea {path}")
+                set_wallpaper_image(path)
+                time.sleep(interval)
+
+    elif "${host}" == "desktop":
+        set_wallpaper_image(f'/home/${user}/nix/dots/swww/desktop/ultrawide.png', 'DP-1')
+        set_wallpaper_image(f'/home/${user}/nix/dots/swww/desktop/2nd.jpg', 'HDMI-A-1')
+
+    else:
+        exit(1)
   '';
 
   baseConfig = builtins.readFile ../../../../dots/hypr/hyprland/hyprland.conf;
