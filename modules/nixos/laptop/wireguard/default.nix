@@ -16,7 +16,7 @@ in
   networking.firewall.trustedInterfaces = [ "wg0" ];
   networking.wg-quick.interfaces = {
     wg0 = {
-      address = [ "10.1.11.2/24" ];
+      address = [ "10.1.11.4/24" ];
       dns = [ "1.1.1.1" ];
       privateKeyFile = config.sops.secrets."wireguard/private_key".path;
 
