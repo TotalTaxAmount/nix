@@ -53,8 +53,8 @@
     steam-hardware.enable = true;
   };
 
-  services = { 
-    blueman.enable = true; 
+  services = {
+    blueman.enable = true;
     fstrim.enable = true;
 
     openvpn = {
@@ -83,7 +83,7 @@
     pinentry-rofi
   ];
 
-  environment.variables = { 
+  environment.variables = {
     LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
     GBM_BACKEND = "nvidia-drm";
@@ -102,7 +102,7 @@
       dedicatedServer.openFirewall = true;
       gamescopeSession = {
         enable = true;
-        
+
       };
     };
 
@@ -125,7 +125,6 @@
     enable = true;
     cpuFreqGovernor = "preformace";
   };
-  
 
   services = {
     avahi = {
@@ -144,8 +143,6 @@
   };
 
   networking = {
-    hostName = host;
-    nftables.enable = false;
     firewall = {
       enable = true;
     };
@@ -173,7 +170,7 @@
   # };
 
   chaotic = {
-    scx = { 
+    scx = {
       enable = true;
       scheduler = "scx_rusty";
     };

@@ -45,7 +45,7 @@ let
     chmod +x $out/scripts/*.sh
   '';
 
-  hyprland-workspaces_updated = pkgs.callPackage ../../../../external/pkgs/hyprland-workspaces {};
+  hyprland-workspaces_updated = pkgs.callPackage ../../../../external/pkgs/hyprland-workspaces { };
 in
 {
 
@@ -54,9 +54,9 @@ in
     enable = true;
     configDir = ewwCfgPatch.out;
   };
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     bc
     hyprland-workspaces_updated
-   ];
+  ];
 
 }

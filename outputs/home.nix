@@ -21,7 +21,12 @@ in
     inherit pkgs;
 
     extraSpecialArgs = {
-      inherit pkgs inputs user system;
+      inherit
+        pkgs
+        inputs
+        user
+        system
+        ;
       host = "laptop";
     };
 
@@ -31,11 +36,31 @@ in
     ];
   };
 
-  remote = home-manager.lib.homeManagerConfiguration {
+  laptop-strix = home-manager.lib.homeManagerConfiguration {
     inherit pkgs;
 
     extraSpecialArgs = {
       inherit pkgs inputs user system;
+      host = "laptop-strix";
+    };
+
+    modules = [
+      ../modules/home-manager/common
+      ../modules/home-manager/laptop-strix
+    ];
+  };
+
+
+  remote = home-manager.lib.homeManagerConfiguration {
+    inherit pkgs;
+
+    extraSpecialArgs = {
+      inherit
+        pkgs
+        inputs
+        user
+        system
+        ;
     };
 
     modules = [
@@ -48,7 +73,12 @@ in
     inherit pkgs;
 
     extraSpecialArgs = {
-      inherit pkgs inputs user system;
+      inherit
+        pkgs
+        inputs
+        user
+        system
+        ;
       host = "desktop";
     };
 

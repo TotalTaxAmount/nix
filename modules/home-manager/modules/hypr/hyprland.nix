@@ -10,48 +10,61 @@
 
 let
   backgrounds = pkgs.writeScriptBin "backgrounds" ''
-    #!${pkgs.bash}/bin/bash
-    export SWWW_TRANSITION_FPS=60
-    export SWWW_TRANSITION_STEP=2
+    #!${pkgs.python3}/bin/python3
 
-    INTERVAL=60
-    ${pkgs.swww}/bin/swww-daemon
+    import os
+    import subprocess
+    import time
+    import random
+    from pathlib import Path
 
-    case "${host}" in
-      "laptop")
-        while true; do
-          find "/home/${user}/nix/dots/swww/wallpapers/" \
-            | while read -r img; do
-              echo "$((RANDOM % 1000)):$img"
-            done \
-            | sort -n | cut -d':' -f2- \
-            | while read -r img; do
-              ${pkgs.dunst}/bin/dunstify "Background Changed" "New background: $img"
-              ${pkgs.swww}/bin/swww img --transition-type=center "$img"
-              sleep $INTERVAL
-            done
-        done
-        ;;
-        
-      "desktop")
-        swww img -o DP-1 "/home/${user}/nix/dots/swww/desktop/ultrawide.png"
-        swww img -o HDMI-A-1 "/home/${user}/nix/dots/swww/desktop/2nd.jpg"
-        ;;
-        
-      *)
-        exit 1
-        ;;
-    esac
+    os.environ['SWWW_TRANSITION_FPS'] = '60'
+    os.environ['SWWW_TRANSITION_STEP'] = '2'
+    interval = 60
+
+    # Path configuration
+
+    # Start the swww daemon
+    subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'])
+
+    def set_wallpaper_image(path, output=None):
+        """ Set the wallpaper image using swww. """
+        cmd = [f'${pkgs.swww}/bin/swww', 'img']
+        if output:
+            cmd += ['-o', output]
+        cmd.append(path)
+        subprocess.run(cmd)
+
+    if "${host}" in ["laptop", "laptop-strix"]:
+        wallpaper_dir = Path(f'/home/${user}/nix/dots/swww/wallpapers')
+        image_files = list(wallpaper_dir.glob('*.jpg'))
+
+        while True:
+            shuffled_files = random.sample(image_files, len(image_files))
+            for path in shuffled_files:
+                print(f"ea {path}")
+                set_wallpaper_image(path)
+                time.sleep(interval)
+
+    elif "${host}" == "desktop":
+        set_wallpaper_image(f'/home/${user}/nix/dots/swww/desktop/ultrawide.png', 'DP-1')
+        set_wallpaper_image(f'/home/${user}/nix/dots/swww/desktop/2nd.jpg', 'HDMI-A-1')
+
+    else:
+        exit(1)
   '';
 
   baseConfig = builtins.readFile ../../../../dots/hypr/hyprland/hyprland.conf;
-  laptopExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopExtra.conf;                                                                               
+  laptopExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopExtra.conf;
+  laptopStrixExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopStrixExtra.conf;
   desktopExtra = builtins.readFile ../../../../dots/hypr/hyprland/desktopExtra.conf;
+
 
   fullConfig = pkgs.writeText "hyprFullConfig.conf" (
     baseConfig
     + (if host == "laptop" then laptopExtra else "")
     + (if host == "desktop" then desktopExtra else "")
+    + (if host == "laptop-strix" then laptopStrixExtra else "")
   );
 
   hyprConfig = pkgs.substituteAll {
@@ -85,58 +98,58 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
     # enableNvidiaPatches = true;
     extraConfig = builtins.readFile hyprConfig.out;
     package = inputs.hyprland.packages.${system}.hyprland;
     plugins = [
-        inputs.hyprsplit.packages.${system}.hyprsplit
+      inputs.hyprsplit.packages.${system}.hyprsplit
     ];
 
+    #   settings = {
+    #     exec-once = [
+    #       "${backgrounds}/bin/backgrounds"
+    #       "${pkgs.copyq}"
+    #       "sleep 2 && ${inputs.hyprland.packages.${system}.hyprland}/bin/hyprctl setcursor ${config.cursor.name} ${config.cursor.size}"
+    #     ];
 
-  #   settings = {
-  #     exec-once = [
-  #       "${backgrounds}/bin/backgrounds"
-  #       "${pkgs.copyq}"
-  #       "sleep 2 && ${inputs.hyprland.packages.${system}.hyprland}/bin/hyprctl setcursor ${config.cursor.name} ${config.cursor.size}"
-  #     ];
+    #     input = {
+    #       kb_layout = "us";
+    #       # kb_variant =
+    #       # kb_model =
+    #       # kb_options =
+    #       # kb_rules =
 
-  #     input = {
-  #       kb_layout = "us";
-  #       # kb_variant =
-  #       # kb_model =
-  #       # kb_options =
-  #       # kb_rules =
+    #       follow_mouse = 1;
 
-  #       follow_mouse = 1;
+    #       touchpad = {
+    #           natural_scroll = "no";
+    #           clickfinger_behavior = "yes";
+    #           tap-to-click = "no";
+    #           disable_while_typing = "no";
+    #       };
 
-  #       touchpad = {
-  #           natural_scroll = "no";
-  #           clickfinger_behavior = "yes";
-  #           tap-to-click = "no";
-  #           disable_while_typing = "no";
-  #       };
+    #       sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+    #     };
 
-  #       sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-  #     };
+    #     general = {
+    #       gaps_in = 5;
+    #       gaps_out = 10;
+    #       border_size = 2;
+    #       col.active_border = "rgb(${config.colorScheme.palette.base0D})";
+    #       col.inactive_border = "rgb(${config.colorScheme.palette.base03})";
 
-  #     general = {
-  #       gaps_in = 5;
-  #       gaps_out = 10;
-  #       border_size = 2;
-  #       col.active_border = "rgb(${config.colorScheme.palette.base0D})";
-  #       col.inactive_border = "rgb(${config.colorScheme.palette.base03})";
+    #       layout = "dwindle";
+    #     };
 
-  #       layout = "dwindle";
-  #     };
-
-  #     decoration = {
-  #       rounding = 10;
-  #       drop_shadow = "yes";
-  #       shadow_range = 10;
-  #       shadow_render_power = 3;
-  #       col.shadow = "rgb(${config.colorScheme.palette.base0D})";
-  #       col.shadow_inactive = "rgb(${config.colorScheme.palette.base03})";
-  #     };
-  #   };
+    #     decoration = {
+    #       rounding = 10;
+    #       drop_shadow = "yes";
+    #       shadow_range = 10;
+    #       shadow_render_power = 3;
+    #       col.shadow = "rgb(${config.colorScheme.palette.base0D})";
+    #       col.shadow_inactive = "rgb(${config.colorScheme.palette.base03})";
+    #     };
+    #   };
   };
 }

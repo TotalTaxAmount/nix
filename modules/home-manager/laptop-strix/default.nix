@@ -142,7 +142,7 @@ in
       qt5.full
       wget
       rofi-copyq
-      gammastep
+      asusctl
 
       #Customization
       swww
@@ -199,6 +199,12 @@ in
     };
 
     services.spotifyd.enable = true;
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      # enableNvidiaPatches = true;
+    };
 
     dconf.settings = {
 
