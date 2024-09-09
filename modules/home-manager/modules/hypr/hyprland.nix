@@ -22,17 +22,16 @@ let
     os.environ['SWWW_TRANSITION_STEP'] = '2'
     interval = 60
 
-    # Path configuration
-
-    # Start the swww daemon
-    subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'])
+    time.sleep(2) 
+    subprocess.run([f'${pkgs.swww}/bin/swww-daemon'])
+    time.sleep(2)
 
     def set_wallpaper_image(path, output=None):
-        """ Set the wallpaper image using swww. """
         cmd = [f'${pkgs.swww}/bin/swww', 'img']
         if output:
             cmd += ['-o', output]
         cmd.append(path)
+        cmd.append('--transition-type center')
         subprocess.run(cmd)
 
     if "${host}" in ["laptop", "laptop-strix"]:
