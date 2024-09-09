@@ -8,8 +8,7 @@ File Structure:
 ├── build.sh
 ├── dots
 │   ├── alacritty
-│   │   └── tmux
-│   │       └── tmux.conf
+│   │   └── tmux-attach.sh
 │   ├── btop
 │   │   └── themes
 │   │       └── system.theme
@@ -20,7 +19,6 @@ File Structure:
 │   │   │   ├── info.yuck
 │   │   │   ├── main.yuck
 │   │   │   └── system.yuck
-│   │   ├── music.svg
 │   │   ├── nixos-icon.svg
 │   │   └── scripts
 │   │       ├── battery.sh
@@ -29,33 +27,28 @@ File Structure:
 │   │       ├── music_utils.sh
 │   │       ├── pop.sh
 │   │       ├── sys_info.sh
-│   │       ├── vpn.sh
-│   │       └── workspaces.sh
+│   │       └── vpn.sh
 │   ├── hypr
-│   │   ├── hyprland.conf
+│   │   ├── hyprland
+│   │   │   ├── desktopExtra.conf
+│   │   │   ├── hyprland.conf
+│   │   │   ├── laptopExtra.conf
+│   │   │   └── laptopStrixExtra.conf
+│   │   ├── hyprlock.conf
 │   │   └── scripts
-│   │       └── background.sh
+│   │       ├── background.sh
+│   │       └── screen-rec.sh
 │   ├── neofetch
 │   │   └── config.conf
 │   ├── nvim
-│   │   ├── configs
-│   │   │   ├── nvim-tree.lua
-│   │   │   ├── vim-airline.lua
-│   │   │   └── vim-buffet.lua
-│   │   ├── init.lua
-│   │   ├── parsers
-│   │   │   ├── parser
-│   │   │   │   └── yaml.so
-│   │   │   └── parser-info
-│   │   │       └── yaml.revision
-│   │   └── utils
-│   │       └── utils.lua
+│   │   └── config.lua
 │   ├── rofi
 │   │   ├── config.rasi
 │   │   └── systemTheme.rasi
-│   ├── swaylock
-│   │   └── config
 │   ├── swww
+│   │   ├── desktop
+│   │   │   ├── 2nd.jpg
+│   │   │   └── ultrawide.png
 │   │   └── wallpapers
 │   │       ├── 10.jpg
 │   │       ├── 11.jpg
@@ -70,6 +63,14 @@ File Structure:
 │   │       ├── 1.jpg
 │   │       ├── 20.jpg
 │   │       ├── 21.jpg
+│   │       ├── 22.jpg
+│   │       ├── 23.jpg
+│   │       ├── 24.jpg
+│   │       ├── 25.jpg
+│   │       ├── 26.jpg
+│   │       ├── 27.jpg
+│   │       ├── 28.jpg
+│   │       ├── 29.jpg
 │   │       ├── 2.jpg
 │   │       ├── 3.jpg
 │   │       ├── 4.jpg
@@ -79,6 +80,7 @@ File Structure:
 │   │       ├── 8.jpg
 │   │       └── 9.jpg
 │   ├── vscode
+│   │   ├── customcss.css
 │   │   ├── keybinds.json
 │   │   ├── settings.json
 │   │   ├── shell.nix
@@ -91,16 +93,24 @@ File Structure:
 │   │       │   └── system.tmTheme
 │   │       └── vsc-extension-quickstart.md
 │   └── zsh
+│       └── tmux.conf
 ├── external
 │   └── pkgs
+│       ├── conductor
+│       │   └── default.nix
 │       ├── flightcore
 │       │   ├── Cargo.lock
 │       │   ├── default.nix
 │       │   └── package.json
-│       ├── rofi-copyq
-│       │   ├── better_type.patch
+│       ├── gfn-electron
 │       │   └── default.nix
-│       └── schemer2
+│       ├── hyprland-workspaces
+│       │   └── default.nix
+│       ├── pathplanner
+│       │   ├── default.nix
+│       │   └── pubspec.lock.json
+│       └── rofi-copyq
+│           ├── better_type.patch
 │           └── default.nix
 ├── flake.lock
 ├── flake.nix
@@ -108,12 +118,30 @@ File Structure:
 ├── modules
 │   ├── home-manager
 │   │   ├── common
+│   │   │   └── default.nix
+│   │   ├── desktop
+│   │   │   └── default.nix
+│   │   ├── laptop
+│   │   │   └── default.nix
+│   │   ├── laptop-strix
+│   │   │   └── default.nix
+│   │   ├── modules
+│   │   │   ├── alacritty
+│   │   │   │   └── default.nix
 │   │   │   ├── btop
 │   │   │   │   └── default.nix
-│   │   │   ├── default.nix
+│   │   │   ├── dunst
+│   │   │   │   └── default.nix
+│   │   │   ├── eww
+│   │   │   │   └── default.nix
+│   │   │   ├── hypr
+│   │   │   │   ├── hyprland.nix
+│   │   │   │   └── hyprlock.nix
 │   │   │   ├── neofetch
 │   │   │   │   └── default.nix
 │   │   │   ├── nvim
+│   │   │   │   └── default.nix
+│   │   │   ├── rofi
 │   │   │   │   └── default.nix
 │   │   │   ├── shell
 │   │   │   │   ├── default.nix
@@ -129,24 +157,9 @@ File Structure:
 │   │   │   │       │       ├── default.nix
 │   │   │   │       │       └── rust-toolchain
 │   │   │   │       └── shell.sh
-│   │   │   └── terminal
-│   │   │       └── default.nix
-│   │   ├── laptop
-│   │   │   ├── alacritty
+│   │   │   ├── terminal
 │   │   │   │   └── default.nix
-│   │   │   ├── default.nix
-│   │   │   ├── dunst
-│   │   │   │   └── default.nix
-│   │   │   ├── eww
-│   │   │   │   └── default.nix
-│   │   │   ├── hypr
-│   │   │   │   └── default.nix
-│   │   │   ├── icons
-│   │   │   │   └── candy-icons.nix
-│   │   │   ├── rofi
-│   │   │   │   └── default.nix
-│   │   │   ├── swaylock
-│   │   │   │   └── default.nix
+│   │   │   ├── utils.nix
 │   │   │   └── vscode
 │   │   │       └── default.nix
 │   │   └── remote
@@ -154,11 +167,31 @@ File Structure:
 │   └── nixos
 │       ├── common
 │       │   └── default.nix
+│       ├── desktop
+│       │   ├── configuration.nix
+│       │   └── hardware.nix
 │       ├── laptop
 │       │   ├── configuration.nix
 │       │   ├── hardware.nix
 │       │   ├── secrets
 │       │   │   └── secrets.yml
+│       │   ├── vfio
+│       │   │   ├── default.nix
+│       │   │   ├── linux-fake-rdtsc.patch
+│       │   │   ├── OVMF.nix
+│       │   │   └── win10.sh
+│       │   └── wireguard
+│       │       └── default.nix
+│       ├── laptop-strix
+│       │   ├── configuration.nix
+│       │   ├── hardware.nix
+│       │   ├── secrets
+│       │   │   └── secrets.yml
+│       │   ├── vfio
+│       │   │   ├── default.nix
+│       │   │   ├── linux-fake-rdtsc.patch
+│       │   │   ├── OVMF.nix
+│       │   │   └── win10.sh
 │       │   └── wireguard
 │       │       └── default.nix
 │       └── remote
@@ -174,8 +207,12 @@ File Structure:
 │   │       └── xplorer_json_storage.patch
 │   └── default.nix
 ├── README.md
-└── theme
-    └── custom.nix
+├── result -> /nix/store/bxz947ibjjya3nx66imvcclqskykk740-home-manager-generation
+├── theme
+│   └── custom.nix
+└── tree.txt
+
+72 directories, 135 files
 ```
 ### What is this??
 - `build.sh` is a shell script to make rebuilding easier.
@@ -215,3 +252,4 @@ File Structure:
 - [ ] Store secrets in private git repo
 - [ ] Finish wireguard
     - [ ] Make wireguard easy to toggle
+- [ ] Rename host laptop to laptop-zeph
