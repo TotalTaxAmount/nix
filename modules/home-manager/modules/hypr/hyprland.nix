@@ -20,10 +20,11 @@ let
 
     os.environ['SWWW_TRANSITION_FPS'] = '60'
     os.environ['SWWW_TRANSITION_STEP'] = '2'
+    os.environ['SWWW_TRANSITION'] = 'center'
     interval = 60
 
     time.sleep(2) 
-    subprocess.run([f'${pkgs.swww}/bin/swww-daemon'])
+    subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'])
     time.sleep(2)
 
     def set_wallpaper_image(path, output=None):
@@ -31,7 +32,6 @@ let
         if output:
             cmd += ['-o', output]
         cmd.append(path)
-        cmd.append('--transition-type center')
         subprocess.run(cmd)
 
     if "${host}" in ["laptop", "laptop-strix"]:
@@ -41,7 +41,7 @@ let
         while True:
             shuffled_files = random.sample(image_files, len(image_files))
             for path in shuffled_files:
-                print(f"ea {path}")
+                print(f"switch: {path}")
                 set_wallpaper_image(path)
                 time.sleep(interval)
 
