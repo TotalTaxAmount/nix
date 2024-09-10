@@ -24,7 +24,7 @@ let
     interval = 60
 
     time.sleep(2) 
-    subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'])
+    subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
     time.sleep(2)
 
     def set_wallpaper_image(path, output=None):
