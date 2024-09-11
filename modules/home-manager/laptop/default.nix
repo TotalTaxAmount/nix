@@ -220,6 +220,11 @@ in
 
         listener = [
           {
+            timeout = 120;
+            on-timeout = "${pkgs.eww}/bin/eww close laptopMain";
+            on-resume = "${pkgs.eww}/bin/eww open laptopMain";
+          }
+          {
             timeout = 500;
             on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
           }
