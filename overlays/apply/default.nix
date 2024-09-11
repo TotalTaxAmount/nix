@@ -64,6 +64,8 @@ final: prev:
       + "wrapProgram $out/bin/audacity --set GDK_BACKEND x11 --set UBUNTU_MENUPROXY 0";
   });
 
+
+  ## Wayland
   vscode = prev.vscode.overrideAttrs (old: {
     postInstall =
       (old.postInstall or "")
@@ -71,5 +73,24 @@ final: prev:
         wrapProgram $out/bin/code \
               --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations \
               --add-flags --ozone-platform-hint=auto'';
+  });
+
+  slack = prev.slack.overrideAttrs (old: {
+    postInstall = 
+      (old.postInstall or "")
+      + ''
+        wrapProgram $out/bin/slack \
+              --add-flags --enable-features=UseOzonePlatform
+      '';
+  });
+
+  spotify = prev.spotify.overrideAttrs (old: {
+     postInstall =
+      (old.postInstall or "")
+      + ''
+      wrapProgram $out/bin/spotify \
+              --add-flags --enable-features=UseOzonePlatform \
+              --add-flags --ozone-platform=wayland
+      '';
   });
 }

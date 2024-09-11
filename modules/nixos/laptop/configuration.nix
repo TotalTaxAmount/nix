@@ -182,6 +182,13 @@ in
     };
   };
 
+  chaotic = {
+    scx = {
+      enable = true;
+      scheduler = "scx_rusty";
+    };
+  };
+
   boot = {
     kernelParams = [
       # "video=eDP-1:1920x1080@60" # TODO: There is def a better way to do this...
@@ -190,15 +197,7 @@ in
       "acpi_backlight=native"
     ];
 
-    kernelPatches = [
-      {
-        name = "Rust Support";
-        patch = null;
-        features = {
-          rust = true;
-        };
-      }
-    ];
+
 
     supportedFilesystems = [ "nfs" ];
     kernelModules = [
