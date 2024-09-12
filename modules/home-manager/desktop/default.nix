@@ -60,7 +60,7 @@ in
       firefox-devedition
       element-desktop
       vesktop
-      ghidra
+      
       pulseview
       gthumb
       clapper
