@@ -102,7 +102,7 @@ in
       element-desktop
       vesktop
       #   pathplanner
-      ghidra
+      
       pulseview
       # gfn-electron
       #      kicad
