@@ -21,7 +21,7 @@ in
   laptop = nixosSystem {
     inherit pkgs system; # TODO fix!
     specialArgs = {
-      inherit inputs user;
+      inherit inputs user system;
       host = "laptop";
     };
     modules = [

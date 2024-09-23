@@ -27,7 +27,7 @@ in
   imports = [
     ../modules/btop
     ../modules/nvim
-    ../modules/neofetch
+    # ../modules/neofetch
     ../modules/terminal
 
     inputs.nix-colors.homeManagerModule

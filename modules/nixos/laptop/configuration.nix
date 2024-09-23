@@ -8,6 +8,7 @@
   lib,
   pkgs,
   user,
+  system,
   ...
 }:
 
@@ -125,6 +126,7 @@ in
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    package = inputs.hyprland.packages.${system}.hyprland;
     # enableNvidiaPatches = true;
   };
 
@@ -196,7 +198,6 @@ in
       #"amd_iommu=on" # GPU passthough
       "acpi_backlight=native"
     ];
-
 
 
     supportedFilesystems = [ "nfs" ];

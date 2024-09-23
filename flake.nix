@@ -47,8 +47,7 @@
       # ref = "refs/tags/v0.41.2";
 
       inputs.hyprland.follows = "hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-};
+  };
 
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
