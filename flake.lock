@@ -229,7 +229,6 @@
       "locked": {
         "lastModified": 1726995313,
         "narHash": "sha256-HTbsXJDFugdQ794d1Bnh8eRSY7AlunIxd7jFW9kkKNM=",
-        "ref": "refs/heads/main",
         "rev": "e5ff19ac0f2c8d53a0c847d06a17676e636d6447",
         "revCount": 5247,
         "submodules": true,
@@ -237,6 +236,7 @@
         "url": "https://github.com/hyprwm/Hyprland"
       },
       "original": {
+        "rev": "e5ff19ac0f2c8d53a0c847d06a17676e636d6447",
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
