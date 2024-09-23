@@ -156,9 +156,9 @@ in
   services.pcscd.enable = true;
 
   services.hardware.openrgb = {
-      enable = true;
-      motherboard = "amd";
-    };
+    enable = true;
+    motherboard = "amd";
+  };
 
   networking = {
     firewall = {
@@ -198,7 +198,6 @@ in
       #"amd_iommu=on" # GPU passthough
       "acpi_backlight=native"
     ];
-
 
     supportedFilesystems = [ "nfs" ];
     kernelModules = [
