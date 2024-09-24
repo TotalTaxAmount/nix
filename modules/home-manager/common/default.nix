@@ -70,7 +70,7 @@ in
     # environment.
     home.packages = with pkgs; [
       zsh-powerlevel10k
-      neofetch
+      fastfetch
       file
       tree
       zip

@@ -104,7 +104,12 @@
   services.auto-cpufreq = {
     enable = true;
     settings = {
-      scaling_min_freq = 800000;
+      charger = {
+        scaling_min_freq = 800000;
+      };
+      battery = {
+        scaling_min_freq = 500000;
+      };
     };
   };
 

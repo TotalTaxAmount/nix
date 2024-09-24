@@ -125,8 +125,7 @@ in
       slack
 
       #Terminal Apps/Config
-      zsh-powerlevel10k
-      neofetch
+      zsh-powerlevel10kc
       file
       playerctl
       base16-builder

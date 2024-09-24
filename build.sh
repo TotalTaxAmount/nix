@@ -50,7 +50,7 @@ rebuild_home() {
 }
 
 rebuild_system() {
-    sudo nixos-rebuild switch --flake .#$HOST
+    sudo nixos-rebuild switch --flake .#$HOST $1
 }
 
 install_fresh() {
