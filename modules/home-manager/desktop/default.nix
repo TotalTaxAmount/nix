@@ -72,6 +72,7 @@ in
       jetbrains.idea-ultimate
       lunar-client
       nemo
+      zoom-us
 
       # Terminal
       zsh-powerlevel10k
