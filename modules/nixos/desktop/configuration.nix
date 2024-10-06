@@ -70,6 +70,10 @@
       enable = true;
       motherboard = "amd";
     };
+
+    seatd = {
+      enable = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -94,6 +98,7 @@
     hyprland = {
       enable = true;
       xwayland.enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
     steam = {
