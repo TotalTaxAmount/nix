@@ -75,7 +75,7 @@ in
         streetsidesoftware.code-spell-checker
         pkief.material-icon-theme
         equinusocio.vsc-material-theme
-
+        editorconfig.editorconfig
       ]
       ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {

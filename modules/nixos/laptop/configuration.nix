@@ -8,6 +8,7 @@
   lib,
   pkgs,
   user,
+  system,
   ...
 }:
 
@@ -125,6 +126,7 @@ in
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    package = inputs.hyprland.packages.${system}.hyprland;
     # enableNvidiaPatches = true;
   };
 
@@ -154,9 +156,9 @@ in
   services.pcscd.enable = true;
 
   services.hardware.openrgb = {
-      enable = true;
-      motherboard = "amd";
-    };
+    enable = true;
+    motherboard = "amd";
+  };
 
   networking = {
     firewall = {
@@ -182,22 +184,19 @@ in
     };
   };
 
+  chaotic = {
+    # scx = {
+    #   enable = true;
+    #   scheduler = "scx_rusty";
+    # };
+  };
+
   boot = {
     kernelParams = [
       # "video=eDP-1:1920x1080@60" # TODO: There is def a better way to do this...
       # "systemd.unified_cgroup_hierarchy=0"
       #"amd_iommu=on" # GPU passthough
       "acpi_backlight=native"
-    ];
-
-    kernelPatches = [
-      {
-        name = "Rust Support";
-        patch = null;
-        features = {
-          rust = true;
-        };
-      }
     ];
 
     supportedFilesystems = [ "nfs" ];

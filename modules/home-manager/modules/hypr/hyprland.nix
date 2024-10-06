@@ -58,7 +58,6 @@ let
   laptopStrixExtra = builtins.readFile ../../../../dots/hypr/hyprland/laptopStrixExtra.conf;
   desktopExtra = builtins.readFile ../../../../dots/hypr/hyprland/desktopExtra.conf;
 
-
   fullConfig = pkgs.writeText "hyprFullConfig.conf" (
     baseConfig
     + (if host == "laptop" then laptopExtra else "")

@@ -4,7 +4,7 @@
     "explorer.confirmDelete": false,
     "update.showReleaseNotes": false,
     "editor.unicodeHighlight.invisibleCharacters": false,
-    "workbench.colorTheme": "Material Theme Ocean",
+    "workbench.colorTheme": "onedark.nvim",
     "workbench.editor.enablePreview": false,
     "editor.fontFamily": "'@font@', monospace",
     "editor.detectIndentation": false,

@@ -68,6 +68,7 @@ in
         cat = "bat";
         open = "stupidAlias";
         ls = "exa -l --icons";
+        neofetch = "fastfetch";
       };
       enableCompletion = true;
       # history = {

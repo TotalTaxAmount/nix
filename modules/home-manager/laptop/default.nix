@@ -102,7 +102,7 @@ in
       element-desktop
       vesktop
       #   pathplanner
-      ghidra
+
       pulseview
       # gfn-electron
       #      kicad
@@ -125,8 +125,7 @@ in
       slack
 
       #Terminal Apps/Config
-      zsh-powerlevel10k
-      neofetch
+      zsh-powerlevel10kc
       file
       playerctl
       base16-builder
@@ -219,6 +218,11 @@ in
         };
 
         listener = [
+          {
+            timeout = 120;
+            on-timeout = "eww close laptopMain || kill $(pgrep eww)";
+            on-resume = " ${pkgs.eww}/bin/eww open laptopMain";
+          }
           {
             timeout = 500;
             on-timeout = "${pkgs.hyprlock}/bin/hyprlock";

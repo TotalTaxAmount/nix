@@ -26,7 +26,6 @@
     aquamarine = {
       type = "git";
       url = "https://github.com/hyprwm/aquamarine";
-      ref = "refs/tags/v0.3.3";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -36,7 +35,7 @@
       type = "git";
       submodules = true;
       url = "https://github.com/hyprwm/Hyprland";
-      ref = "refs/tags/v0.41.2";
+      rev = "e5ff19ac0f2c8d53a0c847d06a17676e636d6447";
 
       inputs.aquamarine.follows = "aquamarine";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,16 +44,15 @@
     hyprsplit = {
       type = "git";
       url = "https://github.com/shezdy/hyprsplit";
-      ref = "refs/tags/v0.41.2";
+      # ref = "refs/tags/v0.41.2";
 
       inputs.hyprland.follows = "hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-};
+    };
 
     chaotic = {
       url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
       inputs.nixpkgs.follows = "nixpkgs";
-   };
+    };
 
     #        nix-gaming = {
     #           url = github:fufexan/nix-gaming;
@@ -66,7 +64,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mcmojave-hyprcursor = { 
+    mcmojave-hyprcursor = {
       url = "github:libadoxon/mcmojave-hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
     };

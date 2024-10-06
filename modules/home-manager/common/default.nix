@@ -27,7 +27,7 @@ in
   imports = [
     ../modules/btop
     ../modules/nvim
-    ../modules/neofetch
+    # ../modules/neofetch
     ../modules/terminal
 
     inputs.nix-colors.homeManagerModule
@@ -70,7 +70,7 @@ in
     # environment.
     home.packages = with pkgs; [
       zsh-powerlevel10k
-      neofetch
+      fastfetch
       file
       tree
       zip

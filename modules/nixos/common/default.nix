@@ -101,6 +101,18 @@
   };
   services.gnome.gnome-keyring.enable = true;
 
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      charger = {
+        scaling_min_freq = 800000;
+      };
+      battery = {
+        scaling_min_freq = 500000;
+      };
+    };
+  };
+
   environment.systemPackages = with pkgs; [ nix-output-monitor ];
 
   environment.variables = {
