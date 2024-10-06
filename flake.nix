@@ -41,12 +41,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprsplit = {
-      type = "git";
-      url = "https://github.com/shezdy/hyprsplit";
-      # ref = "refs/tags/v0.41.2";
+    # hyprsplit = {
+    #   type = "git";
+    #   url = "https://github.com/shezdy/hyprsplit";
+    #   # ref = "refs/tags/v0.41.2";
 
-      inputs.hyprland.follows = "hyprland";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+
+    split-monitor-workspaces = {
+      url = "github:Duckonaut/split-monitor-workspaces";
+      inputs.hyprland.follows = "hyprland"; 
     };
 
     chaotic = {

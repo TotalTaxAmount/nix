@@ -72,6 +72,7 @@ in
       jetbrains.idea-ultimate
       lunar-client
       nemo
+      zoom-us
 
       # Terminal
       zsh-powerlevel10k
@@ -149,8 +150,9 @@ in
     programs = { };
 
     wayland.windowManager.hyprland = {
-      enable = true;
-      xwayland.enable = true;
+#      enable = true;
+#      xwayland.enable = true;
+      # package = inputs.hyprland.packages.${pkgs.system}.hyprland-legacy-renderer;
     };
 
     gtk.theme = {

@@ -5,6 +5,7 @@
   host,
   inputs,
   system,
+  lib,
   ...
 }:
 
@@ -99,9 +100,10 @@ in
     xwayland.enable = true;
     # enableNvidiaPatches = true;
     extraConfig = builtins.readFile hyprConfig.out;
-    package = inputs.hyprland.packages.${system}.hyprland;
+    package = lib.mkDefault inputs.hyprland.packages.${system}.hyprland;
     plugins = [
-      inputs.hyprsplit.packages.${system}.hyprsplit
+       inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+ #     inputs.hyprsplit.packages.${system}.hyprsplit
     ];
 
     #   settings = {
