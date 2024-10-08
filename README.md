@@ -253,3 +253,4 @@ File Structure:
 - [ ] Finish wireguard
     - [ ] Make wireguard easy to toggle
 - [ ] Rename host laptop to laptop-zeph
+- [ ] Remove all non /nix/store paths (things like ~/, or /home/${user})

@@ -100,7 +100,7 @@ in
       firefox-devedition
       #   android-studio
       element-desktop
-      vesktop
+      armcord
       #   pathplanner
 
       pulseview
@@ -125,7 +125,7 @@ in
       slack
 
       #Terminal Apps/Config
-      zsh-powerlevel10kc
+      zsh-powerlevel10k
       file
       playerctl
       base16-builder
@@ -162,6 +162,7 @@ in
       winetricks
       mangohud
       gamemode
+      protonplus
       # inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
 
       # Screenshot

@@ -49,6 +49,11 @@ in
     };
   };
 
+  services.asusd = {
+    enable = true;
+    enableUserService = true;
+  };
+
   programs.ssh = {
     forwardX11 = true;
   };
