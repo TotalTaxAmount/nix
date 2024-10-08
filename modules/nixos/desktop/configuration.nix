@@ -142,6 +142,8 @@
 
     pcscd.enable = true;
 
+    flatpak.enable = true;
+
     # logind.extraConfig = ''
     #   HandlePowerKey=ignore
     # '';

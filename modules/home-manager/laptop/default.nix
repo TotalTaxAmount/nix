@@ -39,7 +39,7 @@ in
     ../modules/vscode
 
     # Flakes
-    inputs.spicetify-nix.homeManagerModule
+    inputs.spicetify-nix.homeManagerModules.default
     inputs.nix-colors.homeManagerModule
     inputs.sops-nix.homeManagerModule
   ];
