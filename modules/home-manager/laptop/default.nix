@@ -100,7 +100,7 @@ in
       firefox-devedition
       #   android-studio
       element-desktop
-      vesktop
+      armcord
       #   pathplanner
 
       pulseview

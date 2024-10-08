@@ -59,7 +59,7 @@ in
       prismlauncher
       firefox-devedition
       element-desktop
-      vesktop
+      armcord
 
       pulseview
       gthumb
