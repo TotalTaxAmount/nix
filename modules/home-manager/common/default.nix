@@ -99,7 +99,7 @@ in
       XCURSOR_THEME = config.cursor.name;
       XDG_DATA_HOME = "/home/${user}/.local/share";
       XDG_SCREENREC_DIR = "/home/${user}/Vidoes/Screenrecordings";
-      ELECTRON_OZONE_PLATFORM_HINT="auto";
+      ELECTRON_OZONE_PLATFORM_HINT = "auto";
       ZSH_TMUX_AUTOSTART = "true";
       TERMINAL = "${pkgs.alacritty}";
     };

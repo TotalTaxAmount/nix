@@ -51,7 +51,7 @@
 
     split-monitor-workspaces = {
       url = "github:Duckonaut/split-monitor-workspaces";
-      inputs.hyprland.follows = "hyprland"; 
+      inputs.hyprland.follows = "hyprland";
     };
 
     chaotic = {
