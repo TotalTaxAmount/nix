@@ -102,6 +102,7 @@ in
       element-desktop
       armcord
       #   pathplanner
+      zoom-us
 
       pulseview
       # gfn-electron
@@ -221,7 +222,7 @@ in
         listener = [
           {
             timeout = 120;
-            on-timeout = "eww close laptopMain || kill $(pgrep eww)";
+            on-timeout = "kill $(pgrep eww)";
             on-resume = " ${pkgs.eww}/bin/eww open laptopMain";
           }
           {

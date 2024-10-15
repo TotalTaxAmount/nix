@@ -45,13 +45,13 @@ in
   systemd = {
     # enableCgroupAccounting = true;
     services = {
-      asusd.wantedBy = lib.mkForce [ "multi-user.target" ];
+      # asusd.wantedBy = lib.mkForce [ "multi-user.target" ];
     };
   };
 
   services.asusd = {
-    enable = true;
-    enableUserService = true;
+    # enable = true;
+    # enableUserService = true;
   };
 
   programs.ssh = {
