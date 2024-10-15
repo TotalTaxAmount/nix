@@ -123,6 +123,8 @@ in
     services = {
       spotifyd.enable = true;
 
+      easyeffects.enable = true;
+
       hypridle = {
         enable = true;
         settings = {

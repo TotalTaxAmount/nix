@@ -1,17 +1,17 @@
 battery() {
     BAT=$(ls /sys/class/power_supply | grep BAT | head -n 1)
-    cat /sys/class/power_supply/${BAT}/capacity
+    cat /sys/class/power_supply/${BAT}/capacity 2>/dev/null || echo 100
 }
 
 battery_stat() {
     BAT=$(ls /sys/class/power_supply | grep BAT | head -n 1)
-    cat /sys/class/power_supply/${BAT}/status
+    cat /sys/class/power_supply/${BAT}/status 2>/dev/null || echo "Desktop"
 }
 
 battery_icon() {
     BAT=$(ls /sys/class/power_supply | grep BAT | head -n 1)
-    CAPACITY=$(cat /sys/class/power_supply/${BAT}/capacity)
-    STATUS=$(cat /sys/class/power_supply/${BAT}/status)
+    CAPACITY=$(cat /sys/class/power_supply/${BAT}/capacity 2>/dev/null || echo 100)
+    STATUS=$(cat /sys/class/power_supply/${BAT}/status 2>/dev/null || echo "Desktop" )
 
     if [[ "$STATUS" == "Charging" ]]; then
         echo "󰂄"
