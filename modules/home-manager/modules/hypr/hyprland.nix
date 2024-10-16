@@ -109,8 +109,8 @@ in
     extraConfig = builtins.readFile hyprConfig.out;
     package = lib.mkDefault inputs.hyprland.packages.${system}.hyprland;
     plugins = [
-       inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
- #     inputs.hyprsplit.packages.${system}.hyprsplit
+      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+      #     inputs.hyprsplit.packages.${system}.hyprsplit
     ];
 
     #   settings = {
