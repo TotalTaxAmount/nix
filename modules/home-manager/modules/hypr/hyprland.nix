@@ -24,11 +24,7 @@ let
     os.environ['SWWW_TRANSITION'] = 'center'
     interval = 60
 
-    time.sleep(2) 
-    subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
-    time.sleep(2)
-
-    def set_wallpaper_image(path, output=None):
+    def set_wallpaper_image_swww(path, output=None):
         cmd = [f'${pkgs.swww}/bin/swww', 'img']
         if output:
             cmd += ['-o', output]
@@ -36,6 +32,9 @@ let
         subprocess.run(cmd)
 
     if "${host}" in ["laptop", "laptop-strix"]:
+        time.sleep(2) 
+        subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
+        time.sleep(2)
         wallpaper_dir = Path(f'/home/${user}/nix/dots/swww/wallpapers')
         image_files = list(wallpaper_dir.glob('*.jpg'))
 
@@ -43,12 +42,13 @@ let
             shuffled_files = random.sample(image_files, len(image_files))
             for path in shuffled_files:
                 print(f"switch: {path}")
-                set_wallpaper_image(path)
+                set_wallpaper_image_swww(path)
                 time.sleep(interval)
 
     elif "${host}" == "desktop":
-        set_wallpaper_image(f'/home/${user}/nix/dots/swww/desktop/ultrawide.png', 'DP-1')
-        set_wallpaper_image(f'/home/${user}/nix/dots/swww/desktop/2nd.jpg', 'HDMI-A-1')
+        subprocess.Popen([f'${pkgs.hyprpaper}/bin/hyprpaper'], close_fds=True)
+        # set_wallpaper_image(f'/home/${user}/nix/dots/swww/desktop/ultrawide.png', 'DP-1')
+        # set_wallpaper_image(f'/home/${user}/nix/dots/swww/desktop/2nd.jpg', 'HDMI-A-1')
 
     else:
         exit(1)
@@ -94,6 +94,13 @@ in
   xdg.portal.extraPortals = with pkgs; [
     xdg-desktop-portal-gtk
   ];
+
+  xdg.configFile."hypr/hyprpaper.conf".text = ''
+    preload = /home/${user}/nix/dots/swww/desktop/ultrawide.png
+    preload = /home/${user}/nix/dots/swww/desktop/2nd.jpg
+    wallpaper = DP-1, /home/${user}/nix/dots/swww/desktop/ultrawide.png
+    wallpaper = HDMI-A-1, /home/${user}/nix/dots/swww/desktop/2nd.jpg
+  '';
 
   wayland.windowManager.hyprland = {
     enable = true;
