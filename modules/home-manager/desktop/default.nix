@@ -59,7 +59,7 @@ in
       prismlauncher
       firefox-devedition
       element-desktop
-      armcord
+      vesktop
 
       pulseview
       gthumb
@@ -81,6 +81,7 @@ in
       playerctl
       base16-builder
       tree
+      hyprpaper
 
       # Utils
       ffmpeg
@@ -129,7 +130,7 @@ in
         enable = true;
         settings = {
           general = {
-            after_sleep_cmd = "hyprctl dispatch dpms on";
+            after_sleep_cmd = "hyprctl dispatch dpms on && kill $(pgrep eww) && ${pkgs.eww}/bin/eww open-many main0 main1";
             ignore_dbus_inhibit = false;
             lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
           };
