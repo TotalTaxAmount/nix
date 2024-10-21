@@ -116,10 +116,14 @@ let
                   processed_data[current_subgroup].append(clean_line(line))
                   continue
       return processed_data
+  
+  def escape_output(output):
+    return output.replace("'", "'\'")
 
   def pipe_into_dmenu(output):
+      escaped = escape_output(output)
       output = subprocess.run(
-          f"echo '{output}' | ${pkgs.rofi}/bin/rofi -dmenu -markup-rows",
+          f"echo '{escaped}' | ${pkgs.rofi}/bin/rofi -dmenu -markup-rows",
           shell=True,
           encoding="utf-8",
           stdout=subprocess.PIPE,
