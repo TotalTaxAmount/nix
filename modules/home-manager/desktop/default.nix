@@ -19,6 +19,7 @@ let
       ;
   };
   rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq { };
+  noita_entangled_worlds = pkgs.callPackage ../../../external/pkgs/noita-worlds { };
 in
 {
   imports = [
@@ -73,6 +74,7 @@ in
       lunar-client
       nemo
       zoom-us
+      noita_entangled_worlds
 
       # Terminal
       zsh-powerlevel10k
