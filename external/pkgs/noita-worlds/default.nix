@@ -1,26 +1,28 @@
-{rustPlatform
-, fetchFromGitHub
-, python3
-, libxcb
-, wayland
-, wayland-protocols
-, libGL
-, libxkbcommon
-, xorg
-, makeWrapper
-, lib 
-, curl
-, steam-run }:
+{
+  rustPlatform,
+  fetchFromGitHub,
+  python3,
+  libxcb,
+  wayland,
+  wayland-protocols,
+  libGL,
+  libxkbcommon,
+  xorg,
+  makeWrapper,
+  lib,
+  curl,
+  steam-run,
+}:
 
 rustPlatform.buildRustPackage rec {
   pname = "noita_entangled_worlds";
-  version = "v0.27.5";
+  version = "v0.28.0";
 
   src = fetchFromGitHub {
     owner = "IntQuant";
     repo = pname;
-    rev = version;
-    hash = "sha256-6xT8USJkE6QTrXGYsW9kN2Bmp8J2r29XFAcFB/T8aKY=";
+    rev = "0986cb1938391602cd3715181e159620e65b2602";
+    hash = "sha256-Buq+HRiuwnjDHFQKsY7OL+mi/DdjSOj1vbZspfdiWJ0=";
   };
 
   sourceRoot = "${src.name}/noita-proxy";
