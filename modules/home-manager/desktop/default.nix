@@ -61,7 +61,8 @@ in
       firefox-devedition
       element-desktop
       vesktop
-
+      r2modman
+      libreoffice
       pulseview
       gthumb
       clapper
