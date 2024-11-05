@@ -166,6 +166,7 @@ let
     audioSwitcher = "${audioSwitcher}/bin/audioSwitcher";
     cursorSize = config.cursor.size;
     cursorTheme = config.cursor.name;
+    screenshotDir = "/home/${user}/Pictures/Screenshots";
   };
 in
 {

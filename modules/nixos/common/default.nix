@@ -30,6 +30,12 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  documentation = {
+    enable = true;
+    man.enable = true;
+    dev.enable = true;
+  };
+
   # Experimental
   nix.settings.experimental-features = [
     "nix-command"
@@ -113,7 +119,12 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ nix-output-monitor ];
+  environment.systemPackages = with pkgs; [ 
+    nix-output-monitor
+
+    man-pages
+    man-pages-posix
+  ];
 
   environment.variables = {
     EDITOR = "nvim";
