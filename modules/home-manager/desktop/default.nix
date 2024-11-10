@@ -67,7 +67,7 @@ in
       gthumb
       clapper
       qbittorrent
-      blender
+      # ble nder
       slack
       copyq
       rofi-copyq
