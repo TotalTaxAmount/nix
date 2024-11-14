@@ -115,6 +115,7 @@ in
       killall
       utils.print-colors
       nautilus
+      postman
       # zed-editor
       # path-plannesr
 
@@ -123,7 +124,7 @@ in
       #bottles
       qbittorrent
       # virt-manager
-      blender
+      # blender
       slack
 
       #Terminal Apps/Config
