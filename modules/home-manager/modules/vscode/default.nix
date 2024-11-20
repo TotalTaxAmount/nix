@@ -60,6 +60,7 @@ in
 
   programs.vscode = {
     enable = true;
+    package = pkgs.vscode-fhs;
     extensions =
       with pkgs.vscode-extensions;
       [
@@ -76,6 +77,9 @@ in
         pkief.material-icon-theme
         equinusocio.vsc-material-theme
         editorconfig.editorconfig
+        vadimcn.vscode-lldb
+        tamasfe.even-better-toml
+        vue.volar
       ]
       ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
