@@ -40,11 +40,12 @@
 
     nvidia = {
       modesetting.enable = lib.mkDefault true;
+
       powerManagement = {
-        enable = lib.mkDefault true;
+        enable = true;
       };
 
-      open = true;
+      open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
@@ -74,6 +75,8 @@
     seatd = {
       enable = true;
     };
+
+    ratbagd.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -150,6 +153,8 @@
   };
 
   networking = {
+    nameservers = [ "1.1.1.1" "9.9.9.9" ];
+
     firewall = {
       enable = true;
     };
