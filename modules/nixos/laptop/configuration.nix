@@ -79,6 +79,7 @@ in
       powerManagement = {
         enable = lib.mkDefault true;
       };
+      dynamicBoost.enable = true;
       open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
