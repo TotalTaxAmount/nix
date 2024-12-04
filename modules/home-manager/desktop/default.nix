@@ -68,6 +68,7 @@ in
       clapper
       qbittorrent
       # ble nder
+      piper
       slack
       copyq
       rofi-copyq
@@ -76,6 +77,7 @@ in
       nemo
       zoom-us
       noita_entangled_worlds
+      nexusmods-app-unfree
 
       # Terminal
       zsh-powerlevel10k
@@ -153,7 +155,11 @@ in
       };
     };
 
-    programs = { };
+    programs = {
+      obs-studio = {
+        enable = true;
+      };
+    };
 
     wayland.windowManager.hyprland = {
       #      enable = true;
