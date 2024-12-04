@@ -72,13 +72,9 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override {
-        fonts = [
-          "Overpass"
-          "FiraCode"
-          "Noto"
-        ];
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.noto
+      nerd-fonts.overpass
 
     ];
 

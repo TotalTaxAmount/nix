@@ -85,7 +85,7 @@ in
       (pkgs.callPackage ../modules/shell { })
 
       #Customization
-      nerdfonts
+      # nerdfonts
 
       # Langs and compilers
       python3

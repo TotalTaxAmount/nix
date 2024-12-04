@@ -154,7 +154,6 @@ in
       distrobox
 
       # Fonts
-      nerdfonts
       font-awesome
     ];
 

@@ -60,7 +60,7 @@ in
 
   programs.vscode = {
     enable = true;
-    package = pkgs.vscode-fhs;
+    package = pkgs.vscode;
     extensions =
       with pkgs.vscode-extensions;
       [
@@ -80,6 +80,7 @@ in
         vadimcn.vscode-lldb
         tamasfe.even-better-toml
         vue.volar
+        svelte.svelte-vscode
       ]
       ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
