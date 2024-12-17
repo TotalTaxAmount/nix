@@ -95,6 +95,15 @@ in
     steam-hardware.enable = true;
   };
   services.blueman.enable = true;
+
+  services.openvpn = {
+    servers = {
+      tryhackme  = {
+        config = "config /home/${user}/VPNs/tryhackme.ovpn";
+        autoStart = false;
+      };
+    };
+  };
   # hardware.openrgb = {
   #   enable = true;
   #   motherboard = "amd";

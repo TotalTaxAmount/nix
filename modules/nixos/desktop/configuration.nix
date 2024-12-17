@@ -58,15 +58,6 @@
     blueman.enable = true;
     fstrim.enable = true;
 
-    openvpn = {
-      servers = {
-        vpnbookUK = {
-          config = "config /home/${user}/VPNs/vpnbook-uk205-udp25000.ovpn";
-          autoStart = false;
-        };
-      };
-    };
-
     hardware.openrgb = {
       enable = true;
       motherboard = "amd";

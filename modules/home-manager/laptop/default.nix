@@ -95,7 +95,7 @@ in
       utils.print-colors
       nautilus
       postman
-
+      obs-studio
       nomacs
       qbittorrent
       # virt-manager
