@@ -119,6 +119,7 @@ in
       gamemode
       protonplus
       lutris
+      inputs.nix-citizen.packages.${pkgs.system}.lug-helper
 
       # Scripts/Misc
       python3

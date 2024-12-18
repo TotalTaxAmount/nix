@@ -9,7 +9,15 @@
 }:
 
 {
-  imports = [ ./hardware.nix ];
+  imports = [ 
+    ./hardware.nix
+    inputs.nix-citizen.nixosModules.StarCitizen 
+  ];
+
+  nix.settings = {
+    substituters = ["https://nix-citizen.cachix.org"];
+    trusted-public-keys = ["nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="];
+  };
 
   services.xserver = {
     enable = true;
@@ -43,11 +51,12 @@
 
       powerManagement = {
         enable = true;
+        finegrained = false;
       };
 
-      open = false;
+      open = true;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
     xpadneo.enable = true;
@@ -129,9 +138,27 @@
     };
   };
 
+  nix-citizen.starCitizen = {
+    enable = true;
+    package = inputs.nix-citizen.packages.${pkgs.system}.star-citizen;
+    preCommands = ''
+      export MANGOHUD=1
+      export __GL_SHADER_DISK_CACHE=true
+      export __GL_SHADER_DISK_CACHE_PATH="$HOME/Games/star-citizen/nvidiacache"
+      export __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=true
+      export DXVK_CONFIG_FILE=$HOME/Games/star-citizen/dxvk.conf
+    '';
+
+    helperScript = {
+      enable = true;
+      package = inputs.nix-citizen.packages.${pkgs.system}.star-citizen-helper;
+    };
+    umu.enable = true;
+  };
+
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "preformace";
+    cpuFreqGovernor = "performance";
   };
 
   services = {
@@ -190,7 +217,7 @@
 
   boot = {
     supportedFilesystems = [ "nfs" ];
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = [ "kvm-amd" "nct6775" ];
     kernelPackages = pkgs.linuxPackages_cachyos;
 
     tmp.cleanOnBoot = true;
