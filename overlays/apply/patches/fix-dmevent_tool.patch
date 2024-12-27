@@ -1,0 +1,11 @@
+--- tools/dmevent_tool.c.old	2024-12-26 18:39:04.294039876 -0700
++++ tools/dmevent_tool.c	2024-12-26 18:39:17.004656330 -0700
+@@ -148,7 +148,7 @@
+ 
+ 			optc[o->type]++;
+ 			optc[OPT_SUM]++;
+-			return;
++			return 0;
+ 		}
+ 	}
+ 
