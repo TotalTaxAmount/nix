@@ -1,0 +1,27 @@
+# https://github.com/PerchunPak/nixos-dotfiles/blob/main/.github/workflows/update-flake-lock.yml
+name: update-flake-lock
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '43 */12 * * *' # https://crontab.guru/#43_*/12_*_*_*
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v1
+
+      - name: Check if nixpkgs got updated
+        id: check
+        continue-on-error: true
+        run: |
+          nix flake update nixpkgs
+          ! git diff --exit-code && git restore flake.lock
+
+      - name: Update flake.lock
+        if: steps.check.outcome == 'success'
+        uses: DeterminateSystems/update-flake-lock@v23
