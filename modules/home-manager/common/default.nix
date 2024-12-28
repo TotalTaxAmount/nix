@@ -110,6 +110,7 @@ in
       userName = user;
       extraConfig = {
         pull.rebase = false;
+        user.signingkey = "718CE018D826D164";
       };
     };
 

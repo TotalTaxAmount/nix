@@ -215,11 +215,7 @@ in
       };
     };
 
-    programs.git = {
-      enable = true;
-      userEmail = "shieldscoen@gmail.com";
-      userName = user;
-    };
+    
     # Random files
 
     # Let Home Manager install and manage itself.

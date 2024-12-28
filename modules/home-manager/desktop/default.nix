@@ -77,7 +77,8 @@ in
       nemo
       zoom-us
       noita_entangled_worlds
-      nexusmods-app-unfree
+      # heroic
+      freecad-wayland
 
       # Terminal
       zsh-powerlevel10k
