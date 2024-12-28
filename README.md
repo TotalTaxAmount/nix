@@ -1,4 +1,4 @@
-# TotaltTax's Nix config:
+# TotalTax's Nix config:
 
 This is my nixos config, its changing all the time and is probably not stable.
 
