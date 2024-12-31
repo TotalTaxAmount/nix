@@ -77,7 +77,8 @@ in
       nemo
       zoom-us
       noita_entangled_worlds
-      nexusmods-app-unfree
+      # heroic
+      freecad-wayland
 
       # Terminal
       zsh-powerlevel10k
@@ -119,6 +120,7 @@ in
       gamemode
       protonplus
       lutris
+      inputs.nix-citizen.packages.${pkgs.system}.lug-helper
 
       # Scripts/Misc
       python3

@@ -92,4 +92,8 @@ final: prev:
                 --add-flags --ozone-platform=wayland
       '';
   });
+
+  dmraid = prev.dmraid.overrideAttrs (old: {
+    patches = (old.patches or []) ++ [ ./patches/fix-dmevent_tool.patch ];
+  });
 }
