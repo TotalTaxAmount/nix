@@ -1,5 +1,5 @@
 # https://github.com/PerchunPak/nixos-dotfiles/blob/main/.github/workflows/update-flake-lock.yml
-name: update-flake-lock
+name: Update Flake Lockfile
 on:
   workflow_dispatch:
   schedule:
