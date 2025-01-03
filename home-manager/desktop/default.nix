@@ -18,8 +18,8 @@ let
       config
       ;
   };
-  rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq { };
-  noita_entangled_worlds = pkgs.callPackage ../../../external/pkgs/noita-worlds { };
+  rofi-copyq = pkgs.callPackage ../../external/pkgs/rofi-copyq { };
+  noita_entangled_worlds = pkgs.callPackage ../../external/pkgs/noita-worlds { };
 in
 {
   imports = [

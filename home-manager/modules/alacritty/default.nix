@@ -8,7 +8,7 @@
 let
   scripts = pkgs.runCommand "fix-scripts" { } ''
     mkdir -p $out
-    cp -r ${../../../../dots/alacritty}/* $out
+    cp -r ${../../../dots/alacritty}/* $out
     chmod +x $out/*.sh
   '';
 in

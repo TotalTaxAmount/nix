@@ -8,7 +8,6 @@
 }:
 
 let
-  customThemes = import ../../../theme/custom.nix;
   base16Themes = inputs.nix-colors.colorSchemes;
 
   # Flake stuff
@@ -110,8 +109,8 @@ in
       userName = user;
       extraConfig = {
         pull.rebase = false;
-        user.signingkey = "718CE018D826D164";
-        commit.gpgsign = true;
+        # user.signingkey = "718CE018D826D164";
+        # commit.gpgsign = true;
       };
     };
 

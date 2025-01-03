@@ -31,27 +31,8 @@ in
     };
 
     modules = [
-      ../modules/home-manager/common
-      ../modules/home-manager/laptop
-    ];
-  };
-
-  laptop-strix = home-manager.lib.homeManagerConfiguration {
-    inherit pkgs;
-
-    extraSpecialArgs = {
-      inherit
-        pkgs
-        inputs
-        user
-        system
-        ;
-      host = "laptop-strix";
-    };
-
-    modules = [
-      ../modules/home-manager/common
-      ../modules/home-manager/laptop-strix
+      ../home-manager/common
+      ../home-manager/laptop
     ];
   };
 
@@ -68,8 +49,8 @@ in
     };
 
     modules = [
-      ../modules/home-manager/common
-      ../modules/home-manager/remote
+      ../home-manager/common
+      ../home-manager/remote
     ];
   };
 
@@ -87,8 +68,8 @@ in
     };
 
     modules = [
-      ../modules/home-manager/common
-      ../modules/home-manager/desktop
+      ../home-manager/common
+      ../home-manager/desktop
     ];
   };
 }

@@ -7,7 +7,7 @@
 # TODO: Make the theme a real extension in nix
 let
   vscodeThemeExtension = pkgs.substituteAllFiles {
-    src = ../../../../dots/vscode/systemtheme;
+    src = ../../../dots/vscode/systemtheme;
     files = [
       "themes/System Theme-color-theme.json"
       "themes/system.tmTheme"
@@ -44,13 +44,13 @@ let
   };
 
   customcss = pkgs.substituteAll {
-    src = ../../../../dots/vscode/customcss.css;
+    src = ../../../dots/vscode/customcss.css;
 
     focusColor = "#${config.colorScheme.palette.base05}";
   };
 
   settings = pkgs.substituteAll {
-    src = ../../../../dots/vscode/settings.json;
+    src = ../../../dots/vscode/settings.json;
 
     font = config.font;
     customcss = customcss.out;
@@ -112,5 +112,5 @@ in
 
   home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source = vscodeThemeExtension.out;
   xdg.configFile."Code/User/settings.json".source = settings.out;
-  xdg.configFile."Code/User/keybindings.json".source = ../../../../dots/vscode/keybinds.json;
+  xdg.configFile."Code/User/keybindings.json".source = ../../../dots/vscode/keybinds.json;
 }

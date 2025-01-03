@@ -14,8 +14,9 @@ let
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
 
   # Custom pkgs
-  rofi-copyq = pkgs.callPackage ../../../external/pkgs/rofi-copyq { };
-  path-planner = pkgs.callPackage ../../../external/pkgs/pathplanner { };
+  rofi-copyq = pkgs.callPackage ../../external/pkgs/rofi-copyq { };
+  noita-worlds = pkgs.callPackage ../../external/pkgs/noita-worlds { };
+  path-planner = pkgs.callPackage ../../external/pkgs/pathplanner { };
   utils = import ../modules/utils.nix {
     inherit
       lib
@@ -39,7 +40,7 @@ in
     ../modules/vscode
 
     # Flakes
-    inputs.spicetify-nix.homeManagerModule
+    inputs.spicetify-nix.homeManagerModules.default
     inputs.nix-colors.homeManagerModule
     inputs.sops-nix.homeManagerModule
   ];
@@ -74,38 +75,18 @@ in
     # The home.packages option allows you to install Nix packages into your
     # environment.
     home.packages = with pkgs; [
-      # # Adds the 'hello' command to your environment. It prints a friendly
-      # # "Hello, world!" when run.
-      # pkgs.hello
-
-      # # It is sometimes useful to fine-tune packages, for example, by applying
-      # # overrides. You can do that directly here, just don't forget the
-      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # # fonts?
-      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-
       # Apps
       gimp
       spotify
-      #  audacity
       qFlipper
       prismlauncher
       firefox-devedition
-      #   android-studio
       element-desktop
       vesktop
-      #   pathplanner
+      zoom-us
+      ghidra
 
       pulseview
-      # gfn-electron
-      #      kicad
       gthumb
       wl-screenrec
       clapper
@@ -113,20 +94,15 @@ in
       killall
       utils.print-colors
       nautilus
-      # zed-editor
-      # path-plannesr
-
-      # fluent-reader
+      postman
+      obs-studio
       nomacs
-      #bottles
       qbittorrent
       # virt-manager
-      blender
       slack
 
       #Terminal Apps/Config
       zsh-powerlevel10k
-      neofetch
       file
       playerctl
       base16-builder
@@ -142,7 +118,7 @@ in
       qt5.full
       wget
       rofi-copyq
-      asusctl
+      gammastep
 
       #Customization
       swww
@@ -154,7 +130,7 @@ in
 
       # IDEs
       #     jetbrains.clion
-      jetbrains.idea-ultimate
+      # jetbrains.idea-ultimate
 
       # Game utils
       #    lutris
@@ -163,6 +139,8 @@ in
       winetricks
       mangohud
       gamemode
+      noita-worlds
+      protonplus
       # inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
 
       # Screenshot
@@ -176,7 +154,6 @@ in
       distrobox
 
       # Fonts
-      nerdfonts
       font-awesome
     ];
 
@@ -200,12 +177,6 @@ in
 
     services.spotifyd.enable = true;
 
-    wayland.windowManager.hyprland = {
-      enable = true;
-      xwayland.enable = true;
-      # enableNvidiaPatches = true;
-    };
-
     dconf.settings = {
 
     };
@@ -226,11 +197,16 @@ in
 
         listener = [
           {
-            timeout = 900;
+            timeout = 120;
+            on-timeout = "kill $(pgrep eww)";
+            on-resume = " ${pkgs.eww}/bin/eww open laptopMain";
+          }
+          {
+            timeout = 500;
             on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
           }
           {
-            timeout = 1200;
+            timeout = 600;
             on-timeout = "hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
           }
@@ -239,11 +215,7 @@ in
       };
     };
 
-    programs.git = {
-      enable = true;
-      userEmail = "shieldscoen@gmail.com";
-      userName = user;
-    };
+    
     # Random files
 
     # Let Home Manager install and manage itself.

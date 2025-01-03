@@ -26,22 +26,9 @@ in
     };
     modules = [
       inputs.chaotic.nixosModules.default
-      ../modules/nixos/common
-      ../modules/nixos/laptop/hardware.nix
-      ../modules/nixos/laptop/configuration.nix
-    ];
-  };
-
-  laptop-strix = nixosSystem {
-    inherit pkgs system; # TODO fix!
-    specialArgs = {
-      inherit inputs user;
-      host = "laptop-strix";
-    };
-    modules = [
-      ../modules/nixos/common
-      ../modules/nixos/laptop-strix/hardware.nix
-      ../modules/nixos/laptop-strix/configuration.nix
+      ../nixos/common
+      ../nixos/laptop/hardware.nix
+      ../nixos/laptop/configuration.nix
     ];
   };
 
@@ -53,9 +40,9 @@ in
     };
     modules = [
       inputs.chaotic.nixosModules.default
-      ../modules/nixos/common
-      ../modules/nixos/desktop/hardware.nix
-      ../modules/nixos/desktop/configuration.nix
+      ../nixos/common
+      ../nixos/desktop/hardware.nix
+      ../nixos/desktop/configuration.nix
     ];
   };
 
@@ -67,9 +54,9 @@ in
     };
     modules = [
       inputs.sops-nix.nixosModules.sops
-      ../modules/nixos/common
-      ../modules/nixos/remote/hardware.nix
-      ../modules/nixos/remote/configuration.nix
+      ../nixos/common
+      ../nixos/remote/hardware.nix
+      ../nixos/remote/configuration.nix
     ];
   };
 }

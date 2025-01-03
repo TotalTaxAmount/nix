@@ -5,9 +5,9 @@
   ...
 }:
 let
-  scriptDir = builtins.dirOf ../../../../dots/eww/scripts/battery.sh;
+  scriptDir = builtins.dirOf ../../../dots/eww/scripts/battery.sh;
   ewwCfg = pkgs.substituteAllFiles {
-    src = ../../../../dots/eww;
+    src = ../../../dots/eww;
     files = [
       "modules/info.yuck"
       "modules/system.yuck"
@@ -45,7 +45,7 @@ let
     chmod +x $out/scripts/*.sh
   '';
 
-  hyprland-workspaces_updated = pkgs.callPackage ../../../../external/pkgs/hyprland-workspaces { };
+  hyprland-workspaces_updated = pkgs.callPackage ../../../external/pkgs/hyprland-workspaces { };
 in
 {
 

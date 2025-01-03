@@ -41,7 +41,7 @@ in
     nvim = "lvim";
   };
 
-  home.file.".config/lvim/config.lua".source = ../../../../dots/nvim/config.lua;
+  home.file.".config/lvim/config.lua".source = ../../../dots/nvim/config.lua;
   #   programs.neovim = {
   #     enable = true;
   #     defaultEditor = true;

@@ -37,7 +37,7 @@ let
 
   # Configs:
   tmuxConfig = pkgs.substituteAll {
-    src = ../../../../dots/zsh/tmux.conf;
+    src = ../../../dots/zsh/tmux.conf;
     base0D = "#${config.colorScheme.palette.base0D}";
   };
 in

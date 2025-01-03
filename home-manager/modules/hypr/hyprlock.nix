@@ -2,7 +2,7 @@
 
 let
   hyprlockConfig = pkgs.substituteAll {
-    src = ../../../../dots/hypr/hyprlock.conf;
+    src = ../../../dots/hypr/hyprlock.conf;
     base00 = "${config.colorScheme.palette.base00}";
     base05 = "${config.colorScheme.palette.base05}";
     base0D = "${config.colorScheme.palette.base0D}";
