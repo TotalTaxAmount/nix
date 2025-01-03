@@ -1,4 +1,4 @@
-name: Build Flake
+name: Build Flake Check
 on:
   pull_request:
     types:
@@ -7,7 +7,7 @@ on:
       - reopened
 
 jobs:
-  build-flake:
+  build-flake-check:
     runs-on: ubuntu-latest
     strategy:
       matrix:
