@@ -1,4 +1,4 @@
-name: Build Flake for All Hosts
+name: Build Flake
 on:
   pull_request:
     types:
