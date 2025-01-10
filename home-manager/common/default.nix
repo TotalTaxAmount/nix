@@ -114,7 +114,13 @@ in
       };
     };
 
-    programs.gpg.enable = true;        
+    programs.gpg = {
+      enable = true;        
+      settings = {
+        keyserver = "keys.openpgp.org";
+      };
+    };
+
     services.gpg-agent = {
       enable = true;
       pinentryPackage = pkgs.pinentry-gnome3;
