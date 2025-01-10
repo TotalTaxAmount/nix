@@ -100,6 +100,7 @@ in
       qbittorrent
       # virt-manager
       slack
+      freecad-wayland
 
       #Terminal Apps/Config
       zsh-powerlevel10k
@@ -119,6 +120,7 @@ in
       wget
       rofi-copyq
       gammastep
+  
 
       #Customization
       swww
@@ -130,7 +132,7 @@ in
 
       # IDEs
       #     jetbrains.clion
-      # jetbrains.idea-ultimate
+      jetbrains.idea-ultimate
 
       # Game utils
       #    lutris

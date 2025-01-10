@@ -47,11 +47,6 @@
     user
   ];
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
   users.users."${user}" = {
     isNormalUser = true;
     description = "";
@@ -102,6 +97,8 @@
     #  };
   };
   services.gnome.gnome-keyring.enable = true;
+  services.pcscd.enable = true;
+
 
   services.auto-cpufreq = {
     enable = true;

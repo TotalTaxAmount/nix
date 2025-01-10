@@ -109,9 +109,15 @@ in
       userName = user;
       extraConfig = {
         pull.rebase = false;
-        # user.signingkey = "718CE018D826D164";
-        # commit.gpgsign = true;
+        user.signingkey = "718CE018D826D164";
+        commit.gpgsign = true;
       };
+    };
+
+    programs.gpg.enable = true;        
+    services.gpg-agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-gnome3;
     };
 
     nix.gc = {
