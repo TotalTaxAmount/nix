@@ -50,8 +50,6 @@ in
 
     nixpkgs.config.allows = true;
 
-    home.stateVersion = "23.05";
-
     home.packages = with pkgs; [
       # Apps
       gimp

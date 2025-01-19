@@ -167,22 +167,22 @@
   };
 
   boot.loader = {
-    systemd-boot.enable = false;
+    systemd-boot.enable = true;
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
-    grub = {
-      devices = [ "nodev" ];
-      enable = true;
-      efiSupport = true;
-      useOSProber = true;
-      extraEntries = ''
-        menuentry "UEFI Firmware Settings" {
-            echo "Booting into UEFI firmware settings..."
-            fwsetup
-        }'';
-    };
+    # grub = {
+    #   devices = [ "nodev" ];
+    #   enable = true;
+    #   efiSupport = true;
+    #   useOSProber = true;
+    #   extraEntries = ''
+    #     menuentry "UEFI Firmware Settings" {
+    #         echo "Booting into UEFI firmware settings..."
+    #         fwsetup
+    #     }'';
+    # };
   };
 
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
@@ -194,5 +194,5 @@
 
   nix.settings.auto-optimise-store = true;
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }
