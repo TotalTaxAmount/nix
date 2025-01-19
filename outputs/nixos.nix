@@ -40,6 +40,8 @@ in
     };
     modules = [
       inputs.chaotic.nixosModules.default
+      inputs.lanzaboote.nixosModules.lanzaboote
+      
       ../nixos/common
       ../nixos/desktop/hardware.nix
       ../nixos/desktop/configuration.nix

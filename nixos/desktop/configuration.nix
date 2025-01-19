@@ -44,6 +44,9 @@
       ];
     };
 
+    cpu.amd.updateMicrocode = true;
+    
+
     flipperzero.enable = true;
 
     nvidia = {
@@ -218,7 +221,13 @@
       "fs.file-max" = 524288;
     };
 
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
+
     loader = {
+      systemd-boot.enable = false;
       efi = {
         efiSysMountPoint = "/boot";
         canTouchEfiVariables = true;

@@ -114,9 +114,10 @@
 
   environment.systemPackages = with pkgs; [ 
     nix-output-monitor
-
     man-pages
     man-pages-posix
+
+    sbctl
   ];
 
   environment.variables = {
@@ -167,7 +168,7 @@
   };
 
   boot.loader = {
-    systemd-boot.enable = true;
+    systemd-boot.enable = lib.mkDefault true;
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
