@@ -74,6 +74,19 @@ final: prev:
               --add-flags --ozone-platform-hint=auto'';
   });
 
+  bitwarden-desktop = prev.bitwarden-desktop.overrideAttrs (old: {
+    desktopItems = [
+      (prev.makeDesktopItem {
+        name = "bitwarden";
+        exec = "bitwarden --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto %U";
+        comment = "Secure and free password manager for all of your devices";
+        desktopName = "Bitwarden";
+        categories = [ "Utility" ];
+        mimeTypes = [ "x-scheme-handler/bitwarden" ];
+      })
+    ];
+  });
+
   slack = prev.slack.overrideAttrs (old: {
     postInstall =
       (old.postInstall or "")

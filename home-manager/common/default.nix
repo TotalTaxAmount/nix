@@ -86,6 +86,8 @@ in
       #Customization
       # nerdfonts
 
+      bitwarden-desktop
+
       # Langs and compilers
       python3
     ];
