@@ -10,9 +10,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v1
+        
+      - name: Setup cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            /nix
+          key: ${{ runner.os }}-nix-${{ hashFiles('**/*.drv') }}
+          restore-keys: ${{ runner.os }}-nix-
+          
       - name: Build system
         run: nix build ".#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel" --extra-experimental-features "nix-command flakes"
+      
       - name: Build home
         run: nix build ".#homeConfigurations.${{ matrix.host }}.activation-script" --extra-experimental-features "nix-command flakes"
