@@ -1,76 +1,16 @@
-name: Build Flake Check
-on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
+name: Build Flake for all hosts
+on: [push, pull_request]
 
 jobs:
   build-flake:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        host: [laptop, desktop, remote]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v1
-
-      - name: Set up GitHub Check
-        id: create-check
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const response = await github.checks.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              name: 'Build Flake',
-              head_sha: context.payload.pull_request.head.sha,
-              status: 'in_progress'
-            });
-            return response.data.id
-          result-encoding: string
-
-      - name: Build flake for laptop
-        run: nix build .#laptop --extra-experimental-features "nix-command flakes"
-
-      - name: Build flake for desktop
-        run: nix build .#desktop --extra-experimental-features "nix-command flakes"
-
-      - name: Build flake for remote
-        run: nix build .#remote --extra-experimental-features "nix-command flakes"
-
-      - name: Mark Check as Success
-        if: success()
-        uses: actions/github-script@v6
-        with:
-          script: |
-            await github.checks.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              check_run_id: ${{ steps.create-check.outputs.result }},
-              status: 'completed',
-              conclusion: 'success',
-              output: {
-                title: 'Build Flake Success',
-                summary: 'All hosts built successfully!'
-              }
-            });
-
-      - name: Mark Check as Failure
-        if: failure()
-        uses: actions/github-script@v6
-        with:
-          script: |
-            await github.checks.update({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              check_run_id: ${{ steps.create-check.outputs.result }},
-              status: 'completed',
-              conclusion: 'failure',
-              output: {
-                title: 'Build Flake Failure',
-                summary: 'One or more hosts failed to build.',
-                text: 'Check the logs for details.'
-              }
-            });
+      - name: Build flake
+        run: nix build .#${{ matrix.host }} --extra-experimental-features "nix-command flakes"
