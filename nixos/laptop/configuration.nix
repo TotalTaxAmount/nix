@@ -20,7 +20,6 @@ in
     # Include the results of the hardware scan.
     ./hardware.nix
     ./wireguard
-    ./vfio
     inputs.sops-nix.nixosModules.default
   ];
 
@@ -76,10 +75,10 @@ in
 
     nvidia = {
       modesetting.enable = lib.mkDefault true;
-      powerManagement = {
-        enable = lib.mkDefault true;
-      };
-      dynamicBoost.enable = true;
+#      powerManagement = {
+ #       enable = lib.mkDefault true;
+  #    };
+ #     dynamicBoost.enable = true;
       open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
@@ -94,20 +93,8 @@ in
     xpadneo.enable = true;
     steam-hardware.enable = true;
   };
-  services.blueman.enable = true;
 
-  services.openvpn = {
-    servers = {
-      tryhackme  = {
-        config = "config /home/${user}/VPNs/tryhackme.ovpn";
-        autoStart = false;
-      };
-    };
-  };
-  # hardware.openrgb = {
-  #   enable = true;
-  #   motherboard = "amd";
-  # };
+  services.blueman.enable = true;
 
   sops = {
     defaultSopsFile = ./secrets/secrets.yml;
@@ -170,10 +157,7 @@ in
 
   services.pcscd.enable = true;
 
-  services.hardware.openrgb = {
-    enable = true;
-    motherboard = "amd";
-  };
+  programs.rog-control-center.enable = true;
 
   networking = {
     firewall = {
@@ -231,9 +215,7 @@ in
         canTouchEfiVariables = true;
       };
 
-      grub = {
-        efiSupport = true;
-      };
+      systemd-boot.enable = true;
     };
   };
   #  specialisation."VFIO".configuration = {
