@@ -31,7 +31,7 @@ in
     ../modules/dunst
     ../modules/vscode
 
-    inputs.spicetify-nix.homeManagerModules.default
+    # inputs.spicetify-nix.homeManagerModules.default
     inputs.nix-colors.homeManagerModule
   ];
 

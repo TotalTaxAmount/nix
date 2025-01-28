@@ -11,7 +11,7 @@
 
 let
   # Flake stuff
-  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  # spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
 
   # Custom pkgs
   rofi-copyq = pkgs.callPackage ../../external/pkgs/rofi-copyq { };
@@ -40,7 +40,7 @@ in
     ../modules/vscode
 
     # Flakes
-    inputs.spicetify-nix.homeManagerModules.default
+    # inputs.spicetify-nix.homeManagerModules.default
     inputs.nix-colors.homeManagerModule
     inputs.sops-nix.homeManagerModule
   ];
@@ -151,19 +151,19 @@ in
       font-awesome
     ];
 
-    programs.spicetify = {
-      enable = false;
-      theme = spicePkgs.themes.Ziro;
-      colorScheme = "ziro";
+    # programs.spicetify = {
+    #   enable = false;
+    #   theme = spicePkgs.themes.Ziro;
+    #   colorScheme = "ziro";
 
-      enabledExtensions = with spicePkgs.extensions; [
-        fullAppDisplay
-        shuffle
-        hidePodcasts
-        songStats
-        powerBar
-      ];
-    };
+    #   enabledExtensions = with spicePkgs.extensions; [
+    #     fullAppDisplay
+    #     shuffle
+    #     hidePodcasts
+    #     songStats
+    #     powerBar
+    #   ];
+    # };
 
     services.kdeconnect = {
       enable = true;
