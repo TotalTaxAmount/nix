@@ -68,12 +68,9 @@ in
     # The home.packages option allows you to install Nix packages into your
     # environment.
     home.packages = with pkgs; [
+      # Customization
       zsh-powerlevel10k
       fastfetch
-      file
-      tree
-      zip
-      unzip
 
       #Utils
       nixd
@@ -81,15 +78,16 @@ in
       bat
       wget
       eza
-      (pkgs.callPackage ../modules/shell { })
-
-      #Customization
-      # nerdfonts
-
-      bitwarden-desktop
-
-      # Langs and compilers
+      (pkgs.callPackage ../modules/shell { }) # TODO: Remove
       python3
+      tree
+      zip
+      unzip
+      file
+
+      #Apps
+      bitwarden-desktop
+      thunderbird
     ];
 
     home.sessionVariables = {
