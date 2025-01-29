@@ -49,8 +49,8 @@ in
   };
 
   services.asusd = {
-    # enable = true;
-    # enableUserService = true;
+    enable = true;
+    enableUserService = true;
   };
 
   programs.ssh = {
