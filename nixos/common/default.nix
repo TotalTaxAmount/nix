@@ -28,7 +28,8 @@
     dev.enable = true;
   };
 
-  nix.settings.experimental-features = [ # Not sure if this is still needed
+  nix.settings.experimental-features = [
+    # Not sure if this is still needed
     "nix-command"
     "flakes"
   ];
@@ -127,7 +128,6 @@
 
     sbctl # Secure boot
   ];
-
 
   boot = {
     loader = {

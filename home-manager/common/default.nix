@@ -9,10 +9,7 @@
 
 let
   base16Themes = inputs.nix-colors.colorSchemes;
-
-  # Flake stuff
-  nix-colors-lib = inputs.nix-colors.lib.contrib { inherit pkgs; };
-  utils = import ../modules/utils.nix {
+  utils = import ../../modules/utils.nix {
     inherit
       lib
       pkgs
@@ -24,10 +21,9 @@ let
 in
 {
   imports = [
-    ../modules/btop
-    ../modules/nvim
-    # ../modules/neofetch
-    ../modules/terminal
+    ../../modules/btop
+    ../../modules/nvim
+    ../../modules/terminal
 
     inputs.nix-colors.homeManagerModule
 
@@ -40,7 +36,6 @@ in
     };
 
     cursor = lib.mkOption {
-      # type = lib.types.attrsOf lib.types.str;
       default = {
         name = "Bibata-Modern-Classic";
         package = pkgs.bibata-cursors;
@@ -56,21 +51,30 @@ in
   };
 
   config = {
-    home.username = user;
-    home.homeDirectory = "/home/${user}";
-
-    # colorScheme = customThemes.onedark-darker;
-    # font = "FiraCode Nerd Font";
-
-    # Unfree stuff/Insecure
+    # Unfree stuff
     nixpkgs.config.allowUnfree = true;
 
-    # The home.packages option allows you to install Nix packages into your
-    # environment.
+    home = {
+      username = user;
+      homeDirectory = "/home/${user}";
+
+      sessionVariables = {
+        XDG_SCREENSHOTS_DIR = "/home/${user}/Pictures/Screenshots";
+        HYPRCURSOR_THEME = config.cursor.name;
+        HYPRCURSOR_SIZE = config.cursor.size;
+        XCURSOR_SIZE = config.cursor.size;
+        XCURSOR_THEME = config.cursor.name;
+        XDG_DATA_HOME = "/home/${user}/.local/share";
+        XDG_SCREENREC_DIR = "/home/${user}/Vidoes/Screenrecordings";
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        ZSH_TMUX_AUTOSTART = "true";
+        TERMINAL = "${pkgs.alacritty}";
+      };
+    };
+
     home.packages = with pkgs; [
       # Customization
       zsh-powerlevel10k
-      fastfetch
 
       #Utils
       nixd
@@ -84,41 +88,33 @@ in
       zip
       unzip
       file
+      fastfetch
 
       #Apps
       bitwarden-desktop
       thunderbird
     ];
 
-    home.sessionVariables = {
-      XDG_SCREENSHOTS_DIR = "/home/${user}/Pictures/Screenshots";
-      HYPRCURSOR_THEME = config.cursor.name;
-      HYPRCURSOR_SIZE = config.cursor.size;
-      XCURSOR_SIZE = config.cursor.size;
-      XCURSOR_THEME = config.cursor.name;
-      XDG_DATA_HOME = "/home/${user}/.local/share";
-      XDG_SCREENREC_DIR = "/home/${user}/Vidoes/Screenrecordings";
-      ELECTRON_OZONE_PLATFORM_HINT = "auto";
-      ZSH_TMUX_AUTOSTART = "true";
-      TERMINAL = "${pkgs.alacritty}";
-    };
-
-    programs.git = {
-      enable = true;
-      userEmail = "shieldscoen@gmail.com";
-      userName = user;
-      extraConfig = {
-        pull.rebase = false;
-        user.signingkey = "718CE018D826D164";
-        commit.gpgsign = true;
+    programs = {
+      git = {
+        enable = true;
+        userEmail = "shieldscoen@gmail.com";
+        userName = user;
+        extraConfig = {
+          pull.rebase = false;
+          user.signingkey = "718CE018D826D164";
+          commit.gpgsign = true;
+        };
       };
-    };
 
-    programs.gpg = {
-      enable = true;        
-      settings = {
-        keyserver = "keys.openpgp.org";
+      gpg = {
+        enable = true;        
+        settings = {
+          keyserver = "keys.openpgp.org";
+        };
       };
+
+      home-manager.enable = true;
     };
 
     services.gpg-agent = {
@@ -146,16 +142,8 @@ in
       package = config.cursor.package;
       size = config.cursor.size;
     };
-
-    # Let Home Manager install and manage itself.
-    programs.home-manager.enable = true;
-    # This value determines the Home Manager release that your configuration is
-    # compatible with. This helps avoid breakage when a new Home Manager release
-    # introduces backwards incompatible changes.
-    # You should not change this value, even if you update Home Manager. If you do
-    # want to update the value, then make sure to first check the Home Manager
-    # release notes.
-    home.stateVersion = "25.05"; # Please read the comment before changing.
+    
+    home.stateVersion = "25.05"; # Dont change unless changelog says so
 
   };
 }

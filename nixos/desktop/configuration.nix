@@ -19,8 +19,7 @@
     trusted-public-keys = [ "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo=" ];
   };
 
-
-  environment.variables = { 
+  environment.variables = {
     LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
     GBM_BACKEND = "nvidia-drm";
@@ -89,7 +88,7 @@
     blueman.enable = true;
   };
 
-   programs = {
+  programs = {
     hyprland = {
       enable = true;
       xwayland.enable = true;

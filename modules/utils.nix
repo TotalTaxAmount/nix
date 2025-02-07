@@ -7,7 +7,7 @@
 
 let
   # Custom color themes
-  customThemes = import ../../theme/custom.nix;
+  customThemes = import ../theme/custom.nix;
   base16Themes = inputs.nix-colors.colorSchemes;
 
   # Flake stuff

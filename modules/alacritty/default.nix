@@ -47,7 +47,6 @@ in
           cyan = "#${config.colorScheme.palette.base0C}";
           white = "#${config.colorScheme.palette.base05}";
         };
-    
 
         bright = {
           black = "#${config.colorScheme.palette.base03}";
@@ -60,7 +59,6 @@ in
           white = "#${config.colorScheme.palette.base07}";
         };
       };
-      
 
       window.opacity = 1;
 

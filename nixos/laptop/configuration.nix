@@ -10,7 +10,7 @@
 {
   imports = [
     ./hardware.nix
-    ./wireguard
+    ../../modules/wireguard
     inputs.sops-nix.nixosModules.default
   ];
 
@@ -102,7 +102,8 @@
   };
 
   programs = {
-    hyprland = {  # Need this for gdm to work
+    hyprland = {
+      # Need this for gdm to work
       enable = true;
       xwayland.enable = true;
       package = inputs.hyprland.packages.${system}.hyprland;
