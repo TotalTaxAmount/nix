@@ -9,24 +9,22 @@
 }:
 
 {
-  imports = [ 
+  imports = [
     ./hardware.nix
-    inputs.nix-citizen.nixosModules.StarCitizen 
+    inputs.nix-citizen.nixosModules.StarCitizen
   ];
 
   nix.settings = {
-    substituters = ["https://nix-citizen.cachix.org"];
-    trusted-public-keys = ["nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="];
+    substituters = [ "https://nix-citizen.cachix.org" ]; # Star Citizen
+    trusted-public-keys = [ "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo=" ];
   };
 
-  services.xserver = {
-    enable = true;
-    videoDrivers = lib.mkDefault [ "nvidia" ];
 
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
+  environment.variables = { 
+    LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
   hardware = {
@@ -43,9 +41,6 @@
 
       ];
     };
-
-    cpu.amd.updateMicrocode = true;
-    
 
     flipperzero.enable = true;
 
@@ -67,40 +62,34 @@
   };
 
   services = {
-    blueman.enable = true;
-    fstrim.enable = true;
-
     hardware.openrgb = {
       enable = true;
       motherboard = "amd";
     };
 
-    seatd = {
+    xserver = {
       enable = true;
+      videoDrivers = lib.mkDefault [ "nvidia" ];
+
+      displayManager.gdm = {
+        enable = true;
+        wayland = true;
+      };
     };
 
-    ratbagd.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    printing.enable = true;
+    flatpak.enable = true;
+    seatd.enable = true;
+    blueman.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    alsa-utils
-    bluez-experimental
-    bluez-tools
-    bluez-alsa
-    brightnessctl
-    sqlint
-    libnotify
-    pinentry-rofi
-  ];
-
-  environment.variables = {
-    LIBVA_DRIVER_NAME = "nvidia";
-    XDG_SESSION_TYPE = "wayland";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  };
-
-  programs = {
+   programs = {
     hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -111,9 +100,9 @@
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
+
       gamescopeSession = {
         enable = true;
-
       };
     };
 
@@ -131,6 +120,17 @@
       capSysNice = true;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    alsa-utils
+    bluez-experimental
+    bluez-tools
+    bluez-alsa
+    brightnessctl
+    sqlint
+    libnotify
+    pinentry-rofi
+  ];
 
   # nix-citizen.starCitizen = {
   #   enable = true;
@@ -155,26 +155,11 @@
     cpuFreqGovernor = "performance";
   };
 
-  services = {
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
-
-    printing.enable = true;
-
-    pcscd.enable = true;
-
-    flatpak.enable = true;
-
-    # logind.extraConfig = ''
-    #   HandlePowerKey=ignore
-    # '';
-  };
-
   networking = {
-    nameservers = [ "1.1.1.1" "9.9.9.9" ];
+    nameservers = [
+      "1.1.1.1"
+      "9.9.9.9"
+    ];
 
     firewall = {
       enable = true;
@@ -192,26 +177,13 @@
     '';
   };
 
-  # security.wrappers.gamescope = {
-  #   owner = "root";
-  #   group = "root";
-  #   capabilities="cap_sys_nice+eip";
-  #   source = "${pkgs.gamescope}/bin/gamescope";
-  # };
-  # chaotic = {
-  #   scx.enable = true;
-  # };
-
-  chaotic = {
-    # scx = {
-    #   enable = true;
-    #   scheduler = "scx_rusty";
-    # };
-  };
-
   boot = {
     supportedFilesystems = [ "nfs" ];
-    kernelModules = [ "kvm-amd" "nct6775" ];
+    kernelModules = [
+      "kvm-amd"
+      "nct6775" # For extra temp sensors
+    ];
+
     kernelPackages = pkgs.linuxPackages_cachyos;
 
     tmp.cleanOnBoot = true;
@@ -222,12 +194,12 @@
     };
 
     lanzaboote = {
-      enable = true;
+      enable = true; # Secure boot
       pkiBundle = "/var/lib/sbctl";
     };
 
     loader = {
-      systemd-boot.enable = false;
+      systemd-boot.enable = false; # Needs to be disabled for secure boot to work
       efi = {
         efiSysMountPoint = "/boot";
         canTouchEfiVariables = true;

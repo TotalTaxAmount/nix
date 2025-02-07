@@ -1,6 +1,4 @@
 {
-  config,
-  inputs,
   host,
   lib,
   pkgs,
@@ -9,15 +7,9 @@
 }:
 
 {
-  # imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
   time.timeZone = "America/Denver";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";
     LC_IDENTIFICATION = "en_US.UTF-8";
@@ -36,14 +28,12 @@
     dev.enable = true;
   };
 
-  # Experimental
-  nix.settings.experimental-features = [
+  nix.settings.experimental-features = [ # Not sure if this is still needed
     "nix-command"
     "flakes"
   ];
 
   nix.settings.trusted-users = [
-    # "totaltaxamount" #
     user
   ];
 
@@ -57,68 +47,7 @@
       "libvirtd"
       "docker"
     ];
-    packages = with pkgs; [ ];
   };
-
-  # system.autoUpgrade = { Might be breaking shitl
-  #   enable = true;
-  #   channel = "https://nixos.org/channels/unstable";
-  # };
-
-  fonts = {
-    packages = with pkgs; [
-      nerd-fonts.fira-code
-      nerd-fonts.noto
-      nerd-fonts.overpass
-
-    ];
-
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-        emoji = [ "Noto Emoji" ];
-      };
-    };
-    enableDefaultPackages = true;
-  };
-
-  # Pipewire
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
-
-    #    lowLatency = {
-    #     enable = true;
-    #  };
-  };
-  services.gnome.gnome-keyring.enable = true;
-  services.pcscd.enable = true;
-
-
-  services.auto-cpufreq = {
-    enable = true;
-    settings = {
-      charger = {
-        scaling_min_freq = 800000;
-      };
-      battery = {
-        scaling_min_freq = 500000;
-      };
-    };
-  };
-
-  environment.systemPackages = with pkgs; [ 
-    nix-output-monitor
-    man-pages
-    man-pages-posix
-
-    sbctl
-  ];
 
   environment.variables = {
     EDITOR = "nvim";
@@ -128,24 +57,20 @@
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
   };
 
-  programs.zsh = {
-    enable = true;
-  };
+  fonts = {
+    packages = with pkgs; [
+      nerd-fonts.fira-code
+      nerd-fonts.noto
+      nerd-fonts.overpass
+    ];
 
-  services.xserver = {
-    xkb = {
-      layout = "us";
-      variant = "";
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        emoji = [ "Noto Emoji" ];
+      };
     };
-  };
-
-  services.fstrim = {
-    enable = true;
-  };
-
-  security.apparmor = {
-    enable = false;
-    enableCache = false;
+    enableDefaultPackages = true;
   };
 
   hardware = {
@@ -158,36 +83,65 @@
     };
   };
 
-  security.polkit = {
-    enable = true;
-  };
-
   networking = {
+    networkmanager.enable = true;
     hostName = host;
     nftables.enable = false;
   };
 
-  boot.loader = {
-    systemd-boot.enable = lib.mkDefault true;
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
+  services = {
+    xserver = {
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
     };
-    # grub = {
-    #   devices = [ "nodev" ];
-    #   enable = true;
-    #   efiSupport = true;
-    #   useOSProber = true;
-    #   extraEntries = ''
-    #     menuentry "UEFI Firmware Settings" {
-    #         echo "Booting into UEFI firmware settings..."
-    #         fwsetup
-    #     }'';
-    # };
+
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      wireplumber.enable = true;
+    };
+
+    gnome.gnome-keyring.enable = true;
+    pcscd.enable = true;
+    fstrim.enable = true;
   };
 
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+  security = {
+    rtkit.enable = true; # Need for pipewire
+    polkit.enable = true;
+  };
 
+  programs.zsh = {
+    enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    nix-output-monitor
+    man-pages
+    man-pages-posix
+
+    sbctl # Secure boot
+  ];
+
+
+  boot = {
+    loader = {
+      systemd-boot.enable = lib.mkDefault true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+    };
+
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest; # Use vanilla kernel by default
+  };
+
+  # Enable grable collection of the nix store to decrease disk usage
   nix.gc = {
     automatic = true;
     options = "--delete-older-than 30d";
@@ -195,5 +149,5 @@
 
   nix.settings.auto-optimise-store = true;
 
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Don't change unless changelog says to
 }

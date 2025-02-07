@@ -1,60 +1,56 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
   config,
   inputs,
   lib,
   pkgs,
-  user,
   system,
   ...
 }:
 
-let
-
-in
 {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware.nix
     ./wireguard
     inputs.sops-nix.nixosModules.default
   ];
 
-  # fileSystems."/data/truenas" = {
-  #   device = "10.1.10.3:/mnt/main/totaltaxamount";
-  #   fsType = "nfs";
-  #   options = ["x-systemd.idle-timeout=600"];
-  # };
-  #  systemd.services.data-truenas.wantedBy = lib.mkForce [ ];
-
-  # Configure  X11
-  services.xserver = {
-    enable = true;
-    videoDrivers = lib.mkDefault [ "nvidia" ];
-
-    displayManager.gdm = {
+  services = {
+    xserver = {
       enable = true;
-      wayland = true;
+      videoDrivers = lib.mkDefault [ "nvidia" ];
+
+      displayManager.gdm = {
+        enable = true;
+        wayland = true;
+      };
     };
+
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
+    auto-cpufreq = {
+      enable = true;
+      settings = {
+        charger = {
+          scaling_min_freq = 800000;
+        };
+        battery = {
+          scaling_min_freq = 500000;
+        };
+      };
+    };
+
+    blueman.enable = true;
+    printing.enable = true;
   };
 
-  systemd = {
-    # enableCgroupAccounting = true;
-    services = {
-      # asusd.wantedBy = lib.mkForce [ "multi-user.target" ];
-    };
-  };
-
-  # services.asusd = {
-  #   enable = true;
-  #   enableUserService = true;
-  # };
-
-  programs.ssh = {
-    forwardX11 = true;
+  security.pam.services.hyprlock = {
+    text = ''
+      auth include login
+    '';
   };
 
   hardware = {
@@ -75,13 +71,11 @@ in
 
     nvidia = {
       modesetting.enable = lib.mkDefault true;
-#      powerManagement = {
- #       enable = lib.mkDefault true;
-  #    };
- #     dynamicBoost.enable = true;
-      open = false;
+
+      open = false; # Issues with open drives
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
+
       prime = {
         offload.enable = true;
         offload.enableOffloadCmd = true;
@@ -94,9 +88,8 @@ in
     steam-hardware.enable = true;
   };
 
-  services.blueman.enable = true;
-
   sops = {
+    # Secrets
     defaultSopsFile = ./secrets/secrets.yml;
 
     age = {
@@ -105,14 +98,39 @@ in
       generateKey = true;
     };
 
-    # Secrets
     secrets."wireguard/private_key" = { };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs = {
+    hyprland = {  # Need this for gdm to work
+      enable = true;
+      xwayland.enable = true;
+      package = inputs.hyprland.packages.${system}.hyprland;
+    };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+
+    coolercontrol = {
+      enable = true;
+      nvidiaSupport = true;
+    };
+
+    rog-control-center.enable = true;
+  };
+
+  networking = {
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [
+        22 # SSH
+      ];
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     alsa-utils
     bluez-experimental
@@ -122,108 +140,8 @@ in
     sqlite
     libnotify
     pinentry-curses
-    # xwaylandvideobridge
   ];
-  # Need this for gdm to work
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    package = inputs.hyprland.packages.${system}.hyprland;
-    # enableNvidiaPatches = true;
-  };
 
-  # Needed for swaylock
-  #security.pam.services.swaylock = {};
-
-  # Why not home-manager??
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
-
-  programs.coolercontrol = {
-    enable = true;
-    nvidiaSupport = true;
-  };
-
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-
-  services.printing.enable = true;
-
-  services.pcscd.enable = true;
-
-  programs.rog-control-center.enable = true;
-
-  networking = {
-    firewall = {
-      enable = true;
-      allowedTCPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        }
-        # KDE Connect
-      ];
-
-      allowedUDPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        }
-        # KDE Connect
-      ];
-      allowedTCPPorts = [
-        22 # SSH
-      ];
-    };
-  };
-
-  chaotic = {
-    # scx = {
-    #   enable = true;
-    #   scheduler = "scx_rusty";
-    # };
-  };
-
-  boot = {
-    kernelParams = [
-      # "video=eDP-1:1920x1080@60" # TODO: There is def a better way to do this...
-      # "systemd.unified_cgroup_hierarchy=0"
-      #"amd_iommu=on" # GPU passthough
-      "acpi_backlight=native"
-    ];
-
-    supportedFilesystems = [ "nfs" ];
-    kernelModules = [
-      "kvm-amd"
-      "kvm-intel"
-    ];
-    tmp.cleanOnBoot = true;
-    kernelPackages = pkgs.linuxPackages_cachyos;
-    kernel.sysctl = {
-      "vm.max_map_count" = 16777216;
-      "fs.file-max" = 524288;
-    };
-    loader = {
-      efi = {
-        efiSysMountPoint = "/boot";
-        canTouchEfiVariables = true;
-      };
-
-      systemd-boot.enable = true;
-    };
-  };
-  #  specialisation."VFIO".configuration = {
-  #   system.nixos.tags = [ "with-vfio" ];
-  #  vfio.enable = true;
-  # };
-
-  # VMs
   virtualisation = {
     libvirtd.enable = true;
     waydroid.enable = true;
@@ -238,9 +156,30 @@ in
     };
   };
 
-  security.pam.services.hyprlock = {
-    text = ''
-      auth include login
-    '';
+  boot = {
+    kernelParams = [
+      "acpi_backlight=native" # Fix backlight not working
+    ];
+
+    supportedFilesystems = [ "nfs" ];
+    kernelModules = [
+      "kvm-amd"
+    ];
+    tmp.cleanOnBoot = true;
+    kernelPackages = pkgs.linuxPackages_cachyos;
+
+    # Star citizen
+    kernel.sysctl = {
+      "vm.max_map_count" = 16777216;
+      "fs.file-max" = 524288;
+    };
+    loader = {
+      efi = {
+        efiSysMountPoint = "/boot";
+        canTouchEfiVariables = true;
+      };
+
+      systemd-boot.enable = true;
+    };
   };
 }
