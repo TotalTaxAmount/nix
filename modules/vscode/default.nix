@@ -13,7 +13,7 @@ let
       "themes/system.tmTheme"
 
       "README.md"
-      ".vscode/launch.json"
+      # ".vscode/launch.json" # FIXME: Why error?
       ".vscodeignore"
       "package.json"
       "README.md"
