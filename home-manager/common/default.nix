@@ -82,7 +82,7 @@ in
       bat
       wget
       eza
-      (pkgs.callPackage ../modules/shell { }) # TODO: Remove
+      (pkgs.callPackage ../../modules/shell { }) # TODO: Remove
       python3
       tree
       zip

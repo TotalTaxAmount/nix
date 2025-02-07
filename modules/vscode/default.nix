@@ -7,7 +7,7 @@
 # TODO: Make the theme a real extension in nix
 let
   vscodeThemeExtension = pkgs.substituteAllFiles {
-    src = ../../../dots/vscode/systemtheme;
+    src = ./systemtheme;
     files = [
       "themes/System Theme-color-theme.json"
       "themes/system.tmTheme"
@@ -44,13 +44,13 @@ let
   };
 
   customcss = pkgs.substituteAll {
-    src = ../../../dots/vscode/customcss.css;
+    src = ./customcss.css;
 
     focusColor = "#${config.colorScheme.palette.base05}";
   };
 
   settings = pkgs.substituteAll {
-    src = ../../../dots/vscode/settings.json;
+    src = ./settings.json;
 
     font = config.font;
     customcss = customcss.out;
@@ -61,56 +61,48 @@ in
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
-    extensions =
-      with pkgs.vscode-extensions;
-      [
-        rust-lang.rust-analyzer
-        ms-vscode.cpptools
-        ms-vscode-remote.remote-ssh
-        jnoortheen.nix-ide
-        ms-vscode.makefile-tools
-        esbenp.prettier-vscode
-        eamodio.gitlens
-        vscode-icons-team.vscode-icons
-        alefragnani.bookmarks
-        streetsidesoftware.code-spell-checker
-        pkief.material-icon-theme
-        equinusocio.vsc-material-theme
-        editorconfig.editorconfig
-        vadimcn.vscode-lldb
-        tamasfe.even-better-toml
-        vue.volar
-        svelte.svelte-vscode
-      ]
-      ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-        {
-          name = "onedark";
-          publisher = "bartoszmaka95";
-          version = "0.2.1";
-          sha256 = "sha256-j03kdtx9CqypUsBGk04mtvTvPf5Uy36c+wnJaOGFaNU=";
-        }
-        {
-          name = "vscode-direnv";
-          publisher = "Rubymaniac";
-          version = "0.0.2";
-          sha256 = "sha256-TVvjKdKXeExpnyUh+fDPl+eSdlQzh7lt8xSfw1YgtL4=";
-        }
-        {
-          name = "asm-code-lens";
-          publisher = "maziac";
-          version = "2.6.0";
-          sha256 = "sha256-4p3kizvEqqsMNJOhyKxJQ0rH3ePjstKLWb22BYy3yZk=";
-        }
-        #  {
-        #    name = "yuck";
-        #    publisher = "eww-yuck";
-        #    version = "0.0.3";
-        #    sha256 = "sha256-DITgLedaO0Ifrttu+ZXkiaVA7Ua5RXc4jXQHPYLqrcM=";
-        #  }
-      ]);
+    extensions = with pkgs.vscode-extensions; [
+      rust-lang.rust-analyzer
+      ms-vscode.cpptools
+      ms-vscode-remote.remote-ssh
+      jnoortheen.nix-ide
+      ms-vscode.makefile-tools
+      esbenp.prettier-vscode
+      eamodio.gitlens
+      vscode-icons-team.vscode-icons
+      alefragnani.bookmarks
+      streetsidesoftware.code-spell-checker
+      pkief.material-icon-theme
+      equinusocio.vsc-material-theme
+      editorconfig.editorconfig
+      vadimcn.vscode-lldb
+      tamasfe.even-better-toml
+      vue.volar
+      svelte.svelte-vscode
+    ]
+    ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "onedark";
+        publisher = "bartoszmaka95";
+        version = "0.2.1";
+        sha256 = "sha256-j03kdtx9CqypUsBGk04mtvTvPf5Uy36c+wnJaOGFaNU=";
+      }
+      {
+        name = "vscode-direnv";
+        publisher = "Rubymaniac";
+        version = "0.0.2";
+        sha256 = "sha256-TVvjKdKXeExpnyUh+fDPl+eSdlQzh7lt8xSfw1YgtL4=";
+      }
+      {
+        name = "asm-code-lens";
+        publisher = "maziac";
+        version = "2.6.0";
+        sha256 = "sha256-4p3kizvEqqsMNJOhyKxJQ0rH3ePjstKLWb22BYy3yZk=";
+      }
+    ]);
   };
 
   home.file.".vscode/extensions/totaltax.systemtheme-1.0.0".source = vscodeThemeExtension.out;
-  xdg.configFile."Code/User/settings.json".source = settings.out;
-  xdg.configFile."Code/User/keybindings.json".source = ../../../dots/vscode/keybinds.json;
+  xdg.configFile."Code/User/settings.json".source = settings.out; # TODO: Use new home manager options
+  xdg.configFile."Code/User/keybindings.json".source = ./keybinds.json;
 }

@@ -5,9 +5,9 @@
   ...
 }:
 let
-  scriptDir = builtins.dirOf ../../../dots/eww/scripts/battery.sh;
+  scriptDir = builtins.dirOf ./config/scripts/battery.sh;
   ewwCfg = pkgs.substituteAllFiles {
-    src = ../../../dots/eww;
+    src = ./config;
     files = [
       "modules/info.yuck"
       "modules/system.yuck"
@@ -39,20 +39,19 @@ let
     scriptdir = "${scriptDir}";
   };
 
-  ewwCfgPatch = pkgs.runCommand "fix-scripts" { } ''
+  final = pkgs.runCommand "script-permissions" { } ''
     mkdir -p $out
     cp -r ${ewwCfg.out}/* $out
     chmod +x $out/scripts/*.sh
   '';
 
-  hyprland-workspaces_updated = pkgs.callPackage ../../../external/pkgs/hyprland-workspaces { };
+  hyprland-workspaces_updated = pkgs.callPackage ../../external/pkgs/hyprland-workspaces { };
 in
 {
 
-  # xdg.configFile."eww".source = ewwCfg.out;
   programs.eww = {
     enable = true;
-    configDir = ewwCfgPatch.out;
+    configDir = final.out;
   };
   home.packages = with pkgs; [
     bc

@@ -2,7 +2,7 @@
 
 let
   btopTheme = pkgs.substituteAll {
-    src = ../../../dots/btop/themes/system.theme;
+    src = ./system.theme;
     base00 = "#${config.colorScheme.palette.base00}";
     base03 = "#${config.colorScheme.palette.base03}";
     base04 = "#${config.colorScheme.palette.base04}";

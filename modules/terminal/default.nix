@@ -35,9 +35,8 @@ let
     hash = "sha256-TKGCck51qQ50dQGntKaeSk8waK3BlwUjueg4MImTH8k=";
   };
 
-  # Configs:
   tmuxConfig = pkgs.substituteAll {
-    src = ../../../dots/zsh/tmux.conf;
+    src = ./tmux.conf;
     base0D = "#${config.colorScheme.palette.base0D}";
   };
 in
@@ -64,17 +63,14 @@ in
     zsh = {
       enable = true;
       shellAliases = {
-        update = "/home/${user}/nix/build.sh";
+        update = "/home/${user}/nix/build.sh"; # TODO: Nixify
         cat = "bat";
         open = "stupidAlias";
         ls = "exa -l --icons";
         neofetch = "fastfetch";
       };
       enableCompletion = true;
-      # history = {
-      #    size = 10000;
-      #    path = "${config.xdg.dataHome}/zsh/history";
-      # };
+
       plugins = [
         {
           name = "zsh-nix-shell";

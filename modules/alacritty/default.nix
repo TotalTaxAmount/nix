@@ -1,15 +1,17 @@
 {
   pkgs,
   config,
-  lib,
-  user,
   ...
 }:
 let
-  scripts = pkgs.runCommand "fix-scripts" { } ''
-    mkdir -p $out
-    cp -r ${../../../dots/alacritty}/* $out
-    chmod +x $out/*.sh
+  tmux-attach = pkgs.writeScriptBin "tmux-attach" ''
+    SESSION=$(${pkgs.tmux}/bin/tmux list-sessions 2>/dev/null | grep -v "(attached)" | head -n 1 | cut -d: -f1)
+
+    if [ -z "$SESSION" ]; then
+        ${pkgs.tmux}/bin/tmux new-session
+    else
+        ${pkgs.tmux}/bin/tmux attach-session -t "$SESSION"
+    fi
   '';
 in
 {
@@ -21,7 +23,7 @@ in
         args = [
           "-l"
           "-c"
-          "${scripts.out}/tmux-attach.sh || tmux"
+          "${tmux-attach}/bin/tmux-attach || ${pkgs.tmux}/bin/tmux"
         ];
       };
       cursor.style = "Underline";

@@ -4,6 +4,7 @@
   inputs,
   user,
   lib,
+  ...
 }:
 
 let
@@ -12,7 +13,7 @@ let
   rofi-copyq = pkgs.callPackage ../../external/pkgs/rofi-copyq { };
   noita-worlds = pkgs.callPackage ../../external/pkgs/noita-worlds { };
   path-planner = pkgs.callPackage ../../external/pkgs/pathplanner { };
-  utils = import ../modules/utils.nix {
+  utils = import ../../modules/utils.nix {
     inherit
       lib
       pkgs
