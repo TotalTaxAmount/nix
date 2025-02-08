@@ -1,4 +1,6 @@
+# Nix
 result
-.vscode
+
+# Building
 /HOST
-dots/nvim/parsers
+/.direnv

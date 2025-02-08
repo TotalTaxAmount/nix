@@ -73,7 +73,7 @@
 
   };
 
-  outputs =
+  outputs = # TODO: Use flake utils
     {
       nixpkgs,
       ...
@@ -81,10 +81,24 @@
     let
       system = "x86_64-linux";
       user = "totaltaxamount";
+
+       pkgs = import inputs.nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
+          overlays = [ (import ./overlays) ];
+        };
     in
     {
-      homeConfigurations = import ./outputs/home.nix { inherit inputs system user; };
-      nixosConfigurations = import ./outputs/nixos.nix { inherit inputs system user; };
+      homeConfigurations = import ./outputs/home.nix { inherit inputs system user pkgs; };
+      nixosConfigurations = import ./outputs/nixos.nix { inherit inputs system user pkgs; };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+
+      # devShell.x86_64-linux = pkgs.mkShell {  # FIXME: Fix once flake utils is in use
+      #   nativeBuildInputs = with pkgs; [
+      #     nixfmt-rfc-style
+      #   ];
+      # };
     };
 }
