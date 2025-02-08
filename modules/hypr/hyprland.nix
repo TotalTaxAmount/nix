@@ -46,9 +46,9 @@ let
         subprocess.run(cmd)
 
     if "${host}" in ["laptop", "laptop-strix"]:
-        time.sleep(2) 
-        subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
-        time.sleep(2)
+    time.sleep(2) 
+    subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
+    time.sleep(2)
         wallpaper_dir = Path(f'${backgrounds-dir}/share/backgrounds/laptop')
         image_files = list(wallpaper_dir.glob('*.jpg'))
 
@@ -60,9 +60,10 @@ let
                 time.sleep(interval)
 
     elif "${host}" == "desktop":
+        # TODO: Enable when swww works on 2nd monitor
         subprocess.Popen([f'${pkgs.hyprpaper}/bin/hyprpaper'], close_fds=True)
-        # set_wallpaper_image(f'${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png', 'DP-1')
-        # set_wallpaper_image(f'${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg', 'HDMI-A-1')
+        # set_wallpaper_image_swww(f'${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png', 'DP-1')
+        # set_wallpaper_image_swww(f'${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg', 'HDMI-A-1')
 
     else:
         exit(1)
@@ -203,6 +204,15 @@ in
     xdg-desktop-portal-gtk
   ];
 
+  # TODO: remove once swwww issue is fixed
+  xdg.configFile."hypr/hyprpaper.conf".text = ''
+    preload = ${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png
+    preload = ${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg
+    wallpaper = DP-1, ${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png
+    wallpaper = HDMI-A-1, ${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg
+  '';
+
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -229,9 +239,9 @@ in
               ]
             else if "${host}" == "desktop" then
               [
-                "${pkgs.eww}/bin/eww open main0 main1"
+                "${pkgs.eww}/bin/eww open-many main0 main1"
                 "xrandr --output DP-1 --primary"
-                "${pkgs.openrgb}/bin/openrgb -p ~/.config/OpenRGB/White.orb" # TODO: Make this nixified
+                "${pkgs.openrgb}/bin/openrgb -p ~/.config/OpenRGB/White.orp" # TODO: Make this nixified
               ]
             else
               [ ]
@@ -382,7 +392,7 @@ in
             "CTRL SHIFT, Print, exec, grimblast --notify copysave screen" # Screenshots
             "SHIFT, Print, exec, grimblast --notify copysave area"
 
-            "ALT, Print, exec, ~/nix/dots/hypr/scripts/screen-rec.sh" # Screenrec
+            "ALT, Print, exec, ${screen-rec}/bin/screen-rec" # Screenrec
 
             "$mod, V, exec, rofi-copyq" # Clipboard
 
