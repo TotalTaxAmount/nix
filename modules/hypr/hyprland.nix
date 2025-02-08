@@ -10,6 +10,20 @@
 }:
 
 let
+  backgrounds-dir = pkgs.stdenvNoCC.mkDerivation {
+    name = "background-dir";
+    
+    src = ./backgrounds;
+
+    dontBuild = true;
+
+    installPhase = ''
+      mkdir -p $out/share/
+      cp -r ${./backgrounds/.} $out/share/backgrounds/
+    '';
+  } ;
+
+  # TODO: Make this better
   backgrounds = pkgs.writeScriptBin "backgrounds" ''
     #!${pkgs.python3}/bin/python3
 
@@ -35,7 +49,7 @@ let
         time.sleep(2) 
         subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
         time.sleep(2)
-        wallpaper_dir = Path(f'/home/${user}/nix/dots/swww/wallpapers')
+        wallpaper_dir = Path(f'${backgrounds-dir}/share/backgrounds/laptop')
         image_files = list(wallpaper_dir.glob('*.jpg'))
 
         while True:
@@ -47,8 +61,8 @@ let
 
     elif "${host}" == "desktop":
         subprocess.Popen([f'${pkgs.hyprpaper}/bin/hyprpaper'], close_fds=True)
-        # set_wallpaper_image(f'/home/${user}/nix/dots/swww/desktop/ultrawide.png', 'DP-1')
-        # set_wallpaper_image(f'/home/${user}/nix/dots/swww/desktop/2nd.jpg', 'HDMI-A-1')
+        # set_wallpaper_image(f'${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png', 'DP-1')
+        # set_wallpaper_image(f'${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg', 'HDMI-A-1')
 
     else:
         exit(1)
