@@ -2,15 +2,12 @@
   config,
   pkgs,
   inputs,
-  user,
   lib,
-  host,
-  system,
   ...
 }:
 
 let
-  utils = import ../modules/utils.nix {
+  utils = import ../../modules/utils.nix {
     inherit
       lib
       pkgs
@@ -23,15 +20,14 @@ let
 in
 {
   imports = [
-    ../modules/hypr/hyprland.nix
-    ../modules/hypr/hyprlock.nix
-    ../modules/alacritty
-    ../modules/rofi
-    ../modules/eww
-    ../modules/dunst
-    ../modules/vscode
+    ../../modules/hypr/hyprland.nix
+    ../../modules/hypr/hyprlock.nix
+    ../../modules/alacritty
+    ../../modules/rofi
+    ../../modules/eww
+    ../../modules/dunst
+    ../../modules/vscode
 
-    # inputs.spicetify-nix.homeManagerModules.default
     inputs.nix-colors.homeManagerModule
   ];
 
@@ -45,10 +41,42 @@ in
       size = 16;
     };
 
-    home.username = user;
-    home.homeDirectory = "/home/${user}";
-
     nixpkgs.config.allows = true;
+
+     services = {
+      spotifyd.enable = true;
+
+      easyeffects.enable = true;
+
+      hypridle = {
+        enable = true;
+        settings = {
+          general = {
+            after_sleep_cmd = "hyprctl dispatch dpms on && kill $(pgrep eww) && ${pkgs.eww}/bin/eww open-many main0 main1";
+            ignore_dbus_inhibit = false;
+            lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+          };
+
+          listener = [
+            {
+              timeout = 900;
+              on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+            }
+            {
+              timeout = 1200;
+              on-timeout = "hyprctl dispatch dpms off";
+              on-resume = "hyprctl dispatch dpms on";
+            }
+          ];
+        };
+      };
+    };
+
+    programs = {
+      obs-studio = {
+        enable = true;
+      };
+    };
 
     home.packages = with pkgs; [
       # Apps
@@ -65,7 +93,6 @@ in
       gthumb
       clapper
       qbittorrent
-      # ble nder
       piper
       slack
       copyq
@@ -75,7 +102,6 @@ in
       nemo
       zoom-us
       noita_entangled_worlds
-      # heroic
       freecad-wayland
 
       # Terminal
@@ -126,52 +152,9 @@ in
       gcc
     ];
 
-    services = {
-      spotifyd.enable = true;
-
-      easyeffects.enable = true;
-
-      hypridle = {
-        enable = true;
-        settings = {
-          general = {
-            after_sleep_cmd = "hyprctl dispatch dpms on && kill $(pgrep eww) && ${pkgs.eww}/bin/eww open-many main0 main1";
-            ignore_dbus_inhibit = false;
-            lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
-          };
-
-          listener = [
-            {
-              timeout = 900;
-              on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
-            }
-            {
-              timeout = 1200;
-              on-timeout = "hyprctl dispatch dpms off";
-              on-resume = "hyprctl dispatch dpms on";
-            }
-          ];
-        };
-      };
-    };
-
-    programs = {
-      obs-studio = {
-        enable = true;
-      };
-    };
-
-    wayland.windowManager.hyprland = {
-      #      enable = true;
-      #      xwayland.enable = true;
-      # package = inputs.hyprland.packages.${pkgs.system}.hyprland-legacy-renderer;
-    };
-
     gtk.theme = {
       package = pkgs.lavanda-gtk-theme;
       name = "Lavanda-Dark";
     };
-
-    programs.home-manager.enable = true;
   };
 }

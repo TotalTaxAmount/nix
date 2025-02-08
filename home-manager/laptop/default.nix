@@ -4,20 +4,16 @@
   inputs,
   user,
   lib,
-  host,
-  system,
   ...
 }:
 
 let
-  # Flake stuff
-  # spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
 
   # Custom pkgs
   rofi-copyq = pkgs.callPackage ../../external/pkgs/rofi-copyq { };
   noita-worlds = pkgs.callPackage ../../external/pkgs/noita-worlds { };
   path-planner = pkgs.callPackage ../../external/pkgs/pathplanner { };
-  utils = import ../modules/utils.nix {
+  utils = import ../../modules/utils.nix {
     inherit
       lib
       pkgs
@@ -27,20 +23,16 @@ let
   };
 in
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-
   imports = [
-    ../modules/hypr/hyprland.nix
-    ../modules/hypr/hyprlock.nix
-    ../modules/alacritty
-    ../modules/rofi
-    ../modules/eww
-    ../modules/dunst
-    ../modules/vscode
+    ../../modules/hypr/hyprland.nix
+    ../../modules/hypr/hyprlock.nix
+    ../../modules/alacritty
+    ../../modules/rofi
+    ../../modules/eww
+    ../../modules/dunst
+    ../../modules/vscode
 
     # Flakes
-    # inputs.spicetify-nix.homeManagerModules.default
     inputs.nix-colors.homeManagerModule
     inputs.sops-nix.homeManagerModule
   ];
@@ -57,15 +49,43 @@ in
       size = 16;
     };
 
-    home.username = user;
-    home.homeDirectory = "/home/${user}";
 
-    # Unfree stuff/Insecure
     nixpkgs.config.allowUnfree = true;
-    nixpkgs.config.permittedInsecurePackages = [ "qtwebkit-5.212.0-alpha4" ];
+    # nixpkgs.config.permittedInsecurePackages = [ "qtwebkit-5.212.0-alpha4" ];
 
-    # The home.packages option allows you to install Nix packages into your
-    # environment.
+    services = {
+      hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+          ignore_dbus_inhibit = false;
+          lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+        };
+
+        listener = [
+          {
+            timeout = 120;
+            on-timeout = "kill $(pgrep eww)";
+            on-resume = " ${pkgs.eww}/bin/eww open laptopMain";
+          }
+          {
+            timeout = 500;
+            on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+          }
+          {
+            timeout = 600;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+        ];
+
+      };
+      };
+
+      spotifyd.enable = true;
+    };
+
     home.packages = with pkgs; [
       # Apps
       gimp
@@ -151,68 +171,9 @@ in
       font-awesome
     ];
 
-    # programs.spicetify = {
-    #   enable = false;
-    #   theme = spicePkgs.themes.Ziro;
-    #   colorScheme = "ziro";
-
-    #   enabledExtensions = with spicePkgs.extensions; [
-    #     fullAppDisplay
-    #     shuffle
-    #     hidePodcasts
-    #     songStats
-    #     powerBar
-    #   ];
-    # };
-
-    services.kdeconnect = {
-      enable = true;
-    };
-
-    services.spotifyd.enable = true;
-
-    dconf.settings = {
-
-    };
-
     gtk.theme = {
       package = pkgs.lavanda-gtk-theme;
       name = "Lavanda-Dark";
     };
-
-    services.hypridle = {
-      enable = true;
-      settings = {
-        general = {
-          after_sleep_cmd = "hyprctl dispatch dpms on";
-          ignore_dbus_inhibit = false;
-          lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
-        };
-
-        listener = [
-          {
-            timeout = 120;
-            on-timeout = "kill $(pgrep eww)";
-            on-resume = " ${pkgs.eww}/bin/eww open laptopMain";
-          }
-          {
-            timeout = 500;
-            on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
-          }
-          {
-            timeout = 600;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
-          }
-        ];
-
-      };
-    };
-
-    
-    # Random files
-
-    # Let Home Manager install and manage itself.
-    programs.home-manager.enable = true;
   };
 }
