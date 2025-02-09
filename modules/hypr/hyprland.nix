@@ -24,31 +24,32 @@ let
   } ;
 
   # TODO: Make this better
-  backgrounds = pkgs.writeScriptBin "backgrounds" ''
-    #!${pkgs.python3}/bin/python3
+  backgrounds = 
+    let script = ''
+      #!${pkgs.python3}/bin/python3
 
-    import os
-    import subprocess
-    import time
-    import random
-    from pathlib import Path
+      import os
+      import subprocess
+      import time
+      import random
+      from pathlib import Path
 
-    os.environ['SWWW_TRANSITION_FPS'] = '60'
-    os.environ['SWWW_TRANSITION_STEP'] = '2'
-    os.environ['SWWW_TRANSITION'] = 'center'
-    interval = 60
+      os.environ['SWWW_TRANSITION_FPS'] = '60'
+      os.environ['SWWW_TRANSITION_STEP'] = '2'
+      os.environ['SWWW_TRANSITION'] = 'center'
+      interval = 60
 
-    def set_wallpaper_image_swww(path, output=None):
-        cmd = [f'${pkgs.swww}/bin/swww', 'img']
-        if output:
-            cmd += ['-o', output]
-        cmd.append(path)
-        subprocess.run(cmd)
+      def set_wallpaper_image_swww(path, output=None):
+          cmd = [f'${pkgs.swww}/bin/swww', 'img']
+          if output:
+              cmd += ['-o', output]
+          cmd.append(path)
+          subprocess.run(cmd)
 
-    if "${host}" in ["laptop", "laptop-strix"]:
-    time.sleep(2) 
-    subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
-    time.sleep(2)
+    '' + (if host == "laptop" then ''
+        time.sleep(2) 
+        subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
+        time.sleep(2)
         wallpaper_dir = Path(f'${backgrounds-dir}/share/backgrounds/laptop')
         image_files = list(wallpaper_dir.glob('*.jpg'))
 
@@ -58,16 +59,16 @@ let
                 print(f"switch: {path}")
                 set_wallpaper_image_swww(path)
                 time.sleep(interval)
-
-    elif "${host}" == "desktop":
+    '' else if host == "desktop" then ''
         # TODO: Enable when swww works on 2nd monitor
         subprocess.Popen([f'${pkgs.hyprpaper}/bin/hyprpaper'], close_fds=True)
         # set_wallpaper_image_swww(f'${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png', 'DP-1')
         # set_wallpaper_image_swww(f'${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg', 'HDMI-A-1')
-
-    else:
+    '' else ''
+        print("No background for ${host}")
         exit(1)
-  '';
+    '');
+    in pkgs.writeScriptBin "backgrounds" script;
 
   audioSwitcher = pkgs.writeScriptBin "audioSwitcher" ''
     #!${pkgs.python3}/bin/python
@@ -116,7 +117,7 @@ let
             if not found_audio_tab and line == "Audio":
                 found_audio_tab = True
 
-            elif found_audio_tab:
+            Elis found_audio_tab:
                 if line == "":
                     found_audio_tab = False
                     break
@@ -204,7 +205,7 @@ in
     xdg-desktop-portal-gtk
   ];
 
-  # TODO: remove once swwww issue is fixed
+  # TODO: remove once swww issue is fixed
   xdg.configFile."hypr/hyprpaper.conf".text = ''
     preload = ${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png
     preload = ${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg
@@ -227,7 +228,7 @@ in
         exec-once =
           [
             "${backgrounds}/bin/backgrounds"
-            "${pkgs.copyq}"
+            "${pkgs.copyq}/bin/copyq"
             "${
               inputs.hyprland.packages.${system}.hyprland
             }/bin/hyprctl setcursor ${config.cursor.name} ${builtins.toString config.cursor.size}"
@@ -274,6 +275,8 @@ in
           kb_layout = "us";
 
           follow_mouse = 1;
+          force_no_accel = 1;
+          accel_profile = "flat";
 
           touchpad = {
             natural_scroll = false;
@@ -398,17 +401,18 @@ in
 
             ",XF86AudioNext, exec, playerctl next" # Switch audio sinks/songs
             ",XF86AudioPrev, exec, playerctl previous"
+            ",XF86AudioPlay, exec, playerctl play-pause"
             "$mod SHIFT, O, exec, ${audioSwitcher}/bin/audioSwitcher Sinks"
             "$mod SHIFT, I, exec, ${audioSwitcher}/bin/audioSwitcher Sources"
 
-            "$mod, mouse_down, workspace, e+1" # Scrool though
+            "$mod, mouse_down, workspace, e+1" # Scroll though
             "$mod, mouse_up, workspace, e-1"
 
           ]
           ++ (
             if "${host}" == "laptop" then
               [
-                # Laptop sepecific
+                # Laptop specific
                 "CTRL SHIFT, code:72, exec,  grimblast --notify copysave screen $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
                 "SHIFT, code:72, exec,  grimblast --notify copysave area $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
                 "ALT, code:72, exec,  ${screen-rec}/bin/screen-rec"

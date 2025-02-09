@@ -41,8 +41,6 @@
       ];
     };
 
-    flipperzero.enable = true;
-
     nvidia = {
       modesetting.enable = lib.mkDefault true;
 
@@ -58,6 +56,8 @@
 
     xpadneo.enable = true;
     steam-hardware.enable = true;
+    flipperzero.enable = true;
+    keyboard.qmk.enable = true;
   };
 
   services = {
@@ -81,6 +81,11 @@
       nssmdns4 = true;
       openFirewall = true;
     };
+
+    # Keychron keyboard
+    udev.packages = [
+      pkgs.qmk-udev-rules
+    ];
 
     printing.enable = true;
     flatpak.enable = true;

@@ -128,6 +128,9 @@ in
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       slurp
 
+      # keyboard
+      qmk
+
       # Virt
       distrobox
 
