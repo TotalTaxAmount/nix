@@ -15,7 +15,7 @@ rustPlatform.buildRustPackage rec {
     hash = "sha256-CDGeXttiI0b2X2wOIkqvljPVExhlSqsBvHWJB1RbgnY=";
   };
 
-  cargoHash = "sha256-AT3K6trQ2i5KihWbRnSv+jJggygnj4/B9Oncme4VkC4=";
+  cargoHash = "sha256-ryxYP8asKsXT3LL1zb9CQG8NkIzeJ5ri5TTL1oBBDUA=";
 
   meta = with lib; {
     description = "Multi-monitor aware Hyprland workspace widget";

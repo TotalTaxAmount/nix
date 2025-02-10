@@ -97,7 +97,7 @@ in
       slack
       copyq
       rofi-copyq
-      jetbrains.idea-ultimate
+      # jetbrains.idea-ultimate
       lunar-client
       nemo
       zoom-us

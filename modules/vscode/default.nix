@@ -77,7 +77,7 @@ in
         pkief.material-icon-theme
         equinusocio.vsc-material-theme
         editorconfig.editorconfig
-        vadimcn.vscode-lldb
+        # vadimcn.vscode-lldb
         tamasfe.even-better-toml
         vue.volar
         svelte.svelte-vscode
