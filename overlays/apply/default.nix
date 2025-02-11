@@ -1,21 +1,9 @@
 final: prev:
 
 {
-  discord = prev.discord.override { withVencord = true; };
-  # btop = prev.btop.overrideAttrs (old: {
-  #   src = prev.fetchFromGitHub {
-  #     owner = "romner-set";
-  #     repo = "btop-gpu";
-  #     rev = "2378dd4a96883205729879df217f862280129ad0";
-  #     hash = "sha256-5Xe13O0FL70V9O72KhuLbaAPo0DaKL9XXWJoAj0YEQY=";
-  #   };
-
-  #   buildInputs = old.buildInputs ++ [ prev.fmt prev.makeWrapper ];
-
-  #   postInstall = ''
-  #     wrapProgram $out/bin/btop --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib"
-  #   '';
-  # });
+  lldb = prev.lldb.overrideAttrs { # https://github.com/NixOS/nixpkgs/issues/380196 
+    dontCheckForBrokenSymlinks = true;
+  };
 
   qemu-patched = prev.qemu.overrideAttrs (old: {
     src = prev.fetchurl {

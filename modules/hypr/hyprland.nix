@@ -117,7 +117,7 @@ let
             if not found_audio_tab and line == "Audio":
                 found_audio_tab = True
 
-            Elis found_audio_tab:
+            elif found_audio_tab:
                 if line == "":
                     found_audio_tab = False
                     break
@@ -189,6 +189,7 @@ let
 
     laptop = {
       monitor = "eDP-1,2880x1800@120,0x0, 1.3333333";
+      input.sensitivity = 0;
     };
   };
 
@@ -253,7 +254,7 @@ in
             "XCURSOR_SIZE,${builtins.toString config.cursor.size}"
             "XCURSOR_THEME,${config.cursor.name}"
             "HYPRCURSOR_SIZE,${builtins.toString config.cursor.size}"
-            "HYPRCURSOR_SIZE,${config.cursor.name}"
+            "HYPRCURSOR_THEME,${config.cursor.name}"
           ]
           ++ (
             if "${host}" == "laptop" then
@@ -275,7 +276,6 @@ in
           kb_layout = "us";
 
           follow_mouse = 1;
-          force_no_accel = 1;
           accel_profile = "flat";
 
           touchpad = {
@@ -285,7 +285,7 @@ in
             disable_while_typing = false;
           };
 
-          sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+          sensitivity = lib.mkDefault 0; # -1.0 - 1.0, 0 means no modification.
         };
 
         general = {
@@ -338,8 +338,10 @@ in
           disable_hyprland_logo = true;
         };
 
+        debug.disable_logs = false;
+
         plugin = {
-          "split-monitor-workspaces" = {
+          split-monitor-workspaces = {
             count = 9;
             enable_persistent_workspaces = false;
           };
