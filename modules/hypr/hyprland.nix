@@ -179,12 +179,14 @@ let
   extras = {
     desktop = {
       monitor = [
-        "DP-1,3440x1440@165,0x0,1"
-        "HDMI-A-1,preferred,-1440x-600,1, transform, 3"
+        "DP-1, 3440x1440@165, 0x0, 1, vrr, 1"
+        "HDMI-A-1,preferred,-1440x-600,1, transform, 3, vrr, 1"
       ];
 
       cursor.no_hardware_cursors = true; # NVIDIA and Wayland bug
       render.explicit_sync = true;
+
+      experimental.xx_color_management_v4 = true;
     };
 
     laptop = {

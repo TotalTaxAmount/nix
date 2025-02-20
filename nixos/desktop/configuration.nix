@@ -172,7 +172,11 @@
 
   virtualisation = {
     libvirtd.enable = true;
-    docker.enable = true;
+    podman = {
+      enable = true;
+      enableNvidia = true;
+      dockerCompat = true;
+    };
   };
 
   security.pam.services.hyprlock = {
