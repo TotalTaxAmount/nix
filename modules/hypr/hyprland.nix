@@ -185,8 +185,6 @@ let
 
       cursor.no_hardware_cursors = true; # NVIDIA and Wayland bug
       render.explicit_sync = true;
-
-      experimental.xx_color_management_v4 = true;
     };
 
     laptop = {
@@ -227,251 +225,252 @@ in
     ];
 
     settings = lib.mkMerge [
-      {
-        exec-once =
+    {
+      exec-once =
+        [
+          "${backgrounds}/bin/backgrounds"
+          "${pkgs.copyq}/bin/copyq"
+          "${
+            inputs.hyprland.packages.${system}.hyprland
+          }/bin/hyprctl setcursor ${config.cursor.name} ${builtins.toString config.cursor.size}"
+        ]
+        ++ (
+          if "${host}" == "laptop" then
+            [
+              "${pkgs.eww}/bin/eww open laptopMain"
+            ]
+          else if "${host}" == "desktop" then
+            [
+              "${pkgs.eww}/bin/eww open-many main0 main1"
+              "xrandr --output DP-1 --primary"
+              "${pkgs.openrgb}/bin/openrgb -p ~/.config/OpenRGB/White.orp" # TODO: Make this nixified
+            ]
+          else
+            [ ]
+        );
+
+      env =
+      [
+        "XCURSOR_SIZE,${builtins.toString config.cursor.size}"
+        "XCURSOR_THEME,${config.cursor.name}"
+        "HYPRCURSOR_SIZE,${builtins.toString config.cursor.size}"
+        "HYPRCURSOR_THEME,${config.cursor.name}"
+      ]
+      ++ (
+        if "${host}" == "laptop" then
           [
-            "${backgrounds}/bin/backgrounds"
-            "${pkgs.copyq}/bin/copyq"
-            "${
-              inputs.hyprland.packages.${system}.hyprland
-            }/bin/hyprctl setcursor ${config.cursor.name} ${builtins.toString config.cursor.size}"
+            "AQ_DRM_DEVICES,/dev/dri/card1"
           ]
-          ++ (
-            if "${host}" == "laptop" then
-              [
-                "${pkgs.eww}/bin/eww open laptopMain"
-              ]
-            else if "${host}" == "desktop" then
-              [
-                "${pkgs.eww}/bin/eww open-many main0 main1"
-                "xrandr --output DP-1 --primary"
-                "${pkgs.openrgb}/bin/openrgb -p ~/.config/OpenRGB/White.orp" # TODO: Make this nixified
-              ]
-            else
-              [ ]
-          );
-
-        env =
+        else if "${host}" == "desktop" then
           [
-            "XCURSOR_SIZE,${builtins.toString config.cursor.size}"
-            "XCURSOR_THEME,${config.cursor.name}"
-            "HYPRCURSOR_SIZE,${builtins.toString config.cursor.size}"
-            "HYPRCURSOR_THEME,${config.cursor.name}"
+            "LIBVA_DRIVER_NAME,nvidia"
+            "XDG_SESSION_TYPE,nvidia"
+            "GDM_BACKEND,nvidia-drm"
+            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
           ]
-          ++ (
-            if "${host}" == "laptop" then
-              [
+        else
+          [ ]
+      );
 
-              ]
-            else if "${host}" == "desktop" then
-              [
-                "LIBVA_DRIVER_NAME,nvidia"
-                "XDG_SESSION_TYPE,nvidia"
-                "GDM_BACKEND,nvidia-drm"
-                "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-              ]
-            else
-              [ ]
-          );
+      input = {
+        kb_layout = "us";
 
-        input = {
-          kb_layout = "us";
+        follow_mouse = 1;
+        accel_profile = "flat";
 
-          follow_mouse = 1;
-          accel_profile = "flat";
-
-          touchpad = {
-            natural_scroll = false;
-            clickfinger_behavior = true;
-            tap-to-click = false;
-            disable_while_typing = false;
-          };
-
-          sensitivity = lib.mkDefault 0; # -1.0 - 1.0, 0 means no modification.
+        touchpad = {
+          natural_scroll = false;
+          clickfinger_behavior = true;
+          tap-to-click = false;
+          disable_while_typing = false;
         };
 
-        general = {
-          gaps_in = 5;
-          gaps_out = 10;
-          border_size = 2;
-          "col.active_border" = "rgb(${config.colorScheme.palette.base0D})";
-          "col.inactive_border" = "rgb(${config.colorScheme.palette.base03})";
+        sensitivity = lib.mkDefault 0; # -1.0 - 1.0, 0 means no modification.
+      };
 
-          layout = "dwindle";
-        };
+      general = {
+        gaps_in = 5;
+        gaps_out = 10;
+        border_size = 2;
+        "col.active_border" = "rgb(${config.colorScheme.palette.base0D})";
+        "col.inactive_border" = "rgb(${config.colorScheme.palette.base03})";
 
-        decoration = {
-          rounding = 10;
-          shadow = {
-            enabled = true;
-            range = 10;
-            render_power = 3;
-            color = "rgb(${config.colorScheme.palette.base0D})";
-            color_inactive = "rgb(${config.colorScheme.palette.base03})";
-          };
-        };
+        layout = "dwindle";
+      };
 
-        animations = {
+      decoration = {
+        rounding = 10;
+        shadow = {
           enabled = true;
-          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-          animation = [
-            "windows, 1, 7, myBezier"
-            "border, 1, 10, default"
-            "borderangle, 1, 8, default"
-            "fade, 1, 7, default"
-            "workspaces, 1, 6, default"
-          ];
+          range = 10;
+          render_power = 3;
+          color = "rgb(${config.colorScheme.palette.base0D})";
+          color_inactive = "rgb(${config.colorScheme.palette.base03})";
         };
+      };
 
-        dwindle = {
-          pseudotile = true;
-          preserve_split = true;
-        };
-
-        gestures = {
-          workspace_swipe = true;
-        };
-
-        xwayland = {
-          force_zero_scaling = true;
-        };
-
-        misc = {
-          disable_hyprland_logo = true;
-        };
-
-        debug.disable_logs = false;
-
-        plugin = {
-          split-monitor-workspaces = {
-            count = 9;
-            enable_persistent_workspaces = false;
-          };
-        };
-
-        windowrulev2 = [
-          "float,class:(copyq)"
-          "float,title:(VPN_)"
-          "move onscreen cursor,class:(copyq)"
+      animations = {
+        enabled = true;
+        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        animation = [
+          "windows, 1, 7, myBezier"
+          "border, 1, 10, default"
+          "borderangle, 1, 8, default"
+          "fade, 1, 7, default"
+          "workspaces, 1, 6, default"
         ];
+      };
 
-        "$mod" = "SUPER";
+      dwindle = {
+        pseudotile = true;
+        preserve_split = true;
+      };
 
-        bind =
-          [
-            "$mod, RETURN, exec, alacritty"
-            "$mod, E, exec, firefox-devedition -P dev-edition-default"
-            "$mod SHIFT, E, exec, firefox-devedition -P School"
-            "$mod, F, fullscreen"
-            "$mod, Q, killactive"
-            "$mod, G, togglefloating"
-            "$mod, R, exec, rofi -show drun"
-            "$mod, P, pseudo"
-            "$mod, J, togglesplit"
-            "$mod, a, movefocus, l"
-            "$mod, d, movefocus, r"
-            "$mod, w, movefocus, u"
-            "$mod, s, movefocus, d"
-            "$mod SHIFT, a, movewindow, l"
-            "$mod SHIFT, d, movewindow, r"
-            "$mod SHIFT, w, movewindow, u"
-            "$mod SHIFT, s, movewindow, d"
-            "$mod, 1, split-workspace, 1"
-            "$mod, 2, split-workspace, 2"
-            "$mod, 3, split-workspace, 3"
-            "$mod, 4, split-workspace, 4"
-            "$mod, 5, split-workspace, 5"
-            "$mod, 6, split-workspace, 6"
-            "$mod, 7, split-workspace, 7"
-            "$mod, 8, split-workspace, 8"
-            "$mod, 9, split-workspace, 9"
-            "$mod SHIFT, 1, split-movetoworkspace, 1"
-            "$mod SHIFT, 2, split-movetoworkspace, 2"
-            "$mod SHIFT, 3, split-movetoworkspace, 3"
-            "$mod SHIFT, 4, split-movetoworkspace, 4"
-            "$mod SHIFT, 5, split-movetoworkspace, 5"
-            "$mod SHIFT, 6, split-movetoworkspace, 6"
-            "$mod SHIFT, 7, split-movetoworkspace, 7"
-            "$mod SHIFT, 8, split-movetoworkspace, 8"
-            "$mod SHIFT, 9, split-movetoworkspace, 9"
-            "$mod SHIFT, 0, split-movetoworkspace, 10"
-            "$mod, L, exec, hyprlock"
-            "CTRL SHIFT, Print, exec, grimblast --notify copysave screen" # Screenshots
-            "SHIFT, Print, exec, grimblast --notify copysave area"
+      gestures = {
+        workspace_swipe = true;
+      };
 
-            "ALT, Print, exec, ${screen-rec}/bin/screen-rec" # Screenrec
+      xwayland = {
+        force_zero_scaling = true;
+      };
 
-            "$mod, V, exec, rofi-copyq" # Clipboard
+      misc = {
+        disable_hyprland_logo = true;
+      };
 
-            ",XF86AudioNext, exec, playerctl next" # Switch audio sinks/songs
-            ",XF86AudioPrev, exec, playerctl previous"
-            ",XF86AudioPlay, exec, playerctl play-pause"
-            "$mod SHIFT, O, exec, ${audioSwitcher}/bin/audioSwitcher Sinks"
-            "$mod SHIFT, I, exec, ${audioSwitcher}/bin/audioSwitcher Sources"
+      debug.disable_logs = false;
+      experimental.xx_color_management_v4 = true; # HDR
 
-            "$mod, mouse_down, workspace, e+1" # Scroll though
-            "$mod, mouse_up, workspace, e-1"
+      plugin = {
+        split-monitor-workspaces = {
+          count = 9;
+          enable_persistent_workspaces = false;
+        };
+      };
 
-          ]
-          ++ (
-            if "${host}" == "laptop" then
-              [
-                # Laptop specific
-                "CTRL SHIFT, code:72, exec,  grimblast --notify copysave screen $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
-                "SHIFT, code:72, exec,  grimblast --notify copysave area $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
-                "ALT, code:72, exec,  ${screen-rec}/bin/screen-rec"
-                "$mod, RIGHT, exec, playerctl next"
-                "$mod, LEFT, exec, playerctl previous"
-              ]
-            else if "${host}" == "desktop" then
-              [
-                # Desktop specific
+      windowrulev2 = [
+        "float,class:(copyq)"
+        "float,title:(VPN_)"
+        "move onscreen cursor,class:(copyq)"
+      ];
 
-              ]
-            else
-              [ ]
-          );
+      "$mod" = "SUPER";
 
-        binde =
-          [
-            ",XF86AudioRaiseVolume, exec, amixer set Master 5%+" # More audio
-            ",XF86AudioLowerVolume, exec, amixer set Master 5%-"
-            ",XF86AudioStop, exec, playerctl stop"
-            ",XF86AudioPlay, exec, playerctl play"
-          ]
-          ++ (
-            if "${host}" == "laptop" then
-              [
-                ",XF86MonBrightnessDown, exec, brightnessctl -m -d amdgpu_bl0 s 5%- "
-                ",XF86MonBrightnessUp, exec, brightnessctl -m -d amdgpu_bl0 s 5%+"
-                ",XF86KbdBrightnessUp, exec, brightnessctl -m --device='asus::kbd_backlight' s 1+"
-                ",XF86KbdBrightnessDown, exec, brightnessctl -m --device='asus::kbd_backlight' s 1-"
-              ]
-            else if "${host}" == "desktop" then
-              [
+      bind =
+        [
+          "$mod, RETURN, exec, alacritty"
+          "$mod, E, exec, firefox-devedition -P dev-edition-default"
+          "$mod SHIFT, E, exec, firefox-devedition -P School"
+          "$mod, F, fullscreen"
+          "$mod, Q, killactive"
+          "$mod, G, togglefloating"
+          "$mod, R, exec, rofi -show drun"
+          "$mod, P, pseudo"
+          "$mod, J, togglesplit"
+          "$mod, a, movefocus, l"
+          "$mod, d, movefocus, r"
+          "$mod, w, movefocus, u"
+          "$mod, s, movefocus, d"
+          "$mod SHIFT, a, movewindow, l"
+          "$mod SHIFT, d, movewindow, r"
+          "$mod SHIFT, w, movewindow, u"
+          "$mod SHIFT, s, movewindow, d"
+          "$mod, 1, split-workspace, 1"
+          "$mod, 2, split-workspace, 2"
+          "$mod, 3, split-workspace, 3"
+          "$mod, 4, split-workspace, 4"
+          "$mod, 5, split-workspace, 5"
+          "$mod, 6, split-workspace, 6"
+          "$mod, 7, split-workspace, 7"
+          "$mod, 8, split-workspace, 8"
+          "$mod, 9, split-workspace, 9"
+          "$mod SHIFT, 1, split-movetoworkspace, 1"
+          "$mod SHIFT, 2, split-movetoworkspace, 2"
+          "$mod SHIFT, 3, split-movetoworkspace, 3"
+          "$mod SHIFT, 4, split-movetoworkspace, 4"
+          "$mod SHIFT, 5, split-movetoworkspace, 5"
+          "$mod SHIFT, 6, split-movetoworkspace, 6"
+          "$mod SHIFT, 7, split-movetoworkspace, 7"
+          "$mod SHIFT, 8, split-movetoworkspace, 8"
+          "$mod SHIFT, 9, split-movetoworkspace, 9"
+          "$mod SHIFT, 0, split-movetoworkspace, 10"
+          "$mod, L, exec, hyprlock"
+          "CTRL SHIFT, Print, exec, grimblast --notify copysave screen" # Screenshots
+          "SHIFT, Print, exec, grimblast --notify copysave area"
 
-              ]
-            else
-              [ ]
-          );
+          "ALT, Print, exec, ${screen-rec}/bin/screen-rec" # Screenrec
 
-        bindm = [
-          "$mod, mouse:272, movewindow" # Move windows with mouse
-          "$mod, mouse:273, resizewindow" # Resize windows with mouse
-        ];
+          "$mod, V, exec, rofi-copyq" # Clipboard
 
-        bindl =
-          [
+          ",XF86AudioNext, exec, playerctl next" # Switch audio sinks/songs
+          ",XF86AudioPrev, exec, playerctl previous"
+          ",XF86AudioPlay, exec, playerctl play-pause"
+          "$mod SHIFT, O, exec, ${audioSwitcher}/bin/audioSwitcher Sinks"
+          "$mod SHIFT, I, exec, ${audioSwitcher}/bin/audioSwitcher Sources"
 
-          ]
-          ++ (
-            if "${host}" == "laptop" then
-              [
-                ",switch:[Lid Switch]:on, exec, hyprlock"
-              ]
-            else
-              [ ]
-          );
+          "$mod, mouse_down, workspace, e+1" # Scroll though
+          "$mod, mouse_up, workspace, e-1"
+
+        ]
+        ++ (
+          if "${host}" == "laptop" then
+            [
+              # Laptop specific
+              "CTRL SHIFT, code:72, exec,  grimblast --notify copysave screen $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
+              "SHIFT, code:72, exec,  grimblast --notify copysave area $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
+              "ALT, code:72, exec,  ${screen-rec}/bin/screen-rec"
+              "$mod, RIGHT, exec, playerctl next"
+              "$mod, LEFT, exec, playerctl previous"
+            ]
+          else if "${host}" == "desktop" then
+            [
+              # Desktop specific
+
+            ]
+          else
+            [ ]
+        );
+
+      binde =
+        [
+          ",XF86AudioRaiseVolume, exec, amixer set Master 5%+" # More audio
+          ",XF86AudioLowerVolume, exec, amixer set Master 5%-"
+          ",XF86AudioStop, exec, playerctl stop"
+          ",XF86AudioPlay, exec, playerctl play"
+        ]
+        ++ (
+          if "${host}" == "laptop" then
+            [
+              ",XF86MonBrightnessDown, exec, brightnessctl -m -d $(brightnessctl -l | grep amdgpu_bl | awk '{print $2}' | sed \"s/'//g\") s 5%- "
+              ",XF86MonBrightnessUp, exec, brightnessctl -m -d brightnessctl -l | grep amdgpu_bl | awk '{print $2}' | sed \"s/'//g\" amdgpu_bl0 s 5%+"
+              ",XF86KbdBrightnessUp, exec, brightnessctl -m --device='asus::kbd_backlight' s 1+"
+              ",XF86KbdBrightnessDown, exec, brightnessctl -m --device='asus::kbd_backlight' s 1-"
+            ]
+          else if "${host}" == "desktop" then
+            [
+
+            ]
+          else
+            [ ]
+        );
+
+      bindm = [
+        "$mod, mouse:272, movewindow" # Move windows with mouse
+        "$mod, mouse:273, resizewindow" # Resize windows with mouse
+      ];
+
+      bindl =
+        [
+
+        ]
+        ++ (
+          if "${host}" == "laptop" then
+            [
+              ",switch:[Lid Switch]:on, exec, hyprlock"
+            ]
+          else
+            [ ]
+        );
       }
       extras.${host}
     ];

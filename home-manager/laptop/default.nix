@@ -12,7 +12,6 @@ let
   # Custom pkgs
   rofi-copyq = pkgs.callPackage ../../external/pkgs/rofi-copyq { };
   noita-worlds = pkgs.callPackage ../../external/pkgs/noita-worlds { };
-  path-planner = pkgs.callPackage ../../external/pkgs/pathplanner { };
   utils = import ../../modules/utils.nix {
     inherit
       lib
@@ -136,7 +135,6 @@ in
 
       #Customization
       swww
-
       # Scripts
       python3
       nodejs

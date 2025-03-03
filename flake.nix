@@ -21,6 +21,7 @@
     aquamarine = {
       type = "git";
       url = "https://github.com/hyprwm/aquamarine";
+      rev = "2ff06343aa9738adad981aec2fdb21d4d56e3fb9";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -37,6 +38,7 @@
       type = "git";
       submodules = true;
       url = "https://github.com/hyprwm/Hyprland";
+      rev = "d5920bc5da75b8eaf3476bc814bd46d225709788";
 
       inputs.aquamarine.follows = "aquamarine";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -50,7 +50,7 @@
   :exclusive true
   :stacking "fg" 
   :geometry (geometry 
-    :width "150.25%"
+    :width "100%"
     :height "30px"
     :anchor "top center")
   (bar :monitor 0)

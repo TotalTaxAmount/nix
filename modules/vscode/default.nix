@@ -61,7 +61,7 @@ in
   programs.vscode = {
     enable = true;
     package = pkgs.vscode;
-    extensions =
+    profiles.default.extensions =
       with pkgs.vscode-extensions;
       [
         rust-lang.rust-analyzer
@@ -73,9 +73,8 @@ in
         eamodio.gitlens
         vscode-icons-team.vscode-icons
         alefragnani.bookmarks
-        streetsidesoftware.code-spell-checker
+        # streetsidesoftware.code-spell-checker
         pkief.material-icon-theme
-        equinusocio.vsc-material-theme
         editorconfig.editorconfig
         # vadimcn.vscode-lldb
         tamasfe.even-better-toml
@@ -100,6 +99,12 @@ in
           publisher = "maziac";
           version = "2.6.0";
           sha256 = "sha256-4p3kizvEqqsMNJOhyKxJQ0rH3ePjstKLWb22BYy3yZk=";
+        }
+        {
+          name = "vsc-material-theme-but-i-wont-sue-you";
+          publisher = "t3dotgg";
+          version = "34.5.0";
+          sha256 = "sha256-i42M245/gh6hzU3h/WiTUVE/+BTS0WmscUDl42u0OI4=";
         }
       ]);
   };
