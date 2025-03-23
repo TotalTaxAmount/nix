@@ -106,6 +106,12 @@ in
           version = "34.5.0";
           sha256 = "sha256-i42M245/gh6hzU3h/WiTUVE/+BTS0WmscUDl42u0OI4=";
         }
+        {
+          name = "indenticator";
+          publisher = "sirtori";
+          version = "0.7.0";
+          sha256 = "sha256-J5iNO6V5US+GFyNjNNA5u9H2pKPozWKjQWcLAhl+BjY=";
+        }
       ]);
   };
 
