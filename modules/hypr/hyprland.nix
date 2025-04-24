@@ -188,7 +188,11 @@ let
     };
 
     laptop = {
-      monitor = "eDP-1,2880x1800@120,0x0, 1.3333333";
+      monitor = [ 
+        "eDP-1,2880x1800@120,0x0, 1.3333333" 
+        ", preferred, auto, 1" 
+      ];
+
       input.sensitivity = 0.5;
     };
   };
@@ -258,9 +262,7 @@ in
       ]
       ++ (
         if "${host}" == "laptop" then
-          [
-	    "AQ_DRM_DEVICES,/dev/dri/card1"
-          ]
+      	  []
         else if "${host}" == "desktop" then
           [
             "LIBVA_DRIVER_NAME,nvidia"
