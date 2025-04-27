@@ -97,6 +97,9 @@ in
       slack
       copyq
       rofi-copyq
+      blender
+      davinci-resolve
+      audacity
       # jetbrains.idea-ultimate
       lunar-client
       nemo
@@ -153,6 +156,17 @@ in
       python3
       nodejs
       gcc
+
+      # Virt
+      virt-manager
+      virt-viewer
+      spice 
+      spice-gtk
+      spice-protocol
+      win-virtio
+      win-spice
+      adwaita-icon-theme
+      virtiofsd
     ];
 
     gtk.theme = {

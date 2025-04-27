@@ -289,8 +289,8 @@ in
       };
 
       general = {
-        gaps_in = 5;
-        gaps_out = 10;
+        gaps_in = 2;
+        gaps_out = 4;
         border_size = 2;
         "col.active_border" = "rgb(${config.colorScheme.palette.base0D})";
         "col.inactive_border" = "rgb(${config.colorScheme.palette.base03})";
@@ -299,10 +299,10 @@ in
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 5;
         shadow = {
-          enabled = true;
-          range = 10;
+          enabled = false;
+          range = 5;
           render_power = 3;
           color = "rgb(${config.colorScheme.palette.base0D})";
           color_inactive = "rgb(${config.colorScheme.palette.base03})";

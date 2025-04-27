@@ -5,10 +5,11 @@
 }
 
 .bar {
-	margin: 4px 10px 4px 10px;
+	margin: 2px 4px 2px 4px;
 	background-color: @base00@;
 	font-size: 1.5em;
-	border-radius: 10px;
+	border-radius: 5px;
+  border: 2px solid @base0D@;
 	color: @base05@;
 }
 

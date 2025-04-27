@@ -54,6 +54,8 @@
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
 
+    nvidia-container-toolkit.enable = true;
+
     xpadneo.enable = true;
     steam-hardware.enable = true;
     flipperzero.enable = true;
@@ -94,6 +96,8 @@
   };
 
   programs = {
+    dconf.enable = true;
+    
     hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -134,25 +138,9 @@
     sqlint
     libnotify
     pinentry-rofi
+
+    mesa
   ];
-
-  # nix-citizen.starCitizen = {
-  #   enable = true;
-  #   package = inputs.nix-citizen.packages.${pkgs.system}.star-citizen;
-  #   preCommands = ''
-  #     export MANGOHUD=1
-  #     export __GL_SHADER_DISK_CACHE=true
-  #     export __GL_SHADER_DISK_CACHE_PATH="$HOME/Games/star-citizen/nvidiacache"
-  #     export __GL_SHADER_DISK_CACHE_SKIP_CLEANUP=true
-  #     export DXVK_CONFIG_FILE=$HOME/Games/star-citizen/dxvk.conf
-  #   '';
-
-  #   helperScript = {
-  #     enable = true;
-  #     package = inputs.nix-citizen.packages.${pkgs.system}.star-citizen-helper;
-  #   };
-  #   umu.enable = true;
-  # };
 
   powerManagement = {
     enable = true;
@@ -171,10 +159,20 @@
   };
 
   virtualisation = {
-    libvirtd.enable = true;
+    spiceUSBRedirection.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [ pkgs.OVMFFull.fd ];
+        };
+      };
+    };
+
     podman = {
       enable = true;
-      enableNvidia = true;
       dockerCompat = true;
     };
   };

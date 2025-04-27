@@ -128,6 +128,16 @@
     sbctl # Secure boot
   ];
 
+  xdg.mime.defaultApplications = {
+    "image/jpeg" = "org.gnome.gThumb.desktop";
+    "image/png" = "org.gnome.gThumb.desktop";
+    "image/gif" = "org.gnome.gThumb.desktop";
+    "image/webp" = "org.gnome.gThumb.desktop";
+    "image/bmp" = "org.gnome.gThumb.desktop";
+    "image/tiff" = "org.gnome.gThumb.desktop";
+    "image/svg+xml" = "org.gnome.gThumb.desktop";
+    };
+
   boot = {
     loader = {
       systemd-boot.enable = lib.mkDefault true;
