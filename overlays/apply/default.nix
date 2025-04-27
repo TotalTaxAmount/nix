@@ -93,4 +93,16 @@ final: prev:
                 --add-flags --ozone-platform=wayland
       '';
   });
+
+  obsidian = prev.obsidian.overrideAttrs (old: {
+    postInstall = 
+      (old.postInstall or "")
+      + ''
+        wrapProgram $out/bin/obsidian \
+                --add-flags --no-sandbox \
+                --add-flags --ozone-platform=wayland \
+                --add-flags --ozone-platform-hint=auto \
+                --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations 
+      '';
+  });
 }

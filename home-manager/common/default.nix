@@ -91,8 +91,8 @@ in
       fastfetch
 
       #Apps
-      bitwarden-desktop
-      thunderbird
+      # bitwarden-desktop
+      # thunderbird
     ];
 
     programs = {

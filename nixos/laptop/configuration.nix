@@ -12,9 +12,11 @@
     ./hardware.nix
     ../../modules/wireguard
     inputs.sops-nix.nixosModules.default
+    inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
   services = {
+    spice-vdagentd.enable = true;
     xserver = {
       enable = true;
       videoDrivers = lib.mkDefault [ "nvidia" ];
@@ -102,6 +104,8 @@
   };
 
   programs = {
+    dconf.enable = true;
+
     hyprland = {
       # Need this for gdm to work
       enable = true;
@@ -144,9 +148,19 @@
   ];
 
   virtualisation = {
-    libvirtd.enable = true;
     waydroid.enable = true;
-    docker.enable = false;
+    spiceUSBRedirection.enable = true;
+
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [ pkgs.OVMFFull.fd ];
+        };
+      };
+    };
 
     podman = {
       enable = true;
@@ -175,12 +189,16 @@
       "fs.file-max" = 524288;
     };
     loader = {
+      systemd-boot.enable = lib.mkForce false;
       efi = {
         efiSysMountPoint = "/boot";
         canTouchEfiVariables = true;
       };
+    };
 
-      systemd-boot.enable = true;
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
     };
   };
 }

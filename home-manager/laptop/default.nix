@@ -92,10 +92,11 @@ in
       qFlipper
       prismlauncher
       firefox-devedition
-      element-desktop
-      vesktop
+      # element-desktop
+      # vesktop
       zoom-us
       ghidra
+      obsidian
 
       pulseview
       gthumb
@@ -112,6 +113,8 @@ in
       # virt-manager
       slack
       freecad-wayland
+      davinci-resolve
+      audacity
 
       #Terminal Apps/Config
       zsh-powerlevel10k
@@ -164,6 +167,15 @@ in
 
       # Virt
       distrobox
+      virt-manager
+      virt-viewer
+      spice 
+      spice-gtk
+      spice-protocol
+      win-virtio
+      win-spice
+      adwaita-icon-theme
+      virtiofsd
 
       # Fonts
       font-awesome
