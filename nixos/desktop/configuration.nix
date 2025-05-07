@@ -11,6 +11,7 @@
 {
   imports = [
     ./hardware.nix
+    ../../modules/vfio.nix
     inputs.nix-citizen.nixosModules.StarCitizen
   ];
 
@@ -160,16 +161,6 @@
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
-    libvirtd = {
-      enable = true;
-      qemu = {
-        swtpm.enable = true;
-        ovmf = {
-          enable = true;
-          packages = [ pkgs.OVMFFull.fd ];
-        };
-      };
-    };
 
     podman = {
       enable = true;
