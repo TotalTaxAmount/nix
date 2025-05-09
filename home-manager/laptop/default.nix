@@ -85,6 +85,13 @@ in
       spotifyd.enable = true;
     };
 
+    programs = {
+      obs-studio = {
+        enable = true;
+        package = (pkgs.obs-studio.override { cudaSupport = true; });
+      };
+    };
+
     home.packages = with pkgs; [
       # Apps
       gimp
@@ -107,7 +114,6 @@ in
       utils.print-colors
       nautilus
       postman
-      obs-studio
       nomacs
       qbittorrent
       slack
