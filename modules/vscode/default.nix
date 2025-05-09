@@ -112,6 +112,12 @@ in
           version = "0.7.0";
           sha256 = "sha256-J5iNO6V5US+GFyNjNNA5u9H2pKPozWKjQWcLAhl+BjY=";
         }
+        {
+          name = "vscode-proto3";
+          publisher = "zxh404";
+          version = "0.5.5";
+          sha256 = "sha256-Em+w3FyJLXrpVAe9N7zsHRoMcpvl+psmG1new7nA8iE=";
+        }
       ]);
   };
 

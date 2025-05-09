@@ -16,6 +16,7 @@
   ];
 
   services = {
+    flatpak.enable = true;
     spice-vdagentd.enable = true;
     xserver = {
       enable = true;
@@ -144,7 +145,7 @@
     brightnessctl
     sqlite
     libnotify
-    pinentry-curses
+    pinentry-gnome3
   ];
 
   virtualisation = {

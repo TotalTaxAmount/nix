@@ -93,11 +93,11 @@ in
       prismlauncher
       firefox-devedition
       # element-desktop
-      # vesktop
+      vesktop
       zoom-us
       ghidra
       obsidian
-
+      bitwarden-desktop
       pulseview
       gthumb
       wl-screenrec
@@ -110,7 +110,6 @@ in
       obs-studio
       nomacs
       qbittorrent
-      # virt-manager
       slack
       freecad-wayland
       davinci-resolve

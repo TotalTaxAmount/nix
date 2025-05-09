@@ -17,7 +17,7 @@ window {
     border: 2;
     border-color: @base0D@;
     padding: 3 3;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 mainbox {
