@@ -1,209 +1,195 @@
-{
-  pkgs,
-  ...
-}:
-let
-  # https://gitlab.com/risingprismtv/single-gpu-passthrough/-/blob/master/hooks/vfio-startup?ref_type=heads 
-  vfioStartup = pkgs.writeScriptBin "vfio-startup" ''
-    #!${pkgs.bash}/bin/bash
-    DATE=$(date +"%m/%d/%Y %R:%S :")
-
-    ## Sets dispmgr var as null ##
-    DISPMGR="null"
-
-    ################################## Script ###################################
-    echo "$DATE Beginning of Startup!"
-
-    function stop_display_manager_if_running {
-        ## Get display manager on systemd based distros ##
-        if [[ -x /run/systemd/system ]] && echo "$DATE Distro is using Systemd"; then
-            DISPMGR="$(grep 'ExecStart=' /etc/systemd/system/display-manager.service | awk -F'/' '{print $(NF-0)}')"
-            echo "$DATE Display Manager = $DISPMGR"
-
-            ## Stop display manager using systemd ##
-            if systemctl is-active --quiet "$DISPMGR.service"; then
-                grep -qsF "$DISPMGR" "/tmp/vfio-store-display-manager" || echo "$DISPMGR" >/tmp/vfio-store-display-manager
-                ${pkgs.systemd}/bin/systemctl stop "$DISPMGR.service"
-                ${pkgs.systemd}/bin/systemctl isolate multi-user.target
-            fi
-
-            while ${pkgs.systemd}/bin/systemctl is-active --quiet "$DISPMGR.service"; do
-                sleep "1"
-            done
-
-            return
-
-        fi
-
-    }
+# { config, pkgs, ... }:
+# {
+#   boot.kernelModules = [ "vfio-pci" ];
 
 
-    ## Unbind EFI-Framebuffer ##
-    if test -e "/tmp/vfio-is-nvidia"; then
-        rm -f /tmp/vfio-is-nvidia
-        else
-            test -e "/tmp/vfio-is-amd"
-            rm -f /tmp/vfio-is-amd
-    fi
+#   # Enable libvirtd
+  # virtualisation.libvirtd = {
+  #   enable = true;
+  #   onBoot = "ignore";
+  #   onShutdown = "shutdown";
+  #   qemu = {
+  #     runAsRoot = true;
+  #     ovmf.packages = [ pkgs.OVMFFull.fd ];
+  #   };
+  # };
 
-    sleep "1"
+#   # Add binaries to path so that hooks can use it
+#   systemd.services.libvirtd = {
+#     path = let
+#              env = pkgs.buildEnv {
+#                name = "qemu-hook-env";
+#                paths = with pkgs; [
+#                  bash
+#                  libvirt
+#                  kmod
+#                  systemd
+#                  ripgrep
+#                  sd
+#                ];
+#              };
+#            in
+#              [ env ];
+#   };
 
-    ##############################################################################################################################
-    ## Unbind VTconsoles if currently bound (adapted and modernised from https://www.kernel.org/doc/Documentation/fb/fbcon.txt) ##
-    ##############################################################################################################################
-    if test -e "/tmp/vfio-bound-consoles"; then
-        rm -f /tmp/vfio-bound-consoles
-    fi
-    for (( i = 0; i < 16; i++))
-    do
-      if test -x /sys/class/vtconsole/vtcon"$${i}"; then
-          if [ "$(grep -c "frame buffer" /sys/class/vtconsole/vtcon"$${i}"/name)" = 1 ]; then
-            echo 0 > /sys/class/vtconsole/vtcon"$${i}"/bind
-              echo "$DATE Unbinding Console $${i}"
-              echo "$i" >> /tmp/vfio-bound-consoles
-          fi
-      fi
-    done
+#   # Link hooks to the correct directory
+#   system.activationScripts.libvirt-hooks.text =
+#   ''
+#     ln -Tfs /etc/libvirt/hooks /var/lib/libvirt/hooks
+#   '';
 
-    sleep "1"
+#   # # Enable xrdp
+#   # services.xrdp.enable = true; # use remote_logout and remote_unlock
+#   # services.xrdp.defaultWindowManager = "i3";
+#   systemd.services.pcscd.enable = false;
+#   systemd.sockets.pcscd.enable = false;
 
-    if lspci -nn | grep -e VGA | grep -s NVIDIA ; then
-        echo "$DATE System has an NVIDIA GPU"
-        grep -qsF "true" "/tmp/vfio-is-nvidia" || echo "true" >/tmp/vfio-is-nvidia
-        echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
+#   # VFIO Packages installed
+#   environment.systemPackages = with pkgs; [
+#     libguestfs # needed to virt-sparsify qcow2 files
+#   ];
 
-        ## Unload NVIDIA GPU drivers ##
-        modprobe -r nvidia_uvm
-        modprobe -r nvidia_drm
-        modprobe -r nvidia_modeset
-        modprobe -r nvidia
-        modprobe -r i2c_nvidia_gpu
-        modprobe -r drm_kms_helper
-        modprobe -r drm
+#   environment.etc = {
+#     "libvirt/hooks/qemu" = {
+#       text =
+#       ''
+#         #!/run/current-system/sw/bin/bash
+#         #
+#         # Author: Sebastiaan Meijer (sebastiaan@passthroughpo.st)
+#         #
+#         # Copy this file to /etc/libvirt/hooks, make sure it's called "qemu".
+#         # After this file is installed, restart libvirt.
+#         # From now on, you can easily add per-guest qemu hooks.
+#         # Add your hooks in /etc/libvirt/hooks/qemu.d/vm_name/hook_name/state_name.
+#         # For a list of available hooks, please refer to https://www.libvirt.org/hooks.html
+#         #
 
-        echo "$DATE NVIDIA GPU Drivers Unloaded"
-    fi
+#         GUEST_NAME="$1"
+#         HOOK_NAME="$2"
+#         STATE_NAME="$3"
+#         MISC="''${@:4}"
 
-    ## Load VFIO-PCI driver ##
-    modprobe vfio
-    modprobe vfio_pci
-    modprobe vfio_iommu_type1
+#         BASEDIR="$(dirname $0)"
 
-    echo "$DATE End of Startup!"
-  ''; 
+#         HOOKPATH="$BASEDIR/qemu.d/$GUEST_NAME/$HOOK_NAME/$STATE_NAME"
 
-  # https://gitlab.com/risingprismtv/single-gpu-passthrough/-/blob/master/hooks/vfio-teardown?ref_type=heads
-  vfioTeardown = pkgs.writeScriptBin "vfio-teardown" ''
-    #!${pkgs.bash}/bin/bash
+#         set -e # If a script exits with an error, we should as well.
 
-    DATE=$(date +"%m/%d/%Y %R:%S :")
+#         # check if it's a non-empty executable file
+#         if [ -f "$HOOKPATH" ] && [ -s "$HOOKPATH"] && [ -x "$HOOKPATH" ]; then
+#             eval \"$HOOKPATH\" "$@"
+#         elif [ -d "$HOOKPATH" ]; then
+#             while read file; do
+#                 # check for null string
+#                 if [ ! -z "$file" ]; then
+#                   eval \"$file\" "$@"
+#                 fi
+#             done <<< "$(find -L "$HOOKPATH" -maxdepth 1 -type f -executable -print;)"
+#         fi
+#       '';
+#       mode = "0755";
+#     };
 
-    ################################## Script ###################################
+#     "libvirt/hooks/kvm.conf" = {
+#       text =
+#       ''
+#         VIRSH_GPU_VIDEO=pci_0000_0a_00_0
+#         VIRSH_GPU_AUDIO=pci_0000_0a_00_1
+#       '';
+#       mode = "0755";
+#     };
 
-    echo "$DATE Beginning of Teardown!"
-
-    ## Unload VFIO-PCI driver ##
-    modprobe -r vfio_pci
-    modprobe -r vfio_iommu_type1
-    modprobe -r vfio
-
-    if grep -q "true" "/tmp/vfio-is-nvidia" ; then
-
-        ## Load NVIDIA drivers ##
-        echo "$DATE Loading NVIDIA GPU Drivers"
-        
-        modprobe drm
-        modprobe drm_kms_helper
-        modprobe i2c_nvidia_gpu
-        modprobe nvidia
-        modprobe nvidia_modeset
-        modprobe nvidia_drm
-        modprobe nvidia_uvm
-
-        echo "$DATE NVIDIA GPU Drivers Loaded"
-    fi
-
-    ## Restart Display Manager ##
-    input="/tmp/vfio-store-display-manager"
-    while read -r DISPMGR; do
-      echo "$DATE Var has been collected from file: $DISPMGR"
-
-      ${pkgs.systemd}/bin/systemctl start "$DISPMGR.service"
-    done < "$input"
-
-    ############################################################################################################
-    ## Rebind VT consoles (adapted and modernised from https://www.kernel.org/doc/Documentation/fb/fbcon.txt) ##
-    ############################################################################################################
-
-    input="/tmp/vfio-bound-consoles"
-    while read -r consoleNumber; do
-      if test -x /sys/class/vtconsole/vtcon"$${consoleNumber}"; then
-          if [ "$(grep -c "frame buffer" "/sys/class/vtconsole/vtcon$${consoleNumber}/name")" \
-              = 1 ]; then
-        echo "$DATE Rebinding console $${consoleNumber}"
-        echo 1 > /sys/class/vtconsole/vtcon"$${consoleNumber}"/bind
-          fi
-      fi
-    done < "$input"
+#     "libvirt/hooks/qemu.d/win10/prepare/begin/start.sh" = {
+#       text =
+#       ''
+#         #!/run/current-system/sw/bin/bash
 
 
-    echo "$DATE End of Teardown!"
-  '';
+#         # Load variables we defined
+#         source "/etc/libvirt/hooks/kvm.conf"
 
-  # 
-  qemu = pkgs.writeScriptBin "qemu" ''
-   #!${pkgs.bash}/bin/bash
+#         # Change to performance governor
+#         echo performance | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 
-    OBJECT="$1"
-    OPERATION="$2"
+#         # Isolate host to core 0
+#         # systemctl set-property --runtime -- user.slice AllowedCPUs=0
+#         # systemctl set-property --runtime -- system.slice AllowedCPUs=0
+#         # systemctl set-property --runtime -- init.scope AllowedCPUs=0
 
-    if [[ $OBJECT == "win10" ]]; then
-      case "$OPERATION" in
-              "prepare")
-                    ${pkgs.systemd}/bin/systemctl start libvirt-nosleep@"$OBJECT"  2>&1 | tee -a /var/log/libvirt/custom_hooks.log
-                    ${vfioStartup}/bin/vfio-startup 2>&1 | tee -a /var/log/libvirt/custom_hooks.log
-                    ;;
+#         # Logout
+#         # source "/home/owner/Desktop/Sync/Files/Tools/logout.sh"
 
-                    "release")
-                    ${pkgs.systemd}/bin/systemctl stop libvirt-nosleep@"$OBJECT"  2>&1 | tee -a /var/log/libvirt/custom_hooks.log  
-                    ${vfioTeardown}/bin/vfio-teardown 2>&1 | tee -a /var/log/libvirt/custom_hooks.log
-                    ;;
-      esac
-    fi
- 
-  '';
-in
-{
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      swtpm.enable = true;
-      ovmf = {
-        enable = true;
-        packages = [ pkgs.OVMFFull.fd ];
-      };
-    };
-  };
+#         # Stop display manager
+#         systemctl stop display-manager.service
 
+#         # Unbind VTconsoles
+#         echo 0 > /sys/class/vtconsole/vtcon0/bind
+#         echo 0 > /sys/class/vtconsole/vtcon1/bind
 
-  systemd.services."libvirt-no-sleep@" = {
-    description = "Preventing sleep while libvirt domain %i is running";
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = ''
-        ${pkgs.systemd}/bin/systemd-inhibit \
-          --what=sleep \
-          --why=Libvirt domain "%i" is running \
-          --who=%u \
-          --mode=block \
-          ${pkgs.coreutils}/bin/sleep infinity
-      '';
-    };
-  };
+#         # Unbind EFI Framebuffer
+#         echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/unbind
 
-  system.activationScripts.libvirtHook = {
-    text = ''
-      ln -s ${qemu}/bin/qemu /var/lib/libvirtd/hooks/qemu.d/hook.sh
-    '';
-  };
-}
+#         # Avoid race condition
+#         # sleep 5
+
+#         # Unload NVIDIA kernel modules
+#         modprobe -r nvidia_drm nvidia_modeset nvidia_uvm nvidia
+
+#         # Detach GPU devices from host
+#         virsh nodedev-detach $VIRSH_GPU_VIDEO
+#         virsh nodedev-detach $VIRSH_GPU_AUDIO
+
+#         # Load vfio module
+#         modprobe vfio-pci
+#       '';
+#       mode = "0755";
+#     };
+
+#     "libvirt/hooks/qemu.d/win10/release/end/stop.sh" = {
+#       text =
+#       ''
+#         #!/run/current-system/sw/bin/bash
+
+#         # Load variables we defined
+#         source "/etc/libvirt/hooks/kvm.conf"
+
+#         # Unload vfio module
+#         modprobe -r vfio-pci
+
+#         # Attach GPU devices from host
+#         virsh nodedev-reattach $VIRSH_GPU_VIDEO
+#         virsh nodedev-reattach $VIRSH_GPU_AUDIO
+
+#         # Read nvidia x config
+#         nvidia-xconfig --query-gpu-info > /dev/null 2>&1
+
+#         # Load NVIDIA kernel modules
+#         modprobe nvidia_drm nvidia_modeset nvidia_uvm nvidia
+
+#         # Avoid race condition
+#         # sleep 5
+
+#         # Bind EFI Framebuffer
+#         echo efi-framebuffer.0 > /sys/bus/platform/drivers/efi-framebuffer/bind
+
+#         # Bind VTconsoles
+#         echo 1 > /sys/class/vtconsole/vtcon0/bind
+#         echo 1 > /sys/class/vtconsole/vtcon1/bind
+
+#         # Start display manager
+#         systemctl start display-manager.service
+
+#         # Return host to all cores
+#         # systemctl set-property --runtime -- user.slice AllowedCPUs=0-3
+#         # systemctl set-property --runtime -- system.slice AllowedCPUs=0-3
+#         # systemctl set-property --runtime -- init.scope AllowedCPUs=0-3
+
+#         # Change to powersave governor
+#         # echo powersave | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+#       '';
+#       mode = "0755";
+#     };
+
+#     # "libvirt/vgabios/patched.rom".source = /home/owner/Desktop/Sync/Files/Linux_Config/symlinks/patched.rom;
+#   };
+# }
