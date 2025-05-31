@@ -11,6 +11,7 @@
 {
   imports = [
     ./hardware.nix
+    # ../../modules/vfio.nix
     inputs.nix-citizen.nixosModules.StarCitizen
   ];
 
@@ -160,14 +161,14 @@
 
   virtualisation = {
     spiceUSBRedirection.enable = true;
+
     libvirtd = {
       enable = true;
+      onBoot = "ignore";
+      onShutdown = "shutdown";
       qemu = {
-        swtpm.enable = true;
-        ovmf = {
-          enable = true;
-          packages = [ pkgs.OVMFFull.fd ];
-        };
+        runAsRoot = true;
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
 
@@ -191,6 +192,8 @@
     ];
 
     kernelPackages = pkgs.linuxPackages_cachyos;
+
+    initrd.availableKernelModules = [ "xhci_pci" "ahci" "sd_mod" ];
 
     tmp.cleanOnBoot = true;
 
