@@ -46,6 +46,7 @@
       "networkmanager"
       "wheel"
       "libvirtd"
+      "dialout"
     ];
   };
 

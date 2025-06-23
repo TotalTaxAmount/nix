@@ -113,7 +113,7 @@ in
       killall
       utils.print-colors
       nautilus
-      postman
+      # postman
       nomacs
       qbittorrent
       slack

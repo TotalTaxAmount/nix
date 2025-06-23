@@ -80,6 +80,7 @@ in
         tamasfe.even-better-toml
         vue.volar
         svelte.svelte-vscode
+        platformio.platformio-vscode-ide
       ]
       ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {

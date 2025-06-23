@@ -46,6 +46,11 @@
       };
     };
 
+    udev.packages = [
+      pkgs.platformio-core
+      pkgs.openocd
+    ];
+
     blueman.enable = true;
     printing.enable = true;
   };
@@ -126,6 +131,11 @@
     };
 
     rog-control-center.enable = true;
+
+    nix-ld = { 
+      enable = true;
+      libraries = with pkgs; [avrdude];
+    };
   };
 
   networking = {

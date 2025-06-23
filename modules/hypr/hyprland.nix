@@ -444,7 +444,7 @@ in
           if "${host}" == "laptop" then
             [
               ",XF86MonBrightnessDown, exec, brightnessctl -m -d $(brightnessctl -l | grep amdgpu_bl | awk '{print $2}' | sed \"s/'//g\") s 5%- "
-              ",XF86MonBrightnessUp, exec, brightnessctl -m -d brightnessctl -l | grep amdgpu_bl | awk '{print $2}' | sed \"s/'//g\" amdgpu_bl0 s 5%+"
+              ",XF86MonBrightnessUp, exec, brightnessctl -m -d brightnessctl -l | grep amdgpu_bl | awk '{print $2}' | sed \"s/'//g\") s 5%+"
               ",XF86KbdBrightnessUp, exec, brightnessctl -m --device='asus::kbd_backlight' s 1+"
               ",XF86KbdBrightnessDown, exec, brightnessctl -m --device='asus::kbd_backlight' s 1-"
             ]
