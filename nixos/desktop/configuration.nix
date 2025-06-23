@@ -72,12 +72,13 @@
     xserver = {
       enable = true;
       videoDrivers = lib.mkDefault [ "nvidia" ];
+      
+    };
 
-      displayManager.gdm = {
+    displayManager.gdm = {
         enable = true;
         wayland = true;
       };
-    };
 
     avahi = {
       enable = true;
@@ -189,9 +190,11 @@
     kernelModules = [
       "kvm-amd"
       "nct6775" # For extra temp sensors
+      "zenpower"
     ];
 
     kernelPackages = pkgs.linuxPackages_cachyos;
+    extraModulePackages = [ pkgs.linuxPackages_cachyos.zenpower ];
 
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "sd_mod" ];
 

@@ -35,9 +35,9 @@ let
     hash = "sha256-TKGCck51qQ50dQGntKaeSk8waK3BlwUjueg4MImTH8k=";
   };
 
-  tmuxConfig = pkgs.substituteAll {
-    src = ./tmux.conf;
+  tmuxConfig = pkgs.replaceVars ./tmux.conf {
     base0D = "#${config.colorScheme.palette.base0D}";
+    
   };
 in
 {

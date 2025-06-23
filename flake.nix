@@ -1,7 +1,7 @@
 {
   description = "TotalTaxAmount's NixOS and home-manager flake";
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixpkgs-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";

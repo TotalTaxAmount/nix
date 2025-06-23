@@ -1,11 +1,11 @@
 { pkgs, config, ... }:
 
 let
-  rofiTheme = pkgs.substituteAll {
-    src = ./systemTheme.rasi;
+  rofiTheme = pkgs.replaceVars ./systemTheme.rasi {
     base00 = "#${config.colorScheme.palette.base00}";
     base05 = "#${config.colorScheme.palette.base05}";
     base0D = "#${config.colorScheme.palette.base0D}";
+    
   };
 in
 {
