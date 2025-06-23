@@ -125,7 +125,6 @@ in
       zsh-powerlevel10k
       file
       playerctl
-      base16-builder
       tree
 
       #Utils

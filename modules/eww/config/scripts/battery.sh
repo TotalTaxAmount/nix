@@ -50,3 +50,5 @@ elif [[ "$1" == "icon" ]]; then
     battery_icon
 fi
 
+# @base00@ FIXME: This is stupid
+

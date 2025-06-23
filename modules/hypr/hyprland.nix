@@ -179,12 +179,11 @@ let
   extras = {
     desktop = {
       monitor = [
-        "DP-1, 3440x1440@165, 0x0, 1, vrr, 1"
+        "DP-1, 3440x1440@165, 0x0, 1, vrr, 1, bitdepth, 10, cm, wide"
         "HDMI-A-1,preferred,-1440x-600,1, transform, 3, vrr, 1"
       ];
 
       cursor.no_hardware_cursors = true; # NVIDIA and Wayland bug
-      render.explicit_sync = true;
     };
 
     laptop = {
@@ -341,7 +340,11 @@ in
       };
 
       debug.disable_logs = false;
-      experimental.xx_color_management_v4 = true; # HDR
+
+      experimental = {
+        wide_color_gamut = true; 
+        xx_color_management_v4 = true; 
+      }; 
 
       plugin = {
         split-monitor-workspaces = {

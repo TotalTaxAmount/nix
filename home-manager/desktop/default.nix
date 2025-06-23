@@ -101,21 +101,21 @@ in
       copyq
       rofi-copyq
       blender
-      davinci-resolve
+      # davinci-resolve
       audacity
-      # jetbrains.idea-ultimate
+      jetbrains.idea-ultimate
       lunar-client
       nemo
       zoom-us
       noita_entangled_worlds
       freecad-wayland
+    
 
       # Terminal
       zsh-powerlevel10k
       neofetch
       file
       playerctl
-      base16-builder
       tree
       hyprpaper
 
