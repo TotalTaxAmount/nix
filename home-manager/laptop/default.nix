@@ -118,7 +118,7 @@ in
       qbittorrent
       slack
       freecad-wayland
-      davinci-resolve
+      # davinci-resolve
       audacity
 
       #Terminal Apps/Config

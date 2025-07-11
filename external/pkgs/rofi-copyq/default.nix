@@ -11,5 +11,8 @@ python311Packages.buildPythonPackage rec {
     hash = "sha256-xDxdKitVDonNhoNPMAoHizoaijQj9UQGSCPhWJOcB1w=";
   };
 
+  pyproject = true;
+  build-system = [ python311Packages.setuptools ];
+
   patches = [ ./better_type.patch ];
 }

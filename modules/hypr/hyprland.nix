@@ -342,7 +342,6 @@ in
       debug.disable_logs = false;
 
       experimental = {
-        wide_color_gamut = true; 
         xx_color_management_v4 = true; 
       }; 
 
@@ -446,8 +445,8 @@ in
         ++ (
           if "${host}" == "laptop" then
             [
-              ",XF86MonBrightnessDown, exec, brightnessctl -m -d $(brightnessctl -l | grep amdgpu_bl | awk '{print $2}' | sed \"s/'//g\") s 5%- "
-              ",XF86MonBrightnessUp, exec, brightnessctl -m -d brightnessctl -l | grep amdgpu_bl | awk '{print $2}' | sed \"s/'//g\") s 5%+"
+              ",XF86MonBrightnessDown, exec, brightnessctl -m -d $(brightnessctl -l | grep amdgpu_bl | awk '{print $2}' | sed \"s/'//g\") s 5%-"
+              ",XF86MonBrightnessUp, exec, brightnessctl -m -d $(brightnessctl -l | grep amdgpu_bl | awk '{print $2}' | sed \"s/'//g\") s 5%+"
               ",XF86KbdBrightnessUp, exec, brightnessctl -m --device='asus::kbd_backlight' s 1+"
               ",XF86KbdBrightnessDown, exec, brightnessctl -m --device='asus::kbd_backlight' s 1-"
             ]
