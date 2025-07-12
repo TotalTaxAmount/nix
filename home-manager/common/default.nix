@@ -104,7 +104,7 @@ in
           pull.rebase = false;
           user.signingkey = "718CE018D826D164";
           commit.gpgsign = true;
-          core.editor = "code --wait";
+          core.editor = "${pkgs.lunarvim}/bin/lvim";
         };
       };
 

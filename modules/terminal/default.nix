@@ -84,7 +84,7 @@ in
         }
       ];
 
-      initExtra = ''
+      initContent = ''
         POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
         ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#${config.colorScheme.palette.base0D}"
 

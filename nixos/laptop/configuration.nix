@@ -21,12 +21,12 @@
     xserver = {
       enable = true;
       videoDrivers = lib.mkDefault [ "nvidia" ];
+    };
 
-      displayManager.gdm = {
+    displayManager.gdm = {
         enable = true;
         wayland = true;
       };
-    };
 
     avahi = {
       enable = true;
