@@ -149,7 +149,9 @@ in
 
       # IDEs
       #     jetbrains.clion
-      jetbrains.idea-ultimate
+      (jetbrains.idea-ultimate.override {
+        jdk = pkgs.openjdk21; # TODO: https://github.com/NixOS/nixpkgs/issues/426815
+      })
 
       # Game utils
       #    lutris

@@ -139,6 +139,9 @@
   };
 
   networking = {
+    nameservers = [ "1.1.1.1" ];
+    dhcpcd.extraConfig = "nohook resolv.conf";
+
     firewall = {
       enable = true;
       allowedTCPPorts = [
