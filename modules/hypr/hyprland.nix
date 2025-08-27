@@ -179,8 +179,8 @@ let
   extras = {
     desktop = {
       monitor = [
-        "DP-1, 3440x1440@165, 0x0, 1, vrr, 1, bitdepth, 10, cm, wide"
-        "HDMI-A-1,preferred,-1440x-600,1, transform, 3, vrr, 1"
+        "DP-1, 3440x1440@165, 0x0, 1, vrr, 3, bitdepth, 10, cm, auto"
+        "HDMI-A-1,preferred,-1440x-600,1, transform, 3"
       ];
 
       cursor.no_hardware_cursors = true; # NVIDIA and Wayland bug
@@ -224,7 +224,7 @@ in
 
     package = lib.mkDefault inputs.hyprland.packages.${system}.hyprland;
     plugins = [
-      inputs.split-monitor-workspaces.packages.${pkgs.system}.split-monitor-workspaces
+      inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
     ];
 
     settings = lib.mkMerge [
@@ -314,11 +314,11 @@ in
         enabled = true;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
         animation = [
-          "windows, 1, 7, myBezier"
+          "windows, 1, 4, myBezier"
           "border, 1, 10, default"
           "borderangle, 1, 8, default"
           "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
+          "workspaces, 1, 4, default"
         ];
       };
 
@@ -346,9 +346,8 @@ in
       }; 
 
       plugin = {
-        split-monitor-workspaces = {
-          count = 9;
-          enable_persistent_workspaces = false;
+        hyprsplit = {
+          num_workspaces = 9;
         };
       };
 
@@ -359,6 +358,8 @@ in
       ];
 
       "$mod" = "SUPER";
+
+      misc.enable_anr_dialog = false;
 
       bind =
         [
@@ -379,25 +380,25 @@ in
           "$mod SHIFT, d, movewindow, r"
           "$mod SHIFT, w, movewindow, u"
           "$mod SHIFT, s, movewindow, d"
-          "$mod, 1, split-workspace, 1"
-          "$mod, 2, split-workspace, 2"
-          "$mod, 3, split-workspace, 3"
-          "$mod, 4, split-workspace, 4"
-          "$mod, 5, split-workspace, 5"
-          "$mod, 6, split-workspace, 6"
-          "$mod, 7, split-workspace, 7"
-          "$mod, 8, split-workspace, 8"
-          "$mod, 9, split-workspace, 9"
-          "$mod SHIFT, 1, split-movetoworkspace, 1"
-          "$mod SHIFT, 2, split-movetoworkspace, 2"
-          "$mod SHIFT, 3, split-movetoworkspace, 3"
-          "$mod SHIFT, 4, split-movetoworkspace, 4"
-          "$mod SHIFT, 5, split-movetoworkspace, 5"
-          "$mod SHIFT, 6, split-movetoworkspace, 6"
-          "$mod SHIFT, 7, split-movetoworkspace, 7"
-          "$mod SHIFT, 8, split-movetoworkspace, 8"
-          "$mod SHIFT, 9, split-movetoworkspace, 9"
-          "$mod SHIFT, 0, split-movetoworkspace, 10"
+          "$mod, 1, split:workspace, 1"
+          "$mod, 2, split:workspace, 2"
+          "$mod, 3, split:workspace, 3"
+          "$mod, 4, split:workspace, 4"
+          "$mod, 5, split:workspace, 5"
+          "$mod, 6, split:workspace, 6"
+          "$mod, 7, split:workspace, 7"
+          "$mod, 8, split:workspace, 8"
+          "$mod, 9, split:workspace, 9"
+          "$mod SHIFT, 1, split:movetoworkspace, 1"
+          "$mod SHIFT, 2, split:movetoworkspace, 2"
+          "$mod SHIFT, 3, split:movetoworkspace, 3"
+          "$mod SHIFT, 4, split:movetoworkspace, 4"
+          "$mod SHIFT, 5, split:movetoworkspace, 5"
+          "$mod SHIFT, 6, split:movetoworkspace, 6"
+          "$mod SHIFT, 7, split:movetoworkspace, 7"
+          "$mod SHIFT, 8, split:movetoworkspace, 8"
+          "$mod SHIFT, 9, split:movetoworkspace, 9"
+          "$mod SHIFT, 0, split:movetoworkspace, 10"
           "$mod, L, exec, hyprlock"
           "CTRL SHIFT, Print, exec, grimblast --notify copysave screen" # Screenshots
           "SHIFT, Print, exec, grimblast --notify copysave area"

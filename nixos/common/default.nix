@@ -89,6 +89,7 @@
   };
 
   services = {
+    fwupd.enable = true;
     automatic-timezoned.enable = true;
     xserver = {
       xkb = {

@@ -64,6 +64,11 @@
   };
 
   services = {
+    scx = {
+      enable = true;
+      scheduler = "scx_bpfland";
+    };
+
     hardware.openrgb = {
       enable = true;
       motherboard = "amd";
@@ -193,8 +198,8 @@
       "zenpower"
     ];
 
-    kernelPackages = pkgs.linuxPackages_cachyos;
-    extraModulePackages = [ pkgs.linuxPackages_cachyos.zenpower ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    extraModulePackages = [ pkgs.linuxPackages_latest.zenpower ];
 
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "sd_mod" ];
 
