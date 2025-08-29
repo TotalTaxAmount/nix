@@ -327,9 +327,10 @@ in
         preserve_split = true;
       };
 
-      gestures = {
-        workspace_swipe = true;
-      };
+      gesture = [
+        "3, left, workspace"
+        "3, right, workspace"
+      ];
 
       xwayland = {
         force_zero_scaling = true;
