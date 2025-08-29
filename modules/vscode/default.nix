@@ -14,6 +14,7 @@ let
     replacements = {
       font = config.font;
       customcss = customcss.out;
+      jdk24 = pkgs.jdk24;
     };
     name = "settings";
   };
@@ -41,6 +42,10 @@ in
         vue.volar
         svelte.svelte-vscode
         platformio.platformio-vscode-ide
+        redhat.java
+        vscjava.vscode-java-test
+        vscjava.vscode-java-debug
+        vscjava.vscode-gradle
       ]
       ++ (pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {

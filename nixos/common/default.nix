@@ -91,6 +91,10 @@
   services = {
     fwupd.enable = true;
     automatic-timezoned.enable = true;
+    geoclue2 = {
+      enable = true;
+      geoProviderUrl = "https://location.services.mozilla.com/v1/geolocate?key=geoclue";
+    };
     xserver = {
       xkb = {
         layout = "us";

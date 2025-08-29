@@ -81,5 +81,14 @@
         "**/node_modules/*/**": true,
         "**/.hg/store/**": true
     },
-    "git.openRepositoryInParentFolders": "always"
+    "git.openRepositoryInParentFolders": "always",
+
+    // Java
+    "java.configurations.runtimes": [
+      {
+        "name": "OpenJDK-24",
+        "path": "@jdk24@",
+        "default": true
+      }
+    ]
 }
