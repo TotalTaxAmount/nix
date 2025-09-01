@@ -11,7 +11,8 @@
 {
   imports = [
     ./hardware.nix
-    ../../modules/nvml.nix
+    # ../../modules/nvml.nix
+    inputs.nvml-tune.nixosModules.nvml
     inputs.nix-citizen.nixosModules.StarCitizen
   ];
 
@@ -71,9 +72,11 @@
 
     nvml = {
       enable = true;
-      clockOffset = 110;
-      memOffset = 1900;
-      powerLimit = 310000;
+      gpus."0" = {
+        clockOffset = 110;
+        memOffset = 1900;
+        powerLimit = 310000;
+      };
     };
 
     hardware.openrgb = {
