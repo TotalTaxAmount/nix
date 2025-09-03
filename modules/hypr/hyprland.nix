@@ -328,8 +328,7 @@ in
       };
 
       gesture = [
-        "3, left, workspace"
-        "3, right, workspace"
+        "3, horizontal, workspace"
       ];
 
       xwayland = {

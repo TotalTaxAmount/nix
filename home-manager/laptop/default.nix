@@ -133,8 +133,7 @@ in
       glxinfo
       bat
       openal
-      # qt5.fu
-      ll
+
       wget
       rofi-copyq
       gammastep
