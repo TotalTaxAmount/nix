@@ -129,7 +129,7 @@ in
       glxinfo
       bat
       openal
-      qt5.full
+      # qt5.full
       wget
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       slurp

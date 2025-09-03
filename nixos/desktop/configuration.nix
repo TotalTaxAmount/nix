@@ -11,7 +11,8 @@
 {
   imports = [
     ./hardware.nix
-    # ../../modules/vfio.nix
+    # ../../modules/nvml.nix
+    inputs.nvml-tune.nixosModules.nvml
     inputs.nix-citizen.nixosModules.StarCitizen
   ];
 
@@ -67,6 +68,15 @@
     scx = {
       enable = true;
       scheduler = "scx_bpfland";
+    };
+
+    nvml = {
+      enable = true;
+      gpus."0" = {
+        clockOffset = 110;
+        memOffset = 1900;
+        powerLimit = 310000;
+      };
     };
 
     hardware.openrgb = {
@@ -190,6 +200,8 @@
     '';
   };
 
+  zramSwap.enable = true;
+
   boot = {
     supportedFilesystems = [ "nfs" ];
     kernelModules = [
@@ -198,8 +210,9 @@
       "zenpower"
     ];
 
-    kernelPackages = pkgs.linuxPackages_latest;
-    extraModulePackages = [ pkgs.linuxPackages_latest.zenpower ];
+    kernelPackages = pkgs.linuxPackages_cachyos;
+
+    extraModulePackages = [ pkgs.linuxPackages_cachyos.zenpower ];
 
     initrd.availableKernelModules = [ "xhci_pci" "ahci" "sd_mod" ];
 

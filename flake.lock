@@ -987,6 +987,26 @@
         "type": "indirect"
       }
     },
+    "nvml-tune": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1756763008,
+        "narHash": "sha256-Y50pfO8WjlyCxKZ8XVqT9ssbKS75P1xiJiHjkHfCEiQ=",
+        "owner": "TotalTaxAmount",
+        "repo": "nvml-tune-nix",
+        "rev": "dcec7c185245e092ef44d95d4c652db1b3c50216",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TotalTaxAmount",
+        "repo": "nvml-tune-nix",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -1052,6 +1072,7 @@
         "nix-colors": "nix-colors",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_4",
+        "nvml-tune": "nvml-tune",
         "sops-nix": "sops-nix"
       }
     },

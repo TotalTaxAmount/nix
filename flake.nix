@@ -74,6 +74,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nvml-tune = {
+      url = "github:TotalTaxAmount/nvml-tune-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = # TODO: Use flake utils
