@@ -73,8 +73,8 @@
     nvml = {
       enable = true;
       gpus."0" = {
-        clockOffset = 110;
-        memOffset = 1900;
+        clockOffset = 100;
+        memOffset = 1800;
         powerLimit = 310000;
       };
     };
