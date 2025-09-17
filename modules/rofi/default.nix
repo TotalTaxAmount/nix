@@ -11,7 +11,6 @@ in
 {
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
     extraConfig = {
       font = "${config.font} 12";
       fixed-num-lines = true;
