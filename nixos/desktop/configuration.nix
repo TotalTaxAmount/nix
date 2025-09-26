@@ -58,7 +58,7 @@
 
     nvidia-container-toolkit.enable = true;
 
-    xpadneo.enable = true;
+    xpadneo.enable = false;
     steam-hardware.enable = true;
     flipperzero.enable = true;
     keyboard.qmk.enable = true;
@@ -73,8 +73,8 @@
     nvml = {
       enable = true;
       gpus."0" = {
-        clockOffset = 100;
-        memOffset = 1800;
+        clockOffset = 80;
+        memOffset = 1500;
         powerLimit = 310000;
       };
     };

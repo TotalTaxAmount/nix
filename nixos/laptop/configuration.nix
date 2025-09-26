@@ -93,7 +93,7 @@
     };
 
     xpadneo.enable = true;
-    steam-hardware.enable = true;
+      steam-hardware.enable = true;
   };
 
   sops = {
