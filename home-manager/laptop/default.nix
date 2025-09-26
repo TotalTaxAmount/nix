@@ -93,6 +93,7 @@ in
 
     home.packages = with pkgs; [
       # Apps
+      freecad-qt6
       gimp
       spotify
       qFlipper

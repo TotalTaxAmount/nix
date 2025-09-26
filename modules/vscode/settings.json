@@ -84,9 +84,9 @@
     "git.openRepositoryInParentFolders": "always",
 
     // Java
-    "java.configurations.runtimes": [
+    "java.configuration.runtimes": [
       {
-        "name": "OpenJDK-24",
+        "name": "JavaSE-24",
         "path": "@jdk24@",
         "default": true
       }
