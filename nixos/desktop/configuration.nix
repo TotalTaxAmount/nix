@@ -38,7 +38,7 @@
         nvidia-vaapi-driver
         libvdpau-va-gl
         libva-vdpau-driver
-        vaapiVdpau
+        libva-vdpau-driver
 
       ];
     };
@@ -65,6 +65,10 @@
   };
 
   services = {
+    openssh = {
+      enable = true;
+    };
+
     scx = {
       enable = true;
       scheduler = "scx_bpfland";
@@ -133,7 +137,6 @@
 
     coolercontrol = {
       enable = true;
-      nvidiaSupport = true;
     };
 
     gamemode = {
@@ -184,7 +187,6 @@
       onShutdown = "shutdown";
       qemu = {
         runAsRoot = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
 

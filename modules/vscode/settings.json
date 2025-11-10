@@ -86,9 +86,11 @@
     // Java
     "java.configuration.runtimes": [
       {
-        "name": "JavaSE-24",
-        "path": "@jdk24@",
+        "name": "JavaSE-17",
+        "path": "@jdk17@",
         "default": true
       }
-    ]
+    ],
+    "java.jdt.ls.java.home": "@jdk21@"
+    
 }

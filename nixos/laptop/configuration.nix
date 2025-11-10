@@ -70,7 +70,7 @@
       extraPackages = with pkgs; [
         intel-media-driver # LIBVA_DRIVER_NAME=iHD
         vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
       ];
     };
@@ -127,7 +127,6 @@
 
     coolercontrol = {
       enable = true;
-      nvidiaSupport = true;
     };
 
     rog-control-center.enable = true;
@@ -171,7 +170,6 @@
         swtpm.enable = true;
         ovmf = {
           enable = true;
-          packages = [ pkgs.OVMFFull.fd ];
         };
       };
     };

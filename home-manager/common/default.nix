@@ -98,14 +98,16 @@ in
     programs = {
       git = {
         enable = true;
-        userEmail = "shieldscoen@gmail.com";
-        userName = user;
-        extraConfig = {
+        settings = {
           pull.rebase = false;
           user.signingkey = "718CE018D826D164";
           commit.gpgsign = true;
           core.editor = "${pkgs.lunarvim}/bin/lvim";
           http.curlOptions = "-4";
+          user = {
+            email = "shieldscoen@gmail.com";
+            name = user;
+          };
         };
       };
 
