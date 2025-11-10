@@ -16,6 +16,7 @@
   ];
 
   services = {
+    openssh.enable = true;
     flatpak.enable = true;
     spice-vdagentd.enable = true;
     xserver = {

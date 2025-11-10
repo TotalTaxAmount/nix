@@ -14,7 +14,7 @@ let
     replacements = {
       font = config.font;
       customcss = customcss.out;
-      jdk24 = pkgs.jdk24;
+      jdk23 = pkgs.jdk23;
     };
     name = "settings";
   };

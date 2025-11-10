@@ -86,8 +86,8 @@
     // Java
     "java.configuration.runtimes": [
       {
-        "name": "JavaSE-24",
-        "path": "@jdk24@",
+        "name": "JavaSE-23",
+        "path": "@jdk23@",
         "default": true
       }
     ]
