@@ -106,7 +106,9 @@ in
       jetbrains.idea-ultimate
       lunar-client
       nemo
-      zoom-us
+      (zoom-us.override {
+        hyprlandXdgDesktopPortalSupport = true;
+      })
       noita_entangled_worlds
       freecad-wayland
     
@@ -126,7 +128,6 @@ in
       utils.print-colors
       jq
       socat
-      glxinfo
       bat
       openal
       # qt5.full
@@ -166,7 +167,6 @@ in
       spice 
       spice-gtk
       spice-protocol
-      win-virtio
       win-spice
       adwaita-icon-theme
       virtiofsd

@@ -132,7 +132,6 @@ in
       jq
       socat
       #      nvtop
-      glxinfo
       bat
       openal
 
@@ -179,7 +178,6 @@ in
       spice 
       spice-gtk
       spice-protocol
-      win-virtio
       win-spice
       adwaita-icon-theme
       virtiofsd

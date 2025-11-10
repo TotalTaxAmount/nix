@@ -38,7 +38,7 @@
         nvidia-vaapi-driver
         libvdpau-va-gl
         libva-vdpau-driver
-        vaapiVdpau
+        libva-vdpau-driver
 
       ];
     };
@@ -58,13 +58,17 @@
 
     nvidia-container-toolkit.enable = true;
 
-    xpadneo.enable = true;
+    xpadneo.enable = false;
     steam-hardware.enable = true;
     flipperzero.enable = true;
     keyboard.qmk.enable = true;
   };
 
   services = {
+    openssh = {
+      enable = true;
+    };
+
     scx = {
       enable = true;
       scheduler = "scx_bpfland";
@@ -73,8 +77,8 @@
     nvml = {
       enable = true;
       gpus."0" = {
-        clockOffset = 100;
-        memOffset = 1800;
+        clockOffset = 80;
+        memOffset = 1500;
         powerLimit = 310000;
       };
     };
@@ -133,7 +137,6 @@
 
     coolercontrol = {
       enable = true;
-      nvidiaSupport = true;
     };
 
     gamemode = {
@@ -184,7 +187,6 @@
       onShutdown = "shutdown";
       qemu = {
         runAsRoot = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
 

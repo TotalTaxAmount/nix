@@ -337,6 +337,7 @@ in
 
       misc = {
         disable_hyprland_logo = true;
+        middle_click_paste = false;
       };
 
       debug.disable_logs = false;
