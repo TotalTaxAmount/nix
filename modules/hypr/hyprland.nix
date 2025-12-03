@@ -188,7 +188,8 @@ let
 
     laptop = {
       monitor = [ 
-        "eDP-1,2880x1800@120,0x0, 1.3333333" 
+        "eDP-1,2880x1800@120,0x0, 1.25" 
+        "eDP-2,2880x1800@120,0x0, 1.25" # ???? Why is there a 2nd eDP on laptop
         ", preferred, auto, 1" 
       ];
 

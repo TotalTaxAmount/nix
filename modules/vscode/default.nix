@@ -15,6 +15,7 @@ let
       font = config.font;
       customcss = customcss.out;
       jdk17 = pkgs.openjdk17;
+      # jdk25 = pkgs.openjdk25;
     };
     name = "settings";
   };
