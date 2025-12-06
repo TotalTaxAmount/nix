@@ -108,11 +108,13 @@ in
             email = "shieldscoen@gmail.com";
             name = user;
           };
+
+          # credential.helper = "store --file=${config.sops.secrets."github_token".path}";
         };
       };
 
       gpg = {
-        enable = true;        
+        enable = true;
         settings = {
           keyserver = "keys.openpgp.org";
         };
@@ -146,7 +148,7 @@ in
       package = config.cursor.package;
       size = config.cursor.size;
     };
-    
+
     home.stateVersion = "25.05"; # Dont change unless changelog says so
 
   };

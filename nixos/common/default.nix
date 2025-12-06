@@ -141,7 +141,7 @@
     "image/bmp" = "org.gnome.gThumb.desktop";
     "image/tiff" = "org.gnome.gThumb.desktop";
     "image/svg+xml" = "org.gnome.gThumb.desktop";
-    };
+  };
 
   boot = {
     loader = {

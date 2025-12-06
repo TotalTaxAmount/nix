@@ -4,6 +4,7 @@
   lib,
   pkgs,
   system,
+  user,
   ...
 }:
 
@@ -25,9 +26,9 @@
     };
 
     displayManager.gdm = {
-        enable = true;
-        wayland = true;
-      };
+      enable = true;
+      wayland = true;
+    };
 
     avahi = {
       enable = true;
@@ -93,8 +94,8 @@
       };
     };
 
-    xpadneo.enable = true;
-      steam-hardware.enable = true;
+    xpadneo.enable = false;
+    steam-hardware.enable = true;
   };
 
   sops = {
@@ -132,9 +133,9 @@
 
     rog-control-center.enable = true;
 
-    nix-ld = { 
+    nix-ld = {
       enable = true;
-      libraries = with pkgs; [avrdude];
+      libraries = with pkgs; [ avrdude ];
     };
   };
 

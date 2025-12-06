@@ -1,7 +1,12 @@
-{ pkgs, config, user, ... }:
+{
+  pkgs,
+  config,
+  user,
+  ...
+}:
 
 let
-  scripts = pkgs.runCommand "scripts" {} ''
+  scripts = pkgs.runCommand "scripts" { } ''
     mkdir -p $out
     cp -r ${./config/scripts}/* $out
   '';
@@ -14,16 +19,16 @@ let
     isExecutable = false;
   };
 
-   system-yuck = pkgs.replaceVarsWith {
+  system-yuck = pkgs.replaceVarsWith {
     src = ./config/modules/system.yuck;
-    replacements.scriptdir = scripts.out; 
+    replacements.scriptdir = scripts.out;
 
     name = "system.yuck";
     dir = "modules";
     isExecutable = false;
   };
 
-   main-yuck = pkgs.replaceVarsWith {
+  main-yuck = pkgs.replaceVarsWith {
     src = ./config/modules/main.yuck;
     replacements.scriptdir = scripts.out;
 
@@ -45,14 +50,14 @@ let
       base0D = "#${config.colorScheme.palette.base0D}";
 
       font = "${config.font}";
-    }; 
+    };
 
     name = "eww.scss";
     dir = ".";
     isExecutable = false;
   };
 
-   nixos-icon = pkgs.replaceVarsWith {
+  nixos-icon = pkgs.replaceVarsWith {
     src = ./config/nixos-icon.svg;
     replacements = {
       base0C = "#${config.colorScheme.palette.base0C}";
@@ -63,7 +68,7 @@ let
     isExecutable = false;
   };
 
-  ewwConfig = pkgs.runCommand "eww-config-compiled" {} ''
+  ewwConfig = pkgs.runCommand "eww-config-compiled" { } ''
     mkdir -p $out/modules
     cp -r ${info-yuck.out}/* $out
     cp -r ${main-yuck.out}/* $out
@@ -76,7 +81,8 @@ let
 
   hyprland-workspaces_updated = pkgs.callPackage ../../external/pkgs/hyprland-workspaces { };
 
-in {
+in
+{
   programs.eww = {
     enable = true;
     configDir = ewwConfig.out;

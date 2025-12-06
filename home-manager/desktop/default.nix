@@ -43,7 +43,7 @@ in
 
     nixpkgs.config.allows = true;
 
-     services = {
+    services = {
       spotifyd.enable = true;
 
       easyeffects.enable = true;
@@ -75,9 +75,11 @@ in
     programs = {
       obs-studio = {
         enable = true;
-        package = (pkgs.obs-studio.override {
-          cudaSupport = true;
-        });
+        package = (
+          pkgs.obs-studio.override {
+            cudaSupport = true;
+          }
+        );
       };
     };
 
@@ -111,7 +113,6 @@ in
       })
       noita_entangled_worlds
       freecad-wayland
-    
 
       # Terminal
       zsh-powerlevel10k
@@ -164,7 +165,7 @@ in
       # Virt
       virt-manager
       virt-viewer
-      spice 
+      spice
       spice-gtk
       spice-protocol
       win-spice

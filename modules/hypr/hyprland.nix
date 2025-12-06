@@ -12,7 +12,7 @@
 let
   backgrounds-dir = pkgs.stdenvNoCC.mkDerivation {
     name = "background-dir";
-    
+
     src = ./backgrounds;
 
     dontBuild = true;
@@ -21,54 +21,64 @@ let
       mkdir -p $out/share/
       cp -r ${./backgrounds/.} $out/share/backgrounds/
     '';
-  } ;
+  };
 
   # TODO: Make this better
-  backgrounds = 
-    let script = ''
-      #!${pkgs.python3}/bin/python3
+  backgrounds =
+    let
+      script = ''
+        #!${pkgs.python3}/bin/python3
 
-      import os
-      import subprocess
-      import time
-      import random
-      from pathlib import Path
+        import os
+        import subprocess
+        import time
+        import random
+        from pathlib import Path
 
-      os.environ['SWWW_TRANSITION_FPS'] = '60'
-      os.environ['SWWW_TRANSITION_STEP'] = '2'
-      os.environ['SWWW_TRANSITION'] = 'center'
-      interval = 60
+        os.environ['SWWW_TRANSITION_FPS'] = '60'
+        os.environ['SWWW_TRANSITION_STEP'] = '2'
+        os.environ['SWWW_TRANSITION'] = 'center'
+        interval = 60
 
-      def set_wallpaper_image_swww(path, output=None):
-          cmd = [f'${pkgs.swww}/bin/swww', 'img']
-          if output:
-              cmd += ['-o', output]
-          cmd.append(path)
-          subprocess.run(cmd)
+        def set_wallpaper_image_swww(path, output=None):
+            cmd = [f'${pkgs.swww}/bin/swww', 'img']
+            if output:
+                cmd += ['-o', output]
+            cmd.append(path)
+            subprocess.run(cmd)
 
-    '' + (if host == "laptop" then ''
-        time.sleep(2) 
-        subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
-        time.sleep(2)
-        wallpaper_dir = Path(f'${backgrounds-dir}/share/backgrounds/laptop')
-        image_files = list(wallpaper_dir.glob('*.jpg'))
+      ''
+      + (
+        if host == "laptop" then
+          ''
+            time.sleep(2) 
+            subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
+            time.sleep(2)
+            wallpaper_dir = Path(f'${backgrounds-dir}/share/backgrounds/laptop')
+            image_files = list(wallpaper_dir.glob('*.jpg'))
 
-        while True:
-            shuffled_files = random.sample(image_files, len(image_files))
-            for path in shuffled_files:
-                print(f"switch: {path}")
-                set_wallpaper_image_swww(path)
-                time.sleep(interval)
-    '' else if host == "desktop" then ''
-        # TODO: Enable when swww works on 2nd monitor
-        subprocess.Popen([f'${pkgs.hyprpaper}/bin/hyprpaper'], close_fds=True)
-        # set_wallpaper_image_swww(f'${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png', 'DP-1')
-        # set_wallpaper_image_swww(f'${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg', 'HDMI-A-1')
-    '' else ''
-        print("No background for ${host}")
-        exit(1)
-    '');
-    in pkgs.writeScriptBin "backgrounds" script;
+            while True:
+                shuffled_files = random.sample(image_files, len(image_files))
+                for path in shuffled_files:
+                    print(f"switch: {path}")
+                    set_wallpaper_image_swww(path)
+                    time.sleep(interval)
+          ''
+        else if host == "desktop" then
+          ''
+            # TODO: Enable when swww works on 2nd monitor
+            subprocess.Popen([f'${pkgs.hyprpaper}/bin/hyprpaper'], close_fds=True)
+            # set_wallpaper_image_swww(f'${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png', 'DP-1')
+            # set_wallpaper_image_swww(f'${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg', 'HDMI-A-1')
+          ''
+        else
+          ''
+            print("No background for ${host}")
+            exit(1)
+          ''
+      );
+    in
+    pkgs.writeScriptBin "backgrounds" script;
 
   audioSwitcher = pkgs.writeScriptBin "audioSwitcher" ''
     #!${pkgs.python3}/bin/python
@@ -187,10 +197,10 @@ let
     };
 
     laptop = {
-      monitor = [ 
-        "eDP-1,2880x1800@120,0x0, 1.25" 
+      monitor = [
+        "eDP-1,2880x1800@120,0x0, 1.25"
         "eDP-2,2880x1800@120,0x0, 1.25" # ???? Why is there a 2nd eDP on laptop
-        ", preferred, auto, 1" 
+        ", preferred, auto, 1"
       ];
 
       input.sensitivity = 0.5;
@@ -218,7 +228,6 @@ in
     wallpaper = HDMI-A-1, ${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg
   '';
 
-
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -229,9 +238,8 @@ in
     ];
 
     settings = lib.mkMerge [
-    {
-      exec-once =
-        [
+      {
+        exec-once = [
           "${backgrounds}/bin/backgrounds"
           "${pkgs.copyq}/bin/copyq"
           "${
@@ -253,118 +261,116 @@ in
             [ ]
         );
 
-      env =
-      [
-        "XCURSOR_SIZE,${builtins.toString config.cursor.size}"
-        "XCURSOR_THEME,${config.cursor.name}"
-        "HYPRCURSOR_SIZE,${builtins.toString config.cursor.size}"
-        "HYPRCURSOR_THEME,${config.cursor.name}"
-      ]
-      ++ (
-        if "${host}" == "laptop" then
-      	  []
-        else if "${host}" == "desktop" then
-          [
-            "LIBVA_DRIVER_NAME,nvidia"
-            "XDG_SESSION_TYPE,nvidia"
-            "GDM_BACKEND,nvidia-drm"
-            "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-          ]
-        else
-          [ ]
-      );
+        env = [
+          "XCURSOR_SIZE,${builtins.toString config.cursor.size}"
+          "XCURSOR_THEME,${config.cursor.name}"
+          "HYPRCURSOR_SIZE,${builtins.toString config.cursor.size}"
+          "HYPRCURSOR_THEME,${config.cursor.name}"
+        ]
+        ++ (
+          if "${host}" == "laptop" then
+            [ ]
+          else if "${host}" == "desktop" then
+            [
+              "LIBVA_DRIVER_NAME,nvidia"
+              "XDG_SESSION_TYPE,nvidia"
+              "GDM_BACKEND,nvidia-drm"
+              "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+            ]
+          else
+            [ ]
+        );
 
-      input = {
-        kb_layout = "us";
+        input = {
+          kb_layout = "us";
 
-        follow_mouse = 1;
-        accel_profile = "flat";
+          follow_mouse = 1;
+          accel_profile = "flat";
 
-        touchpad = {
-          natural_scroll = false;
-          clickfinger_behavior = true;
-          tap-to-click = false;
-          disable_while_typing = false;
+          touchpad = {
+            natural_scroll = false;
+            clickfinger_behavior = true;
+            tap-to-click = false;
+            disable_while_typing = false;
+          };
+
+          sensitivity = lib.mkDefault 0; # -1.0 - 1.0, 0 means no modification.
         };
 
-        sensitivity = lib.mkDefault 0; # -1.0 - 1.0, 0 means no modification.
-      };
+        general = {
+          gaps_in = 2;
+          gaps_out = 4;
+          border_size = 2;
+          "col.active_border" = "rgb(${config.colorScheme.palette.base0D})";
+          "col.inactive_border" = "rgb(${config.colorScheme.palette.base03})";
 
-      general = {
-        gaps_in = 2;
-        gaps_out = 4;
-        border_size = 2;
-        "col.active_border" = "rgb(${config.colorScheme.palette.base0D})";
-        "col.inactive_border" = "rgb(${config.colorScheme.palette.base03})";
-
-        layout = "dwindle";
-      };
-
-      decoration = {
-        rounding = 5;
-        shadow = {
-          enabled = false;
-          range = 5;
-          render_power = 3;
-          color = "rgb(${config.colorScheme.palette.base0D})";
-          color_inactive = "rgb(${config.colorScheme.palette.base03})";
+          layout = "dwindle";
         };
-      };
 
-      animations = {
-        enabled = true;
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-        animation = [
-          "windows, 1, 4, myBezier"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 4, default"
+        decoration = {
+          rounding = 5;
+          shadow = {
+            enabled = false;
+            range = 5;
+            render_power = 3;
+            color = "rgb(${config.colorScheme.palette.base0D})";
+            color_inactive = "rgb(${config.colorScheme.palette.base03})";
+          };
+        };
+
+        animations = {
+          enabled = true;
+          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+          animation = [
+            "windows, 1, 4, myBezier"
+            "border, 1, 10, default"
+            "borderangle, 1, 8, default"
+            "fade, 1, 7, default"
+            "workspaces, 1, 4, default"
+          ];
+        };
+
+        dwindle = {
+          pseudotile = true;
+          preserve_split = true;
+        };
+
+        gesture = [
+          "3, horizontal, workspace"
         ];
-      };
 
-      dwindle = {
-        pseudotile = true;
-        preserve_split = true;
-      };
-
-      gesture = [
-        "3, horizontal, workspace"
-      ];
-
-      xwayland = {
-        force_zero_scaling = true;
-      };
-
-      misc = {
-        disable_hyprland_logo = true;
-        middle_click_paste = false;
-      };
-
-      debug.disable_logs = false;
-
-      experimental = {
-        xx_color_management_v4 = true; 
-      }; 
-
-      plugin = {
-        hyprsplit = {
-          num_workspaces = 9;
+        xwayland = {
+          force_zero_scaling = true;
         };
-      };
 
-      windowrulev2 = [
-        "float,class:(copyq)"
-        "float,title:(VPN_)"
-        "move onscreen cursor,class:(copyq)"
-      ];
+        misc = {
+          disable_hyprland_logo = true;
+          middle_click_paste = false;
+        };
 
-      "$mod" = "SUPER";
+        debug.disable_logs = false;
 
-      misc.enable_anr_dialog = false;
+        experimental = {
+          xx_color_management_v4 = true;
+        };
 
-      bind =
-        [
+        plugin = {
+          hyprsplit = {
+            num_workspaces = 9;
+          };
+        };
+
+        windowrulev2 = [
+          "float,class:(copyq)"
+          "float,title:(VPN_)"
+          "move onscreen cursor,class:(copyq)"
+        ];
+
+        "$mod" = "SUPER";
+
+        misc.enable_anr_dialog = false;
+
+        bind = [
           "$mod, RETURN, exec, alacritty"
           "$mod, E, exec, firefox-devedition -P dev-edition-default"
           "$mod SHIFT, E, exec, firefox-devedition -P School"
@@ -438,8 +444,7 @@ in
             [ ]
         );
 
-      binde =
-        [
+        binde = [
           ",XF86AudioRaiseVolume, exec, amixer set Master 5%+" # More audio
           ",XF86AudioLowerVolume, exec, amixer set Master 5%-"
           ",XF86AudioStop, exec, playerctl stop"
@@ -461,13 +466,12 @@ in
             [ ]
         );
 
-      bindm = [
-        "$mod, mouse:272, movewindow" # Move windows with mouse
-        "$mod, mouse:273, resizewindow" # Resize windows with mouse
-      ];
+        bindm = [
+          "$mod, mouse:272, movewindow" # Move windows with mouse
+          "$mod, mouse:273, resizewindow" # Resize windows with mouse
+        ];
 
-      bindl =
-        [
+        bindl = [
 
         ]
         ++ (

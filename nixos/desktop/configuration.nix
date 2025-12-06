@@ -91,13 +91,13 @@
     xserver = {
       enable = true;
       videoDrivers = lib.mkDefault [ "nvidia" ];
-      
+
     };
 
     displayManager.gdm = {
-        enable = true;
-        wayland = true;
-      };
+      enable = true;
+      wayland = true;
+    };
 
     avahi = {
       enable = true;
@@ -118,7 +118,7 @@
 
   programs = {
     dconf.enable = true;
-    
+
     hyprland = {
       enable = true;
       xwayland.enable = true;
@@ -216,7 +216,11 @@
 
     extraModulePackages = [ pkgs.linuxPackages_cachyos.zenpower ];
 
-    initrd.availableKernelModules = [ "xhci_pci" "ahci" "sd_mod" ];
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "ahci"
+      "sd_mod"
+    ];
 
     tmp.cleanOnBoot = true;
 
