@@ -33,7 +33,7 @@ in
 
     # Flakes
     inputs.nix-colors.homeManagerModule
-    inputs.sops-nix.homeManagerModule
+    # inputs.sops-nix.homeManagerModule
   ];
 
   config = {
@@ -188,19 +188,5 @@ in
       package = pkgs.fluent-gtk-theme;
       name = "Fluent-Dark-compact";
     };
-
-    # sops = {
-    #   defaultSopsFile = ../../secrets/laptop/secrets.yml;
-
-    #   age = {
-    #     sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    #     keyFile = "/var/lib/sops-nix/key.txt";
-    #     generateKey = true;
-    #   };
-
-    #   secrets."github_token" = {
-    #     path = "${config.home.homeDirectory}/.config/secrets/github_token";
-    #   };
-    # };
   };
 }

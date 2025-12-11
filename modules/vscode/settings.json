@@ -86,11 +86,11 @@
     // Java
     "java.configuration.runtimes": [
       {
-        "name": "JavaSE-17",
-        "path": "@jdk17@",
+        "name": "JavaSE-21",
+        "path": "@jdk21@/lib/openjdk",
         "default": true
       }
-    ]
-    // "java.jdt.ls.java.home": "jdk25"
+    ],
+    "java.jdt.ls.java.home": "@jdk21@"
     
 }
