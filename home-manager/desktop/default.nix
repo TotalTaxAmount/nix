@@ -168,6 +168,7 @@ in
       spice-gtk
       spice-protocol
       win-spice
+      kicad
       adwaita-icon-theme
       virtiofsd
     ];
