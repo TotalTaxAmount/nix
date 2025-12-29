@@ -1,7 +1,8 @@
 final: prev:
 
 {
-  lldb = prev.lldb.overrideAttrs { # https://github.com/NixOS/nixpkgs/issues/380196 
+  lldb = prev.lldb.overrideAttrs {
+    # https://github.com/NixOS/nixpkgs/issues/380196
     dontCheckForBrokenSymlinks = true;
   };
 
@@ -22,20 +23,18 @@ final: prev:
   });
 
   xplorer = prev.xplorer.overrideAttrs (old: {
-    postInstall =
-      old.postInstall
-      + ''
-        mkdir -p $out/share/applications
-        echo "
-          [Desktop Entry]
-          Type=Application
-          Version=1.0
-          Name=Xplorer
-          Path=$out/bin
-          Exec=xplorer
-          Icon=$src/src/Icon/icon.png
-        " >> $out/share/applications/xplorer.desktop
-      '';
+    postInstall = old.postInstall + ''
+      mkdir -p $out/share/applications
+      echo "
+        [Desktop Entry]
+        Type=Application
+        Version=1.0
+        Name=Xplorer
+        Path=$out/bin
+        Exec=xplorer
+        Icon=$src/src/Icon/icon.png
+      " >> $out/share/applications/xplorer.desktop
+    '';
 
     patches = (old.patches or [ ]) ++ [ ./patches/xplorer_json_storage.patch ];
   });
@@ -54,12 +53,10 @@ final: prev:
 
   ## Wayland
   vscode = prev.vscode.overrideAttrs (old: {
-    postInstall =
-      (old.postInstall or "")
-      + ''
-        wrapProgram $out/bin/code \
-              --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations \
-              --add-flags --ozone-platform-hint=auto'';
+    postInstall = (old.postInstall or "") + ''
+      wrapProgram $out/bin/code \
+            --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations \
+            --add-flags --ozone-platform-hint=auto'';
   });
 
   bitwarden-desktop = prev.bitwarden-desktop.overrideAttrs (old: {
@@ -76,33 +73,27 @@ final: prev:
   });
 
   slack = prev.slack.overrideAttrs (old: {
-    postInstall =
-      (old.postInstall or "")
-      + ''
-        wrapProgram $out/bin/slack \
-              --add-flags --enable-features=UseOzonePlatform
-      '';
+    postInstall = (old.postInstall or "") + ''
+      wrapProgram $out/bin/slack \
+            --add-flags --enable-features=UseOzonePlatform
+    '';
   });
 
   spotify = prev.spotify.overrideAttrs (old: {
-    postInstall =
-      (old.postInstall or "")
-      + ''
-        wrapProgram $out/bin/spotify \
-                --add-flags --enable-features=UseOzonePlatform \
-                --add-flags --ozone-platform=wayland
-      '';
+    postInstall = (old.postInstall or "") + ''
+      wrapProgram $out/bin/spotify \
+              --add-flags --enable-features=UseOzonePlatform \
+              --add-flags --ozone-platform=wayland
+    '';
   });
 
   obsidian = prev.obsidian.overrideAttrs (old: {
-    postInstall = 
-      (old.postInstall or "")
-      + ''
-        wrapProgram $out/bin/obsidian \
-                --add-flags --no-sandbox \
-                --add-flags --ozone-platform=wayland \
-                --add-flags --ozone-platform-hint=auto \
-                --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations 
-      '';
+    postInstall = (old.postInstall or "") + ''
+      wrapProgram $out/bin/obsidian \
+              --add-flags --no-sandbox \
+              --add-flags --ozone-platform=wayland \
+              --add-flags --ozone-platform-hint=auto \
+              --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations 
+    '';
   });
 }

@@ -37,7 +37,7 @@ let
 
   tmuxConfig = pkgs.replaceVars ./tmux.conf {
     base0D = "#${config.colorScheme.palette.base0D}";
-    
+
   };
 in
 {

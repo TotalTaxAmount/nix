@@ -9,7 +9,7 @@ let
     base0C = "#${config.colorScheme.palette.base0C}";
     base0D = "#${config.colorScheme.palette.base0D}";
     base0F = "#${config.colorScheme.palette.base0F}";
-    
+
   };
 in
 {

@@ -33,7 +33,7 @@ in
 
     # Flakes
     inputs.nix-colors.homeManagerModule
-    inputs.sops-nix.homeManagerModule
+    # inputs.sops-nix.homeManagerModule
   ];
 
   config = {
@@ -48,37 +48,36 @@ in
       size = 16;
     };
 
-
     nixpkgs.config.allowUnfree = true;
 
     services = {
       hypridle = {
-      enable = true;
-      settings = {
-        general = {
-          after_sleep_cmd = "hyprctl dispatch dpms on";
-          ignore_dbus_inhibit = false;
-          lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+        enable = true;
+        settings = {
+          general = {
+            after_sleep_cmd = "hyprctl dispatch dpms on";
+            ignore_dbus_inhibit = false;
+            lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+          };
+
+          listener = [
+            {
+              timeout = 120;
+              on-timeout = "kill $(pgrep eww)";
+              on-resume = " ${pkgs.eww}/bin/eww open laptopMain";
+            }
+            {
+              timeout = 500;
+              on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+            }
+            {
+              timeout = 600;
+              on-timeout = "hyprctl dispatch dpms off";
+              on-resume = "hyprctl dispatch dpms on";
+            }
+          ];
+
         };
-
-        listener = [
-          {
-            timeout = 120;
-            on-timeout = "kill $(pgrep eww)";
-            on-resume = " ${pkgs.eww}/bin/eww open laptopMain";
-          }
-          {
-            timeout = 500;
-            on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
-          }
-          {
-            timeout = 600;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on";
-          }
-        ];
-
-      };
       };
 
       spotifyd.enable = true;
@@ -94,6 +93,7 @@ in
     home.packages = with pkgs; [
       # Apps
       freecad-qt6
+      kicad
       gimp
       spotify
       qFlipper
@@ -137,7 +137,6 @@ in
       wget
       rofi-copyq
       gammastep
-  
 
       #Customization
       swww
@@ -155,7 +154,7 @@ in
       # Game utils
       #    lutris
       wineWowPackages.waylandFull
-      #   gamescope    
+      #   gamescope
       winetricks
       mangohud
       gamemode
@@ -174,7 +173,7 @@ in
       distrobox
       virt-manager
       virt-viewer
-      spice 
+      spice
       spice-gtk
       spice-protocol
       win-spice
@@ -186,8 +185,8 @@ in
     ];
 
     gtk.theme = {
-      package = pkgs.lavanda-gtk-theme;
-      name = "Lavanda-Dark";
+      package = pkgs.fluent-gtk-theme;
+      name = "Fluent-Dark-compact";
     };
   };
 }

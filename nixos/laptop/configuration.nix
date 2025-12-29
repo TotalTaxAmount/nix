@@ -4,6 +4,7 @@
   lib,
   pkgs,
   system,
+  user,
   ...
 }:
 
@@ -16,6 +17,7 @@
   ];
 
   services = {
+    openssh.enable = true;
     flatpak.enable = true;
     spice-vdagentd.enable = true;
     xserver = {
@@ -24,9 +26,9 @@
     };
 
     displayManager.gdm = {
-        enable = true;
-        wayland = true;
-      };
+      enable = true;
+      wayland = true;
+    };
 
     avahi = {
       enable = true;
@@ -69,7 +71,7 @@
 
       extraPackages = with pkgs; [
         intel-media-driver # LIBVA_DRIVER_NAME=iHD
-        vaapiIntel # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+        intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
         libva-vdpau-driver
         libvdpau-va-gl
       ];
@@ -92,8 +94,8 @@
       };
     };
 
-    xpadneo.enable = true;
-      steam-hardware.enable = true;
+    xpadneo.enable = false;
+    steam-hardware.enable = true;
   };
 
   sops = {
@@ -131,9 +133,9 @@
 
     rog-control-center.enable = true;
 
-    nix-ld = { 
+    nix-ld = {
       enable = true;
-      libraries = with pkgs; [avrdude];
+      libraries = with pkgs; [ avrdude ];
     };
   };
 
@@ -168,9 +170,6 @@
       enable = true;
       qemu = {
         swtpm.enable = true;
-        ovmf = {
-          enable = true;
-        };
       };
     };
 

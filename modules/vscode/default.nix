@@ -14,7 +14,7 @@ let
     replacements = {
       font = config.font;
       customcss = customcss.out;
-      jdk17 = pkgs.openjdk17;
+      # jdk17 = pkgs.openjdk17;
       jdk21 = pkgs.openjdk21;
     };
     name = "settings";

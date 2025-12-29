@@ -12,28 +12,14 @@
 keys:
   - &admin_totaltax F86DD3C43118758BA5A3D3A9718CE018D826D164
 
-  - &host_laptop_strix age1dmh7zyq2x9me5v82lqean45c5dtzaks8l4crupl3axdv934lx56qy87u24
   - &host_laptop age12v98gyllwrul8ckunvyqqj4zmftltjt7ed74s6msmvdp3fcgn5vq90fzyh
   - &host_remote age1glckwtavpgnv8cauzh9jqryxs367lm4tjf8fruvewl6exajh65aq4cqk8u
 
 creation_rules:
-  - path_regex: nixos/laptop-strix/secrets/[^/]+\.yml$
-    key_groups:
-      - pgp:
-        - *admin_totaltax
-        age:
-        - *host_laptop_strix
   - path_regex: nixos/laptop/secrets/[^/]+\.yml$
     key_groups:
       - pgp:
         - *admin_totaltax
         age:
         - *host_laptop
-  
-  - path_regex: nixos/remote/secrets/[^/]+\.yml$
-    key_groups:
-      - pgp:
-        - *admin_totaltax
-        age:
-        - *host_remote
 
