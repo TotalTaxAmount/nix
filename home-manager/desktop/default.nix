@@ -175,8 +175,8 @@ in
     ];
 
     gtk.theme = {
-      package = pkgs.lavanda-gtk-theme;
-      name = "Lavanda-Dark";
+      package = pkgs.fluent-gtk-theme;
+      name = "Fluent-Dark-compact";
     };
   };
 }

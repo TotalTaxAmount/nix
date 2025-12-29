@@ -123,12 +123,12 @@
           pkgs
           ;
       };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      formatter.x86_64-linux = pkgs.nixfmt-tree;
 
-      # devShell.x86_64-linux = pkgs.mkShell {  # FIXME: Fix once flake utils is in use
-      #   nativeBuildInputs = with pkgs; [
-      #     nixfmt-rfc-style
-      #   ];
-      # };
+      devShell.x86_64-linux = pkgs.mkShell {  # FIXME: Fix once flake utils is in use
+        nativeBuildInputs = with pkgs; [
+          nixfmt-tree
+        ];
+      };
     };
 }
