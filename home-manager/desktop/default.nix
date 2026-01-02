@@ -169,13 +169,14 @@ in
       spice-gtk
       spice-protocol
       win-spice
+      kicad
       adwaita-icon-theme
       virtiofsd
     ];
 
     gtk.theme = {
-      package = pkgs.lavanda-gtk-theme;
-      name = "Lavanda-Dark";
+      package = pkgs.fluent-gtk-theme;
+      name = "Fluent-Dark-compact";
     };
   };
 }

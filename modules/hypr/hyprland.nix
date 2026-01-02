@@ -408,8 +408,8 @@ in
           "$mod SHIFT, 9, split:movetoworkspace, 9"
           "$mod SHIFT, 0, split:movetoworkspace, 10"
           "$mod, L, exec, hyprlock"
-          "CTRL SHIFT, Print, exec, grimblast --notify copysave screen" # Screenshots
-          "SHIFT, Print, exec, grimblast --notify copysave area"
+          "CTRL SHIFT, Print, exec, grimblast --notify copysave screen $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png" # Screenshots
+          "SHIFT, Print, exec, grimblast --notify copysave area $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
 
           "ALT, Print, exec, ${screen-rec}/bin/screen-rec" # Screenrec
 
