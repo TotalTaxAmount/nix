@@ -64,10 +64,12 @@ in
       enable = true;
       shellAliases = {
         update = "/home/${user}/nix/build.sh"; # TODO: Nixify
-        cat = "bat";
         open = "stupidAlias";
-        ls = "exa -l --icons";
         neofetch = "fastfetch";
+
+        ls = "exa -l --icons";
+        cd = "z";
+        cat = "bat";
       };
       enableCompletion = true;
 
@@ -122,6 +124,11 @@ in
           error_symbol = "[✕](bold red)";
         };
       };
+    };
+
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
     };
 
   };
