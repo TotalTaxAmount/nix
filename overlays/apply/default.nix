@@ -22,6 +22,7 @@ final: prev:
     );
   });
 
+
   xplorer = prev.xplorer.overrideAttrs (old: {
     postInstall = old.postInstall + ''
       mkdir -p $out/share/applications

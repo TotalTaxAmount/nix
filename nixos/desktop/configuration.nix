@@ -45,14 +45,13 @@
 
     nvidia = {
       modesetting.enable = lib.mkDefault true;
-      enabled = true;
 
       powerManagement = {
         enable = true;
         finegrained = false;
       };
 
-      open = true;
+      open = false;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
@@ -156,7 +155,6 @@
     bluez-tools
     bluez-alsa
     brightnessctl
-    sqlint
     libnotify
     pinentry-rofi
 
@@ -213,9 +211,9 @@
       "zenpower"
     ];
 
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_latest;
 
-    extraModulePackages = [ pkgs.linuxPackages_cachyos.zenpower ];
+    extraModulePackages = [ pkgs.linuxPackages_latest.zenpower ];
 
     initrd.availableKernelModules = [
       "xhci_pci"

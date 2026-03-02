@@ -27,7 +27,7 @@ let
   backgrounds =
     let
       script = ''
-        #!${pkgs.python3}/bin/python3
+        #!${pkgs.python314}/bin/python3
 
         import os
         import subprocess
@@ -81,7 +81,7 @@ let
     pkgs.writeScriptBin "backgrounds" script;
 
   audioSwitcher = pkgs.writeScriptBin "audioSwitcher" ''
-    #!${pkgs.python3}/bin/python
+    #!${pkgs.python314}/bin/python
     import sys
     import subprocess
     import re

@@ -34,7 +34,7 @@
   ];
 
   nixpkgs.overlays = [
-    inputs.nix-cachyos-kernel.overlays.default
+    inputs.nix-cachyos-kernel.overlays.pinned
   ];
 
   nix.settings.trusted-users = [

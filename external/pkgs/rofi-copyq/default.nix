@@ -1,6 +1,6 @@
-{ fetchFromGitHub, python311Packages }:
+{ fetchFromGitHub, python314Packages }:
 
-python311Packages.buildPythonPackage rec {
+python314Packages.buildPythonPackage rec {
   pname = "rofi-copyq";
   version = "0.1.1";
 
@@ -12,7 +12,7 @@ python311Packages.buildPythonPackage rec {
   };
 
   pyproject = true;
-  build-system = [ python311Packages.setuptools ];
+  build-system = [ python314Packages.setuptools ];
 
   patches = [ ./better_type.patch ];
 }

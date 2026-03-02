@@ -16,7 +16,6 @@ let
       ;
   };
   rofi-copyq = pkgs.callPackage ../../external/pkgs/rofi-copyq { };
-  noita_entangled_worlds = pkgs.callPackage ../../external/pkgs/noita-worlds { };
 in
 {
   imports = [
@@ -96,8 +95,7 @@ in
       element-desktop
       vesktop
       r2modman
-      libreoffice
-      pulseview
+      # pulseview
       gthumb
       clapper
       qbittorrent
@@ -108,13 +106,12 @@ in
       blender
       # davinci-resolve
       audacity
-      jetbrains.idea-ultimate
+      jetbrains.idea
       lunar-client
       nemo
       (zoom-us.override {
         hyprlandXdgDesktopPortalSupport = true;
       })
-      noita_entangled_worlds
       freecad-wayland
 
       # Terminal
@@ -150,14 +147,14 @@ in
       font-awesome
 
       # Game Stuff
-      wineWowPackages.waylandFull
+      # wineWowPackages.waylandFull
       winetricks
       protontricks
       mangohud
       gamescope
       gamemode
       protonplus
-      lutris
+      # lutris
       inputs.nix-citizen.packages.${pkgs.system}.lug-helper
 
       # Scripts/Misc

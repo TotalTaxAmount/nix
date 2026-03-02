@@ -11,7 +11,6 @@ let
 
   # Custom pkgs
   rofi-copyq = pkgs.callPackage ../../external/pkgs/rofi-copyq { };
-  noita-worlds = pkgs.callPackage ../../external/pkgs/noita-worlds { };
   utils = import ../../modules/utils.nix {
     inherit
       lib
@@ -144,7 +143,7 @@ in
       #Customization
       swww
       # Scripts
-      python3
+      python314
       nodejs
       gcc
 
@@ -161,7 +160,6 @@ in
       winetricks
       mangohud
       gamemode
-      noita-worlds
       protonplus
       # inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
 
