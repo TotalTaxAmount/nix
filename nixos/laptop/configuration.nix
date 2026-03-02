@@ -7,7 +7,6 @@
   user,
   ...
 }:
-
 {
   imports = [
     ./hardware.nix
@@ -22,13 +21,17 @@
     spice-vdagentd.enable = true;
     xserver = {
       enable = true;
-      videoDrivers = lib.mkDefault [ "nvidia" ];
+      videoDrivers = lib.mkDefault [
+        "amdgpu"
+        "nvidia"
+      ];
     };
 
     displayManager.gdm = {
       enable = true;
       wayland = true;
     };
+    # desktopManager.cosmic.enable = true;
 
     avahi = {
       enable = true;
@@ -48,10 +51,24 @@
       };
     };
 
-    udev.packages = [
-      pkgs.platformio-core.udev
-      pkgs.openocd
-    ];
+    udev = {
+      packages = [
+        pkgs.platformio-core.udev
+        pkgs.openocd
+      ];
+
+      # Hyprland iGPU/dGPU path
+      extraRules = ''
+        KERNEL=="card*", KERNELS=="0000:65:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/amd-igpu"
+        KERNEL=="card*", KERNELS=="0000:01:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-gpu"
+
+      '';
+    };
+
+    asusd = {
+      enable = true;
+      enableUserService = true;
+    };
 
     blueman.enable = true;
     printing.enable = true;
@@ -81,6 +98,10 @@
 
     nvidia = {
       modesetting.enable = lib.mkDefault true;
+      powerManagement = {
+        enable = true;
+        finegrained = true;
+      };
 
       open = false; # Issues with open drives
       nvidiaSettings = true;
@@ -182,17 +203,26 @@
     };
   };
 
+  powerManagement.powertop.enable = true;
+
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   boot = {
     kernelParams = [
       "acpi_backlight=native" # Fix backlight not working
     ];
+
+    extraModprobeConfig = ''
+      options nvidia NVreg_DynamicPowerManagement=0x02
+      options nvidia NVreg_EnableGpuFirmware=0
+    '';
 
     supportedFilesystems = [ "nfs" ];
     kernelModules = [
       "kvm-amd"
     ];
     tmp.cleanOnBoot = true;
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_latest;
 
     # Star citizen
     kernel.sysctl = {

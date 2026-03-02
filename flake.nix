@@ -54,10 +54,8 @@
       url = "github:shezdy/hyprsplit";
       inputs.hyprland.follows = "hyprland";
     };
-
-    chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    };
+    
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -125,7 +123,8 @@
       };
       formatter.x86_64-linux = pkgs.nixfmt-tree;
 
-      devShell.x86_64-linux = pkgs.mkShell {  # FIXME: Fix once flake utils is in use
+      devShell.x86_64-linux = pkgs.mkShell {
+        # FIXME: Fix once flake utils is in use
         nativeBuildInputs = with pkgs; [
           nixfmt-tree
         ];

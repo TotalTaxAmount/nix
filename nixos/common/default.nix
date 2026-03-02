@@ -3,6 +3,7 @@
   lib,
   pkgs,
   user,
+  inputs,
   ...
 }:
 
@@ -30,6 +31,10 @@
     # Not sure if this is still needed
     "nix-command"
     "flakes"
+  ];
+
+  nixpkgs.overlays = [
+    inputs.nix-cachyos-kernel.overlays.default
   ];
 
   nix.settings.trusted-users = [

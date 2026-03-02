@@ -45,6 +45,7 @@
 
     nvidia = {
       modesetting.enable = lib.mkDefault true;
+      enabled = true;
 
       powerManagement = {
         enable = true;

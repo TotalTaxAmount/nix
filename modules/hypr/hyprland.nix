@@ -84,91 +84,77 @@ let
     #!${pkgs.python3}/bin/python
     import sys
     import subprocess
+    import re
 
     """
-    Wireplumber sink/source switcher
-
-    It lets you pass your sinks/sources into a dmenu dropdown
-    for ease of access
-
-    Usage:
-    ./wireplumber_audio_switcher.py <Sinks|Sources>
+    WirePlumber switcher using node.description for clean Rofi menus.
     """
 
-    GROUP_DELIMITER = " ├─"
-    ITEM_DELIMITER  = " │  "
-    ACCEPTED_GROUPS = set(["Sinks:", "Sources:"])
+    def get_nodes(target_class):
+        # Get status to find all numeric IDs present in the graph
+        proc = subprocess.run(["${pkgs.wireplumber}/bin/wpctl", "status"], capture_output=True, text=True)
+        
+        # Matches lines like "  74. Some Device Name" or "* 63. Internal Audio"
+        potential_ids = re.findall(r"(\*?)\s+(\d+)\.", proc.stdout)
+        
+        valid_nodes = []
+        seen_ids = set()
 
-    def clean_line(line: str):
-        line = line.replace(GROUP_DELIMITER, "").replace(ITEM_DELIMITER, "").replace(":", "")
-        vol_index = line.find("[")
-        if vol_index > 0:
-            line = line[:vol_index]
-        if "*" in line:
-            line = line.replace("*", "")
-            splitted = line.split(".")
-            splitted[1] = f"<b>{splitted[1].strip()} *</b>"
-            line = ". ".join(splitted)
-        return line.strip()
+        for is_default, node_id in potential_ids:
+            if node_id in seen_ids:
+                continue
+            seen_ids.add(node_id)
 
-    def parse_wpctl_status():
-        found_audio_tab = False
-        current_subgroup = None
-        processed_data = {}
-        output = subprocess.run(
-            "${pkgs.wireplumber}/bin/wpctl status -k",
-            shell=True,
-            encoding="utf-8",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            # Inspect each node to verify class and get the friendly description
+            inspect = subprocess.run(["${pkgs.wireplumber}/bin/wpctl", "inspect", node_id], capture_output=True, text=True)
+            
+            # 1. Verify this is the correct media class (e.g., Audio/Sink)
+            if f'media.class = "{target_class}"' in inspect.stdout:
+                
+                # 2. Extract node.description using regex
+                # Example: node.description = "Coen Shields' Pixel Buds Pro"
+                desc_match = re.search(r'node.description = "(.*)"', inspect.stdout)
+                friendly_name = desc_match.group(1) if desc_match else f"Unknown Device ({node_id})"
+                
+                display = f"{node_id}. {friendly_name}"
+                if "*" in is_default:
+                    display = f"<b>{display} *</b>"
+                
+                valid_nodes.append(display)
+        
+        return valid_nodes
+
+    def main():
+        if len(sys.argv) != 2:
+            print("Usage: audioSwitcher <Sinks|Sources>")
+            sys.exit(1)
+
+        category = sys.argv[1]
+        target_class = "Audio/Sink" if category == "Sinks" else "Audio/Source"
+        
+        nodes = get_nodes(target_class)
+        
+        if not nodes:
+            print(f"No valid {category} found.")
+            sys.exit(1)
+
+        # Show Rofi menu
+        rofi = subprocess.run(
+            ["${pkgs.rofi}/bin/rofi", "-dmenu", "-markup-rows", "-p", f"Select {category[:-1]}"],
+            input="\n".join(nodes),
+            text=True,
+            capture_output=True
         )
 
-        for line in output.stdout.split("\n"):
-            if not found_audio_tab and line == "Audio":
-                found_audio_tab = True
+        if rofi.returncode == 0 and rofi.stdout.strip():
+            # Strip <b> tags for ID extraction
+            clean_selection = re.sub(r"<[^>]*>", "", rofi.stdout.strip())
+            # Split by the first "." to get the ID
+            node_id = clean_selection.split(".")[0].strip()
+            subprocess.run(["${pkgs.wireplumber}/bin/wpctl", "set-default", node_id])
 
-            elif found_audio_tab:
-                if line == "":
-                    found_audio_tab = False
-                    break
-                elif line == ITEM_DELIMITER:
-                    current_subgroup = None
-                    continue
-                elif line.startswith(GROUP_DELIMITER):
-                    current_subgroup = clean_line(line)
-                    processed_data[current_subgroup] = []
-                    continue
-                elif current_subgroup and line.startswith(ITEM_DELIMITER):
-                    processed_data[current_subgroup].append(clean_line(line))
-                    continue
-        return processed_data
-
-    def escape_output(output):
-      return output.replace("'", "'\'")
-
-    def pipe_into_dmenu(output):
-        escaped = escape_output(output)
-        output = subprocess.run(
-            f"echo '{escaped}' | ${pkgs.rofi}/bin/rofi -dmenu -markup-rows",
-            shell=True,
-            encoding="utf-8",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-        )
-
-        if output.returncode != 0:
-            return None
-        return output.stdout
-
-    output = parse_wpctl_status()
-    sink = pipe_into_dmenu("\n".join(output[sys.argv[1]]))
-
-    if sink:
-        sink_id = sink.split(".")[0]
-        subprocess.run(
-            f"${pkgs.wireplumber}/bin/wpctl set-default {sink_id}",
-            shell=True
-        )
+    if __name__ == "__main__":
+        main()
   '';
 
   screen-rec = pkgs.writeScriptBin "screen-rec" ''
@@ -206,7 +192,6 @@ let
       input.sensitivity = 0.5;
     };
   };
-
 in
 {
   home.packages = with pkgs; [
@@ -234,7 +219,7 @@ in
 
     package = lib.mkDefault inputs.hyprland.packages.${system}.hyprland;
     plugins = [
-      inputs.hyprsplit.packages.${pkgs.system}.hyprsplit
+      inputs.hyprsplit.packages.${system}.hyprsplit
     ];
 
     settings = lib.mkMerge [
@@ -242,9 +227,7 @@ in
         exec-once = [
           "${backgrounds}/bin/backgrounds"
           "${pkgs.copyq}/bin/copyq"
-          "${
-            inputs.hyprland.packages.${system}.hyprland
-          }/bin/hyprctl setcursor ${config.cursor.name} ${builtins.toString config.cursor.size}"
+          "${inputs.hyprland.packages.${system}.hyprland}/bin/hyprctl setcursor ${config.cursor.name} ${toString config.cursor.size}"
         ]
         ++ (
           if "${host}" == "laptop" then
@@ -262,14 +245,16 @@ in
         );
 
         env = [
-          "XCURSOR_SIZE,${builtins.toString config.cursor.size}"
+          "XCURSOR_SIZE,${toString config.cursor.size}"
           "XCURSOR_THEME,${config.cursor.name}"
-          "HYPRCURSOR_SIZE,${builtins.toString config.cursor.size}"
+          "HYPRCURSOR_SIZE,${toString config.cursor.size}"
           "HYPRCURSOR_THEME,${config.cursor.name}"
         ]
         ++ (
           if "${host}" == "laptop" then
-            [ ]
+            [
+              "AQ_DRM_DEVICES,/dev/dri/amd-igpu:/dev/dri/nvidia-gpu"
+            ]
           else if "${host}" == "desktop" then
             [
               "LIBVA_DRIVER_NAME,nvidia"
@@ -350,21 +335,17 @@ in
 
         debug.disable_logs = false;
 
-        experimental = {
-          xx_color_management_v4 = true;
-        };
-
         plugin = {
           hyprsplit = {
             num_workspaces = 9;
           };
         };
 
-        windowrulev2 = [
-          "float,class:(copyq)"
-          "float,title:(VPN_)"
-          "move onscreen cursor,class:(copyq)"
-        ];
+        # windowrulev2 = [
+        #   "float,class:(copyq)"
+        #   "float,title:(VPN_)"
+        #   "move onscreen cursor,class:(copyq)"
+        # ];
 
         "$mod" = "SUPER";
 

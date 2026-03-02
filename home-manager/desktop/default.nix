@@ -41,7 +41,10 @@ in
       size = 16;
     };
 
-    nixpkgs.config.allows = true;
+    nixpkgs.config = {
+      allowUnfree = true;
+      cudaSupport = true;
+    };
 
     services = {
       spotifyd.enable = true;

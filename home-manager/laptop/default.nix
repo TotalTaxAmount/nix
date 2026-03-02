@@ -48,7 +48,10 @@ in
       size = 16;
     };
 
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+      allowUnfree = true;
+      cudaSupport = true;
+    };
 
     services = {
       hypridle = {
@@ -100,11 +103,11 @@ in
       prismlauncher
       firefox-devedition
       # element-desktop
-      vesktop
+      # vesktop
       zoom-us
       ghidra
       obsidian
-      bitwarden-desktop
+      # bitwarden-desktop
       pulseview
       gthumb
       wl-screenrec

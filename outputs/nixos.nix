@@ -17,7 +17,6 @@ in
       host = "laptop";
     };
     modules = [
-      inputs.chaotic.nixosModules.default
       ../nixos/common
       ../nixos/laptop/hardware.nix
       ../nixos/laptop/configuration.nix
@@ -31,7 +30,6 @@ in
       host = "desktop";
     };
     modules = [
-      inputs.chaotic.nixosModules.default
       inputs.lanzaboote.nixosModules.lanzaboote
 
       ../nixos/common
