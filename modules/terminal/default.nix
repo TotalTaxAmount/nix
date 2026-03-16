@@ -54,7 +54,7 @@ in
         tmux-powerline
         tmuxPlugins.better-mouse-mode
         tmuxPlugins.power-theme
-        (net-speed.overrideAttrs (oldAttrs: {
+        (tmuxPlugins.net-speed.overrideAttrs (oldAttrs: {
           postInstall = (oldAttrs.postInstall or "") + ''
             chmod +x $out/share/tmux-plugins/net-speed/*.tmux
             patchShebangs $out/share/tmux-plugins/net-speed
