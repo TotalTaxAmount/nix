@@ -85,16 +85,16 @@ in
       spotifyd.enable = true;
     };
 
-    programs = {
-      obs-studio = {
-        enable = true;
-        package = (pkgs.obs-studio.override { cudaSupport = true; });
-      };
-    };
+    # programs = {
+    #   obs-studio = {
+    #     enable = true;
+    #     package = (pkgs.obs-studio.override { cudaSupport = true; });
+    #   };
+    # };
 
     home.packages = with pkgs; [
       # Apps
-      freecad-qt6
+      # freecad-qt6
       kicad
       gimp
       spotify
@@ -104,10 +104,10 @@ in
       # element-desktop
       # vesktop
       zoom-us
-      ghidra
-      obsidian
+      # ghidra
+      # obsidian
       # bitwarden-desktop
-      pulseview
+      # pulseview
       gthumb
       wl-screenrec
       clapper
@@ -116,12 +116,12 @@ in
       utils.print-colors
       nautilus
       # postman
-      nomacs
+      # nomacs
       qbittorrent
       slack
       freecad-wayland
       # davinci-resolve
-      audacity
+      # audacity
 
       #Terminal Apps/Config
       zsh-powerlevel10k
@@ -155,9 +155,9 @@ in
 
       # Game utils
       #    lutris
-      wineWowPackages.waylandFull
+      # wineWowPackages.waylandFull
       #   gamescope
-      winetricks
+      # winetricks
       mangohud
       gamemode
       protonplus
