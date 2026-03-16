@@ -66,7 +66,6 @@
     };
 
     asusd.enable = true;
-    
 
     blueman.enable = true;
     printing.enable = true;

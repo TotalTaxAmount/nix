@@ -143,7 +143,7 @@ in
       #Customization
       swww
       # Scripts
-      python314
+      # python314
       nodejs
       gcc
 
