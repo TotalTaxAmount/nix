@@ -11,7 +11,6 @@
 {
   imports = [
     ./hardware.nix
-    # ../../modules/nvml.nix
     inputs.nvml-tune.nixosModules.nvml
     inputs.nix-citizen.nixosModules.StarCitizen
   ];

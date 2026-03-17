@@ -8,7 +8,7 @@
 }:
 
 let
-  base16Themes = inputs.nix-colors.colorSchemes;
+
   utils = import ../../modules/utils.nix {
     inherit
       lib
@@ -90,8 +90,7 @@ in
       fastfetch
 
       #Apps
-      # bitwarden-desktop
-      # thunderbird
+
     ];
 
     programs = {
@@ -108,7 +107,6 @@ in
             name = user;
           };
 
-          # credential.helper = "store --file=${config.sops.secrets."github_token".path}";
         };
       };
 

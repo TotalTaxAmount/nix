@@ -31,7 +31,6 @@
       enable = true;
       wayland = true;
     };
-    # desktopManager.cosmic.enable = true;
 
     avahi = {
       enable = true;
@@ -145,9 +144,6 @@
       dedicatedServer.openFirewall = true;
     };
 
-    # coolercontrol = {
-    #   enable = true;
-    # };
 
     rog-control-center.enable = true;
 
@@ -181,7 +177,7 @@
   ];
 
   virtualisation = {
-    # waydroid.enable = true;
+    # waydroid.enable = true;    
     spiceUSBRedirection.enable = true;
 
     libvirtd = {

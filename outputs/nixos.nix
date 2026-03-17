@@ -11,7 +11,7 @@ let
 in
 {
   laptop = nixosSystem {
-    inherit pkgs system; # TODO fix!
+    inherit pkgs system;
     specialArgs = {
       inherit inputs user system;
       host = "laptop";

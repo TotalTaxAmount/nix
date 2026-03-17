@@ -95,20 +95,17 @@ in
       element-desktop
       vesktop
       r2modman
-      # pulseview
       gthumb
       clapper
       qbittorrent
-      piper
+
       slack
       copyq
       rofi-copyq
+      
       blender
-      # davinci-resolve
-      audacity
-      jetbrains.idea
       lunar-client
-      nemo
+      nautilus
       (zoom-us.override {
         hyprlandXdgDesktopPortalSupport = true;
       })
@@ -116,7 +113,6 @@ in
 
       # Terminal
       zsh-powerlevel10k
-      neofetch
       file
       playerctl
       tree
@@ -131,7 +127,6 @@ in
       socat
       bat
       openal
-      # qt5.full
       wget
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
       slurp
@@ -147,14 +142,12 @@ in
       font-awesome
 
       # Game Stuff
-      # wineWowPackages.waylandFull
       winetricks
       protontricks
       mangohud
       gamescope
       gamemode
       protonplus
-      # lutris
       inputs.nix-citizen.packages.${pkgs.system}.lug-helper
 
       # Scripts/Misc

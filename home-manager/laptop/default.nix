@@ -85,43 +85,27 @@ in
       spotifyd.enable = true;
     };
 
-    # programs = {
-    #   obs-studio = {
-    #     enable = true;
-    #     package = (pkgs.obs-studio.override { cudaSupport = true; });
-    #   };
-    # };
 
     home.packages = with pkgs; [
       # Apps
-      # freecad-qt6
       kicad
       gimp
       spotify
       qFlipper
       prismlauncher
       firefox-devedition
-      # element-desktop
-      # vesktop
       zoom-us
-      # ghidra
-      # obsidian
-      # bitwarden-desktop
-      # pulseview
       gthumb
+
       wl-screenrec
       clapper
       ffmpeg
       killall
       utils.print-colors
       nautilus
-      # postman
-      # nomacs
-      qbittorrent
+
       slack
       freecad-wayland
-      # davinci-resolve
-      # audacity
 
       #Terminal Apps/Config
       zsh-powerlevel10k
@@ -132,36 +116,20 @@ in
       #Utils
       jq
       socat
-      #      nvtop
       bat
       openal
-
       wget
       rofi-copyq
       gammastep
 
       #Customization
       swww
-      # Scripts
-      # python314
-      nodejs
-      gcc
 
-      # IDEs
-      #     jetbrains.clion
-      # (jetbrains.idea-ultimate.override {
-      #   jdk = pkgs.openjdk21; # TODO: https://github.com/NixOS/nixpkgs/issues/426815
-      # })
-
-      # Game utils
-      #    lutris
-      # wineWowPackages.waylandFull
-      #   gamescope
-      # winetricks
+      # Games
       mangohud
+      gcc
       gamemode
       protonplus
-      # inputs.nix-gaming.packages.${pkgs.system}.wine-discord-ipc-bridge
 
       # Screenshot
       inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
