@@ -207,10 +207,14 @@ in
 
   # TODO: remove once swww issue is fixed
   xdg.configFile."hypr/hyprpaper.conf".text = ''
-    preload = ${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png
-    preload = ${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg
-    wallpaper = DP-1, ${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png
-    wallpaper = HDMI-A-1, ${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg
+    wallpaper {
+      monitor = DP-1
+      path = ${backgrounds-dir}/share/backgrounds/desktop/ultrawide.png
+    }
+    wallpaper {
+      monitor = HDMI-A-1
+      path = ${backgrounds-dir}/share/backgrounds/desktop/2nd.jpg
+    }
   '';
 
   wayland.windowManager.hyprland = {
