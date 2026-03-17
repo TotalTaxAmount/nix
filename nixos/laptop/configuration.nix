@@ -65,10 +65,7 @@
       '';
     };
 
-    asusd = {
-      enable = true;
-      enableUserService = true;
-    };
+    asusd.enable = true;
 
     blueman.enable = true;
     printing.enable = true;
@@ -148,9 +145,9 @@
       dedicatedServer.openFirewall = true;
     };
 
-    coolercontrol = {
-      enable = true;
-    };
+    # coolercontrol = {
+    #   enable = true;
+    # };
 
     rog-control-center.enable = true;
 
@@ -184,7 +181,7 @@
   ];
 
   virtualisation = {
-    waydroid.enable = true;
+    # waydroid.enable = true;
     spiceUSBRedirection.enable = true;
 
     libvirtd = {
@@ -224,7 +221,7 @@
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
 
-    # Star citizen
+    # Games
     kernel.sysctl = {
       "vm.max_map_count" = 16777216;
       "fs.file-max" = 524288;

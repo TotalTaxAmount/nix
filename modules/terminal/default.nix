@@ -54,7 +54,12 @@ in
         tmux-powerline
         tmuxPlugins.better-mouse-mode
         tmuxPlugins.power-theme
-        tmuxPlugins.net-speed
+        (tmuxPlugins.net-speed.overrideAttrs (oldAttrs: {
+          postInstall = (oldAttrs.postInstall or "") + ''
+            chmod +x $out/share/tmux-plugins/net-speed/*.tmux
+            patchShebangs $out/share/tmux-plugins/net-speed
+          '';
+        }))
       ];
 
       extraConfig = builtins.readFile tmuxConfig.out;
@@ -117,7 +122,7 @@ in
       enable = true;
       enableZshIntegration = true;
       settings = {
-        format = ''$all'';
+        format = "$all";
         add_newline = false;
         character = {
           success_symbol = "[➜](bold green)";

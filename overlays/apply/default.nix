@@ -22,7 +22,6 @@ final: prev:
     );
   });
 
-
   xplorer = prev.xplorer.overrideAttrs (old: {
     postInstall = old.postInstall + ''
       mkdir -p $out/share/applications
@@ -85,16 +84,6 @@ final: prev:
       wrapProgram $out/bin/spotify \
               --add-flags --enable-features=UseOzonePlatform \
               --add-flags --ozone-platform=wayland
-    '';
-  });
-
-  obsidian = prev.obsidian.overrideAttrs (old: {
-    postInstall = (old.postInstall or "") + ''
-      wrapProgram $out/bin/obsidian \
-              --add-flags --no-sandbox \
-              --add-flags --ozone-platform=wayland \
-              --add-flags --ozone-platform-hint=auto \
-              --add-flags --enable-features=UseOzonePlatform,WaylandWindowDecorations 
     '';
   });
 }

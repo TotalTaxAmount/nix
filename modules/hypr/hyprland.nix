@@ -231,7 +231,9 @@ in
         exec-once = [
           "${backgrounds}/bin/backgrounds"
           "${pkgs.copyq}/bin/copyq"
-          "${inputs.hyprland.packages.${system}.hyprland}/bin/hyprctl setcursor ${config.cursor.name} ${toString config.cursor.size}"
+          "${
+            inputs.hyprland.packages.${system}.hyprland
+          }/bin/hyprctl setcursor ${config.cursor.name} ${toString config.cursor.size}"
         ]
         ++ (
           if "${host}" == "laptop" then
@@ -364,7 +366,7 @@ in
           "$mod, G, togglefloating"
           "$mod, R, exec, rofi -show drun"
           "$mod, P, pseudo"
-          "$mod, J, togglesplit"
+          # "$mod, J, togglesplit"
           "$mod, a, movefocus, l"
           "$mod, d, movefocus, r"
           "$mod, w, movefocus, u"

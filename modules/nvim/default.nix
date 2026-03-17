@@ -33,7 +33,7 @@ let
 
 in
 {
-  home.packages = with pkgs; [ lunarvim ];
+  home.packages = with pkgs; [ neovim ];
 
   programs.zsh.shellAliases = {
     vi = "lvim";
