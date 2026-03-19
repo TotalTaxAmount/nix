@@ -124,6 +124,7 @@
   security = {
     rtkit.enable = true; # Need for pipewire
     polkit.enable = true;
+    pam.services.gdm.enableGnomeKeyring = true;
   };
 
   programs.zsh = {

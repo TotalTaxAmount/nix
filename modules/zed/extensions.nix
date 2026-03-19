@@ -6,4 +6,5 @@
   "java"
   "one-dark-darkened"
   "material-icon-theme"
+  "groovy"
 ]

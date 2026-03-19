@@ -85,7 +85,7 @@
     udev.extraRules = ''
       # Basler USB cameras
       SUBSYSTEM=="usb", ATTR{idVendor}=="2676", MODE="0666", GROUP="users"
-    ''; 
+    '';
 
     hardware.openrgb = {
       enable = true;
@@ -151,6 +151,8 @@
       enable = true;
       capSysNice = true;
     };
+
+    nix-ld.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

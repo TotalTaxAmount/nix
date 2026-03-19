@@ -1,4 +1,5 @@
-{pkgs}: {
+{ pkgs }:
+{
   nil = {
     binary = {
       path = "${pkgs.nil}/bin/nil";
@@ -13,6 +14,11 @@
   };
 
   jdtls = {
-    settings.java_home = "${pkgs.openjdk21}/lib/openjdk";
+    settings = {
+      java_home = "${pkgs.openjdk21}";
+      import = {
+        gradle.enable = true;
+      };
+    };
   };
 }

@@ -7,6 +7,13 @@
   #     # }
   #   ];
   # };
+  #
+  agent = {
+    defualt_model = {
+      provider = "google";
+      model = "gemini-3-pro";
+    };
+  };
 
   # Coere
   # hour_format = "hour24";
@@ -16,7 +23,7 @@
 
   # Theme
   theme = "One Dark - Darkened";
-  icon_theme = "Meterial Icon Theme";
+  icon_theme = "Material Icon Theme";
   project_panel = {
     indent_guides.show = "never";
   };
@@ -47,4 +54,11 @@
     "**/.hg/store/**"
   ];
 
+  languages = {
+    Java = {
+      format_on_save = "off";
+      enable_language_server = true;
+      formatter = null;
+    };
+  };
 }

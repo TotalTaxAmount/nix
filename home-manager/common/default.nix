@@ -96,12 +96,15 @@ in
     programs = {
       git = {
         enable = true;
+        package = pkgs.gitFull;
+
         settings = {
           pull.rebase = false;
           user.signingkey = "718CE018D826D164";
           commit.gpgsign = true;
-          core.editor = "${pkgs.neovim}/bin/lvim";
+          core.editor = "${pkgs.zed-editor}/bin/zeditor --wait";
           http.curlOptions = "-4";
+          credential.helper = "libsecret";
           user = {
             email = "shieldscoen@gmail.com";
             name = user;
