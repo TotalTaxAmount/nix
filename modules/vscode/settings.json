@@ -91,6 +91,8 @@
         "default": true
       }
     ],
-    "java.jdt.ls.java.home": "@jdk21@"
+    "java.jdt.ls.java.home": "@jdk21@",
+
+    "http.systemCertificatesNode": true
     
 }

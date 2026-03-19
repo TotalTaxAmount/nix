@@ -82,6 +82,11 @@
       };
     };
 
+    udev.extraRules = ''
+      # Basler USB cameras
+      SUBSYSTEM=="usb", ATTR{idVendor}=="2676", MODE="0666", GROUP="users"
+    ''; 
+
     hardware.openrgb = {
       enable = true;
       motherboard = "amd";
@@ -211,6 +216,10 @@
     ];
 
     kernelPackages = pkgs.linuxPackages_latest;
+
+    kernelParams = [
+      "usbcore.autosuspend=-1"
+    ];
 
     extraModulePackages = [ pkgs.linuxPackages_latest.zenpower ];
 

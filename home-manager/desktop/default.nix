@@ -26,6 +26,7 @@ in
     ../../modules/eww
     ../../modules/dunst
     ../../modules/vscode
+    ../../modules/zed
 
     inputs.nix-colors.homeManagerModule
   ];
@@ -71,17 +72,6 @@ in
             }
           ];
         };
-      };
-    };
-
-    programs = {
-      obs-studio = {
-        enable = true;
-        package = (
-          pkgs.obs-studio.override {
-            cudaSupport = true;
-          }
-        );
       };
     };
 

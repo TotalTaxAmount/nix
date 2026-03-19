@@ -1,0 +1,9 @@
+[
+  "nix"
+  "toml"
+  "dockerfile"
+  "docker-compose"
+  "java"
+  "one-dark-darkened"
+  "material-icon-theme"
+]
