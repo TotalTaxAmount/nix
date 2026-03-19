@@ -90,6 +90,7 @@ in
       fastfetch
 
       #Apps
+      #
 
     ];
 
