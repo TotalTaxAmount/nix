@@ -88,10 +88,6 @@ in
       unzip
       file
       fastfetch
-
-      #Apps
-
-
     ];
 
     programs = {

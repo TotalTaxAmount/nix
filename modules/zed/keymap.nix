@@ -9,4 +9,11 @@
       ];
     };
   }
+  {
+    context = "Terminal";
+    bindings = {
+      "ctrl-n" = "workspace::NewTerminal";
+      "ctrl-w" = "pane::CloseActiveItem";
+    };
+  }
 ]

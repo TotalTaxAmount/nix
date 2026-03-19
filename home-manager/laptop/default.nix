@@ -29,6 +29,7 @@ in
     ../../modules/eww
     ../../modules/dunst
     ../../modules/vscode
+    ../../modules/zed
 
     # Flakes
     inputs.nix-colors.homeManagerModule
@@ -84,7 +85,6 @@ in
 
       spotifyd.enable = true;
     };
-
 
     home.packages = with pkgs; [
       # Apps
