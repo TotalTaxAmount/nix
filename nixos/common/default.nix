@@ -41,6 +41,8 @@
     user
   ];
 
+  nix.package = pkgs.lixPackageSets.stable.lix;
+
   users.users."${user}" = {
     isNormalUser = true;
     description = "";

@@ -28,6 +28,7 @@ in
     inputs.nix-colors.homeManagerModule
 
   ];
+
   options = {
     font = pkgs.lib.mkOption {
       type = pkgs.lib.types.str;
