@@ -52,6 +52,7 @@
       "wheel"
       "libvirtd"
       "dialout"
+      "plugdev"
     ];
   };
 
