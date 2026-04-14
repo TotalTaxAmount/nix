@@ -61,7 +61,6 @@ in
           version = "0.0.2";
           sha256 = "sha256-TVvjKdKXeExpnyUh+fDPl+eSdlQzh7lt8xSfw1YgtL4=";
         }
-        p
         {
           name = "vsc-material-theme-but-i-wont-sue-you";
           publisher = "t3dotgg";
