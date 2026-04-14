@@ -62,7 +62,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs = {
@@ -80,6 +79,8 @@
       url = "github:TotalTaxAmount/nvml-tune-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    deadlock-api-ingest.url = "github:deadlock-api/deadlock-api-ingest";
 
   };
 

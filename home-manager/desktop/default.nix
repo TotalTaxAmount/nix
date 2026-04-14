@@ -92,7 +92,7 @@ in
       slack
       copyq
       rofi-copyq
-      
+
       blender
       lunar-client
       nautilus

@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  user,
   ...
 }:
 
@@ -11,6 +12,7 @@
     ./hardware.nix
     inputs.nvml-tune.nixosModules.nvml
     inputs.nix-citizen.nixosModules.StarCitizen
+    inputs.deadlock-api-ingest.nixosModules.default
   ];
 
   nix.settings = {
@@ -112,11 +114,22 @@
       pkgs.qmk-udev-rules
     ];
 
+    deadlock-api-ingest = {
+      enable = true;
+      user = "${user}";
+      group = "users";
+      package = inputs.deadlock-api-ingest.packages.${pkgs.system}.default;
+    };
+
     printing.enable = true;
     flatpak.enable = true;
     seatd.enable = true;
     blueman.enable = true;
   };
+
+  systemd.tmpfiles.rules = [
+    "d /home/${user}/.local/share/deadlock-api-ingest 0755 totaltaxamount users -" # Fix deadlock-api-ingest
+  ];
 
   programs = {
     dconf.enable = true;
