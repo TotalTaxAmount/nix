@@ -61,12 +61,7 @@ in
           version = "0.0.2";
           sha256 = "sha256-TVvjKdKXeExpnyUh+fDPl+eSdlQzh7lt8xSfw1YgtL4=";
         }
-        {
-          name = "asm-code-lens";
-          publisher = "maziac";
-          version = "2.6.0";
-          sha256 = "sha256-4p3kizvEqqsMNJOhyKxJQ0rH3ePjstKLWb22BYy3yZk=";
-        }
+        p
         {
           name = "vsc-material-theme-but-i-wont-sue-you";
           publisher = "t3dotgg";

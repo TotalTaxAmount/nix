@@ -7,4 +7,5 @@
   "one-dark-darkened"
   "material-icon-theme"
   "groovy"
+  "proto"
 ]

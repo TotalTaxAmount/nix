@@ -35,13 +35,13 @@ let
         import random
         from pathlib import Path
 
-        os.environ['SWWW_TRANSITION_FPS'] = '60'
-        os.environ['SWWW_TRANSITION_STEP'] = '2'
-        os.environ['SWWW_TRANSITION'] = 'center'
+        os.environ['AWWW_TRANSITION_FPS'] = '60'
+        os.environ['AWWW_TRANSITION_STEP'] = '2'
+        os.environ['AWWW_TRANSITION'] = 'center'
         interval = 60
 
-        def set_wallpaper_image_swww(path, output=None):
-            cmd = [f'${pkgs.swww}/bin/swww', 'img']
+        def set_wallpaper_image_awww(path, output=None):
+            cmd = [f'${pkgs.awww}/bin/awww', 'img']
             if output:
                 cmd += ['-o', output]
             cmd.append(path)
@@ -51,8 +51,8 @@ let
       + (
         if host == "laptop" then
           ''
-            time.sleep(2) 
-            subprocess.Popen([f'${pkgs.swww}/bin/swww-daemon'], close_fds=True)
+            time.sleep(2)
+            subprocess.Popen([f'${pkgs.awww}/bin/awww-daemon'], close_fds=True)
             time.sleep(2)
             wallpaper_dir = Path(f'${backgrounds-dir}/share/backgrounds/laptop')
             image_files = list(wallpaper_dir.glob('*.jpg'))
@@ -61,7 +61,7 @@ let
                 shuffled_files = random.sample(image_files, len(image_files))
                 for path in shuffled_files:
                     print(f"switch: {path}")
-                    set_wallpaper_image_swww(path)
+                    set_wallpaper_image_awww(path)
                     time.sleep(interval)
           ''
         else if host == "desktop" then
@@ -93,10 +93,10 @@ let
     def get_nodes(target_class):
         # Get status to find all numeric IDs present in the graph
         proc = subprocess.run(["${pkgs.wireplumber}/bin/wpctl", "status"], capture_output=True, text=True)
-        
+
         # Matches lines like "  74. Some Device Name" or "* 63. Internal Audio"
         potential_ids = re.findall(r"(\*?)\s+(\d+)\.", proc.stdout)
-        
+
         valid_nodes = []
         seen_ids = set()
 
@@ -107,21 +107,21 @@ let
 
             # Inspect each node to verify class and get the friendly description
             inspect = subprocess.run(["${pkgs.wireplumber}/bin/wpctl", "inspect", node_id], capture_output=True, text=True)
-            
+
             # 1. Verify this is the correct media class (e.g., Audio/Sink)
             if f'media.class = "{target_class}"' in inspect.stdout:
-                
+
                 # 2. Extract node.description using regex
                 # Example: node.description = "Coen Shields' Pixel Buds Pro"
                 desc_match = re.search(r'node.description = "(.*)"', inspect.stdout)
                 friendly_name = desc_match.group(1) if desc_match else f"Unknown Device ({node_id})"
-                
+
                 display = f"{node_id}. {friendly_name}"
                 if "*" in is_default:
                     display = f"<b>{display} *</b>"
-                
+
                 valid_nodes.append(display)
-        
+
         return valid_nodes
 
     def main():
@@ -131,9 +131,9 @@ let
 
         category = sys.argv[1]
         target_class = "Audio/Sink" if category == "Sinks" else "Audio/Source"
-        
+
         nodes = get_nodes(target_class)
-        
+
         if not nodes:
             print(f"No valid {category} found.")
             sys.exit(1)

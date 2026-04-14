@@ -86,6 +86,7 @@
         intel-media-driver # LIBVA_DRIVER_NAME=iHD
         intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
         libva-vdpau-driver
+        nvidia-vaapi-driver
         libvdpau-va-gl
       ];
     };
@@ -144,7 +145,6 @@
       dedicatedServer.openFirewall = true;
     };
 
-
     rog-control-center.enable = true;
 
     nix-ld = {
@@ -177,7 +177,7 @@
   ];
 
   virtualisation = {
-    # waydroid.enable = true;    
+    # waydroid.enable = true;
     spiceUSBRedirection.enable = true;
 
     libvirtd = {

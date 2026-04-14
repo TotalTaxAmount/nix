@@ -123,7 +123,7 @@ in
       gammastep
 
       #Customization
-      swww
+      awww
 
       # Games
       mangohud
