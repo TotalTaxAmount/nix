@@ -175,7 +175,7 @@ let
   extras = {
     desktop = {
       monitor = [
-        "DP-1, 3440x1440@165, 0x0, 1, vrr, 3, bitdepth, 10, cm, auto"
+        "DP-1, 3440x1440@165, 0x0, 1, vrr, 3, cm, auto"
         "HDMI-A-1,preferred,-1440x-600,1, transform, 3"
       ];
 
@@ -322,7 +322,7 @@ in
         };
 
         dwindle = {
-          pseudotile = true;
+          # pseudotile = true;
           preserve_split = true;
         };
 
@@ -395,8 +395,8 @@ in
           "$mod SHIFT, 9, split:movetoworkspace, 9"
           "$mod SHIFT, 0, split:movetoworkspace, 10"
           "$mod, L, exec, hyprlock"
-          "CTRL SHIFT, Print, exec, grimblast --notify copysave screen $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png" # Screenshots
-          "SHIFT, Print, exec, grimblast --notify copysave area $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
+          "CTRL SHIFT, Print, exec, grimblast --notify copysave screen $XDG_SCREENSHOTS_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png" # Screenshots
+          "SHIFT, Print, exec, grimblast --notify copysave area $XDG_SCREENSHOTS_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
 
           "ALT, Print, exec, ${screen-rec}/bin/screen-rec" # Screenrec
 
@@ -416,8 +416,8 @@ in
           if "${host}" == "laptop" then
             [
               # Laptop specific
-              "CTRL SHIFT, code:72, exec,  grimblast --notify copysave screen $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
-              "SHIFT, code:72, exec,  grimblast --notify copysave area $XDG_SCREENSHOT_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
+              "CTRL SHIFT, code:72, exec,  grimblast --notify copysave screen $XDG_SCREENSHOTS_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
+              "SHIFT, code:72, exec,  grimblast --notify copysave area $XDG_SCREENSHOTS_DIR/$(date '+%b.%d.%Y-%H:%M:%S')-screenshot.png"
               "ALT, code:72, exec,  ${screen-rec}/bin/screen-rec"
               "$mod, RIGHT, exec, playerctl next"
               "$mod, LEFT, exec, playerctl previous"
