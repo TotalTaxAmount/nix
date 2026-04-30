@@ -47,6 +47,14 @@
     enabled = false; # VSCode: editor.guides.indentation: false
   };
 
+  project_panel = {
+    dock = "left";
+  };
+
+  git_panel = {
+    dock = "left";
+  };
+
   file_scan_exclusions = [
     "**/.git/objects/**"
     "**/.git/subtree-cache/**"
