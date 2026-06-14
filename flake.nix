@@ -41,9 +41,9 @@
     };
 
     hyprland = {
-      type = "git";
-      submodules = true;
-      url = "https://github.com/hyprwm/Hyprland";
+      # type = "git";
+      # submodules = true;
+      url = "github:hyprwm/Hyprland/v0.54.0";
 
       inputs.aquamarine.follows = "aquamarine";
       inputs.nixpkgs.follows = "nixpkgs";

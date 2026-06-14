@@ -27,9 +27,13 @@
       ];
     };
 
-    displayManager.gdm = {
+    displayManager.ly = {
       enable = true;
-      wayland = true;
+      settings = {
+        save = true;
+        defualt_user = user;
+        clear_password = true;
+      };
     };
 
     avahi = {
@@ -102,7 +106,7 @@
 
       open = false; # Issues with open drives
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
 
       prime = {
         offload.enable = true;
@@ -137,6 +141,7 @@
       enable = true;
       xwayland.enable = true;
       package = inputs.hyprland.packages.${system}.hyprland;
+      withUWSM = true;
     };
 
     steam = {
@@ -232,7 +237,7 @@
 
     lanzaboote = {
       enable = true;
-      pkiBundle = "/var/lib/sbctl";
+      pkiBundle = "/etc/secureboot";
     };
   };
 }

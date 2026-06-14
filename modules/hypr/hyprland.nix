@@ -220,10 +220,16 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
+    systemd.enable = false;
 
     package = lib.mkDefault inputs.hyprland.packages.${system}.hyprland;
     plugins = [
-      inputs.hyprsplit.packages.${system}.hyprsplit
+      (inputs.hyprsplit.packages.${system}.hyprsplit.overrideAttrs (old: {
+        postInstall = ''
+          mkdir -p $out/share/hyprland-plugins/hyprsplit
+          touch $out/share/hyprland-plugins/hyprsplit/init.lua
+        '';
+      }))
     ];
 
     settings = lib.mkMerge [
