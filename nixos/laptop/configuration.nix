@@ -11,9 +11,12 @@
   imports = [
     ./hardware.nix
     ../../modules/wireguard
+    ../../modules/vfio
     inputs.sops-nix.nixosModules.default
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
+
+  virtualisation.vfio.enable = true;
 
   services = {
     openssh.enable = true;
@@ -65,6 +68,8 @@
         KERNEL=="card*", KERNELS=="0000:65:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/amd-igpu"
         KERNEL=="card*", KERNELS=="0000:01:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-gpu"
 
+        SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", ATTRS{device}=="0x2860", ATTR{power/control}="auto", ATTR{power/autosuspend_delay_ms}="1000"
+
       '';
     };
 
@@ -74,10 +79,15 @@
     printing.enable = true;
   };
 
-  security.pam.services.hyprlock = {
-    text = ''
-      auth include login
-    '';
+  security.pam.services = {
+    hyprlock = {
+      text = ''
+        auth include login
+      '';
+    };
+
+    ly.enableGnomeKeyring = true;
+    hyprland.enableGnomeKeyring = true;
   };
 
   hardware = {
@@ -212,12 +222,12 @@
 
     extraModprobeConfig = ''
       options nvidia NVreg_DynamicPowerManagement=0x02
-      options nvidia NVreg_EnableGpuFirmware=0
+      options nvidia NVreg_EnableGpuFirmware=1
     '';
 
     supportedFilesystems = [ "nfs" ];
     kernelModules = [
-      "kvm-amd"
+      "kvm_amd"
     ];
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;

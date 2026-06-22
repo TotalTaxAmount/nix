@@ -265,7 +265,7 @@ in
         ++ (
           if "${host}" == "laptop" then
             [
-              "AQ_DRM_DEVICES,/dev/dri/amd-igpu:/dev/dri/nvidia-gpu"
+              "AQ_DRM_DEVICES,/dev/dri/amd-igpu"
             ]
           else if "${host}" == "desktop" then
             [
