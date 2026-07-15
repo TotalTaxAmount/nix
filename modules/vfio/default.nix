@@ -38,6 +38,14 @@ in
     specialisation."VFIO".configuration = {
       system.nixos.tags = [ "VFIO" ];
 
+      hardware.nvidia = {
+        modesetting.enable = lib.mkForce false;
+        powerManagement.enable = lib.mkForce false;
+        powerManagement.finegrained = lib.mkForce false;
+        prime.offload.enable = lib.mkForce false;
+        prime.offload.enableOffloadCmd = lib.mkForce false;
+      };
+
       boot = {
         kernelParams = [
           "amd_iommu=on"

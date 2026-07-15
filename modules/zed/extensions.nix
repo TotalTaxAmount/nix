@@ -8,4 +8,5 @@
   "material-icon-theme"
   "groovy"
   "proto"
+  "gemini"
 ]

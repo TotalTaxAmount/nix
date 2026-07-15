@@ -24,7 +24,7 @@
     spice-vdagentd.enable = true;
     xserver = {
       enable = true;
-      videoDrivers = lib.mkDefault [
+      videoDrivers = [
         "amdgpu"
         "nvidia"
       ];
@@ -79,15 +79,18 @@
     printing.enable = true;
   };
 
-  security.pam.services = {
-    hyprlock = {
-      text = ''
-        auth include login
-      '';
-    };
+  security = {
+    tpm2.enable = true;
+    pam.services = {
+      hyprlock = {
+        text = ''
+          auth include login
+        '';
+      };
 
-    ly.enableGnomeKeyring = true;
-    hyprland.enableGnomeKeyring = true;
+      ly.enableGnomeKeyring = true;
+      hyprland.enableGnomeKeyring = true;
+    };
   };
 
   hardware = {
@@ -214,6 +217,7 @@
   powerManagement.powertop.enable = true;
 
   systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.libvirtd.serviceConfig.LoadCredentialEncrypted = "";
 
   boot = {
     kernelParams = [
@@ -228,6 +232,10 @@
     supportedFilesystems = [ "nfs" ];
     kernelModules = [
       "kvm_amd"
+      "nvidia" # Shouln't have to do this but ok
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
     ];
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
