@@ -28,16 +28,22 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/1810a37f-a7b2-4a2f-a93f-38b506061441";
+    device = "/dev/disk/by-uuid/25c4a385-0d10-46de-b0d4-556677d00db5";
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-c004511c-215f-4f85-b2a7-951ae9bfa249".device =
-    "/dev/disk/by-uuid/c004511c-215f-4f85-b2a7-951ae9bfa249";
-  boot.initrd.luks.devices."swap".device = "/dev/disk/by-uuid/b5834e8f-6808-4ce0-9f8c-6b5104469941";
+  boot.initrd.luks.devices = {
+    "luks-0443a8a6-aaa9-4cbc-a22c-2799fcb1b4d3".device =
+      "/dev/disk/by-uuid/0443a8a6-aaa9-4cbc-a22c-2799fcb1b4d3";
+
+    "swap" = {
+      device = "/dev/disk/by-uuid/98615756-bc48-4b79-adee-07afef07e026";
+      allowDiscards = true;
+    };
+  };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2A4C-E558";
+    device = "/dev/disk/by-uuid/7D8C-0525";
     fsType = "vfat";
     options = [
       "fmask=0077"
@@ -46,9 +52,7 @@
   };
 
   swapDevices = [
-    {
-      device = "/dev/disk/by-uuid/8f578107-4be7-4ef5-b690-4c559c4bf040";
-    }
+    { device = "/dev/mapper/swap"; }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

@@ -17,6 +17,7 @@ in
   networking.wg-quick.interfaces = {
     wg0 = {
       address = [ "10.1.11.4/24" ];
+      mtu = 1360;
       dns = [ "10.1.10.203" ];
       privateKeyFile = config.sops.secrets."wireguard/private_key".path;
 

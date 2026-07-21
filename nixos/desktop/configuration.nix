@@ -100,7 +100,6 @@
 
     displayManager.gdm = {
       enable = true;
-      wayland = true;
     };
 
     avahi = {

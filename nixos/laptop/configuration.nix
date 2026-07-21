@@ -11,9 +11,12 @@
   imports = [
     ./hardware.nix
     ../../modules/wireguard
+    ../../modules/vfio
     inputs.sops-nix.nixosModules.default
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
+
+  virtualisation.vfio.enable = true;
 
   services = {
     openssh.enable = true;
@@ -21,15 +24,19 @@
     spice-vdagentd.enable = true;
     xserver = {
       enable = true;
-      videoDrivers = lib.mkDefault [
+      videoDrivers = [
         "amdgpu"
         "nvidia"
       ];
     };
 
-    displayManager.gdm = {
+    displayManager.ly = {
       enable = true;
-      wayland = true;
+      settings = {
+        save = true;
+        defualt_user = user;
+        clear_password = true;
+      };
     };
 
     avahi = {
@@ -61,6 +68,8 @@
         KERNEL=="card*", KERNELS=="0000:65:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/amd-igpu"
         KERNEL=="card*", KERNELS=="0000:01:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-gpu"
 
+        SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", ATTRS{device}=="0x2860", ATTR{power/control}="auto", ATTR{power/autosuspend_delay_ms}="1000"
+
       '';
     };
 
@@ -70,10 +79,18 @@
     printing.enable = true;
   };
 
-  security.pam.services.hyprlock = {
-    text = ''
-      auth include login
-    '';
+  security = {
+    tpm2.enable = true;
+    pam.services = {
+      hyprlock = {
+        text = ''
+          auth include login
+        '';
+      };
+
+      ly.enableGnomeKeyring = true;
+      hyprland.enableGnomeKeyring = true;
+    };
   };
 
   hardware = {
@@ -102,7 +119,7 @@
 
       open = false; # Issues with open drives
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
 
       prime = {
         offload.enable = true;
@@ -137,6 +154,7 @@
       enable = true;
       xwayland.enable = true;
       package = inputs.hyprland.packages.${system}.hyprland;
+      withUWSM = true;
     };
 
     steam = {
@@ -199,6 +217,7 @@
   powerManagement.powertop.enable = true;
 
   systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services.libvirtd.serviceConfig.LoadCredentialEncrypted = "";
 
   boot = {
     kernelParams = [
@@ -207,12 +226,16 @@
 
     extraModprobeConfig = ''
       options nvidia NVreg_DynamicPowerManagement=0x02
-      options nvidia NVreg_EnableGpuFirmware=0
+      options nvidia NVreg_EnableGpuFirmware=1
     '';
 
     supportedFilesystems = [ "nfs" ];
     kernelModules = [
-      "kvm-amd"
+      "kvm_amd"
+      "nvidia" # Shouln't have to do this but ok
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
     ];
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
@@ -232,7 +255,7 @@
 
     lanzaboote = {
       enable = true;
-      pkiBundle = "/var/lib/sbctl";
+      pkiBundle = "/etc/secureboot";
     };
   };
 }

@@ -6,14 +6,14 @@
 }:
 
 let
-  scripts = pkgs.runCommand "scripts" { } ''
+  eww-scripts = pkgs.runCommand "scripts" { } ''
     mkdir -p $out
     cp -r ${./config/scripts}/* $out
   '';
 
   info-yuck = pkgs.replaceVarsWith {
     src = ./config/modules/info.yuck;
-    replacements.scriptdir = scripts;
+    replacements.scriptdir = eww-scripts;
     name = "info.yuck";
     dir = "modules";
     isExecutable = false;
@@ -21,7 +21,7 @@ let
 
   system-yuck = pkgs.replaceVarsWith {
     src = ./config/modules/system.yuck;
-    replacements.scriptdir = scripts.out;
+    replacements.scriptdir = eww-scripts.out;
 
     name = "system.yuck";
     dir = "modules";
@@ -30,7 +30,7 @@ let
 
   main-yuck = pkgs.replaceVarsWith {
     src = ./config/modules/main.yuck;
-    replacements.scriptdir = scripts.out;
+    replacements.scriptdir = eww-scripts.out;
 
     name = "main.yuck";
     dir = "modules";
@@ -85,7 +85,11 @@ in
 {
   programs.eww = {
     enable = true;
-    configDir = ewwConfig.out;
+  };
+
+  xdg.configFile."eww" = {
+    source = ewwConfig;
+    recursive = true;
   };
 
   home.packages = with pkgs; [
