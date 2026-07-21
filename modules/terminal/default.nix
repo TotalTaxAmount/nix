@@ -55,10 +55,13 @@ in
         tmuxPlugins.better-mouse-mode
         tmuxPlugins.power-theme
         (pkgs.tmuxPlugins.net-speed.overrideAttrs (oldAttrs: {
-          buildInputs = (oldAttrs.buildInputs or []) ++ [ pkgs.bash pkgs.coreutils ];
+          buildInputs = (oldAttrs.buildInputs or [ ]) ++ [
+            pkgs.bash
+            pkgs.coreutils
+          ];
           postInstall = (oldAttrs.postInstall or "") + ''
             find $out/share/tmux-plugins/net-speed -name "*.sh" -o -name "*.tmux" -exec chmod +x {} +
-            
+
             patchShebangs $out/share/tmux-plugins/net-speed
           '';
         }))
@@ -99,8 +102,30 @@ in
 
         stupidAlias() {
            xdg-open $1
-        } 
-      ''; # Hacky fix for syntax highlighting
+        }
+
+        INHIBIT_LOCK_FILE="/tmp/zsh_inhibit_''${USER}_$$.pid";
+        inhibit_lock() {
+          systemd-inhibit \
+            --why="Command running" \
+            --who="zsh-session" \
+            --what="idle:sleep" \
+            sleep infinity > /dev/null 2>&1 &!
+
+            echo $! > $INHIBIT_LOCK_FILE
+        }
+
+        inhibit_unlock() {
+          if [[ -f $INHIBIT_LOCK_FILE ]]; then
+            kill $(cat $INHIBIT_LOCK_FILE) 2>/dev/null
+            rm -f $INHIBIT_LOCK_FILE
+          fi
+        }
+
+        autoload -Uz add-zsh-hook
+        add-zsh-hook preexec inhibit_lock
+        add-zsh-hook precmd inhibit_unlock
+      '';
 
       oh-my-zsh = {
         enable = true;

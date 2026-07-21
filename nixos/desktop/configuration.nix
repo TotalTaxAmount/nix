@@ -52,7 +52,7 @@
 
       open = false;
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
     };
 
     nvidia-container-toolkit.enable = true;
@@ -125,6 +125,7 @@
     flatpak.enable = true;
     seatd.enable = true;
     blueman.enable = true;
+    ratbagd.enable = true;
   };
 
   systemd.tmpfiles.rules = [
@@ -256,6 +257,9 @@
 
     loader = {
       systemd-boot.enable = false; # Needs to be disabled for secure boot to work
+      # systemd-boot.windows = {
+      #   "10".efiDeviceHandle = "HD0c3";
+      # };
       efi = {
         efiSysMountPoint = "/boot";
         canTouchEfiVariables = true;
