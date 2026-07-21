@@ -41,7 +41,12 @@
     user
   ];
 
-  nix.package = pkgs.lixPackageSets.stable.lix;
+  nix = {
+    package = pkgs.lixPackageSets.stable.lix;
+    registry.nixpkgs.flake = inputs.nixpkgs;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    channel.enable = false;
+  };
 
   users.users."${user}" = {
     isNormalUser = true;

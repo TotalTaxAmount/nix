@@ -150,11 +150,10 @@
     dconf.enable = true;
 
     hyprland = {
-      # Need this for gdm to work
       enable = true;
       xwayland.enable = true;
       package = inputs.hyprland.packages.${system}.hyprland;
-      withUWSM = true;
+      withUWSM = false;
     };
 
     steam = {

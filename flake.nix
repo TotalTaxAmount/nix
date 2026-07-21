@@ -32,6 +32,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprgraphics = {
+      url = "github:hyprwm/hyprgraphics";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
     };
@@ -43,11 +48,12 @@
     hyprland = {
       # type = "git";
       # submodules = true;
-      url = "github:hyprwm/Hyprland/v0.54.0";
+      url = "github:hyprwm/Hyprland/v0.56.0";
 
       inputs.aquamarine.follows = "aquamarine";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.hyprutils.follows = "hyprutils";
+      inputs.hyprgraphics.follows = "hyprgraphics";
     };
 
     hyprsplit = {

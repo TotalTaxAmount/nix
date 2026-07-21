@@ -16,8 +16,14 @@
   ];
 
   nix.settings = {
-    substituters = [ "https://nix-citizen.cachix.org" ]; # Star Citizen
-    trusted-public-keys = [ "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo=" ];
+    substituters = [
+      "https://nix-citizen.cachix.org"
+      "https://hyprland.cachix.org"
+    ]; # Star Citizen
+    trusted-public-keys = [
+      "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
   };
 
   environment.variables = {
@@ -98,8 +104,13 @@
 
     };
 
-    displayManager.gdm = {
+    displayManager.ly = {
       enable = true;
+      settings = {
+        save = true;
+        default_user = user;
+        clear_password = true;
+      };
     };
 
     avahi = {
@@ -138,6 +149,7 @@
       enable = true;
       xwayland.enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      withUWSM = true;
     };
 
     steam = {

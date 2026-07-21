@@ -77,7 +77,7 @@ in
         open = "stupidAlias";
         neofetch = "fastfetch";
 
-        ls = "exa -l --icons";
+        ls = "exa -l --icons always";
         cd = "z";
         cat = "bat";
       };
@@ -106,8 +106,9 @@ in
 
         INHIBIT_LOCK_FILE="/tmp/zsh_inhibit_''${USER}_$$.pid";
         inhibit_lock() {
+          local cmd="$1"
           systemd-inhibit \
-            --why="Command running" \
+            --why="Running: ''${cmd}" \
             --who="zsh-session" \
             --what="idle:sleep" \
             sleep infinity > /dev/null 2>&1 &!

@@ -54,6 +54,7 @@ in
   config = {
     # Unfree stuff
     nixpkgs.config.allowUnfree = true;
+    nix.registry.nixpkgs.flake = inputs.nixpkgs;
 
     home = {
       username = user;
@@ -119,6 +120,7 @@ in
       };
 
       home-manager.enable = true;
+
     };
 
     services.gpg-agent = {
@@ -141,6 +143,7 @@ in
     };
 
     home.pointerCursor = {
+      enable = true;
       gtk.enable = true;
       name = config.cursor.name;
       package = config.cursor.package;
