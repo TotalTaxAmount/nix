@@ -6,7 +6,7 @@ set_host() {
     echo
     if [[ $REPLY =~ ^[Yy]$ ]];then
         echo $1 > HOST
-        echo "Done" 
+        echo "Done"
     else
         exit 0
     fi
@@ -56,7 +56,7 @@ rebuild_system() {
 install_fresh() {
     echo "Are you sure?"
     read -p "[y/N]: " -n 1 -r
-    echo   
+    echo
     if [[ $REPLY =~ ^[Yy]$ ]];then
         echo "Copying system scan"
         cp -r /etc/nixos/hardware-configuration.nix ./hosts/$HOST/hardware.nix
@@ -66,7 +66,7 @@ install_fresh() {
         rebuild_home
         echo "Done"
     fi
-    
+
 }
 
 update_flake() {

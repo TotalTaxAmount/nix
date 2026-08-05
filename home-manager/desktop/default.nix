@@ -128,7 +128,7 @@ in
       distrobox
 
       # Customization/Fonts
-      swww
+      awww
       font-awesome
 
       # Game Stuff

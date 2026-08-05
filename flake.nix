@@ -48,7 +48,7 @@
     hyprland = {
       # type = "git";
       # submodules = true;
-      url = "github:hyprwm/Hyprland/v0.56.0";
+      url = "github:hyprwm/Hyprland";
 
       inputs.aquamarine.follows = "aquamarine";
       inputs.nixpkgs.follows = "nixpkgs";

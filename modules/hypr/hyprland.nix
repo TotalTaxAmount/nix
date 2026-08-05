@@ -338,9 +338,11 @@ in
     hyprland-activewindow
   ];
 
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-gtk
-  ];
+  xdg.portal = {
+    enable = true;
+
+    config.common.default = "hyprland";
+  };
 
   # TODO: remove once swww issue is fixed
   xdg.configFile."hypr/hyprpaper.conf".text = ''
@@ -354,12 +356,14 @@ in
     }
   '';
 
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
     systemd.enable = false;
 
-    package = lib.mkDefault inputs.hyprland.packages.${system}.hyprland;
+    package = inputs.hyprland.packages.${system}.hyprland;
+
 
     configType = "lua";
 
