@@ -33,6 +33,12 @@
     breadcrumbs = false;
   };
 
+  status_bar = {
+    line_endings_button = true;
+  };
+
+  line_ending = "enforce_lf";
+
   # Buffer
   buffer_font_size = 14;
   buffer_font_family = config.font;
