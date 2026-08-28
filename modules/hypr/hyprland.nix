@@ -189,17 +189,36 @@ let
       -- Second eDP entry kept for parity with the previous hyprland.conf;
       -- unclear why the laptop reports two eDP outputs.
       hl.monitor({ output = "eDP-2", mode = "2880x1800@120", position = "0x0", scale = 1.25 })
-      hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
+      -- hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
+
+      hl.monitor({
+        output = "DP-9",
+        mode = "3440x1440@165",
+        position = "2304x0",
+        scale = "1",
+        vrr = 1,
+        cm = "auto",
+      })
+
+      hl.on("monitor.added", function(monitor)
+        hl.dispatch(hl.exec_cmd("${laptopMonitorHooks}/bin/laptopMonitorHooks attached " .. monitor.name))
+      end)
+
+      hl.on("monitor.removed", function(monitor)
+        hl.dispatch(hl.exec_cmd("${laptopMonitorHooks}/bin/laptopMonitorHooks removed  " .. monitor.name))
+      end)
+
+
     end
 
     -- env vars -----------------------------------------------------------
     hl.env("XCURSOR_SIZE", "${toString config.cursor.size}")
     hl.env("XCURSOR_THEME", "${config.cursor.name}")
     hl.env("HYPRCURSOR_SIZE", "${toString config.cursor.size}")
-    hl.env("HYPRCURSOR_THEME", "${config.cursor.name}")
+    hl.env("HYPRCURSOR_THEMqE", "${config.cursor.name}")
 
     if host == "laptop" then
-      hl.env("AQ_DRM_DEVICES", "/dev/dri/amd-igpu")
+      hl.env("AQ_DRM_DEVICES", "/dev/dri/amd-igpu:/dev/dri/evdi-gpu:/dev/dri/nvidia-gpu")
     elseif host == "desktop" then
       hl.env("LIBVA_DRIVER_NAME", "nvidia")
       hl.env("XDG_SESSION_TYPE", "nvidia")
@@ -214,7 +233,7 @@ let
     hl.config({
       animations = { enabled = true },
       cursor = {
-        no_hardware_cursors = (host == "desktop"),
+        no_hardware_cursors = true,
       },
       debug = { disable_logs = false },
       decoration = {
@@ -257,6 +276,14 @@ let
       xwayland = { force_zero_scaling = true },
     })
 
+    -- window rules ------------------------------------------------------
+
+
+    hl.window_rule({
+      name = "suppress-maximize-events",
+      match = { class = ".*" },
+      suppress_event = "maximize",
+    })
 
     -- keybinds -----------------------------------------------------------
     hl.bind(mod .. " + RETURN", hl.dsp.exec_cmd("alacritty"))
@@ -322,12 +349,45 @@ let
 
       if host == "laptop" then
         hl.exec_cmd("${pkgs.eww}/bin/eww open laptopMain")
+        hl.exec_cmd("${laptopMonitorHooks}/bin/laptopMonitorHooks check")
       elseif host == "desktop" then
         hl.exec_cmd("${pkgs.eww}/bin/eww open-many main0 main1")
         hl.exec_cmd("xrandr --output DP-1 --primary")
         hl.exec_cmd("${pkgs.openrgb}/bin/openrgb -p ~/.config/OpenRGB/White.orp") -- TODO: nixify this path
       end
     end)
+  '';
+
+  laptopMonitorHooks = pkgs.writeScriptBin "laptopMonitorHooks" ''
+    #!${pkgs.runtimeShell}
+    set -euo pipefail
+
+    TARGET_DESC="Samsung Electric Company LC34G55T H4ZT100569"
+
+    monitor_present() {
+      hyprctl monitors -j \
+        | ${pkgs.jq}/bin/jq -e --arg d "$TARGET_DESC" \
+            '.[] | select(.description | test($d; "i"))' >/dev/null 2>&1
+    }
+
+    case "''${1:-}" in
+      attached)
+        desc=$(hyprctl monitors -j \
+          | ${pkgs.jq}/bin/jq -r --arg name "''${2:-}" '.[] | select(.name==$name) | .description')
+        if [[ "$desc" == *"$TARGET_DESC"* ]]; then
+          eww open main1
+        fi
+        ;;
+      removed)
+        if ! monitor_present; then
+          eww close main1
+        fi
+        ;;
+      *)
+        echo "Usage: $0 <attached|removed> [monitor-name]" >&2
+        exit 1
+        ;;
+    esac
   '';
 in
 {

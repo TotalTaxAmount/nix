@@ -92,6 +92,7 @@ in
       fastfetch
     ];
 
+
     programs = {
       git = {
         enable = true;
@@ -110,6 +111,11 @@ in
           };
 
         };
+      };
+
+      keychain = {
+        enable = true;
+        keys = [ "id_ed25519" ];
       };
 
       gpg = {

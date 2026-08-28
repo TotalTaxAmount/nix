@@ -96,6 +96,7 @@ in
       firefox-devedition
       zoom-us
       gthumb
+      gamescope
 
       wl-screenrec
       clapper
@@ -105,7 +106,7 @@ in
       nautilus
 
       slack
-      freecad-wayland
+      vesktop
 
       #Terminal Apps/Config
       zsh-powerlevel10k

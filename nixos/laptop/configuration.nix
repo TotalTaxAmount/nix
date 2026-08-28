@@ -27,6 +27,7 @@
       videoDrivers = [
         "amdgpu"
         "nvidia"
+        # "displaylink"
       ];
     };
 
@@ -61,12 +62,14 @@
       packages = [
         pkgs.platformio-core.udev
         pkgs.openocd
+        pkgs.keychron-udev-rules
       ];
 
       # Hyprland iGPU/dGPU path
       extraRules = ''
         KERNEL=="card*", KERNELS=="0000:65:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/amd-igpu"
         KERNEL=="card*", KERNELS=="0000:01:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-gpu"
+            KERNEL=="card*", KERNELS=="evdi.0", SUBSYSTEM=="drm", SUBSYSTEMS=="platform", SYMLINK+="dri/evdi-gpu"
 
         SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", ATTRS{device}=="0x2860", ATTR{power/control}="auto", ATTR{power/autosuspend_delay_ms}="1000"
 
@@ -116,6 +119,10 @@
         enable = true;
         finegrained = true;
       };
+
+      dynamicBoost.enable = true;
+
+      nvidiaPersistenced = true;
 
       open = false; # Issues with open drives
       nvidiaSettings = true;
@@ -191,6 +198,7 @@
     sqlite
     libnotify
     pinentry-gnome3
+    # displaylink
   ];
 
   virtualisation = {
@@ -206,6 +214,7 @@
 
     podman = {
       enable = true;
+      enableNvidia = true;
 
       dockerCompat = true;
 
@@ -213,7 +222,7 @@
     };
   };
 
-  powerManagement.powertop.enable = true;
+  powerManagement.powertop.enable = false;
 
   systemd.services.NetworkManager-wait-online.enable = false;
   systemd.services.libvirtd.serviceConfig.LoadCredentialEncrypted = "";
@@ -224,9 +233,11 @@
     ];
 
     extraModprobeConfig = ''
-      options nvidia NVreg_DynamicPowerManagement=0x02
+      options nvidia NVreg_DynamicPowerManagement=0x03
       options nvidia NVreg_EnableGpuFirmware=1
     '';
+
+    # extraModulePackages = [ config.boot.kernelPackages.evdi ];
 
     supportedFilesystems = [ "nfs" ];
     kernelModules = [
@@ -235,6 +246,7 @@
       "nvidia_modeset"
       "nvidia_uvm"
       "nvidia_drm"
+      "evdi"
     ];
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
