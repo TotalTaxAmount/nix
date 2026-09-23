@@ -110,6 +110,8 @@ in
             name = user;
           };
 
+          safe.directory = "/workspace";
+
         };
       };
 
@@ -133,6 +135,8 @@ in
       enable = true;
       pinentry.package = pkgs.pinentry-gnome3;
     };
+
+    services.ssh-agent.enable = true;
 
     nix.gc = {
       automatic = true;

@@ -193,7 +193,7 @@ let
 
       hl.monitor({
         output = "DP-9",
-        mode = "3440x1440@165",
+        mode = "3440x1440@120",
         position = "2304x0",
         scale = "1",
         vrr = 1,
@@ -349,7 +349,6 @@ let
 
       if host == "laptop" then
         hl.exec_cmd("${pkgs.eww}/bin/eww open laptopMain")
-        hl.exec_cmd("${laptopMonitorHooks}/bin/laptopMonitorHooks check")
       elseif host == "desktop" then
         hl.exec_cmd("${pkgs.eww}/bin/eww open-many main0 main1")
         hl.exec_cmd("xrandr --output DP-1 --primary")

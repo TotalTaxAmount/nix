@@ -67,7 +67,7 @@ in
             {
               timeout = 120;
               on-timeout = "kill $(pgrep eww)";
-              on-resume = " ${pkgs.eww}/bin/eww open laptopMain";
+              on-resume = "${pkgs.eww}/bin/eww open laptopMain && ${pkgs.eww}/bin/eww open main1";
             }
             {
               timeout = 500;
@@ -85,6 +85,7 @@ in
 
       spotifyd.enable = true;
     };
+
 
     home.packages = with pkgs; [
       # Apps
@@ -104,6 +105,7 @@ in
       killall
       utils.print-colors
       nautilus
+      opencode
 
       slack
       vesktop
@@ -149,6 +151,7 @@ in
       win-spice
       adwaita-icon-theme
       virtiofsd
+      # podman-compose
 
       # Fonts
       font-awesome

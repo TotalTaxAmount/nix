@@ -32,6 +32,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    lsfg-vk = {
+      url = "github:pabloaul/lsfg-vk-flake/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprgraphics = {
       url = "github:hyprwm/hyprgraphics";
       inputs.nixpkgs.follows = "nixpkgs";

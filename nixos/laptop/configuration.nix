@@ -14,9 +14,10 @@
     ../../modules/vfio
     inputs.sops-nix.nixosModules.default
     inputs.lanzaboote.nixosModules.lanzaboote
+    inputs.lsfg-vk.nixosModules.default
   ];
 
-  virtualisation.vfio.enable = true;
+  virtualisation.vfio.enable = false;
 
   services = {
     openssh.enable = true;
@@ -69,11 +70,16 @@
       extraRules = ''
         KERNEL=="card*", KERNELS=="0000:65:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/amd-igpu"
         KERNEL=="card*", KERNELS=="0000:01:00.0", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/nvidia-gpu"
-            KERNEL=="card*", KERNELS=="evdi.0", SUBSYSTEM=="drm", SUBSYSTEMS=="platform", SYMLINK+="dri/evdi-gpu"
+        KERNEL=="card*", KERNELS=="evdi.0", SUBSYSTEM=="drm", SUBSYSTEMS=="platform", SYMLINK+="dri/evdi-gpu"
 
         SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", ATTRS{device}=="0x2860", ATTR{power/control}="auto", ATTR{power/autosuspend_delay_ms}="1000"
 
       '';
+    };
+
+    lsfg-vk = {
+      enable = true;
+      ui.enable = true;
     };
 
     asusd.enable = true;
@@ -98,6 +104,7 @@
 
   hardware = {
     enableRedistributableFirmware = true;
+    nvidia-container-toolkit.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -199,7 +206,15 @@
     libnotify
     pinentry-gnome3
     # displaylink
+
+    # Need these here for zed decontainer ig
+    docker
+    docker-compose
   ];
+
+  environment.variables = {
+    # DOCKER_HOST = "unix:///run/podman/podman.sock";
+  };
 
   virtualisation = {
     # waydroid.enable = true;
@@ -216,7 +231,8 @@
       enable = true;
       enableNvidia = true;
 
-      dockerCompat = true;
+      dockerCompat = false;
+      dockerSocket.enable = true;
 
       defaultNetwork.settings.dns_enabled = true;
     };
@@ -230,6 +246,7 @@
   boot = {
     kernelParams = [
       "acpi_backlight=native" # Fix backlight not working
+      "amd_pstate=guided"
     ];
 
     extraModprobeConfig = ''

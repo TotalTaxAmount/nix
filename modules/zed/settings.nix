@@ -15,10 +15,19 @@
     };
   };
 
+
+  agent_servers = {
+    "OpenCode" = {
+      type = "custom";
+      command = "opencode";
+      args = [ "acp" ];
+    };
+  };
+
   # Coere
   # hour_format = "hour24";
   vim_mode = false;
-  load_direnv = "shell_hook";
+  load_direnv = "direct";
   base_keymap = "VSCode";
 
   # Theme
@@ -52,6 +61,9 @@
   indent_guides = {
     enabled = false; # VSCode: editor.guides.indentation: false
   };
+
+  # dev_container_use_buildkit = false;
+  use_podman = false;
 
   project_panel = {
     dock = "left";

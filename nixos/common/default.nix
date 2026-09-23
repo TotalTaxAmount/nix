@@ -58,6 +58,7 @@
       "libvirtd"
       "dialout"
       "plugdev"
+      "podman"
     ];
   };
 

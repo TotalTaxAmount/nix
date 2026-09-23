@@ -11,7 +11,7 @@ in
 {
   programs.rofi = {
     enable = true;
-    extraConfig = {
+    settings = {
       font = "${config.font} 12";
       fixed-num-lines = true;
       show-icons = true;
