@@ -129,6 +129,8 @@
           pkgs
           ;
       };
+      packages.${system}.update = pkgs.callPackage ./packages/update { };
+
       formatter.x86_64-linux = pkgs.nixfmt-tree;
 
       devShell.x86_64-linux = pkgs.mkShell {

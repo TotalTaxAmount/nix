@@ -90,6 +90,9 @@ in
       unzip
       file
       fastfetch
+
+      # System
+      (pkgs.callPackage ../../packages/update { })
     ];
 
 

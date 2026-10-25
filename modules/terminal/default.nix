@@ -73,7 +73,6 @@ in
     zsh = {
       enable = true;
       shellAliases = {
-        update = "/home/${user}/nix/build.sh"; # TODO: Nixify
         open = "stupidAlias";
         neofetch = "fastfetch";
 
