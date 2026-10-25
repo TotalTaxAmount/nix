@@ -3,9 +3,7 @@
 (defpoll battery_percent :interval "1s" "@scriptdir@/battery.sh charge")
 (defpoll battery_status :interval "1s" "@scriptdir@/battery.sh status")
 (defpoll battery_icon :interval "1s" "@scriptdir@/battery.sh icon")
-(deflisten title0 "@scriptdir@/currentapp.sh 0")
-(deflisten title1 "@scriptdir@/currentapp.sh 1")
-
+(deflisten active_titles :initial "[]" "@scriptdir@/currentapp.sh")
 
 
 (defvar volum false)
@@ -26,9 +24,9 @@
 (defwindow main1
   :monitor 1
   :exclusive true
-  :stacking "fg" 
-  :geometry (geometry 
-    :width "100%" 
+  :stacking "fg"
+  :geometry (geometry
+    :width "100%"
     :height "30px"
     :anchor "top center")
   (bar :monitor 1)
@@ -37,8 +35,8 @@
 (defwindow main0
   :monitor 0
   :exclusive true
-  :stacking "fg" 
-  :geometry (geometry 
+  :stacking "fg"
+  :geometry (geometry
     :width "1436px"
     :height "30px"
     :anchor "top center")
@@ -48,8 +46,8 @@
 (defwindow laptopMain
   :monitor 0
   :exclusive true
-  :stacking "fg" 
-  :geometry (geometry 
+  :stacking "fg"
+  :geometry (geometry
     :width "100%"
     :height "30px"
     :anchor "top center")
@@ -59,8 +57,8 @@
 (defwindow laptopStrixMain
   :monitor 0
   :exclusive true
-  :stacking "fg" 
-  :geometry (geometry 
+  :stacking "fg"
+  :geometry (geometry
     :width "100%"
     :height "40px"
     :anchor "top center")
@@ -81,13 +79,13 @@
 
 
 (defwidget left [monitor]
-  (box :class "left_modules" 
+  (box :class "left_modules"
       :space-evenly false
       :orientation "h"
       :halign "start"
     (system)
     (sep)
-    (volum)  
+    (volum)
     (sep)
     (workspaces :monitor {monitor})
   )
@@ -156,7 +154,7 @@
 ;   )
 ; )
 
-(defwidget appname [monitor] 
+(defwidget appname [monitor]
   (box
     :orientation "h"
     :space-evenly false
@@ -165,17 +163,17 @@
     (label
       :class "appname"
       :limit-width 35
-      :text {monitor == 0 ? title0 : title1}
-      :tooltip {monitor == 0 ? title0 : title1}
+      :text {active_titles[monitor] ?: ""}
+      :tooltip {active_titles[monitor] ?: ""}
     )
   )
 )
 
 
 (defwidget clock []
-  (eventbox :class "clock_container" 
+  (eventbox :class "clock_container"
        :onclick "@scriptdir@/pop.sh info"
-    (label 
+    (label
       :class "clock"
       :tooltip {clock_time}
       :limit-width 22
@@ -186,7 +184,7 @@
 )
 
 (defwidget system []
-  (eventbox 
+  (eventbox
     :onclick "@scriptdir@/pop.sh system"
     (image
       :class "system_icon"
@@ -214,7 +212,7 @@
 )
 
 (defwidget volum []
-  (eventbox 
+  (eventbox
     :onhover "eww update volum=true"
     :onhoverlost "eww update volum=false"
     (box
@@ -230,7 +228,7 @@
 )
 
 (defwidget system_tray []
-  (eventbox 
+  (eventbox
     :class "system_tray_container"
     :onhover "eww update tray=true"
     :onhoverlost "eww update tray=false"

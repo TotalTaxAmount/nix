@@ -46,6 +46,15 @@
     registry.nixpkgs.flake = inputs.nixpkgs;
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     channel.enable = false;
+
+    settings = {
+      max-jobs = "auto";
+      cores = 0;
+    };
+
+    daemonCPUSchedPolicy = "batch";
+    daemonIOSchedClass = "best-effort";
+    daemonIOSchedPriority = 7;
   };
 
   users.users."${user}" = {
@@ -59,6 +68,7 @@
       "dialout"
       "plugdev"
       "podman"
+      "docker"
     ];
   };
 
@@ -173,10 +183,12 @@
   # Enable grable collection of the nix store to decrease disk usage
   nix.gc = {
     automatic = true;
+    dates = "weekly";
+    randomizedDelaySec = "1h";
     options = "--delete-older-than 30d";
   };
 
-  nix.settings.auto-optimise-store = true;
+  nix.settings.auto-optimise-store = false;
 
   system.stateVersion = "25.05"; # Don't change unless changelog says to
 }

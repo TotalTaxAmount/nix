@@ -19,7 +19,9 @@
 
   virtualisation.vfio.enable = false;
 
+  zramSwap.enable = true;
   services = {
+    ratbagd.enable = true;
     openssh.enable = true;
     flatpak.enable = true;
     spice-vdagentd.enable = true;
@@ -47,17 +49,6 @@
       openFirewall = true;
     };
 
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        charger = {
-          scaling_min_freq = 800000;
-        };
-        battery = {
-          scaling_min_freq = 500000;
-        };
-      };
-    };
 
     udev = {
       packages = [
@@ -74,6 +65,9 @@
 
         SUBSYSTEM=="pci", ATTRS{vendor}=="0x10de", ATTRS{device}=="0x2860", ATTR{power/control}="auto", ATTR{power/autosuspend_delay_ms}="1000"
 
+        ACTION=="add|change", KERNEL=="nvme0n1", ATTR{queue/scheduler}="mq-deadline"
+        ACTION=="add|change", KERNEL=="nvme0n1", ATTR{queue/wbt_lat_usec}="500"
+
       '';
     };
 
@@ -82,7 +76,36 @@
       ui.enable = true;
     };
 
-    asusd.enable = true;
+    asusd = {
+      enable = true;
+
+      asusdConfig.text =
+        ''
+          (
+            charge_control_end_threshold: 100,
+            base_charge_control_end_threshold: 100,
+            disable_nvidia_powerd_on_battery: true,
+            ac_command: "",
+            bat_command: "",
+            platform_profile_linked_epp: true,
+            profile_quiet_epp: Power,
+            profile_balanced_epp: BalancePower,
+            profile_performance_epp: Performance,
+            platform_profile_on_battery: Quiet,
+            change_platform_profile_on_battery: true,
+            platform_profile_on_ac: Performance,
+            change_platform_profile_on_ac: true,
+            ac_profile_tunings: {
+                Performance: (
+                    enabled: false,
+                    group: {},
+                ),
+            },
+            dc_profile_tunings: {},
+            armoury_settings: {},
+        )
+      '';
+    };
 
     blueman.enable = true;
     printing.enable = true;
@@ -131,9 +154,9 @@
 
       nvidiaPersistenced = true;
 
-      open = false; # Issues with open drives
+      open = true; # Issues with open drives
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
 
       prime = {
         offload.enable = true;
@@ -227,18 +250,26 @@
       };
     };
 
-    podman = {
+    # podman = {
+    #   enable = true;
+    #   enableNvidia = true;
+
+    #   dockerCompat = true;
+    #   dockerSocket.enable = true;
+
+    #   defaultNetwork.settings.dns_enabled = true;
+    # };
+    #
+    docker = {
       enable = true;
-      enableNvidia = true;
-
-      dockerCompat = false;
-      dockerSocket.enable = true;
-
-      defaultNetwork.settings.dns_enabled = true;
+      enableOnBoot = true;
     };
   };
 
-  powerManagement.powertop.enable = false;
+  powerManagement = {
+    cpuFreqGovernor = "powersave";
+    powertop.enable = false;
+  };
 
   systemd.services.NetworkManager-wait-online.enable = false;
   systemd.services.libvirtd.serviceConfig.LoadCredentialEncrypted = "";
@@ -246,7 +277,7 @@
   boot = {
     kernelParams = [
       "acpi_backlight=native" # Fix backlight not working
-      "amd_pstate=guided"
+      "amd_pstate=active"
     ];
 
     extraModprobeConfig = ''
@@ -265,6 +296,8 @@
       "nvidia_drm"
       "evdi"
     ];
+
+
     tmp.cleanOnBoot = true;
     kernelPackages = pkgs.linuxPackages_latest;
 
@@ -272,6 +305,10 @@
     kernel.sysctl = {
       "vm.max_map_count" = 16777216;
       "fs.file-max" = 524288;
+      "vm.dirty_background_bytes" = 67108864;
+      "vm.dirty_bytes" = 134217728;
+      "vm.dirty_expire_centisecs" = 1000;
+      "vm.dirty_writeback_centisecs" = 100;
     };
     loader = {
       systemd-boot.enable = lib.mkForce false;

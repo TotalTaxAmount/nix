@@ -30,11 +30,14 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/25c4a385-0d10-46de-b0d4-556677d00db5";
     fsType = "ext4";
+    options = [ "noatime" ];
   };
 
   boot.initrd.luks.devices = {
-    "luks-0443a8a6-aaa9-4cbc-a22c-2799fcb1b4d3".device =
-      "/dev/disk/by-uuid/0443a8a6-aaa9-4cbc-a22c-2799fcb1b4d3";
+    "luks-0443a8a6-aaa9-4cbc-a22c-2799fcb1b4d3" = {
+      device = "/dev/disk/by-uuid/0443a8a6-aaa9-4cbc-a22c-2799fcb1b4d3";
+      allowDiscards = true;
+    };
 
     "swap" = {
       device = "/dev/disk/by-uuid/98615756-bc48-4b79-adee-07afef07e026";

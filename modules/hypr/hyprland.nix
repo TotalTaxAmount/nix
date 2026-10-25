@@ -262,6 +262,7 @@ let
           clickfinger_behavior = true,
           disable_while_typing = false,
           natural_scroll = false,
+          tap_to_click = false,
         },
         accel_profile = "flat",
         follow_mouse = 1,

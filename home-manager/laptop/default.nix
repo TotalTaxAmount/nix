@@ -109,6 +109,7 @@ in
 
       slack
       vesktop
+      piper
 
       #Terminal Apps/Config
       zsh-powerlevel10k
