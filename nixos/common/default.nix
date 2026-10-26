@@ -21,6 +21,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+
   documentation = {
     enable = true;
     man.enable = true;
@@ -37,8 +38,9 @@
     inputs.nix-cachyos-kernel.overlays.pinned
   ];
 
-  nix.settings.trusted-users = [
-    user
+  security.pki.caCertificateBlacklist = [
+    "Comodo AAA Services root"
+    "emSign ECC Root CA - G3"
   ];
 
   nix = {
@@ -50,6 +52,9 @@
     settings = {
       max-jobs = "auto";
       cores = 0;
+      trusted-users = [
+        user
+      ];
     };
 
     daemonCPUSchedPolicy = "batch";
