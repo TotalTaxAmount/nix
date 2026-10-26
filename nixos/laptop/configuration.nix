@@ -156,7 +156,7 @@
 
       open = true; # Issues with open drives
       nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = pkgs.nvidiaDriverFixed config.boot.kernelPackages.nvidiaPackages.latest;
 
       prime = {
         offload.enable = true;

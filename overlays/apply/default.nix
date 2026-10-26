@@ -51,6 +51,37 @@ final: prev:
       + "wrapProgram $out/bin/audacity --set GDK_BACKEND x11 --set UBUNTU_MENUPROXY 0";
   });
 
+  # patchelf 0.19.2 lays PT_DYNAMIC of the NVIDIA CLI binaries inside a
+  # read-only, overlapping PT_LOAD. glibc's ld.so writes the DT_DEBUG pointer
+  # there at startup, so nvidia-smi / nvidia-powerd / nvidia-cuda-mps-control
+  # segfault in dl_main. Pin 0.15.2, which lays them out correctly.
+  patchelf015 = prev.patchelf.overrideAttrs (old: rec {
+    version = "0.15.2";
+    src = prev.fetchurl {
+      url = "https://github.com/NixOS/patchelf/releases/download/${version}/patchelf-${version}.tar.gz";
+      hash = "sha256-DWn63A3rY/5GZlu9qZ6gIJy4G7PWDPVRCE+dvsB8u2w=";
+    };
+    doCheck = false;
+  });
+
+  # Rebuild a driver with the affected binaries re-patched from the pristine
+  # origBin copies using the known-good patchelf.
+  nvidiaDriverFixed = driver: driver.overrideAttrs (old: {
+    postInstall =
+      prev.lib.optionalString ((old.postInstall or null) != null) (old.postInstall + "\n")
+      + ''
+        for f in "$bin"/origBin/*; do
+          name=$(basename "$f")
+          [ -e "$bin/bin/$name" ] || continue
+          rpath=$(${final.patchelf015}/bin/patchelf --print-rpath "$bin/bin/$name")
+          install -m755 "$f" "$bin/bin/$name"
+          ${final.patchelf015}/bin/patchelf \
+            --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+            --set-rpath "$rpath" "$bin/bin/$name"
+        done
+      '';
+  });
+
   ## Wayland
   vscode = prev.vscode.overrideAttrs (old: {
     postInstall = (old.postInstall or "") + ''
