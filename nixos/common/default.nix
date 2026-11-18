@@ -21,7 +21,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-
   documentation = {
     enable = true;
     man.enable = true;
@@ -40,7 +39,7 @@
 
   security.pki.caCertificateBlacklist = [
     "Comodo AAA Services root"
-    "emSign ECC Root CA - G3"
+    # "emSign ECC Root CA - G3"
   ];
 
   nix = {
@@ -74,6 +73,12 @@
       "plugdev"
       "podman"
       "docker"
+    ];
+
+    # GPG authentication subkey (0xC1672829), exported with:
+    #   gpg --export-ssh-key 0x718CE018D826D164
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDiTUrfaLhqJw7FQuaChPlaf2bxeWet1m9IS6uZW1m0T shieldscoen@gmail.com"
     ];
   };
 
@@ -153,6 +158,16 @@
 
   programs.zsh = {
     enable = true;
+  };
+
+  # System-wide gpg-agent with SSH support. This provides SSH_AUTH_SOCK for
+  # non-Home-Manager sessions (TTY/SSH logins) and exposes the GPG
+  # authentication subkey as an SSH key. Do not also enable
+  # `programs.ssh.startAgent`; the two agents conflict.
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   environment.systemPackages = with pkgs; [

@@ -1,3 +1,4 @@
+
 {
   config,
   inputs,
@@ -21,7 +22,10 @@
 
   zramSwap.enable = true;
   services = {
-    ratbagd.enable = true;
+    ratbagd = {
+      enable = true;
+     package = pkgs.libratbag;
+    };
     openssh.enable = true;
     flatpak.enable = true;
     spice-vdagentd.enable = true;
@@ -285,7 +289,8 @@
       options nvidia NVreg_EnableGpuFirmware=1
     '';
 
-    # extraModulePackages = [ config.boot.kernelPackages.evdi ];
+    extraModulePackages = [
+    ];
 
     supportedFilesystems = [ "nfs" ];
     kernelModules = [
@@ -322,5 +327,33 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
+  };
+
+  # Secondary boot entry for the nv-uefi-unlocker tensor unlock.
+  # The unlock lives in GPU memory and is lost if the dGPU enters D3cold.
+  specialisation."tensor-unlock".configuration = {
+    system.nixos.tags = [ "tensor-unlock" ];
+
+    # Disable NixOS-side runtime PM and the fine-grained D3 path.
+    hardware.nvidia.powerManagement.enable = lib.mkForce false;
+    hardware.nvidia.powerManagement.finegrained = lib.mkForce false;
+
+    # Keep the persistence daemon; already enabled in the parent.
+    hardware.nvidia.nvidiaPersistenced = lib.mkForce true;
+
+    # mkAfter puts this line after the parent's 0x03 and the NVIDIA
+    # module's generated options, so 0x00 is the effective value without
+    # dropping nvidia-drm.modeset/fbdev or NVreg_EnableGpuFirmware.
+    boot.extraModprobeConfig = lib.mkAfter ''
+      options nvidia NVreg_DynamicPowerManagement=0x00
+    '';
+
+    # Never allow the PCI core to runtime-suspend the RTX 4070. This
+    # runs after the parent's power/control="auto" rule in 99-local.rules.
+    services.udev.extraRules = ''
+      SUBSYSTEM=="pci", KERNEL=="0000:01:00.0", ATTR{power/control}="on"
+    '';
+
+    boot.kernelParams = [ "iomem=relaxed" ];
   };
 }

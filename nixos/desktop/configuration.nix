@@ -74,9 +74,9 @@
       enable = true;
     };
 
-    scx = {
+    scx-loader = {
       enable = true;
-      scheduler = "scx_bpfland";
+      config.default_sched = "scx_bpfland";
     };
 
     nvml = {
@@ -149,8 +149,7 @@
       enable = true;
       xwayland.enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
-
+      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
 
       withUWSM = true;
     };

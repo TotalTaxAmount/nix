@@ -18,6 +18,8 @@
       url = "github:misterio77/nix-colors";
     };
 
+    rea-flake.url = "github:Fractal-Tess/rea-flake";
+
     aquamarine = {
       type = "git";
       url = "https://github.com/hyprwm/aquamarine";

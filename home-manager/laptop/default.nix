@@ -33,6 +33,7 @@ in
 
     # Flakes
     inputs.nix-colors.homeManagerModule
+    inputs.rea-flake.homeManagerModules.default
     # inputs.sops-nix.homeManagerModule
   ];
 
@@ -52,6 +53,14 @@ in
       allowUnfree = true;
       cudaSupport = true;
     };
+
+    # Needed for KiCad Freerouting
+    programs.java = {
+      enable = true;
+      package = pkgs.jdk25;
+    };
+
+    programs.rea.enable = true;
 
     services = {
       hypridle = {
@@ -90,6 +99,7 @@ in
     home.packages = with pkgs; [
       # Apps
       kicad
+
       gimp
       spotify
       qFlipper

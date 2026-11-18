@@ -95,7 +95,6 @@ in
       (pkgs.callPackage ../../packages/update { })
     ];
 
-
     programs = {
       git = {
         enable = true;
@@ -103,8 +102,10 @@ in
 
         settings = {
           pull.rebase = false;
-          user.signingkey = "718CE018D826D164";
+          gpg.format = "openpgp";
+          user.signingkey = "F86DD3C43118758BA5A3D3A9718CE018D826D164";
           commit.gpgsign = true;
+          tag.gpgsign = true;
           core.editor = "${pkgs.zed-editor}/bin/zeditor --wait";
           http.curlOptions = "-4";
           credential.helper = "libsecret";
@@ -116,11 +117,6 @@ in
           safe.directory = "/workspace";
 
         };
-      };
-
-      keychain = {
-        enable = true;
-        keys = [ "id_ed25519" ];
       };
 
       gpg = {
@@ -136,10 +132,13 @@ in
 
     services.gpg-agent = {
       enable = true;
-      pinentry.package = pkgs.pinentry-gnome3;
+      enableSshSupport = true;
+      enableZshIntegration = true;
+      # Keygrip of the GPG authentication subkey (0xC1672829).
+      # Keep in sync with the [A] subkey: gpg --with-keygrip -K
+      sshKeys = [ "48A4A8CC13DE86B3691EC7AD8A742D080E80DC1B" ];
+      pinentry.package = lib.mkDefault pkgs.pinentry-gnome3;
     };
-
-    services.ssh-agent.enable = true;
 
     nix.gc = {
       automatic = true;

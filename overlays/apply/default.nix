@@ -82,6 +82,16 @@ final: prev:
       '';
   });
 
+  libratbag = prev.libratbag.overrideAttrs (old : {
+    postInstall = (old.postInstall or "") + ''
+        FILE="$out/share/libratbag/glorious-model-o-wireless.device"
+
+        if [ -f "$FILE" ]; then
+          substituteInPlace "$FILE" --replace "DeviceMatch=usb:258a:201c;usb:258a:201d" "DeviceMatch=usb:258a:201c;usb:258a:201d;usb:258a:2011"
+        fi
+      '';
+  });
+
   ## Wayland
   vscode = prev.vscode.overrideAttrs (old: {
     postInstall = (old.postInstall or "") + ''

@@ -13,7 +13,6 @@
 
   users.users.${user} = {
     isNormalUser = true;
-    description = "Coen Shields";
     extraGroups = [
       "networkmanager"
       "wheel"
@@ -73,15 +72,11 @@
     };
   };
 
-  programs.gnupg.agent = {
-    enable = true;
-  };
-
   environment.systemPackages = with pkgs; [
     brightnessctl
     sqlite
     pinentry-curses
-    nodejs_20
+    nodejs
   ];
 
   # Boot loader

@@ -41,7 +41,7 @@ in
   remote = nixosSystem {
     inherit pkgs system;
     specialArgs = {
-      inherit inputs;
+      inherit inputs user system;
       host = "remote";
     };
     modules = [
